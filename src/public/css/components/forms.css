@@ -1,0 +1,112 @@
+/* public/css/components/forms.css */
+.form {
+    max-width: 100%;
+    margin-bottom: var(--space-lg);
+}
+
+.form__group {
+    margin-bottom: var(--space-lg);
+}
+
+.form__label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-weight: 500;
+    font-size: var(--text-sm);
+    color: var(--color-gray-700);
+}
+
+.form__label--required::after {
+    content: "*";
+    color: var(--color-danger);
+    margin-left: var(--space-xs);
+}
+
+.form__input,
+.form__textarea,
+.form__select {
+    display: block;
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    color: var(--color-gray-900);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--border-radius-md);
+    transition: var(--transition);
+}
+
+.form__input:hover,
+.form__textarea:hover,
+.form__select:hover {
+    border-color: var(--color-gray-400);
+}
+
+.form__input:focus,
+.form__textarea:focus,
+.form__select:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form__input:disabled,
+.form__textarea:disabled,
+.form__select:disabled {
+    background-color: var(--color-gray-100);
+    cursor: not-allowed;
+}
+
+.form__textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form__select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23495057' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-md) center;
+    background-size: 16px;
+    padding-right: var(--space-xl);
+}
+
+/* Checkbox i radio */
+.form__checkbox-group,
+.form__radio-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+}
+
+.form__checkbox,
+.form__radio {
+    width: 1.2em;
+    height: 1.2em;
+    accent-color: var(--color-secondary);
+}
+
+.form__helper {
+    display: block;
+    margin-top: var(--space-xs);
+    font-size: var(--text-xs);
+    color: var(--color-gray-600);
+}
+
+.form__error {
+    display: block;
+    margin-top: var(--space-xs);
+    font-size: var(--text-xs);
+    color: var(--color-danger);
+}
+
+/* Forma u dva stupca na desktopu */
+@media (min-width: 768px) {
+    .form--grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+    }
+}

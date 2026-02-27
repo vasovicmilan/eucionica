@@ -1,0 +1,298 @@
+<%- include('../../includes/head', { title: 'Otvoreno računarstvo' }) %>
+<%- include('../../includes/navigation', {
+    active: 'otvoreno-racunarstvo'
+}) %>
+
+<main class="subject-page">
+    <!-- HERO -->
+    <section class="subject-hero">
+        <div class="container">
+            <h1 class="subject-title">Otvoreno računarstvo</h1>
+
+            <div class="subject-meta">
+                <span class="badge badge--primary">ESPB: 8</span>
+                <span class="badge badge--secondary">Šifra: OSRAC</span>
+                <span class="badge badge--outline">Predavanja: 3č</span>
+                <span class="badge badge--outline">Vežbe: 2č</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS - redizajnirano za mobilni -->
+    <div class="container">
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-content">
+                    <span class="stat-label">Napredak</span>
+                    <span class="stat-value"><%= stats.available %>/<%= stats.total %></span>
+                    <span class="stat-percent"><%= stats.percent %>%</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📅</div>
+                <div class="stat-content">
+                    <span class="stat-label">Početak</span>
+                    <span class="stat-value">27.02.2026.</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🏁</div>
+                <div class="stat-content">
+                    <span class="stat-label">Kraj</span>
+                    <span class="stat-value">15.05.2026.</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🎓</div>
+                <div class="stat-content">
+                    <span class="stat-label">ESPB</span>
+                    <span class="stat-value">8</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <hr class="section-divider">
+
+        <div class="subject-grid">
+            <!-- MAIN -->
+            <div class="subject-main">
+                <!-- O PREDMETU -->
+                <section class="info-card">
+                    <div class="card-header">
+                        <h2>O predmetu</h2>
+                    </div>
+
+                    <div class="card-body">
+                        <p class="lead">
+                            Otvoreno računarstvo je predmet koji se bavi proučavanjem otvorenih
+                            softverskih sistema, tehnologija i standarda koji čine osnovu
+                            savremenog informacionog društva.
+                        </p>
+
+                        <p>
+                            Fokus predmeta nije samo na konkretnim alatima, već na razumevanju
+                            principa otvorenih sistema i njihove uloge u modernom IT okruženju.
+                        </p>
+
+                        <p>
+                            Internet, web servisi, cloud platforme i razvojni alati u velikoj meri
+                            koriste tehnologije koje su javno dostupne i otvorene.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- PLAN RADA -->
+                <section class="info-card">
+                    <div class="card-header">
+                        <h2>Plan rada po nedeljama</h2>
+                    </div>
+
+                    <div class="card-body">
+                        <p class="section-intro">
+                            Predmet se realizuje kroz 12 nedelja, prema sledećem planu:
+                        </p>
+
+                        <div class="table-responsive">
+                            <table class="table table--striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nedelja</th>
+                                        <th>Tema</th>
+                                        <th>Datum</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% workPlan.forEach(item => { 
+                                        const itemDate = new Date(item.date.split('.').reverse().join('-'));
+                                        itemDate.setHours(0,0,0,0);
+                                        const isPast = itemDate < today;
+                                        const isCurrent = itemDate.getTime() === today.getTime() ||
+                                            (currentLection && item.topic === currentLection.title);
+                                    %>
+                                    <tr class="<%= isCurrent ? 'table-row-current' : '' %>">
+                                        <td><strong>Nedelja <%= item.week %></strong></td>
+                                        <td><%= item.topic %></td>
+                                        <td><%= item.date %></td>
+                                        <td>
+                                            <% if (isCurrent) { %>
+                                                <span class="status-badge status-badge--primary">🔵 Trenutno</span>
+                                            <% } else if (isPast) { %>
+                                                <span class="status-badge status-badge--success">✅ Završeno</span>
+                                            <% } else { %>
+                                                <span class="status-badge status-badge--warning">⏳ Predstoji</span>
+                                            <% } %>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="table-legend">
+                            <span class="legend-item">
+                                <span class="legend-color legend-color--primary"></span> Trenutno
+                            </span>
+                            <span class="legend-item">
+                                <span class="legend-color legend-color--success"></span> Završeno
+                            </span>
+                            <span class="legend-item">
+                                <span class="legend-color legend-color--warning"></span> Predstoji
+                            </span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SIDEBAR -->
+            <aside class="subject-sidebar">
+                <!-- TRENUTNA LEKCIJA -->
+                <section class="info-card info-card--highlighted">
+                    <div class="card-header">
+                        <h2>Trenutna lekcija</h2>
+                    </div>
+
+                    <div class="card-body">
+                        <% if (currentLection) { %>
+                            <div class="current-lection">
+                                <h3 class="current-lection-title"><%= currentLection.title %></h3>
+
+                                <span class="lection-badge">
+                                    <span class="badge-icon">📅</span>
+                                    <%= currentLection.formattedDate %>
+                                </span>
+
+                                <p class="lection-description">
+                                    <%= currentLection.description %>
+                                </p>
+
+                                <hr class="card-divider">
+
+                                <a href="/otvoreno-racunarstvo/lekcija/<%= currentLection.slug %>"
+                                   class="btn btn--primary btn--block btn--large">
+                                    Otvori lekciju →
+                                </a>
+                            </div>
+                        <% } else { %>
+                            <div class="empty-state">
+                                <div class="empty-state-icon">📚</div>
+                                <p class="empty-state-title">Predmet još nije počeo</p>
+                                <p class="empty-state-small">
+                                    Prva lekcija: <strong>27.02.2026.</strong>
+                                </p>
+                            </div>
+                        <% } %>
+                    </div>
+                </section>
+
+                <!-- NAČIN OCENJIVANJA -->
+                <section class="info-card">
+                    <div class="card-header">
+                        <h2>Način ocenjivanja</h2>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table--compact">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="grading-item">
+                                                <span class="grading-icon">📋</span>
+                                                Prisustvo na predavanjima
+                                            </div>
+                                        </td>
+                                        <td class="points-cell">10</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="grading-item">
+                                                <span class="grading-icon">💻</span>
+                                                Prisustvo na vežbama
+                                            </div>
+                                        </td>
+                                        <td class="points-cell">10</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="grading-item">
+                                                <span class="grading-icon">📝</span>
+                                                Kolokvijum 1
+                                            </div>
+                                        </td>
+                                        <td class="points-cell">30</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="grading-item">
+                                                <span class="grading-icon">📝</span>
+                                                Kolokvijum 2
+                                            </div>
+                                        </td>
+                                        <td class="points-cell">30</td>
+                                    </tr>
+
+                                    <tr class="table-row-total">
+                                        <td>
+                                            <div class="grading-item">
+                                                <span class="grading-icon">🎯</span>
+                                                <strong>Završni ispit</strong>
+                                                <small class="text-muted">(test / seminarski)</small>
+                                            </div>
+                                        </td>
+                                        <td class="points-cell"><strong>20</strong></td>
+                                    </tr>
+
+                                    <tr class="table-row-sum">
+                                        <td><strong>UKUPNO</strong></td>
+                                        <td class="points-cell"><strong>100</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="info-note">
+                            <span class="info-icon">ℹ️</span>
+                            Minimum za prolaz: <strong>51 poen</strong>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RESURSI -->
+                <section class="info-card">
+                    <div class="card-header">
+                        <h2>Korisni resursi</h2>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="resources-grid">
+                            <a href="https://drive.google.com/file/d/1srxPqQ8zprc8Ggo6yn9t27_tgQcfWTGn/view" target="_blank" rel="noopener noreferrer" class="resource-card">
+                                <span>📄</span> Plan
+                            </a>
+                            <a href="/otvoreno-racunarstvo/materijali" class="resource-card">
+                                <span>📚</span> Materijali
+                            </a>
+                            <a href="#" class="resource-card">
+                                <span>📊</span> Rezultati
+                            </a>
+                            <a href="#" class="resource-card">
+                                <span>❓</span> Pitanja
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </div>
+</main>
+
+<%- include('../../includes/end') %>

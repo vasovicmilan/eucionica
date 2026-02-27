@@ -1,0 +1,60 @@
+<nav class="lection-navigation">
+    <div class="navigation-header">
+        <h3>Lekcije</h3>
+        <button class="nav-toggle" aria-label="Otvori navigaciju">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+    
+    <ul class="nav-list">
+        <% lections.forEach((lection) => { %>
+            <li class="nav-item 
+                <%= lection.slug === currentSlug ? 'active' : '' %>
+                <%= !lection.available ? 'locked' : '' %>
+            ">
+                <a 
+                    <% if (lection.available) { %>
+                        href="/otvoreno-racunarstvo/lekcija/<%= lection.slug %>"
+                    <% } %>
+                    class="<%= !lection.available ? 'disabled' : '' %>"
+                    <%= !lection.available ? 'aria-disabled="true" tabindex="-1"' : '' %>
+                >
+                    
+                    <span class="nav-number"><%= lection.week %></span>
+
+                    <span class="nav-title">
+                        <%= lection.title %>
+                        <% if (!lection.available) { %>
+                            <span class="lock-small">🔒</span>
+                        <% } %>
+                    </span>
+
+                    <span class="nav-icon">
+                        <%= lection.available ? '→' : '🔒' %>
+                    </span>
+
+                </a>
+            </li>
+        <% }); %>
+    </ul>
+        
+    <div class="navigation-footer">
+        <% 
+            const availableCount = lections.filter(l => l.available).length;
+            const percent = Math.round((availableCount / lections.length) * 100);
+        %>
+
+        <div class="progress">
+            <div 
+                class="progress-bar"
+                data-progress="<%= percent %>">
+            </div>
+        </div>
+
+        <p class="progress-text">
+            <%= availableCount %>/<%= lections.length %> lekcija dostupno
+        </p>
+    </div>
+</nav>

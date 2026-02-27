@@ -1,0 +1,244 @@
+/* public/css/components/media.css */
+
+.media {
+    margin-bottom: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .media {
+        margin-bottom: var(--space-lg);
+    }
+}
+
+/* Slike */
+.image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.image--rounded {
+    border-radius: var(--border-radius-sm);
+}
+
+@media (min-width: 768px) {
+    .image--rounded {
+        border-radius: var(--border-radius-md);
+    }
+}
+
+.image--circle {
+    border-radius: 50%;
+}
+
+.image--bordered {
+    border: 1px solid var(--color-gray-200);
+    padding: var(--space-xs);
+    background: var(--color-white);
+}
+
+.image--shadow {
+    box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 768px) {
+    .image--shadow {
+        box-shadow: var(--shadow-md);
+    }
+}
+
+.image__caption {
+    margin-top: var(--space-xs);
+    font-size: var(--text-xs);
+    color: var(--color-gray-600);
+    text-align: center;
+}
+
+/* Galerija slika */
+.image-gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+@media (min-width: 480px) {
+    .image-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .image-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--space-md);
+        margin-bottom: var(--space-lg);
+    }
+}
+
+/* Video */
+.video {
+    width: 100%;
+    margin-bottom: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .video {
+        margin-bottom: var(--space-lg);
+    }
+}
+
+.video__player {
+    width: 100%;
+    max-height: 50vh;
+    background: var(--color-gray-900);
+    border-radius: var(--border-radius-sm);
+}
+
+@media (min-width: 768px) {
+    .video__player {
+        max-height: 70vh;
+        border-radius: var(--border-radius-md);
+    }
+}
+
+.video--rounded .video__player {
+    border-radius: var(--border-radius-sm);
+}
+
+@media (min-width: 768px) {
+    .video--rounded .video__player {
+        border-radius: var(--border-radius-md);
+    }
+}
+
+.video--shadow .video__player {
+    box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 768px) {
+    .video--shadow .video__player {
+        box-shadow: var(--shadow-lg);
+    }
+}
+
+.video__caption {
+    margin-top: var(--space-xs);
+    font-size: var(--text-xs);
+    color: var(--color-gray-600);
+    text-align: center;
+}
+
+/* Video grid (za više videa) */
+.video-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+}
+
+@media (min-width: 640px) {
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+    }
+}
+
+/* Iframe (za embed sadržaj) */
+.iframe-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .iframe-container {
+        margin-bottom: var(--space-lg);
+    }
+}
+
+.iframe-container--16-9 {
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+.iframe-container--4-3 {
+    padding-bottom: 75%; /* 4:3 aspect ratio */
+}
+
+.iframe-container--1-1 {
+    padding-bottom: 100%; /* 1:1 aspect ratio */
+}
+
+.iframe__embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: var(--border-radius-sm);
+}
+
+@media (min-width: 768px) {
+    .iframe__embed {
+        border-radius: var(--border-radius-md);
+    }
+}
+
+/* Iframe bez fiksnog odnosa (za dokumente, itd) */
+.iframe {
+    width: 100%;
+    min-height: 300px;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--border-radius-sm);
+}
+
+@media (min-width: 768px) {
+    .iframe {
+        min-height: 400px;
+        border-radius: var(--border-radius-md);
+    }
+}
+
+/* PDF viewer (često je iframe) */
+.iframe--pdf {
+    min-height: 500px;
+    background: var(--color-gray-50);
+}
+
+@media (min-width: 768px) {
+    .iframe--pdf {
+        min-height: 600px;
+    }
+}
+
+/* Media grupa (kombinacija slika/videa) */
+.media-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .media-group {
+        gap: var(--space-md);
+        margin-bottom: var(--space-lg);
+    }
+}
+
+@media (min-width: 640px) {
+    .media-group--horizontal {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .media-group--horizontal .media {
+        flex: 1 1 calc(50% - var(--space-sm));
+    }
+}
+
+@media (min-width: 768px) {
+    .media-group--horizontal .media {
+        flex: 1 1 calc(50% - var(--space-md));
+    }
+}

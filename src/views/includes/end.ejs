@@ -1,0 +1,28 @@
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__info">
+                <p class="footer__copyright">
+                    © <%= new Date().getFullYear() %> EUCIONICA
+                </p>
+                <p class="footer__credit">
+                    Izradio: <a href="https://milanvasovic.com" target="_blank" rel="noopener">Milan Vasović</a> · 
+                    <a href="https://ariussystems.com" target="_blank" rel="noopener">Arius Systems</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/public/js/shared.js"></script>
+
+    <% if (typeof pageScripts !== 'undefined' && pageScripts) { %>
+        <% if (Array.isArray(pageScripts)) { %>
+            <% pageScripts.forEach(script => { %>
+                <script src="/public/js/<%= script %>"></script>
+            <% }); %>
+        <% } else { %>
+            <script src="/public/js/<%= pageScripts %>"></script>
+        <% } %>
+    <% } %>
+</body>
+</html>

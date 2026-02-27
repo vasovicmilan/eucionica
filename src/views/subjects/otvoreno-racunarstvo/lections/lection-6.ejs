@@ -1,0 +1,121 @@
+<%- include('../../../includes/head', { 
+    title: lection.title,
+    pageDescription: lection.description,
+    pageStyles: pageStyles
+}) %>
+
+<%- include('../../../includes/navigation', {
+    active: 'otvoreno-racunarstvo'
+}) %>
+
+<div class="lection-container">
+    <!-- SIDEBAR -->
+    <aside class="lection-sidebar">
+        <%- include('../includes/navigation', {
+            lections: lections,
+            currentSlug: lection.slug
+        }) %>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="lection-content">
+
+        <!-- ===============================
+             LEKCIJA NIJE DOSTUPNA
+        =============================== -->
+        <% if (!lection.available) { %>
+
+            <div class="lection-locked">
+                <div class="lection-locked__icon">🔒</div>
+                <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
+                <p class="lection-locked__text">
+                    Ova lekcija postaje dostupna
+                    <strong><%= lection.formattedDate %></strong>.
+                </p>
+                <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
+                <a href="/otvoreno-racunarstvo" class="btn btn--primary btn--large">
+                    Nazad na predmet
+                </a>
+            </div>
+
+        <!-- ===============================
+             LEKCIJA JE DOSTUPNA
+        =============================== -->
+        <% } else { %>
+
+            <article class="lection">
+
+                <!-- HEADER -->
+                <header class="lection__header">
+                    <div class="lection__meta">
+                        <span class="lection__badge lection__badge--week">
+                            <span class="badge-icon">📅</span>
+                            Nedelja <%= lection.week %>
+                        </span>
+                        <span class="lection__badge lection__badge--date">
+                            <span class="badge-icon">📌</span>
+                            <%= lection.formattedDate %>
+                        </span>
+                    </div>
+
+                    <h1 class="lection__title"><%= lection.title %></h1>
+                    
+                    <% if (lection.description) { %>
+                        <p class="lection__description"><%= lection.description %></p>
+                    <% } %>
+                </header>
+
+                <!-- ===============================
+                     SADRŽAJ LEKCIJE
+                =============================== -->
+                <div class="lection__content">
+                    
+                    <!-- OVDE DOLAZI SADRŽAJ LEKCIJE -->
+                    <!-- Sadržaj će biti dodat za svaku lekciju posebno -->
+                    
+                </div>
+
+                <!-- ===============================
+                     NAVIGACIJA IZMEĐU LEKCIJA
+                =============================== -->
+                <nav class="lection-nav">
+                    <% if (navigation.prev) { %>
+                        <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>"
+                           class="lection-nav__link lection-nav__link--prev">
+                            <span class="nav-arrow">←</span>
+                            <span class="nav-text">
+                                <span class="nav-label">Prethodna lekcija</span>
+                                <span class="nav-title"><%= navigation.prev.title %></span>
+                            </span>
+                        </a>
+                    <% } else { %>
+                        <a href="/otvoreno-racunarstvo" 
+                           class="lection-nav__link lection-nav__link--prev">
+                            <span class="nav-arrow">←</span>
+                            <span class="nav-text">
+                                <span class="nav-label">Nazad na</span>
+                                <span class="nav-title">početnu predmeta</span>
+                            </span>
+                        </a>
+                    <% } %>
+
+                    <% if (navigation.next) { %>
+                        <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.next.slug %>"
+                           class="lection-nav__link lection-nav__link--next">
+                            <span class="nav-text">
+                                <span class="nav-label">Sledeća lekcija</span>
+                                <span class="nav-title"><%= navigation.next.title %></span>
+                            </span>
+                            <span class="nav-arrow">→</span>
+                        </a>
+                    <% } %>
+                </nav>
+
+            </article>
+
+        <% } %>
+
+    </main>
+</div>
+
+<%- include('../../../includes/end') %>

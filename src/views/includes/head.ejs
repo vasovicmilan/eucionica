@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Title -->
+    <title><%= typeof title !== 'undefined' ? title + ' | ' : '' %>EUCIONICA</title>
+
+    <!-- Favicons -->
+    <link rel="icon" href="/public/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/images/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/styles.css">
+
+    <!-- Dodatni CSS za specifičnu stranicu (ako postoji) -->
+    <% if (typeof pageStyles !== 'undefined' && pageStyles) { %>
+        <link rel="stylesheet" href="/public/css/<%= pageStyles %>">
+    <% } %>
+</head>
+<body>

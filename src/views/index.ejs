@@ -1,0 +1,111 @@
+<%- include('./includes/head', { 
+    title: pageTitle,
+    pageDescription: pageDescription,
+    pageStyles: pageStyles
+}) %>
+
+<main class="home-page">
+    <%- include('./includes/navigation', { active: "" }) %>
+
+    <!-- HERO -->
+    <section class="home-hero">
+        <div class="container">
+            <div class="home-hero__content">
+                <span class="hero-badge">E-učionica</span>
+
+                <h1 class="home-hero__title">
+                    Dobrodošli u digitalnu učionicu
+                </h1>
+
+                <p class="home-hero__subtitle">
+                    Centralno mesto za nastavne materijale, predavanja i resurse
+                    u okviru studijskih predmeta.
+                </p>
+
+                <a href="#predmeti" class="btn btn--primary">
+                    Pogledaj predmete →
+                </a>
+
+                <div class="hero-quick-links">
+                    <% subjects.forEach(subject => { %>
+                        <a href="/<%= subject.slug %>" class="quick-link">
+                            <span><%= subject.icon %></span>
+                            <%= subject.name %>
+                        </a>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O APLIKACIJI -->
+    <section class="home-about">
+        <div class="container">
+            <h2 class="section-title">
+                Digitalno okruženje za savremeno učenje
+            </h2>
+
+            <p class="section-description">
+                Aplikacija je zasnovana na principima otvorenog obrazovanja,
+                transparentnosti i jednostavne dostupnosti sadržaja.
+            </p>
+
+            <div class="about-grid">
+                <div>
+                    <% features.forEach(feature => { %>
+                        <div class="feature-card">
+                            <div class="feature-icon"><%= feature.icon %></div>
+                            <div>
+                                <h3><%= feature.title %></h3>
+                                <p><%= feature.description %></p>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+
+                <div class="stats-box">
+                    <div class="stat">
+                        <span class="stat-number"><%= stats.activeSubjects %></span>
+                        <span>Aktivna predmeta</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number"><%= stats.totalLessons %>+</span>
+                        <span>Lekcija</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number"><%= stats.openAccess %>%</span>
+                        <span>Otvoren pristup</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREDMETI -->
+    <section id="predmeti" class="home-subjects">
+        <div class="container">
+            <h2 class="section-title">Naši predmeti</h2>
+
+            <div class="subjects-grid">
+                <% subjects.forEach(subject => { %>
+                    <article class="subject-card">
+                        <div class="subject-icon"><%= subject.icon %></div>
+                        <h3><%= subject.name %></h3>
+                        <p><%= subject.description %></p>
+
+                        <div class="subject-meta">
+                            <span><%= subject.weeks %> nedelja</span>
+                            <span><%= subject.espb %> ESPB</span>
+                        </div>
+
+                        <a href="/<%= subject.slug %>" class="subject-link">
+                            Istraži predmet →
+                        </a>
+                    </article>
+                <% }) %>
+            </div>
+        </div>
+    </section>
+</main>
+
+<%- include('./includes/end') %>

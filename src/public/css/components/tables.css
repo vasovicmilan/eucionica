@@ -1,0 +1,200 @@
+/* public/css/tables.css */
+
+/* =========================
+   TABLE WRAPPER - RESPONSIVE
+========================= */
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--border-radius-lg);
+    background: var(--color-white);
+    position: relative;
+}
+
+/* Indikator za skrolovanje */
+.table-responsive::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.03));
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+}
+
+.table-responsive:hover::after,
+.table-responsive:active::after {
+    opacity: 1;
+}
+
+/* =========================
+   BASE TABLE
+========================= */
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    min-width: 500px; /* Optimalno za mobilni pregled */
+}
+
+/* Za veoma male ekrane, smanjujemo min-width */
+@media (max-width: 480px) {
+    .table {
+        min-width: 400px;
+        font-size: var(--text-xs);
+    }
+}
+
+.table th {
+    background: var(--color-gray-50);
+    padding: var(--space-sm) var(--space-md);
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-gray-300);
+    text-align: left;
+    color: var(--color-gray-800);
+    white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+    .table th {
+        padding: var(--space-md);
+    }
+}
+
+.table td {
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--color-gray-200);
+    vertical-align: middle;
+    color: var(--color-gray-700);
+}
+
+@media (min-width: 768px) {
+    .table td {
+        padding: var(--space-md);
+    }
+}
+
+/* =========================
+   MODIFIERS
+========================= */
+
+.table--striped tbody tr:nth-child(even) {
+    background-color: var(--color-gray-50);
+}
+
+.table--compact td {
+    padding: var(--space-xs) var(--space-sm);
+}
+
+@media (min-width: 768px) {
+    .table--compact td {
+        padding: var(--space-sm) var(--space-md);
+    }
+}
+
+.table--borderless td,
+.table--borderless th {
+    border: none;
+}
+
+.table--hover tbody tr:hover {
+    background-color: var(--color-gray-100);
+}
+
+/* =========================
+   SPECIAL ROWS
+========================= */
+
+.table-row-current {
+    background-color: rgba(52, 152, 219, 0.08);
+    font-weight: 500;
+    border-left: 3px solid var(--color-secondary);
+}
+
+.table-row-total {
+    background: var(--color-gray-50);
+    font-weight: 500;
+}
+
+.table-row-sum {
+    background: var(--color-gray-100);
+    font-weight: 700;
+}
+
+.table-row-sum td {
+    padding: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .table-row-sum td {
+        padding: var(--space-lg);
+    }
+}
+
+/* =========================
+   CELLS
+========================= */
+
+.points-cell {
+    width: 60px;
+    text-align: right;
+    font-weight: 700;
+    color: var(--color-secondary);
+    white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+    .points-cell {
+        width: 70px;
+    }
+}
+
+/* =========================
+   TABLE LEGEND
+========================= */
+
+.table-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+    padding: var(--space-sm) 0;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--text-xs);
+    color: var(--color-gray-600);
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: var(--border-radius-full);
+}
+
+.legend-color--primary {
+    background: var(--color-secondary);
+}
+
+.legend-color--success {
+    background: var(--color-success);
+}
+
+.legend-color--warning {
+    background: var(--color-warning);
+}
+
+.legend-color--danger {
+    background: var(--color-danger);
+}

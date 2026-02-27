@@ -1,0 +1,62 @@
+<%- include('./includes/head', { 
+    title: title || ('Greška ' + (status || 500)),
+    pageStyles: 'pages/error.css'
+}) %>
+
+<main class="error-page">
+    <%- include('./includes/navigation', { active: "" }) %>
+
+    <section class="error-hero">
+        <div class="container">
+
+            <div class="error-wrapper">
+
+                <!-- STATUS CODE -->
+                <div class="error-code">
+                    <%= status || 500 %>
+                </div>
+
+                <!-- NASLOV -->
+                <h1 class="error-title">
+                    <%= title || 'Došlo je do neočekivane greške' %>
+                </h1>
+
+                <!-- OPIS -->
+                <p class="error-message">
+                    <%= message || 'Sistem trenutno ne može da obradi vaš zahtev.' %>
+                </p>
+
+                <!-- ERROR ID (za logove) -->
+                <% if (errorId) { %>
+                    <p class="error-id">
+                        Referentni ID greške:
+                        <strong><%= errorId %></strong>
+                    </p>
+                <% } %>
+
+                <!-- STACK (samo development) -->
+                <% if (stack) { %>
+                    <div class="error-stack">
+                        <pre><%= stack %></pre>
+                    </div>
+                <% } %>
+
+                <!-- AKCIJE -->
+                <div class="error-actions">
+                    <a href="/" class="btn btn--primary">
+                        Početna stranica
+                    </a>
+
+                    <button id="goBackBtn" class="btn btn--secondary">
+                        Nazad
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<script src="/public/js/error.js"></script>
+<%- include('./includes/end') %>

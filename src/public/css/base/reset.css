@@ -1,0 +1,109 @@
+/* public/css/reset.css */
+
+/* ================================
+   GLOBAL RESET
+================================ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ================================
+   ROOT & BODY
+================================ */
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+    font-family: var(--font-primary);
+    color: var(--color-gray-900);
+    background-color: var(--color-white);
+}
+
+/* ================================
+   MEDIA ELEMENTS
+================================ */
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ================================
+   FORM ELEMENTS
+================================ */
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+/* ================================
+   TEXT HANDLING
+================================ */
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+/* ================================
+   LISTS
+================================ */
+
+ul,
+ol {
+    list-style: none;
+}
+
+/* ================================
+   LINKS
+================================ */
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ================================
+   BUTTON RESET
+================================ */
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ================================
+   ACCESSIBILITY
+================================ */
+
+:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+}

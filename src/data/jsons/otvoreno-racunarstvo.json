@@ -1,0 +1,153 @@
+{
+  "lections": [
+    {
+      "slug": "open-source-softver-ideja-istorija-zajednica",
+      "title": "Open source softver: ideja, istorija i zajednica",
+      "description": "Uvod u koncept otvorenog softvera, njegova filozofija, istorijski razvoj i uloga zajednice u stvaranju održivih softverskih ekosistema.",
+      "template": "lection-1",
+      "styles": "lection-1",
+      "date": "2026-01-26",
+      "week": 1
+    },
+    {
+      "slug": "linux-i-otvoreni-operativni-sistemi",
+      "title": "Linux i otvoreni operativni sistemi",
+      "description": "Proučavanje Linuxa kao temelja otvorenog računarstva, njegove arhitekture, distribucija i značaja u serverskim i cloud okruženjima.",
+      "template": "lection-2",
+      "styles": "lection-2",
+      "date": "2026-02-06",
+      "week": 2
+    },
+    {
+      "slug": "git-i-kolaborativni-razvoj",
+      "title": "Git i kolaborativni razvoj softvera",
+      "description": "Sistem za kontrolu verzija Git, njegova uloga u timskom radu, open source filozofija i platforme za saradnju poput GitHub-a.",
+      "template": "lection-3",
+      "styles": "lection-3",
+      "date": "2026-03-13",
+      "week": 3
+    },
+    {
+      "slug": "otvoreni-protokoli-i-standardi",
+      "title": "Otvoreni protokoli i standardi",
+      "description": "TCP/IP, HTTP, DNS i drugi otvoreni protokoli koji čine temelj interneta, zajedno sa organizacijama koje ih definišu.",
+      "template": "lection-4",
+      "styles": "lection-4",
+      "date": "2026-03-20",
+      "week": 4
+    },
+    {
+      "slug": "otvoreni-api-i-rest-servisi",
+      "title": "Otvoreni API i REST servisi",
+      "description": "Koncept API-ja, REST arhitektura, HTTP metode, JSON format i praktična primena u razvoju savremenih web servisa.",
+      "template": "lection-5",
+      "styles": "lection-5",
+      "date": "2026-03-27",
+      "week": 5
+    },
+    {
+      "slug": "iot-i-otvoreno-racunarstvo",
+      "title": "IoT i otvoreno računarstvo",
+      "description": "Primena otvorenih principa na Internet of Things uređaje, protokole (MQTT, CoAP), hardver i softver u IoT ekosistemu.",
+      "template": "lection-6",
+      "styles": "lection-6",
+      "date": "2026-04-03",
+      "week": 6
+    },
+    {
+      "slug": "open-source-licence",
+      "title": "Open source licence",
+      "description": "Pravni okvir otvorenog softvera: MIT, GPL, Apache, Creative Commons licence i pravila korišćenja, deljenja i izmena.",
+      "template": "lection-7",
+      "styles": "lection-7",
+      "date": "2026-04-10",
+      "week": 7
+    },
+    {
+      "slug": "uloga-open-source-alata",
+      "title": "Uloga open source alata",
+      "description": "Pregled open source alata u različitim oblastima – razvoj, multimedija, internet aplikacije, veštačka inteligencija.",
+      "template": "lection-8",
+      "styles": "lection-8",
+      "date": "2026-04-17",
+      "week": 8
+    }
+  ],
+
+  "materials": [
+    {
+      "week": 0,
+      "title": "Uvodna prezentacija",
+      "file": "UVODNA-PREZENTACIJA.pdf",
+      "date": "2026-02-26",
+      "formattedDate": "26.02.2026.",
+      "available": true
+    },
+    {
+      "week": 1,
+      "title": "Open source softver – ideja, istorija i zajednica",
+      "file": "1. Open source softver, ideja, istorija i zajednica.pdf",
+      "date": "2026-02-26",
+      "formattedDate": "26.02.2026.",
+      "available": true
+    },
+    {
+      "week": 2,
+      "title": "Linux i otvoreni operativni sistemi",
+      "file": "2. Linux i otvoreni operativni sistemi.pdf",
+      "date": "2026-03-06",
+      "formattedDate": "06.03.2026.",
+      "available": true
+    },
+    {
+      "week": 3,
+      "title": "Git i kolaborativni razvoj softvera",
+      "file": "3. Git i kolaborativni razvoj softvera.pdf",
+      "date": "2026-03-13",
+      "formattedDate": "13.03.2026.",
+      "available": true
+    },
+    {
+      "week": 4,
+      "title": "Otvoreni protokoli i standardi",
+      "file": "4. Otvoreni protokoli i standardi.pdf",
+      "date": "2026-03-20",
+      "formattedDate": "20.03.2026.",
+      "available": true
+    },
+    {
+      "week": 5,
+      "title": "API i REST",
+      "file": "5. API & REST.pdf",
+      "date": "2026-03-27",
+      "formattedDate": "27.03.2026.",
+      "available": true
+    },
+    {
+      "week": 6,
+      "title": "Open Source licence",
+      "file": "6. Open Source Licence, Pravila Koriscenja, Deljenja i Izmena.pdf",
+      "date": "2026-04-10",
+      "formattedDate": "10.04.2026.",
+      "available": true
+    },
+    {
+      "week": 7,
+      "title": "Uloga Open Source alata u otvorenom računarstvu",
+      "file": "7. Uloga Open Source Alata u Otvorenom Racunarstvu.pdf",
+      "date": "2026-04-17",
+      "formattedDate": "17.04.2026.",
+      "available": true
+    }
+  ],
+
+  "subject": {
+    "name": "Otvoreno računarstvo",
+    "code": "OSRAC",
+    "espb": 8,
+    "lectures": "3 časa nedeljno",
+    "exercises": "2 časa nedeljno",
+    "startDate": "2026-02-27",
+    "endDate": "2026-04-17"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "eucionica",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/vasovicmilan/eucionica#readme",
+  "bugs": {
+    "url": "https://github.com/vasovicmilan/eucionica/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasovicmilan/eucionica.git"
+  },
+  "license": "ISC",
+  "author": "Milan Vasovic",
+  "type": "module",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "NODE_ENV=production node src/app.js",
+    "start-dev": "NODE_ENV=development node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^4.0.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0"
+  }
+}

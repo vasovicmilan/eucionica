@@ -1,0 +1,174 @@
+/* public/css/components/lists.css */
+
+.list {
+    margin-bottom: var(--space-md);
+    padding-left: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .list {
+        margin-bottom: var(--space-lg);
+        padding-left: var(--space-lg);
+    }
+}
+
+.list--unordered {
+    list-style-type: disc;
+}
+
+.list--ordered {
+    list-style-type: decimal;
+}
+
+.list--none {
+    list-style: none;
+    padding-left: 0;
+}
+
+.list__item {
+    margin-bottom: var(--space-xs);
+    line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+    .list__item {
+        line-height: 1.6;
+    }
+}
+
+.list__item--marker {
+    color: var(--color-secondary);
+    font-weight: 600;
+}
+
+/* Definiciona lista (za pojmove) */
+.list--definition {
+    list-style: none;
+    padding-left: 0;
+}
+
+.list--definition .list__item {
+    margin-bottom: var(--space-sm);
+}
+
+@media (min-width: 768px) {
+    .list--definition .list__item {
+        margin-bottom: var(--space-md);
+    }
+}
+
+.list__term {
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: var(--text-base);
+}
+
+.list__description {
+    margin-left: var(--space-md);
+    color: var(--color-gray-600);
+    font-size: var(--text-sm);
+}
+
+@media (min-width: 768px) {
+    .list__description {
+        margin-left: var(--space-lg);
+    }
+}
+
+/* Lista sa ikonicama */
+.list--icons {
+    list-style: none;
+    padding-left: 0;
+}
+
+.list--icons .list__item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-xs);
+}
+
+@media (min-width: 768px) {
+    .list--icons .list__item {
+        gap: var(--space-sm);
+    }
+}
+
+.list__icon {
+    flex-shrink: 0;
+    color: var(--color-secondary);
+    font-size: var(--text-base);
+}
+
+@media (min-width: 768px) {
+    .list__icon {
+        font-size: var(--text-lg);
+    }
+}
+
+/* Horizontalna lista */
+.list--horizontal {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-left: 0;
+    list-style: none;
+}
+
+@media (min-width: 480px) {
+    .list--horizontal {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--space-md);
+    }
+}
+
+/* Lista za materijale (download) */
+.list--resources {
+    list-style: none;
+    padding-left: 0;
+}
+
+.list--resources .list__item {
+    display: flex;
+    align-items: center;
+    padding: var(--space-xs) 0;
+    border-bottom: 1px solid var(--color-gray-200);
+}
+
+@media (min-width: 768px) {
+    .list--resources .list__item {
+        padding: var(--space-sm) 0;
+    }
+}
+
+.list--resources .list__item:last-child {
+    border-bottom: none;
+}
+
+.list__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--color-gray-700);
+    transition: var(--transition);
+    font-size: var(--text-sm);
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .list__link {
+        gap: var(--space-sm);
+        font-size: var(--text-base);
+    }
+}
+
+.list__link:hover {
+    color: var(--color-secondary);
+    transform: translateX(2px);
+}
+
+/* Kompaktna lista */
+.list--compact .list__item {
+    margin-bottom: 0;
+    padding: var(--space-xs) 0;
+}

@@ -1,0 +1,34 @@
+<nav class="nav sticky">
+    <div class="container nav__container">
+
+        <!-- LOGO -->
+        <a href="/" class="nav__logo">
+            E Ucionica
+        </a>
+
+        <!-- MOBILE TOGGLE -->
+        <button class="nav__toggle" aria-label="Otvori meni">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- MENU -->
+        <ul class="nav__menu">
+            <li class="nav__item">
+                <a href="/otvoreno-racunarstvo"
+                   class="nav__link <%= active === 'otvoreno-racunarstvo' ? 'nav__link--active' : '' %>">
+                    Otvoreno računarstvo
+                </a>
+            </li>
+
+            <li class="nav__item">
+                <a href="/multimedijalne-aplikacije"
+                   class="nav__link <%= active === 'multimedijalne-aplikacije' ? 'nav__link--active' : '' %>">
+                    Multimedijalne i Grafičke Aplikacije
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</nav>

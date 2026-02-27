@@ -1,0 +1,541 @@
+/* public/css/lection.css */
+
+/* ===============================
+   LEKCIJA - GLOBALNI STILOVI
+=============================== */
+
+.lection-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background: var(--color-gray-50);
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .lection-container {
+        flex-direction: row;
+    }
+}
+
+/* ===============================
+   SIDEBAR
+=============================== */
+
+.lection-sidebar {
+    width: 100%;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-gray-200);
+    position: relative; /* Nije sticky na mobilnom */
+    top: 0;
+    z-index: 1; /* Nizak z-index */
+    box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 768px) {
+    .lection-sidebar {
+        width: 320px;
+        border-right: 1px solid var(--color-gray-200);
+        border-bottom: none;
+        position: sticky;
+        top: 72px; /* Ispod navigacije */
+        height: calc(100vh - 72px);
+        overflow-y: auto;
+        box-shadow: none;
+        z-index: 10; /* I dalje niže od navigacije (1000) */
+    }
+}
+
+/* ===============================
+   MAIN CONTENT
+=============================== */
+
+.lection-content {
+    flex: 1;
+    padding: var(--space-lg);
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .lection-content {
+        padding: var(--space-xl);
+    }
+}
+
+@media (min-width: 1024px) {
+    .lection-content {
+        padding: var(--space-2xl);
+        max-width: calc(100% - 320px);
+    }
+}
+
+/* ===============================
+   LEKCIJA ZAKLJUČANA
+=============================== */
+
+.lection-locked {
+    max-width: 600px;
+    margin: var(--space-2xl) auto;
+    text-align: center;
+    padding: var(--space-2xl) var(--space-xl);
+    background: var(--color-white);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-gray-200);
+}
+
+.lection-locked__icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-lg);
+    opacity: 0.7;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+.lection-locked__title {
+    font-size: var(--text-2xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .lection-locked__title {
+        font-size: var(--text-3xl);
+    }
+}
+
+.lection-locked__text {
+    color: var(--color-gray-600);
+    margin-bottom: var(--space-sm);
+    font-size: var(--text-lg);
+}
+
+/* ===============================
+   LEKCIJA ČLANAK
+=============================== */
+
+.lection {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Header */
+.lection__header {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 2px solid var(--color-gray-200);
+}
+
+.lection__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+}
+
+.lection__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--border-radius-full);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    background: var(--color-gray-100);
+    color: var(--color-gray-700);
+}
+
+.lection__badge--week {
+    background: var(--color-secondary);
+    color: var(--color-white);
+}
+
+.lection__badge--date {
+    background: var(--color-gray-100);
+    color: var(--color-gray-700);
+}
+
+.badge-icon {
+    font-size: var(--text-base);
+}
+
+.lection__title {
+    font-size: var(--text-3xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+@media (min-width: 768px) {
+    .lection__title {
+        font-size: var(--text-4xl);
+    }
+}
+
+.lection__description {
+    font-size: var(--text-lg);
+    color: var(--color-gray-600);
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+/* Sadržaj */
+.lection__content {
+    margin-bottom: var(--space-2xl);
+}
+
+/* Sekcije */
+.lection-section {
+    margin-bottom: var(--space-2xl);
+}
+
+.lection-section:last-child {
+    margin-bottom: 0;
+}
+
+.lection-section__title {
+    font-size: var(--text-xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--color-secondary);
+    display: inline-block;
+}
+
+@media (min-width: 768px) {
+    .lection-section__title {
+        font-size: var(--text-2xl);
+    }
+}
+
+.lection-section__content {
+    color: var(--color-gray-700);
+    line-height: 1.7;
+}
+
+.lection-section__content p {
+    margin-bottom: var(--space-md);
+}
+
+.lection-section__content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Highlight tekst */
+.highlight {
+    background: var(--color-gray-50);
+    padding: var(--space-md);
+    border-left: 4px solid var(--color-secondary);
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    color: var(--color-primary);
+}
+
+/* Note */
+.note {
+    background: var(--color-gray-50);
+    padding: var(--space-md);
+    border-radius: var(--border-radius-md);
+    font-size: var(--text-sm);
+    color: var(--color-gray-600);
+    border: 1px solid var(--color-gray-200);
+}
+
+@media (min-width: 768px) {
+    .note {
+        padding: var(--space-lg);
+        font-size: var(--text-base);
+    }
+}
+
+/* ===============================
+   COMPARISON GRID
+=============================== */
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+}
+
+@media (min-width: 640px) {
+    .comparison-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+    }
+}
+
+.comparison-item {
+    text-align: center;
+    padding: var(--space-lg);
+    background: var(--color-gray-50);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--color-gray-200);
+    transition: var(--transition);
+}
+
+.comparison-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-secondary);
+}
+
+.comparison-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-sm);
+}
+
+.comparison-item h3 {
+    font-size: var(--text-lg);
+    color: var(--color-primary);
+    margin-bottom: var(--space-xs);
+    font-weight: 600;
+}
+
+.comparison-item p {
+    color: var(--color-gray-600);
+    font-size: var(--text-sm);
+}
+
+/* ===============================
+   LISTA SA IKONICAMA
+=============================== */
+
+.list--icons {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-lg) 0;
+}
+
+.list--icons .list__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px dashed var(--color-gray-200);
+}
+
+.list--icons .list__item:last-child {
+    border-bottom: none;
+}
+
+.list__icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-gray-100);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* ===============================
+   COMMUNITY ROLES
+=============================== */
+
+.community-roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin: var(--space-lg) 0;
+}
+
+.role-tag {
+    padding: var(--space-xs) var(--space-md);
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--border-radius-full);
+    font-size: var(--text-sm);
+    color: var(--color-gray-700);
+    transition: var(--transition);
+}
+
+.role-tag:hover {
+    background: var(--color-secondary);
+    color: var(--color-white);
+    border-color: var(--color-secondary);
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   TECH GRID
+=============================== */
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+}
+
+@media (min-width: 480px) {
+    .tech-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-md);
+    background: var(--color-gray-50);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--color-gray-200);
+    transition: var(--transition);
+}
+
+.tech-item:hover {
+    background: var(--color-secondary);
+    color: var(--color-white);
+    transform: scale(1.05);
+}
+
+.tech-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-xs);
+}
+
+.tech-item span:last-child {
+    font-size: var(--text-sm);
+    font-weight: 500;
+}
+
+/* ===============================
+   NAVIGACIJA IZMEĐU LEKCIJA
+=============================== */
+
+.lection-nav {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 2px solid var(--color-gray-200);
+}
+
+@media (min-width: 640px) {
+    .lection-nav {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.lection-nav__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--border-radius-lg);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.lection-nav__link--prev {
+    text-align: left;
+}
+
+.lection-nav__link--next {
+    text-align: right;
+    justify-content: flex-end;
+}
+
+.lection-nav__link:hover {
+    background: var(--color-gray-50);
+    border-color: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.nav-arrow {
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    flex-shrink: 0;
+}
+
+.nav-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.nav-label {
+    font-size: var(--text-xs);
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--space-xs);
+}
+
+.nav-title {
+    font-size: var(--text-base);
+    color: var(--color-primary);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (min-width: 768px) {
+    .nav-title {
+        font-size: var(--text-lg);
+    }
+}
+
+/* ===============================
+   RESPONSIVE
+=============================== */
+
+@media (max-width: 480px) {
+    .lection__title {
+        font-size: var(--text-2xl);
+    }
+    
+    .lection-section__title {
+        font-size: var(--text-lg);
+    }
+    
+    .comparison-item {
+        padding: var(--space-md);
+    }
+    
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .lection-nav__link {
+        padding: var(--space-md);
+    }
+    
+    .nav-title {
+        font-size: var(--text-sm);
+    }
+}
+
+/* Print stilovi */
+@media print {
+    .lection-sidebar,
+    .lection-nav,
+    .btn {
+        display: none !important;
+    }
+    
+    .lection-content {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    .lection {
+        max-width: 100%;
+    }
+}

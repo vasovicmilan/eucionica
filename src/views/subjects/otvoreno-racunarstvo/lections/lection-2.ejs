@@ -1,0 +1,326 @@
+<%- include('../../../includes/head', { 
+    title: lection.title,
+    pageDescription: lection.description,
+    pageStyles: pageStyles
+}) %>
+
+<%- include('../../../includes/navigation', {
+    active: 'otvoreno-racunarstvo'
+}) %>
+
+<div class="lection-container">
+    <!-- SIDEBAR -->
+    <aside class="lection-sidebar">
+        <%- include('../includes/navigation', {
+            lections: lections,
+            currentSlug: lection.slug
+        }) %>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="lection-content">
+
+        <!-- ===============================
+             LEKCIJA NIJE DOSTUPNA
+        =============================== -->
+        <% if (!lection.available) { %>
+
+            <div class="lection-locked">
+                <div class="lection-locked__icon">🔒</div>
+                <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
+                <p class="lection-locked__text">
+                    Ova lekcija postaje dostupna
+                    <strong><%= lection.formattedDate %></strong>.
+                </p>
+                <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
+                <a href="/otvoreno-racunarstvo" class="btn btn--primary btn--large">
+                    Nazad na predmet
+                </a>
+            </div>
+
+        <!-- ===============================
+             LEKCIJA JE DOSTUPNA
+        =============================== -->
+        <% } else { %>
+
+            <article class="lection">
+
+                <!-- HEADER -->
+                <header class="lection__header">
+                    <div class="lection__meta">
+                        <span class="lection__badge lection__badge--week">
+                            <span class="badge-icon">📅</span>
+                            Nedelja <%= lection.week %>
+                        </span>
+                        <span class="lection__badge lection__badge--date">
+                            <span class="badge-icon">📌</span>
+                            <%= lection.formattedDate %>
+                        </span>
+                    </div>
+
+                    <h1 class="lection__title"><%= lection.title %></h1>
+                    
+                    <% if (lection.description) { %>
+                        <p class="lection__description"><%= lection.description %></p>
+                    <% } %>
+                </header>
+
+                <!-- ===============================
+                     SADRŽAJ LEKCIJE
+                =============================== -->
+                <div class="lection__content">
+                    
+                    <% if (lection.slug === "linux-i-otvoreni-operativni-sistemi") { %>
+
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Šta je operativni sistem?</h2>
+                        <div class="lection-section__content">
+                            <p>
+                                Operativni sistem (OS) je osnovni sistemski softver koji omogućava komunikaciju
+                                između korisnika, aplikacija i hardverskih komponenti računara.
+                                On upravlja procesorom, memorijom, diskom, mrežnim uređajima
+                                i svim ostalim resursima sistema.
+                            </p>
+                            <p>
+                                Operativni sistem obezbeđuje:
+                            </p>
+                            <ul>
+                                <li>upravljanje procesima (pokretanje i gašenje programa)</li>
+                                <li>upravljanje memorijom</li>
+                                <li>upravljanje fajl sistemom</li>
+                                <li>bezbednosne mehanizme</li>
+                                <li>mrežnu komunikaciju</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Otvoreni i zatvoreni operativni sistemi</h2>
+                        <div class="lection-section__content">
+                            <p>
+                                Operativni sistemi se mogu podeliti na:
+                            </p>
+
+                            <ul>
+                                <li>
+                                    <strong>Zatvorene (proprietary)</strong> – izvorni kod nije dostupan javnosti.
+                                    Primeri su komercijalni sistemi poput Windows-a ili macOS-a.
+                                </li>
+                                <li>
+                                    <strong>Otvorene (open source)</strong> – izvorni kod je javno dostupan,
+                                    može se analizirati, menjati i distribuirati.
+                                </li>
+                            </ul>
+
+                            <p>
+                                Open source modeli podstiču zajednički razvoj, transparentnost
+                                i veću bezbednost kroz javnu proveru koda.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Nastanak i značaj Linuxa</h2>
+                        <div class="lection-section__content">
+                            <p>
+                                Linux je open source operativni sistem čiji je razvoj započeo 1991. godine.
+                                Razvijan je kao slobodan i otvoren sistem koji svako može koristiti,
+                                prilagođavati i unapređivati.
+                            </p>
+
+                            <p>
+                                Danas Linux predstavlja osnovu:
+                            </p>
+
+                            <ul>
+                                <li>serverske infrastrukture</li>
+                                <li>cloud platformi</li>
+                                <li>DevOps okruženja</li>
+                                <li>mrežnih sistema</li>
+                                <li>Android operativnog sistema</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Šta je Linux distribucija?</h2>
+                        <div class="lection-section__content">
+                            <p>
+                                Linux distribucija (distro) je kompletan operativni sistem
+                                koji uključuje Linux kernel, sistemske alate,
+                                grafičko okruženje i sistem za upravljanje paketima.
+                            </p>
+
+                            <p>
+                                Svaka distribucija ima svoju filozofiju, ciljnu grupu
+                                i model održavanja (stable, rolling release, enterprise).
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Najpopularnije Linux distribucije</h2>
+                        <div class="lection-section__content">
+                            <h3>1. Ubuntu</h3>
+                            <p>
+                                Jedna od najpopularnijih distribucija. Pogodna za početnike,
+                                ali i za serverska okruženja.
+                            </p>
+                            <p>
+                                Zvanični sajt:
+                                <a href="https://ubuntu.com" target="_blank" rel="noopener noreferrer">
+                                    https://ubuntu.com
+                                </a>
+                            </p>
+
+                            <h3>2. Debian</h3>
+                            <p>
+                                Poznata po stabilnosti i pouzdanosti.
+                                Često se koristi kao osnova za druge distribucije.
+                            </p>
+                            <p>
+                                Zvanični sajt:
+                                <a href="https://www.debian.org" target="_blank" rel="noopener noreferrer">
+                                    https://www.debian.org
+                                </a>
+                            </p>
+
+                            <h3>3. Fedora</h3>
+                            <p>
+                                Moderna distribucija sa najnovijim tehnologijama.
+                                Često se koristi u developerskim okruženjima.
+                            </p>
+                            <p>
+                                Zvanični sajt:
+                                <a href="https://getfedora.org" target="_blank" rel="noopener noreferrer">
+                                    https://getfedora.org
+                                </a>
+                            </p>
+
+                            <h3>4. Arch Linux</h3>
+                            <p>
+                                Minimalistička distribucija namenjena naprednim korisnicima.
+                                Koristi rolling release model.
+                            </p>
+                            <p>
+                                Zvanični sajt:
+                                <a href="https://archlinux.org" target="_blank" rel="noopener noreferrer">
+                                    https://archlinux.org
+                                </a>
+                            </p>
+
+                            <h3>5. Linux Mint</h3>
+                            <p>
+                                User-friendly distribucija sa fokusom na desktop korisnike.
+                                Često preporučena korisnicima koji prelaze sa Windows sistema.
+                            </p>
+                            <p>
+                                Zvanični sajt:
+                                <a href="https://linuxmint.com" target="_blank" rel="noopener noreferrer">
+                                    https://linuxmint.com
+                                </a>
+                            </p>
+
+                            <h3>6. Red Hat Enterprise Linux (RHEL)</h3>
+                            <p>
+                                Enterprise distribucija namenjena velikim kompanijama.
+                                Fokus na dugoročnu podršku, bezbednost i profesionalnu infrastrukturu.
+                            </p>
+                            <p>
+                                Zvanični sajt:
+                                <a href="https://www.redhat.com" target="_blank" rel="noopener noreferrer">
+                                    https://www.redhat.com
+                                </a>
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Linux u serverskim i cloud okruženjima</h2>
+                        <div class="lection-section__content">
+                            <p>
+                                Linux dominira serverskim tržištem zbog:
+                            </p>
+
+                            <ul>
+                                <li>visoke stabilnosti</li>
+                                <li>bezbednosne arhitekture</li>
+                                <li>efikasnog upravljanja resursima</li>
+                                <li>mogućnosti automatizacije</li>
+                                <li>podrške za kontejnerske tehnologije (Docker, Kubernetes)</li>
+                            </ul>
+
+                            <p>
+                                Većina web aplikacija i cloud servisa pokreće se na Linux serverima.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Zašto je Linux važan za studente?</h2>
+                        <div class="lection-section__content">
+                            <p>
+                                Razumevanje Linux sistema pomaže studentima da:
+                            </p>
+
+                            <ul>
+                                <li>shvate kako funkcioniše serverska infrastruktura</li>
+                                <li>razumeju DevOps i cloud koncepte</li>
+                                <li>postanu tehnički samostalniji</li>
+                                <li>razvijaju rad u open source zajednici</li>
+                            </ul>
+
+                            <p>
+                                Linux nije samo operativni sistem — on je osnova savremenog interneta.
+                            </p>
+                        </div>
+                    </section>
+
+                    <% } %>
+
+                </div>
+
+                <!-- ===============================
+                     NAVIGACIJA IZMEĐU LEKCIJA
+                =============================== -->
+                <nav class="lection-nav">
+                    <% if (navigation.prev) { %>
+                        <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>"
+                           class="lection-nav__link lection-nav__link--prev">
+                            <span class="nav-arrow">←</span>
+                            <span class="nav-text">
+                                <span class="nav-label">Prethodna lekcija</span>
+                                <span class="nav-title"><%= navigation.prev.title %></span>
+                            </span>
+                        </a>
+                    <% } else { %>
+                        <a href="/otvoreno-racunarstvo" 
+                           class="lection-nav__link lection-nav__link--prev">
+                            <span class="nav-arrow">←</span>
+                            <span class="nav-text">
+                                <span class="nav-label">Nazad na</span>
+                                <span class="nav-title">početnu predmeta</span>
+                            </span>
+                        </a>
+                    <% } %>
+
+                    <% if (navigation.next) { %>
+                        <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.next.slug %>"
+                           class="lection-nav__link lection-nav__link--next">
+                            <span class="nav-text">
+                                <span class="nav-label">Sledeća lekcija</span>
+                                <span class="nav-title"><%= navigation.next.title %></span>
+                            </span>
+                            <span class="nav-arrow">→</span>
+                        </a>
+                    <% } %>
+                </nav>
+
+            </article>
+
+        <% } %>
+
+    </main>
+</div>
+
+<%- include('../../../includes/end') %>

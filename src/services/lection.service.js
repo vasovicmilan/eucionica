@@ -2,11 +2,11 @@ import { findAllLections, findOneLection } from "../repositories/lection.reposit
 
 export async function getLections(subject) {
     try {
-        const lections = await findAllLections(subject);
+        const result = await findAllLections(subject);
         
         // Opciono: dodaj neku poslovnu logiku
         // Npr. sortiranje, filtriranje, transformacija podataka
-        return lections;
+        return {lections: result.lections, subject: result.subject};
         
     } catch (error) {
         console.error(`Greška u getLections servisu za ${subject}:`, error);

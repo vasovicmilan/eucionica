@@ -16,7 +16,10 @@ export async function findAllLections(subject) {
         const fileContent = await fs.readFile(filePath, 'utf-8');
         const data = JSON.parse(fileContent);
         
-        return data.lections || [];
+        return {
+           lections: data.lections || [],
+           subject: data.subject
+        };
         
     } catch (error) {
         // Ako fajl ne postoji, vrati prazan niz

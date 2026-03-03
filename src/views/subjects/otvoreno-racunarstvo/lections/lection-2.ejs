@@ -20,9 +20,6 @@
     <!-- CONTENT -->
     <main class="lection-content">
 
-        <!-- ===============================
-             LEKCIJA NIJE DOSTUPNA
-        =============================== -->
         <% if (!lection.available) { %>
 
             <div class="lection-locked">
@@ -38,14 +35,10 @@
                 </a>
             </div>
 
-        <!-- ===============================
-             LEKCIJA JE DOSTUPNA
-        =============================== -->
         <% } else { %>
 
             <article class="lection">
 
-                <!-- HEADER -->
                 <header class="lection__header">
                     <div class="lection__meta">
                         <span class="lection__badge lection__badge--week">
@@ -65,133 +58,71 @@
                     <% } %>
                 </header>
 
-                <!-- ===============================
-                     SADRŽAJ LEKCIJE
-                =============================== -->
                 <div class="lection__content">
                     
                     <% if (lection.slug === "linux-i-otvoreni-operativni-sistemi") { %>
 
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">Šta je operativni sistem?</h2>
-                        <div class="lection-section__content">
-                            <p>
-                                Operativni sistem (OS) je osnovni sistemski softver koji omogućava komunikaciju
-                                između korisnika, aplikacija i hardverskih komponenti računara.
-                                On upravlja procesorom, memorijom, diskom, mrežnim uređajima
-                                i svim ostalim resursima sistema.
-                            </p>
-                            <p>
-                                Operativni sistem obezbeđuje:
-                            </p>
-                            <ul>
-                                <li>upravljanje procesima (pokretanje i gašenje programa)</li>
-                                <li>upravljanje memorijom</li>
-                                <li>upravljanje fajl sistemom</li>
-                                <li>bezbednosne mehanizme</li>
-                                <li>mrežnu komunikaciju</li>
-                            </ul>
-                        </div>
-                    </section>
+                    <!-- ========================================================= -->
+                    <!-- ŠTA JE LINUX                                              -->
+                    <!-- ========================================================= -->
 
                     <section class="lection-section">
-                        <h2 class="lection-section__title">Otvoreni i zatvoreni operativni sistemi</h2>
+                        <h2 class="lection-section__title">Šta je Linux?</h2>
                         <div class="lection-section__content">
                             <p>
-                                Operativni sistemi se mogu podeliti na:
+                                Linux je open source operativni sistem zasnovan na Unix filozofiji.
+                                Njegov razvoj započeo je 1991. godine i danas predstavlja
+                                osnovu većine serverskih sistema, cloud infrastrukture,
+                                mrežnih uređaja i superračunara.
                             </p>
-
-                            <ul>
-                                <li>
-                                    <strong>Zatvorene (proprietary)</strong> – izvorni kod nije dostupan javnosti.
-                                    Primeri su komercijalni sistemi poput Windows-a ili macOS-a.
-                                </li>
-                                <li>
-                                    <strong>Otvorene (open source)</strong> – izvorni kod je javno dostupan,
-                                    može se analizirati, menjati i distribuirati.
-                                </li>
-                            </ul>
-
                             <p>
-                                Open source modeli podstiču zajednički razvoj, transparentnost
-                                i veću bezbednost kroz javnu proveru koda.
+                                Linux se zasniva na modularnosti, bezbednosti i efikasnom
+                                upravljanju resursima. Njegova otvorena priroda omogućava
+                                zajednički razvoj i transparentnost.
                             </p>
                         </div>
                     </section>
 
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">Nastanak i značaj Linuxa</h2>
-                        <div class="lection-section__content">
-                            <p>
-                                Linux je open source operativni sistem čiji je razvoj započeo 1991. godine.
-                                Razvijan je kao slobodan i otvoren sistem koji svako može koristiti,
-                                prilagođavati i unapređivati.
-                            </p>
-
-                            <p>
-                                Danas Linux predstavlja osnovu:
-                            </p>
-
-                            <ul>
-                                <li>serverske infrastrukture</li>
-                                <li>cloud platformi</li>
-                                <li>DevOps okruženja</li>
-                                <li>mrežnih sistema</li>
-                                <li>Android operativnog sistema</li>
-                            </ul>
-                        </div>
-                    </section>
+                    <!-- ========================================================= -->
+                    <!-- NAJPOZNATIJE DISTRIBUCIJE                                 -->
+                    <!-- ========================================================= -->
 
                     <section class="lection-section">
-                        <h2 class="lection-section__title">Šta je Linux distribucija?</h2>
+                        <h2 class="lection-section__title">Najpoznatije Linux distribucije</h2>
                         <div class="lection-section__content">
-                            <p>
-                                Linux distribucija (distro) je kompletan operativni sistem
-                                koji uključuje Linux kernel, sistemske alate,
-                                grafičko okruženje i sistem za upravljanje paketima.
-                            </p>
 
-                            <p>
-                                Svaka distribucija ima svoju filozofiju, ciljnu grupu
-                                i model održavanja (stable, rolling release, enterprise).
-                            </p>
-                        </div>
-                    </section>
-
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">Najpopularnije Linux distribucije</h2>
-                        <div class="lection-section__content">
                             <h3>1. Ubuntu</h3>
                             <p>
                                 Jedna od najpopularnijih distribucija. Pogodna za početnike,
-                                ali i za serverska okruženja.
+                                obrazovne institucije i serverska okruženja.
+                                Poznata po stabilnosti i velikoj zajednici.
                             </p>
                             <p>
-                                Zvanični sajt:
-                                <a href="https://ubuntu.com" target="_blank" rel="noopener noreferrer">
-                                    https://ubuntu.com
+                                Preuzimanje:
+                                <a href="https://ubuntu.com/download" target="_blank" rel="noopener noreferrer">
+                                    https://ubuntu.com/download
                                 </a>
                             </p>
 
                             <h3>2. Debian</h3>
                             <p>
-                                Poznata po stabilnosti i pouzdanosti.
+                                Distribucija poznata po izuzetnoj stabilnosti i dugoročnom održavanju.
                                 Često se koristi kao osnova za druge distribucije.
                             </p>
                             <p>
-                                Zvanični sajt:
-                                <a href="https://www.debian.org" target="_blank" rel="noopener noreferrer">
-                                    https://www.debian.org
+                                Preuzimanje:
+                                <a href="https://www.debian.org/distrib/" target="_blank" rel="noopener noreferrer">
+                                    https://www.debian.org/distrib/
                                 </a>
                             </p>
 
                             <h3>3. Fedora</h3>
                             <p>
-                                Moderna distribucija sa najnovijim tehnologijama.
-                                Često se koristi u developerskim okruženjima.
+                                Moderna distribucija koja uvodi najnovije tehnologije.
+                                Popularna među developerima i u profesionalnim okruženjima.
                             </p>
                             <p>
-                                Zvanični sajt:
+                                Preuzimanje:
                                 <a href="https://getfedora.org" target="_blank" rel="noopener noreferrer">
                                     https://getfedora.org
                                 </a>
@@ -200,12 +131,12 @@
                             <h3>4. Arch Linux</h3>
                             <p>
                                 Minimalistička distribucija namenjena naprednim korisnicima.
-                                Koristi rolling release model.
+                                Koristi rolling release model i omogućava potpunu kontrolu sistema.
                             </p>
                             <p>
-                                Zvanični sajt:
-                                <a href="https://archlinux.org" target="_blank" rel="noopener noreferrer">
-                                    https://archlinux.org
+                                Preuzimanje:
+                                <a href="https://archlinux.org/download/" target="_blank" rel="noopener noreferrer">
+                                    https://archlinux.org/download/
                                 </a>
                             </p>
 
@@ -215,9 +146,9 @@
                                 Često preporučena korisnicima koji prelaze sa Windows sistema.
                             </p>
                             <p>
-                                Zvanični sajt:
-                                <a href="https://linuxmint.com" target="_blank" rel="noopener noreferrer">
-                                    https://linuxmint.com
+                                Preuzimanje:
+                                <a href="https://linuxmint.com/download.php" target="_blank" rel="noopener noreferrer">
+                                    https://linuxmint.com/download.php
                                 </a>
                             </p>
 
@@ -227,52 +158,266 @@
                                 Fokus na dugoročnu podršku, bezbednost i profesionalnu infrastrukturu.
                             </p>
                             <p>
-                                Zvanični sajt:
-                                <a href="https://www.redhat.com" target="_blank" rel="noopener noreferrer">
+                                Informacije:
+                                <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux" target="_blank" rel="noopener noreferrer">
                                     https://www.redhat.com
                                 </a>
                             </p>
+
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- PRAKTIČNI DEO                                             -->
+                    <!-- ========================================================= -->
+
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Praktični rad: Linux na USB uređaju</h2>
+                        <div class="lection-section__content">
+
+                            <p>
+                                Studenti će doneti sopstvene USB uređaje na koje ćemo instalirati
+                                multiboot sistem sa više Linux distribucija.
+                                Time će dobiti prenosivo okruženje za učenje i eksperimentisanje.
+                            </p>
+
+                            <h3>Minimalni zahtevi</h3>
+                            <ul>
+                                <li>16GB USB</li>
+                                <li>USB 2.0 (funkcionalno)</li>
+                            </ul>
+
+                            <h3>Preporučeni zahtevi</h3>
+                            <ul>
+                                <li>32GB USB ili više</li>
+                                <li>USB 3.0 / 3.1 radi bržeg rada</li>
+                            </ul>
+
+                            <p>
+                                Studenti će učiti kako da pokrenu računar sa USB uređaja,
+                                koriste BIOS/UEFI boot meni i rade u live okruženju
+                                bez izmene postojećeg sistema.
+                            </p>
+
                         </div>
                     </section>
 
                     <section class="lection-section">
-                        <h2 class="lection-section__title">Linux u serverskim i cloud okruženjima</h2>
+                        <h2 class="lection-section__title">Alternativa: Virtualna mašina</h2>
                         <div class="lection-section__content">
+
                             <p>
-                                Linux dominira serverskim tržištem zbog:
+                                Studenti sa jačim računarima (8GB RAM ili više)
+                                mogu koristiti virtualne mašine.
                             </p>
 
+                            <h3>Video tutorijali</h3>
                             <ul>
-                                <li>visoke stabilnosti</li>
-                                <li>bezbednosne arhitekture</li>
-                                <li>efikasnog upravljanja resursima</li>
-                                <li>mogućnosti automatizacije</li>
-                                <li>podrške za kontejnerske tehnologije (Docker, Kubernetes)</li>
+                                <li>
+                                    <a href="https://youtu.be/nvdnQX9UkMY?si=wF-CFtEIs60RMPSu" target="_blank" rel="noopener noreferrer">
+                                        How to use VirtualBox – Tutorial for Beginners
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://youtu.be/SXqFPW87WFU?si=pJhB3rLglHKEvw8w" target="_blank" rel="noopener noreferrer">
+                                        How to use VirtualBox (Complete Beginner Guide)
+                                    </a>
+                                </li>
                             </ul>
 
                             <p>
-                                Većina web aplikacija i cloud servisa pokreće se na Linux serverima.
+                                Ovi tutorijali objašnjavaju instalaciju VirtualBox-a,
+                                kreiranje virtualne mašine i pokretanje Linux sistema
+                                bez potrebe za restartovanjem računara.
                             </p>
+
                         </div>
                     </section>
 
+                    <!-- ========================================================= -->
+                    <!-- LINUX TERMINAL CHEAT SHEET                               -->
+                    <!-- ========================================================= -->
+
                     <section class="lection-section">
-                        <h2 class="lection-section__title">Zašto je Linux važan za studente?</h2>
+                        <h2 class="lection-section__title">Linux Terminal – Kompletan Cheat Sheet</h2>
                         <div class="lection-section__content">
+
                             <p>
-                                Razumevanje Linux sistema pomaže studentima da:
+                                Terminal predstavlja tekstualni interfejs za komunikaciju sa operativnim sistemom.
+                                Omogućava preciznu kontrolu nad sistemom, automatizaciju i profesionalni rad
+                                u serverskim i cloud okruženjima.
                             </p>
 
+                            <h3>1. Navigacija kroz fajl sistem</h3>
+
+                            <p><strong>pwd</strong> – prikazuje trenutni direktorijum</p>
+                            <pre><code>pwd</code></pre>
+
+                            <p><strong>ls</strong> – prikazuje sadržaj direktorijuma</p>
+                            <pre><code>ls
+                    ls -l
+                    ls -a
+                    ls -lh</code></pre>
+
+                            <p><strong>cd</strong> – promena direktorijuma</p>
+                            <pre><code>cd folder
+                    cd ..
+                    cd ~
+                    cd /</code></pre>
+
+                            <hr>
+
+                            <h3>2. Rad sa fajlovima i direktorijumima</h3>
+
+                            <p><strong>mkdir</strong> – kreiranje direktorijuma</p>
+                            <pre><code>mkdir projekat</code></pre>
+
+                            <p><strong>touch</strong> – kreiranje praznog fajla</p>
+                            <pre><code>touch fajl.txt</code></pre>
+
+                            <p><strong>cp</strong> – kopiranje fajlova</p>
+                            <pre><code>cp fajl.txt backup.txt
+                    cp -r folder novi_folder</code></pre>
+
+                            <p><strong>mv</strong> – premestanje ili preimenovanje</p>
+                            <pre><code>mv fajl.txt novi.txt
+                    mv fajl.txt /home/user/</code></pre>
+
+                            <p><strong>rm</strong> – brisanje fajlova</p>
+                            <pre><code>rm fajl.txt
+                    rm -r folder
+                    rm -rf folder</code></pre>
+
+                            <hr>
+
+                            <h3>3. Pregled sadržaja fajlova</h3>
+
+                            <p><strong>cat</strong> – prikaz sadržaja</p>
+                            <pre><code>cat fajl.txt</code></pre>
+
+                            <p><strong>less</strong> – pregled velikih fajlova</p>
+                            <pre><code>less fajl.txt</code></pre>
+
+                            <p><strong>head / tail</strong> – prikaz početka ili kraja fajla</p>
+                            <pre><code>head fajl.txt
+                    tail fajl.txt
+                    tail -f log.txt</code></pre>
+
+                            <hr>
+
+                            <h3>4. Dozvole i vlasništvo</h3>
+
+                            <p><strong>chmod</strong> – promena dozvola</p>
+                            <pre><code>chmod 755 skripta.sh
+                    chmod +x skripta.sh</code></pre>
+
+                            <p><strong>chown</strong> – promena vlasnika fajla</p>
+                            <pre><code>sudo chown user fajl.txt</code></pre>
+
+                            <hr>
+
+                            <h3>5. Upravljanje procesima</h3>
+
+                            <p><strong>top</strong> – pregled aktivnih procesa</p>
+                            <pre><code>top</code></pre>
+
+                            <p><strong>ps</strong> – lista procesa</p>
+                            <pre><code>ps aux</code></pre>
+
+                            <p><strong>kill</strong> – zaustavljanje procesa</p>
+                            <pre><code>kill PID
+                    kill -9 PID</code></pre>
+
+                            <hr>
+
+                            <h3>6. Instalacija paketa (Debian/Ubuntu)</h3>
+
+                            <pre><code>sudo apt update
+                    sudo apt upgrade
+                    sudo apt install paket
+                    sudo apt remove paket</code></pre>
+
+                            <hr>
+
+                            <h3>7. Mrežne komande</h3>
+
+                            <p><strong>ping</strong></p>
+                            <pre><code>ping google.com</code></pre>
+
+                            <p><strong>curl</strong></p>
+                            <pre><code>curl https://example.com</code></pre>
+
+                            <p><strong>ip</strong></p>
+                            <pre><code>ip a</code></pre>
+
+                            <hr>
+
+                            <h3>8. Pretraga</h3>
+
+                            <p><strong>grep</strong> – pretraga teksta</p>
+                            <pre><code>grep "tekst" fajl.txt</code></pre>
+
+                            <p><strong>find</strong> – pretraga fajlova</p>
+                            <pre><code>find . -name "fajl.txt"</code></pre>
+
+                            <hr>
+
+                            <h3>9. Disk i prostor</h3>
+
+                            <pre><code>df -h
+                    du -sh folder</code></pre>
+
+                            <hr>
+
+                            <h3>10. Redirekcija i pipe</h3>
+
+                            <pre><code>ls &gt; lista.txt
+                    ls | grep txt</code></pre>
+
+                            <hr>
+
+                            <h3>11. Sistem informacije</h3>
+
+                            <pre><code>uname -a
+                    whoami
+                    history
+                    clear</code></pre>
+
+                            <hr>
+
+                            <h3>12. Bash prečice</h3>
+
                             <ul>
-                                <li>shvate kako funkcioniše serverska infrastruktura</li>
-                                <li>razumeju DevOps i cloud koncepte</li>
-                                <li>postanu tehnički samostalniji</li>
-                                <li>razvijaju rad u open source zajednici</li>
+                                <li><strong>TAB</strong> – automatsko dovršavanje komande</li>
+                                <li><strong>↑ / ↓</strong> – prethodne komande</li>
+                                <li><strong>CTRL + C</strong> – prekid procesa</li>
+                                <li><strong>CTRL + L</strong> – brisanje ekrana</li>
+                                <li><strong>CTRL + R</strong> – pretraga istorije komandi</li>
+                            </ul>
+
+                            <hr>
+
+                            <h3>Najvažnije komande za početak</h3>
+
+                            <ul>
+                                <li>pwd</li>
+                                <li>ls</li>
+                                <li>cd</li>
+                                <li>mkdir</li>
+                                <li>rm</li>
+                                <li>cp</li>
+                                <li>mv</li>
+                                <li>cat</li>
+                                <li>grep</li>
+                                <li>chmod</li>
+                                <li>sudo</li>
                             </ul>
 
                             <p>
-                                Linux nije samo operativni sistem — on je osnova savremenog interneta.
+                                Razumevanje ovih komandi predstavlja osnovu za dalji rad
+                                u serverskim sistemima, DevOps okruženju i cloud infrastrukturi.
                             </p>
+
                         </div>
                     </section>
 
@@ -280,9 +425,6 @@
 
                 </div>
 
-                <!-- ===============================
-                     NAVIGACIJA IZMEĐU LEKCIJA
-                =============================== -->
                 <nav class="lection-nav">
                     <% if (navigation.prev) { %>
                         <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>"

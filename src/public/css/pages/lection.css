@@ -539,3 +539,77 @@
         max-width: 100%;
     }
 }
+
+/* ===============================
+   CODE BLOCK STILOVI (Terminal)
+=============================== */
+
+.lection__content pre {
+    background: #0f172a; /* tamna terminal pozadina */
+    color: #e2e8f0;
+    padding: var(--space-lg);
+    border-radius: var(--border-radius-lg);
+    overflow-x: auto;
+    margin: var(--space-md) 0 var(--space-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+/* Mali "terminal header" efekat */
+.lection__content pre::before {
+    content: "terminal";
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.4);
+}
+
+/* Code unutar pre */
+.lection__content pre code {
+    font-family: "Fira Code", "JetBrains Mono", "Courier New", monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    display: block;
+    white-space: pre;
+}
+
+/* Inline code (npr: <code>ls</code> u tekstu) */
+.lection__content p code,
+.lection__content li code {
+    background: var(--color-gray-100);
+    color: var(--color-primary);
+    padding: 2px 6px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.85em;
+    font-weight: 500;
+    border: 1px solid var(--color-gray-200);
+}
+
+/* Hover efekat za code blok */
+.lection__content pre:hover {
+    border-color: var(--color-secondary);
+    transform: translateY(-2px);
+    transition: var(--transition);
+}
+
+/* Scrollbar styling za lepši izgled */
+.lection__content pre::-webkit-scrollbar {
+    height: 6px;
+}
+
+.lection__content pre::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.lection__content pre::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2);
+    border-radius: 4px;
+}
+
+.lection__content pre::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.4);
+}

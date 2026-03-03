@@ -10,13 +10,13 @@ import { safeString } from "../../../helpers/utils.helper.js";
 
 export async function getIndexPage(req, res, next) {
   try {
-    const lections = await getLections("otvoreno-racunarstvo");
+    const result = await getLections("otvoreno-racunarstvo");
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
     // sortiraj po week da bude sigurno
-    const sortedLections = [...lections].sort((a, b) => a.week - b.week);
+    const sortedLections = [...result.lections].sort((a, b) => a.week - b.week);
 
     // pronađi trenutnu lekciju
     let currentLection = null;
@@ -77,13 +77,13 @@ export async function getLectionDataPage(req, res, next) {
   try {
     const slug = safeString(req.params.slug);
 
-    const rawLections = await getLections("otvoreno-racunarstvo");
+    const result = await getLections("otvoreno-racunarstvo");
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
     // Sort + enrich (ISTO kao na index)
-    const allLections = [...rawLections]
+    const allLections = [...result.lections]
       .sort((a, b) => a.week - b.week)
       .map((l) => {
         const d = new Date(l.date);

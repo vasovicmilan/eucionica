@@ -1,0 +1,569 @@
+<%- include('../../../includes/head', { title: lection.title, pageDescription: lection.description, pageStyles:
+    pageStyles }) %>
+
+    <%- include('../../../includes/navigation', { active: 'teorija-sistema' }) %>
+
+        <div class="lection-container">
+
+            <aside class="lection-sidebar">
+                <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
+            </aside>
+
+            <main class="lection-content">
+
+                <% if (!lection.available) { %>
+
+                    <div class="lection-locked">
+
+                        <div class="lection-locked__icon">🔒</div>
+
+                        <h1 class="lection-locked__title">
+                            Lekcija još nije dostupna
+                        </h1>
+
+                        <p class="lection-locked__text">
+                            Ova lekcija postaje dostupna
+                            <strong>
+                                <%= lection.formattedDate %>
+                            </strong>.
+                        </p>
+
+                        <p class="lection-locked__text">
+                            Jedna lekcija se otključava svake nedelje.
+                        </p>
+
+                        <a href="/teorija-sistema" class="btn btn--primary btn--large">
+                            Nazad na predmet
+                        </a>
+
+                    </div>
+
+                    <% } else { %>
+
+                        <article class="lection">
+
+                            <header class="lection__header">
+
+                                <div class="lection__meta">
+
+                                    <span class="lection__badge lection__badge--week">
+                                        📅 Nedelja <%= lection.week %>
+                                    </span>
+
+                                    <span class="lection__badge lection__badge--date">
+                                        📌 <%= lection.formattedDate %>
+                                    </span>
+
+                                </div>
+
+                                <h1 class="lection__title">
+                                    <%= lection.title %>
+                                </h1>
+
+                                <% if (lection.description) { %>
+                                    <p class="lection__description">
+                                        <%= lection.description %>
+                                    </p>
+                                    <% } %>
+                                        <div class="project-note">
+
+                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
+
+                                        </div>
+                            </header>
+
+
+
+                            <div class="lection__content">
+
+
+
+                                <!-- PONAŠANJE SISTEMA -->
+
+                                <section class="lection-section">
+
+                                    <h2 class="lection-section__title">
+                                        Ponašanje sistema
+                                    </h2>
+
+                                    <div class="lection-section__content">
+
+                                        <p>
+                                            Nakon upoznavanja strukture sistema prelazi se na analizu
+                                            njegove dinamike, odnosno ponašanja.
+                                        </p>
+
+                                        <p>
+                                            Ponašanje sistema označava šta se dešava u sistemu,
+                                            šta je moguće, a šta nije moguće.
+                                        </p>
+
+                                        <p class="note">
+                                            Izgrađenost sistema i njegovo ponašanje su međusobno
+                                            uslovljeni.
+                                        </p>
+
+                                    </div>
+
+                                </section>
+
+
+
+                                <!-- KOMPLEKSNOST -->
+
+                                <section class="lection-section">
+
+                                    <h2 class="lection-section__title">
+                                        Odnos kompleksnosti i ponašanja sistema
+                                    </h2>
+
+                                    <div class="lection-section__content">
+
+                                        <p>
+                                            Sistemi na nižem nivou kompleksnosti nemaju izražene funkcije.
+                                        </p>
+
+                                        <p>
+                                            Tek sistemi od četvrtog nivoa kompleksnosti imaju jasno
+                                            definisane funkcije.
+                                        </p>
+
+                                        <p class="highlight">
+                                            Ponašanje sistema određuje prostor funkcija
+                                            (skup funkcija i relacija među njima).
+                                        </p>
+
+                                    </div>
+
+                                </section>
+
+
+
+                                <!-- FUNKCIJE PROCESI AKTIVNOSTI -->
+
+                                <section class="lection-section">
+
+                                    <h2 class="lection-section__title">
+                                        Funkcije, procesi i aktivnosti
+                                    </h2>
+
+                                    <div class="lection-section__content">
+
+                                        <p>
+                                            Funkcije sistema se retko ostvaruju jednim procesom.
+                                            Najčešće se funkcije realizuju kroz više procesa.
+                                        </p>
+
+                                        <p>
+                                            Izučavanjem procesa dolazimo do prostora aktivnosti.
+                                        </p>
+
+                                        <div class="tech-grid">
+
+                                            <div class="tech-item">⚙️ Prostor funkcija</div>
+                                            <div class="tech-item">🔄 Prostor procesa</div>
+                                            <div class="tech-item">🧩 Prostor aktivnosti</div>
+                                            <div class="tech-item">🧮 Prostor operatora</div>
+
+                                        </div>
+
+                                    </div>
+
+                                </section>
+
+
+
+                                <!-- POJAM FUNKCIJE -->
+
+                                <section class="lection-section">
+
+                                    <h2 class="lection-section__title">
+                                        Pojam funkcije
+                                    </h2>
+
+                                    <div class="lection-section__content">
+
+                                        <p>
+                                            Funkcija predstavlja dinamičko ponašanje sistema i
+                                            ishod određenih dešavanja.
+                                        </p>
+
+                                        <p>
+                                            Bit funkcije je svrsishodnost i ostvarivanje određene
+                                            uloge u sistemu.
+                                        </p>
+
+                                        <ul class="list list--icons">
+
+                                            <li class="list__item">
+                                                <span class="list__icon">🧩</span>
+                                                funkcija opstanka sistema
+                                            </li>
+
+                                            <li class="list__item">
+                                                <span class="list__icon">📈</span>
+                                                funkcija razvoja sistema
+                                            </li>
+
+                                            <li class="list__item">
+                                                <span class="list__icon">🎛</span>
+                                                funkcija upravljanja
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+                                </section>
+
+
+
+                                <!-- ISTRAZIVANJE FUNKCIJA -->
+
+                                <section class="lection-section">
+
+                                    <h2 class="lection-section__title">
+                                        Istraživanje funkcija
+                                    </h2>
+
+                                    <div class="lection-section__content">
+
+                                        <p>
+                                            Rezultati istraživanja funkcija zavise od aspekta
+                                            posmatranja i znanja istraživača.
+                                        </p>
+
+                                        <p>
+                                            Različiti istraživači mogu doći do različitih rezultata
+                                            analize funkcionalnog prostora sistema.
+                                        </p>
+
+                                    </div>
+
+                                </section>
+
+
+
+                                <!-- VREME -->
+
+                                <section class="lection-section">
+
+                                    <h2 class="lection-section__title">
+                                        Vreme kao dimenzija sistema
+                                    </h2>
+
+                                    <div class="lection-section__content">
+
+                                        <p>
+                                            Vreme predstavlja novu dimenziju u analizi
+                                            ponašanja sistema.
+                                        </p>
+
+                                        <p>
+                                            Tokom vremena funkcije sistema mogu:
+                                        </p>
+
+                                        <ul class="list">
+
+                                            <li>nestati</li>
+                                            <li>pojavljivati se</li>
+                                            <li>spajati</li>
+                                            <li>deliti</li>
+                                            <li>ostati nepromenjene</li>
+
+                                        </ul>
+
+                                        <p class="note">
+                                            U svakom vremenskom trenutku postoji određeni
+                                            skup funkcija koji definiše stanje sistema.
+                                        </p>
+
+                                    </div>
+
+                                </section>
+
+
+
+                                <!-- PROCESI -->
+
+                                <section class="lection-section">
+
+                                    <h2 class="lection-section__title">
+                                        Pojam procesa
+                                    </h2>
+
+                                    <div class="lection-section__content">
+
+                                        <p>
+                                            Proces predstavlja niz povezanih dešavanja
+                                            odnosno tok događaja u sistemu.
+                                        </p>
+
+                                        <p>
+                                            Procesi se mogu podeliti na:
+                                        </p>
+
+                                        <ul class="list list--icons">
+
+                                            <li class="list__item">
+                                                <span class="list__icon">⚙️</span>
+                                                bazične procese
+                                            </li>
+
+                                            <li class="list__item">
+                                                <span class="list__icon">📈</span>
+                                                razvojne procese
+                                            </li>
+
+                                            <li class="list__item">
+                                                <span class="list__icon">🎛</span>
+                                                upravljačke procese
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+                                </section>
+
+
+
+                                <!-- AKTIVNOSTI -->
+
+                                <section class="lection-section">
+
+                                    <h2 class="lection-section__title">
+                                        Aktivnosti
+                                    </h2>
+
+                                    <div class="lection-section__content">
+
+                                        <p>
+                                            Aktivnosti predstavljaju najmanje delove procesa
+                                            koji integrišu resurse sistema.
+                                        </p>
+
+                                        <p>
+                                            One omogućavaju ostvarivanje određenog dela
+                                            rezultata koji proizvodi proces.
+                                        </p>
+
+                                    </div>
+
+                                </section>
+
+
+
+                                <!-- TRANSFORMACIJA -->
+
+                                <section class="lection-section">
+
+                                    <h2 class="lection-section__title">
+                                        Transformacija sistema
+                                    </h2>
+
+                                    <div class="lection-section__content">
+
+                                        <p>
+                                            Ponašanje sistema može se posmatrati kroz
+                                            transformacije stanja sistema.
+                                        </p>
+
+                                        <p>
+                                            Operator deluje na operande i izaziva prelaz
+                                            iz jednog stanja u drugo.
+                                        </p>
+
+                                        <p class="highlight">
+                                            Transformacija pokazuje šta se dešava,
+                                            ali ne objašnjava zašto se nešto dešava.
+                                        </p>
+
+                                    </div>
+
+                                </section>
+
+
+
+                                <!-- TIPOVI TRANSFORMACIJA -->
+
+                                <section class="lection-section">
+
+                                    <h2 class="lection-section__title">
+                                        Tipovi transformacija
+                                    </h2>
+
+                                    <div class="lection-section__content">
+
+                                        <ul class="list list--icons">
+
+                                            <li class="list__item">
+                                                <span class="list__icon">🔒</span>
+                                                zatvorene transformacije
+                                            </li>
+
+                                            <li class="list__item">
+                                                <span class="list__icon">🌐</span>
+                                                otvorene transformacije
+                                            </li>
+
+                                            <li class="list__item">
+                                                <span class="list__icon">1️⃣</span>
+                                                jednoznačne transformacije
+                                            </li>
+
+                                            <li class="list__item">
+                                                <span class="list__icon">🔀</span>
+                                                višeznačne transformacije
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+                                </section>
+
+
+
+                                <!-- STANJE SISTEMA -->
+
+                                <section class="lection-section">
+
+                                    <h2 class="lection-section__title">
+                                        Stanje sistema
+                                    </h2>
+
+                                    <div class="lection-section__content">
+
+                                        <p>
+                                            Sistem se može opisati skupom njegovih obeležja.
+                                        </p>
+
+                                        <p>
+                                            Vrednosti tih obeležja u trenutku <strong>t</strong>
+                                            predstavljaju stanje sistema u tom trenutku.
+                                        </p>
+
+                                        <p class="formula">
+                                            Stanje(t)
+                                        </p>
+
+                                        <p>
+                                            Posmatranjem promena stanja kroz vreme
+                                            dobijamo predstavu o ponašanju sistema.
+                                        </p>
+
+                                    </div>
+
+                                </section>
+
+
+
+                                <!-- TIPOVI PONASANJA -->
+
+                                <section class="lection-section">
+
+                                    <h2 class="lection-section__title">
+                                        Tipovi ponašanja sistema
+                                    </h2>
+
+                                    <div class="lection-section__content">
+
+                                        <ul class="list list--icons">
+
+                                            <li class="list__item">
+                                                <span class="list__icon">∞</span>
+                                                determinističko beskonačno ponašanje
+                                            </li>
+
+                                            <li class="list__item">
+                                                <span class="list__icon">⏳</span>
+                                                determinističko konačno ponašanje
+                                            </li>
+
+                                            <li class="list__item">
+                                                <span class="list__icon">🎲</span>
+                                                stohastičko ponašanje
+                                            </li>
+
+                                        </ul>
+
+                                        <p class="note">
+                                            Stohastički sistemi sadrže element
+                                            neizvesnosti i slučajnosti.
+                                        </p>
+
+                                    </div>
+
+                                </section>
+
+
+
+                            </div>
+
+
+
+                            <nav class="lection-nav">
+
+                                <% if (navigation.prev) { %>
+
+                                    <a href="/teorija-sistema/lekcija/<%= navigation.prev.slug %>"
+                                        class="lection-nav__link lection-nav__link--prev">
+
+                                        <span class="nav-arrow">←</span>
+
+                                        <span class="nav-text">
+                                            <span class="nav-label">Prethodna lekcija</span>
+                                            <span class="nav-title">
+                                                <%= navigation.prev.title %>
+                                            </span>
+                                        </span>
+
+                                    </a>
+
+                                    <% } else { %>
+
+                                        <a href="/teorija-sistema" class="lection-nav__link lection-nav__link--prev">
+
+                                            <span class="nav-arrow">←</span>
+
+                                            <span class="nav-text">
+                                                <span class="nav-label">Nazad na</span>
+                                                <span class="nav-title">početnu predmeta</span>
+                                            </span>
+
+                                        </a>
+
+                                        <% } %>
+
+
+
+                                            <% if (navigation.next) { %>
+
+                                                <a href="/teorija-sistema/lekcija/<%= navigation.next.slug %>"
+                                                    class="lection-nav__link lection-nav__link--next">
+
+                                                    <span class="nav-text">
+                                                        <span class="nav-label">Sledeća lekcija</span>
+                                                        <span class="nav-title">
+                                                            <%= navigation.next.title %>
+                                                        </span>
+                                                    </span>
+
+                                                    <span class="nav-arrow">→</span>
+
+                                                </a>
+
+                                                <% } %>
+
+                            </nav>
+
+                        </article>
+
+                        <% } %>
+
+            </main>
+
+        </div>
+
+        <%- include('../../../includes/end') %>

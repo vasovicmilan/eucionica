@@ -1,0 +1,451 @@
+<%- include('../../../includes/head', { title: lection.title, pageDescription: lection.description, pageStyles:
+    pageStyles }) %>
+
+    <%- include('../../../includes/navigation', { active: 'teorija-sistema' }) %>
+
+        <div class="lection-container">
+            <!-- SIDEBAR -->
+            <aside class="lection-sidebar">
+                <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
+            </aside>
+
+            <!-- CONTENT -->
+            <main class="lection-content">
+
+                <!-- ===============================
+             LEKCIJA NIJE DOSTUPNA
+        =============================== -->
+                <% if (!lection.available) { %>
+
+                    <div class="lection-locked">
+                        <div class="lection-locked__icon">🔒</div>
+                        <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
+                        <p class="lection-locked__text">
+                            Ova lekcija postaje dostupna
+                            <strong>
+                                <%= lection.formattedDate %>
+                            </strong>.
+                        </p>
+                        <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
+                        <a href="/teorija-sistema" class="btn btn--primary btn--large">
+                            Nazad na predmet
+                        </a>
+                    </div>
+
+                    <!-- ===============================
+             LEKCIJA JE DOSTUPNA
+        =============================== -->
+                    <% } else { %>
+
+                        <article class="lection">
+
+                            <!-- HEADER -->
+                            <header class="lection__header">
+                                <div class="lection__meta">
+                                    <span class="lection__badge lection__badge--week">
+                                        <span class="badge-icon">📅</span>
+                                        Nedelja <%= lection.week %>
+                                    </span>
+                                    <span class="lection__badge lection__badge--date">
+                                        <span class="badge-icon">📌</span>
+                                        <%= lection.formattedDate %>
+                                    </span>
+                                </div>
+
+                                <h1 class="lection__title">
+                                    <%= lection.title %>
+                                </h1>
+
+                                <% if (lection.description) { %>
+                                    <p class="lection__description">
+                                        <%= lection.description %>
+                                    </p>
+                                    <% } %>
+                                        <div class="project-note">
+
+                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
+
+                                        </div>
+                            </header>
+
+                            <!-- ===============================
+                     SADRŽAJ LEKCIJE
+                =============================== -->
+                            <div class="lection__content">
+                                <% if (lection.slug==="uvod-u-uml-i-modelovanje" ) { %>
+
+                                    <!-- ŠTA JE UML -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Šta je UML?
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                UML (Unified Modeling Language) je standardizovan jezik za
+                                                modelovanje softverskih sistema. Koristi se za vizuelno
+                                                predstavljanje strukture, ponašanja i organizacije sistema
+                                                pomoću različitih tipova dijagrama.
+                                            </p>
+
+                                            <p>
+                                                UML omogućava analitičarima, programerima i projektantima
+                                                da na jasan i razumljiv način prikažu kako sistem funkcioniše
+                                                pre nego što započne njegova implementacija.
+                                            </p>
+
+                                            <p class="highlight">
+                                                UML nije programski jezik — već jezik za modelovanje koji
+                                                pomaže u razumevanju i projektovanju softverskih sistema.
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+
+                                    <!-- ZAŠTO SE KORISTI UML -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Zašto se koristi UML?
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Razvoj modernih softverskih sistema podrazumeva veliki broj
+                                                komponenti, funkcionalnosti i međusobnih interakcija.
+                                                UML omogućava da se takvi sistemi planiraju i analiziraju
+                                                na strukturisan način.
+                                            </p>
+
+                                            <ul class="list list--icons">
+
+                                                <li class="list__item">
+                                                    📊 Vizuelno predstavljanje sistema
+                                                </li>
+
+                                                <li class="list__item">
+                                                    🧩 Bolje razumevanje strukture softvera
+                                                </li>
+
+                                                <li class="list__item">
+                                                    🤝 Lakša komunikacija između članova tima
+                                                </li>
+
+                                                <li class="list__item">
+                                                    🧠 Planiranje arhitekture sistema
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </section>
+
+
+                                    <!-- OSNOVNI UML ELEMENTI -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Osnovni elementi UML modela
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                UML modeli se sastoje od različitih elemenata koji predstavljaju
+                                                strukturu i ponašanje sistema.
+                                            </p>
+
+                                            <div class="comparison-grid">
+
+                                                <div class="comparison-item">
+
+                                                    <div class="comparison-icon">📦</div>
+
+                                                    <h3>Klasa</h3>
+
+                                                    <p>
+                                                        Predstavlja tip objekata u sistemu. Klasa definiše
+                                                        atribute (podatke) i operacije (funkcije) koje objekti
+                                                        te klase mogu imati.
+                                                    </p>
+
+                                                </div>
+
+                                                <div class="comparison-item">
+
+                                                    <div class="comparison-icon">🔹</div>
+
+                                                    <h3>Objekat</h3>
+
+                                                    <p>
+                                                        Objekat je konkretna instanca klase koja predstavlja
+                                                        stvarni element sistema sa određenim vrednostima atributa.
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="comparison-grid">
+
+                                                <div class="comparison-item">
+
+                                                    <div class="comparison-icon">🔌</div>
+
+                                                    <h3>Interfejs</h3>
+
+                                                    <p>
+                                                        Interfejs definiše skup operacija koje klasa mora
+                                                        implementirati i predstavlja ugovor između komponenti.
+                                                    </p>
+
+                                                </div>
+
+                                                <div class="comparison-item">
+
+                                                    <div class="comparison-icon">📁</div>
+
+                                                    <h3>Paketi</h3>
+
+                                                    <p>
+                                                        Paketi služe za organizaciju modela i grupisanje
+                                                        srodnih elemenata u okviru velikih sistema.
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </section>
+
+
+                                    <!-- KARAKTERISTIKE OBJEKATA -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Karakteristike objekata
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                U objektno orijentisanim sistemima svaki objekat ima tri
+                                                osnovne karakteristike koje određuju njegovu prirodu.
+                                            </p>
+
+                                            <div class="tech-grid">
+
+                                                <div class="tech-item">📊 Stanje</div>
+                                                <div class="tech-item">⚙️ Ponašanje</div>
+                                                <div class="tech-item">🆔 Identitet</div>
+
+                                            </div>
+
+                                            <p>
+                                                <strong>Stanje</strong> predstavlja trenutne vrednosti atributa
+                                                objekta.
+                                            </p>
+
+                                            <p>
+                                                <strong>Ponašanje</strong> opisuje operacije koje objekat može
+                                                izvršavati.
+                                            </p>
+
+                                            <p>
+                                                <strong>Identitet</strong> omogućava razlikovanje objekata čak i
+                                                kada imaju iste vrednosti atributa.
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+
+                                    <!-- UML DIJAGRAMI -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Vrste UML dijagrama
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                UML definiše veliki broj dijagrama koji se koriste za različite
+                                                aspekte modelovanja sistema.
+                                            </p>
+
+                                            <div class="comparison-grid">
+
+                                                <div class="comparison-item">
+
+                                                    <div class="comparison-icon">🏗️</div>
+
+                                                    <h3>Strukturni dijagrami</h3>
+
+                                                    <p>
+                                                        Prikazuju statičku strukturu sistema i odnose između
+                                                        njegovih elemenata.
+                                                    </p>
+
+                                                    <ul>
+                                                        <li>Dijagram klasa</li>
+                                                        <li>Dijagram objekata</li>
+                                                        <li>Dijagram paketa</li>
+                                                    </ul>
+
+                                                </div>
+
+                                                <div class="comparison-item">
+
+                                                    <div class="comparison-icon">🔄</div>
+
+                                                    <h3>Dijagrami ponašanja</h3>
+
+                                                    <p>
+                                                        Prikazuju dinamiku sistema i interakcije između
+                                                        komponenti tokom vremena.
+                                                    </p>
+
+                                                    <ul>
+                                                        <li>Use Case dijagram</li>
+                                                        <li>Dijagram sekvence</li>
+                                                        <li>Komunikacioni dijagram</li>
+                                                    </ul>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </section>
+
+
+                                    <!-- USE CASE DIJAGRAM -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Use Case dijagram
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Use Case dijagram prikazuje funkcionalnosti sistema i
+                                                korisnike koji te funkcionalnosti koriste.
+                                            </p>
+
+                                            <p>
+                                                Ovaj dijagram se često koristi u ranim fazama razvoja
+                                                sistema kako bi se jasno definisali zahtevi i očekivanja
+                                                korisnika.
+                                            </p>
+
+                                            <ul class="list">
+
+                                                <li>Akteri predstavljaju korisnike sistema</li>
+                                                <li>Use case predstavlja funkcionalnost sistema</li>
+                                                <li>Relacije pokazuju interakciju između aktera i sistema</li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </section>
+
+
+                                    <!-- ZAKLJUČAK -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Zaključak
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                UML predstavlja jedan od najvažnijih alata u analizi i
+                                                projektovanju softverskih sistema.
+                                            </p>
+
+                                            <p>
+                                                Korišćenjem različitih tipova dijagrama moguće je na
+                                                jasan način prikazati strukturu sistema, odnose između
+                                                njegovih komponenti i način na koji sistem funkcioniše.
+                                            </p>
+
+                                            <p class="highlight">
+                                                UML modeli omogućavaju da se kompleksni sistemi razumeju
+                                                pre nego što započne njihova implementacija u kodu.
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+                                    <% } %>
+                            </div>
+
+                            <!-- ===============================
+                     NAVIGACIJA IZMEĐU LEKCIJA
+                =============================== -->
+                            <nav class="lection-nav">
+                                <% if (navigation.prev) { %>
+                                    <a href="/teorija-sistema/lekcija/<%= navigation.prev.slug %>"
+                                        class="lection-nav__link lection-nav__link--prev">
+                                        <span class="nav-arrow">←</span>
+                                        <span class="nav-text">
+                                            <span class="nav-label">Prethodna lekcija</span>
+                                            <span class="nav-title">
+                                                <%= navigation.prev.title %>
+                                            </span>
+                                        </span>
+                                    </a>
+                                    <% } else { %>
+                                        <a href="/teorija-sistema" class="lection-nav__link lection-nav__link--prev">
+                                            <span class="nav-arrow">←</span>
+                                            <span class="nav-text">
+                                                <span class="nav-label">Nazad na</span>
+                                                <span class="nav-title">početnu predmeta</span>
+                                            </span>
+                                        </a>
+                                        <% } %>
+
+                                            <% if (navigation.next) { %>
+                                                <a href="/teorija-sistema/lekcija/<%= navigation.next.slug %>"
+                                                    class="lection-nav__link lection-nav__link--next">
+                                                    <span class="nav-text">
+                                                        <span class="nav-label">Sledeća lekcija</span>
+                                                        <span class="nav-title">
+                                                            <%= navigation.next.title %>
+                                                        </span>
+                                                    </span>
+                                                    <span class="nav-arrow">→</span>
+                                                </a>
+                                                <% } %>
+                            </nav>
+
+                        </article>
+
+                        <% } %>
+
+            </main>
+        </div>
+
+        <%- include('../../../includes/end') %>

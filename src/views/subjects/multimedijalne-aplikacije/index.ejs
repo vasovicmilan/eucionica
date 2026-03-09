@@ -1,404 +1,429 @@
 <%- include('../../includes/head', { title: subject.name }) %>
-<%- include('../../includes/navigation', {
-    active: 'multimedijalne-aplikacije'
-}) %>
+    <%- include('../../includes/navigation', { active: 'multimedijalne-aplikacije' }) %>
 
-<main class="subject-page">
+        <main class="subject-page">
 
-    <!-- HERO -->
-    <section class="subject-hero">
-        <div class="container">
-            <h1 class="subject-title"><%= subject.name %></h1>
+            <!-- HERO -->
+            <section class="subject-hero">
+                <div class="container">
+                    <h1 class="subject-title">
+                        <%= subject.name %>
+                    </h1>
 
-            <div class="subject-meta">
-                <span class="badge badge--primary">ESPB: <%= subject.espb %></span>
-                <span class="badge badge--secondary">Šifra: <%= subject.code %></span>
-                <span class="badge badge--outline">Predavanja: <%= subject.lectures %></span>
-                <span class="badge badge--outline">Vežbe: <%= subject.exercises %></span>
-            </div>
-        </div>
-    </section>
-
-    <!-- STATS -->
-    <div class="container">
-        <div class="stats-row">
-
-            <div class="stat-card">
-                <div class="stat-icon">📊</div>
-                <div class="stat-content">
-                    <span class="stat-label">Napredak</span>
-                    <span class="stat-value"><%= stats.available %>/<%= stats.total %></span>
-                    <span class="stat-percent"><%= stats.percent %>%</span>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-icon">📅</div>
-                <div class="stat-content">
-                    <span class="stat-label">Početak</span>
-                    <span class="stat-value">
-                        <%= new Date(subject.startDate).toLocaleDateString('sr-RS') %>
-                    </span>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-icon">🏁</div>
-                <div class="stat-content">
-                    <span class="stat-label">Kraj</span>
-                    <span class="stat-value">
-                        <%= new Date(subject.endDate).toLocaleDateString('sr-RS') %>
-                    </span>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-icon">🎓</div>
-                <div class="stat-content">
-                    <span class="stat-label">Projekat</span>
-                    <span class="stat-value">Obavezan</span>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="container">
-        <hr class="section-divider">
-
-        <div class="subject-grid">
-
-            <!-- MAIN -->
-            <div class="subject-main">
-
-                <!-- O PREDMETU -->
-                <section class="info-card">
-                    <div class="card-header">
-                        <h2>O predmetu</h2>
+                    <div class="subject-meta">
+                        <span class="badge badge--primary">ESPB: <%= subject.espb %></span>
+                        <span class="badge badge--secondary">Šifra: <%= subject.code %></span>
+                        <span class="badge badge--outline">Predavanja: <%= subject.lectures %></span>
+                        <span class="badge badge--outline">Vežbe: <%= subject.exercises %></span>
                     </div>
+                </div>
+            </section>
 
-                    <div class="card-body">
-                        <p class="lead">
-                            Predmet obuhvata principe digitalne obrade slike, zvuka i videa,
-                            kao i razumevanje vizuelne komunikacije u savremenom
-                            multimedijalnom okruženju.
-                        </p>
+            <!-- STATS -->
+            <div class="container">
+                <div class="stats-row">
 
-                        <p>
-                            Studenti kroz teoriju i praktičan rad savladavaju kompoziciju,
-                            boju, rezoluciju, kompresiju, montažu, tipografiju i UI sisteme.
-                        </p>
-
-                        <p>
-                            Vežbe su projektno orijentisane i vode ka izradi
-                            integrisanog multimedijalnog projekta.
-                        </p>
-                    </div>
-                </section>
-
-
-                <!-- PLAN RADA -->
-                <section class="info-card">
-                    <div class="card-header">
-                        <h2>Plan rada po nedeljama</h2>
-                    </div>
-
-                    <div class="card-body">
-
-                        <p class="section-intro">
-                            Predmet se realizuje kroz 12 nedelja prema sledećem planu:
-                        </p>
-
-                        <div class="table-responsive">
-                            <table class="table table--striped">
-                                <thead>
-                                    <tr>
-                                        <th>Nedelja</th>
-                                        <th>Tema</th>
-                                        <th>Datum</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% workPlan.forEach(item => { 
-                                        const itemDate = new Date(item.date.split('.').reverse().join('-'));
-                                        itemDate.setHours(0,0,0,0);
-                                        const isPast = itemDate < today;
-                                        const isCurrent = itemDate.getTime() === today.getTime() ||
-                                            (currentLection && item.topic === currentLection.title);
-                                    %>
-                                    <tr class="<%= isCurrent ? 'table-row-current' : '' %>">
-                                        <td><strong>Nedelja <%= item.week %></strong></td>
-                                        <td><%= item.topic %></td>
-                                        <td><%= item.date %></td>
-                                        <td>
-                                            <% if (isCurrent) { %>
-                                                <span class="status-badge status-badge--primary">🔵 Trenutno</span>
-                                            <% } else if (isPast) { %>
-                                                <span class="status-badge status-badge--success">✅ Završeno</span>
-                                            <% } else { %>
-                                                <span class="status-badge status-badge--warning">⏳ Predstoji</span>
-                                            <% } %>
-                                        </td>
-                                    </tr>
-                                    <% }); %>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="table-legend">
-                            <span class="legend-item">
-                                <span class="legend-color legend-color--primary"></span> Trenutno
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-content">
+                            <span class="stat-label">Napredak</span>
+                            <span class="stat-value">
+                                <%= stats.available %>/<%= stats.total %>
                             </span>
-                            <span class="legend-item">
-                                <span class="legend-color legend-color--success"></span> Završeno
-                            </span>
-                            <span class="legend-item">
-                                <span class="legend-color legend-color--warning"></span> Predstoji
+                            <span class="stat-percent">
+                                <%= stats.percent %>%
                             </span>
                         </div>
-
-                    </div>
-                </section>
-
-
-                <!-- PRAKTIČNI PROJEKAT -->
-                <section class="info-card info-card--highlighted">
-                    <div class="card-header">
-                        <h2>Praktični projekat (Vežbe)</h2>
                     </div>
 
-                    <div class="card-body">
-
-                        <p class="lead">
-                            Praktični deo predmeta realizuje se kroz tri projektna zadatka koji integrišu
-                            video produkciju, grafički dizajn i vizuelni identitet.
-                        </p>
-
-                        <p>
-                            Cilj projektnog rada je primena teorijskih znanja iz oblasti vizuelne komunikacije,
-                            obrade slike, video montaže, tipografije, kompozicije i brendiranja u realnom
-                            ili simuliranom poslovnom kontekstu.
-                        </p>
-
-                        <hr class="card-divider">
-
-                        <h3>Struktura projektnog rada</h3>
-
-                        <ul class="styled-list">
-                            <li>
-                                <strong>1. Kratki marketinški video (30–60 sekundi)</strong><br>
-                                Izrada promotivnog videa koji uključuje: montažu, tranzicije,
-                                tekstualne elemente (titles), efekte, rad sa slikama i video materijalom,
-                                kao i voice-over naraciju ili muziku u pozadini.
-                                <br><em>Preporučeni alat: CapCut.</em>
-                            </li>
-
-                            <li>
-                                <strong>2. Digitalni marketinški materijal</strong><br>
-                                Izrada kraće promotivne forme (carousel za društvene mreže,
-                                mini e-book, digitalni flajer, portfolio ili CV prezentacija)
-                                sa jasnom prodajnom ili promotivnom namenom.
-                                <br><em>Preporučeni alat: Canva.</em>
-                            </li>
-
-                            <li>
-                                <strong>3. Vizuelni brend identitet</strong><br>
-                                Razrada osnovnog vizuelnog identiteta (logo koncept,
-                                tipografija, kolor paleta, primena na osnovne vizuale,
-                                jednostavan UI koncept ili landing sekcija).
-                                <br><em>Preporučeni alat: Figma.</em>
-                            </li>
-                        </ul>
-
-                        <hr class="card-divider">
-
-                        <h3>Tematski okvir</h3>
-
-                        <p>
-                            Studenti se podstiču da projekte razvijaju na osnovu sopstvene
-                            poslovne ideje, ličnog brenda, postojećeg porodičnog biznisa,
-                            freelance usluga ili u okviru dogovorene teme sa nastavnikom.
-                        </p>
-
-                        <p>
-                            Fokus je na realnoj primenljivosti i portfolijo vrednosti rada.
-                        </p>
-
-                        <hr class="card-divider">
-
-                        <h3>Napomena o alatima</h3>
-
-                        <p>
-                            Preporučeni alati (CapCut, Canva i Figma) izabrani su zbog dostupnosti
-                            i jednostavnosti za početnike. Međutim, studenti koji već poseduju
-                            naprednija znanja mogu zadatke realizovati i u drugim profesionalnim
-                            alatima (npr. Adobe Premiere Pro, After Effects, Photoshop,
-                            Illustrator, DaVinci Resolve i dr.), uz poštovanje zadatih
-                            tehničkih i konceptualnih kriterijuma.
-                        </p>
-
-                        <p class="highlight mt-4">
-                            Projekat nosi <strong>40 poena</strong> i predstavlja obavezni deo ispita.
-                        </p>
-
-                        <hr class="card-divider">
-
-                        <h3>Početnički video tutorijali</h3>
-
-                        <ul class="styled-list">
-                            <li>
-                                <a href="https://youtu.be/FVVpprhDFvU?si=PEU7QF3udkaA3ij9" target="_blank" rel="noopener noreferrer">
-                                    <strong>🎬 CapCut – osnovni vodič (početnici)</strong>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="https://youtu.be/YpCFjtAM8-k?si=sMjsmUym8krSsW1p" target="_blank" rel="noopener noreferrer">
-                                    <strong>🎨 Canva – kompletan vodič za početnike</strong>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="https://youtu.be/HoKD1qIcchQ?si=d7nlHSgkrR-ptOur" target="_blank" rel="noopener noreferrer">
-                                    <strong>🧩 Figma – osnove interfejsa i dizajna</strong>
-                                </a>
-                            </li>
-                        </ul>
-
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-content">
+                            <span class="stat-label">Početak</span>
+                            <span class="stat-value">
+                                <%= new Date(subject.startDate).toLocaleDateString('sr-RS') %>
+                            </span>
+                        </div>
                     </div>
-                </section>
 
+                    <div class="stat-card">
+                        <div class="stat-icon">🏁</div>
+                        <div class="stat-content">
+                            <span class="stat-label">Kraj</span>
+                            <span class="stat-value">
+                                <%= new Date(subject.endDate).toLocaleDateString('sr-RS') %>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">🎓</div>
+                        <div class="stat-content">
+                            <span class="stat-label">Projekat</span>
+                            <span class="stat-value">Obavezan</span>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
+            <div class="container">
+                <hr class="section-divider">
 
-            <!-- SIDEBAR -->
-            <aside class="subject-sidebar">
+                <div class="subject-grid">
 
-                <!-- TRENUTNA LEKCIJA -->
-                <section class="info-card info-card--highlighted">
-                    <div class="card-header">
-                        <h2>Trenutna lekcija</h2>
-                    </div>
+                    <!-- MAIN -->
+                    <div class="subject-main">
 
-                    <div class="card-body">
-                        <% if (currentLection) { %>
-                            <div class="current-lection">
-                                <h3 class="current-lection-title"><%= currentLection.title %></h3>
+                        <!-- O PREDMETU -->
+                        <section class="info-card">
+                            <div class="card-header">
+                                <h2>O predmetu</h2>
+                            </div>
 
-                                <span class="lection-badge">
-                                    📅 <%= currentLection.formattedDate %>
-                                </span>
+                            <div class="card-body">
+                                <p class="lead">
+                                    Predmet obuhvata principe digitalne obrade slike, zvuka i videa,
+                                    kao i razumevanje vizuelne komunikacije u savremenom
+                                    multimedijalnom okruženju.
+                                </p>
 
-                                <p class="lection-description">
-                                    <%= currentLection.description %>
+                                <p>
+                                    Studenti kroz teoriju i praktičan rad savladavaju kompoziciju,
+                                    boju, rezoluciju, kompresiju, montažu, tipografiju i UI sisteme.
+                                </p>
+
+                                <p>
+                                    Vežbe su projektno orijentisane i vode ka izradi
+                                    integrisanog multimedijalnog projekta.
+                                </p>
+                            </div>
+                        </section>
+
+
+                        <!-- PLAN RADA -->
+                        <section class="info-card">
+                            <div class="card-header">
+                                <h2>Plan rada po nedeljama</h2>
+                            </div>
+
+                            <div class="card-body">
+
+                                <p class="section-intro">
+                                    Predmet se realizuje kroz 12 nedelja prema sledećem planu:
+                                </p>
+
+                                <div class="table-responsive">
+                                    <table class="table table--striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Nedelja</th>
+                                                <th>Tema</th>
+                                                <th>Datum</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% workPlan.forEach(item=> {
+                                                const itemDate = new Date(item.date.split('.').reverse().join('-'));
+                                                itemDate.setHours(0,0,0,0);
+                                                const isPast = itemDate < today; const
+                                                    isCurrent=itemDate.getTime()===today.getTime() || (currentLection &&
+                                                    item.topic===currentLection.title); %>
+                                                    <tr class="<%= isCurrent ? 'table-row-current' : '' %>">
+                                                        <td><strong>Nedelja <%= item.week %></strong></td>
+                                                        <td>
+                                                            <%= item.topic %>
+                                                        </td>
+                                                        <td>
+                                                            <%= item.date %>
+                                                        </td>
+                                                        <td>
+                                                            <% if (isCurrent) { %>
+                                                                <span class="status-badge status-badge--primary">🔵
+                                                                    Trenutno</span>
+                                                                <% } else if (isPast) { %>
+                                                                    <span class="status-badge status-badge--success">✅
+                                                                        Završeno</span>
+                                                                    <% } else { %>
+                                                                        <span
+                                                                            class="status-badge status-badge--warning">⏳
+                                                                            Predstoji</span>
+                                                                        <% } %>
+                                                        </td>
+                                                    </tr>
+                                                    <% }); %>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="table-legend">
+                                    <span class="legend-item">
+                                        <span class="legend-color legend-color--primary"></span> Trenutno
+                                    </span>
+                                    <span class="legend-item">
+                                        <span class="legend-color legend-color--success"></span> Završeno
+                                    </span>
+                                    <span class="legend-item">
+                                        <span class="legend-color legend-color--warning"></span> Predstoji
+                                    </span>
+                                </div>
+
+                            </div>
+                        </section>
+
+
+                        <!-- PRAKTIČNI PROJEKAT -->
+                        <section class="info-card info-card--highlighted">
+                            <div class="card-header">
+                                <h2>Praktični projekat (Vežbe)</h2>
+                            </div>
+
+                            <div class="card-body">
+
+                                <p class="lead">
+                                    Praktični deo predmeta realizuje se kroz tri projektna zadatka koji integrišu
+                                    video produkciju, grafički dizajn i vizuelni identitet.
+                                </p>
+
+                                <p>
+                                    Cilj projektnog rada je primena teorijskih znanja iz oblasti vizuelne komunikacije,
+                                    obrade slike, video montaže, tipografije, kompozicije i brendiranja u realnom
+                                    ili simuliranom poslovnom kontekstu.
                                 </p>
 
                                 <hr class="card-divider">
 
-                                <a href="/multimedijalne-aplikacije/lekcija/<%= currentLection.slug %>"
-                                   class="btn btn--primary btn--block btn--large">
-                                    Otvori lekciju →
-                                </a>
+                                <h3>Struktura projektnog rada</h3>
+
+                                <ul class="styled-list">
+                                    <li>
+                                        <strong>1. Kratki marketinški video (30–60 sekundi)</strong><br>
+                                        Izrada promotivnog videa koji uključuje: montažu, tranzicije,
+                                        tekstualne elemente (titles), efekte, rad sa slikama i video materijalom,
+                                        kao i voice-over naraciju ili muziku u pozadini.
+                                        <br><em>Preporučeni alat: CapCut.</em>
+                                    </li>
+
+                                    <li>
+                                        <strong>2. Digitalni marketinški materijal</strong><br>
+                                        Izrada kraće promotivne forme (carousel za društvene mreže,
+                                        mini e-book, digitalni flajer, portfolio ili CV prezentacija)
+                                        sa jasnom prodajnom ili promotivnom namenom.
+                                        <br><em>Preporučeni alat: Canva.</em>
+                                    </li>
+
+                                    <li>
+                                        <strong>3. Vizuelni brend identitet</strong><br>
+                                        Razrada osnovnog vizuelnog identiteta (logo koncept,
+                                        tipografija, kolor paleta, primena na osnovne vizuale,
+                                        jednostavan UI koncept ili landing sekcija).
+                                        <br><em>Preporučeni alat: Figma.</em>
+                                    </li>
+                                </ul>
+
+                                <hr class="card-divider">
+
+                                <h3>Tematski okvir</h3>
+
+                                <p>
+                                    Studenti se podstiču da projekte razvijaju na osnovu sopstvene
+                                    poslovne ideje, ličnog brenda, postojećeg porodičnog biznisa,
+                                    freelance usluga ili u okviru dogovorene teme sa nastavnikom.
+                                </p>
+
+                                <p>
+                                    Fokus je na realnoj primenljivosti i portfolijo vrednosti rada.
+                                </p>
+
+                                <hr class="card-divider">
+
+                                <h3>Napomena o alatima</h3>
+
+                                <p>
+                                    Preporučeni alati (CapCut, Canva i Figma) izabrani su zbog dostupnosti
+                                    i jednostavnosti za početnike. Međutim, studenti koji već poseduju
+                                    naprednija znanja mogu zadatke realizovati i u drugim profesionalnim
+                                    alatima (npr. Adobe Premiere Pro, After Effects, Photoshop,
+                                    Illustrator, DaVinci Resolve i dr.), uz poštovanje zadatih
+                                    tehničkih i konceptualnih kriterijuma.
+                                </p>
+
+                                <p class="highlight mt-4">
+                                    Projekat nosi <strong>40 poena</strong> i predstavlja obavezni deo ispita.
+                                </p>
+
+                                <hr class="card-divider">
+
+                                <h3>Početnički video tutorijali</h3>
+
+                                <ul class="styled-list">
+                                    <li>
+                                        <a href="https://youtu.be/FVVpprhDFvU?si=PEU7QF3udkaA3ij9" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <strong>🎬 CapCut – osnovni vodič (početnici)</strong>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://youtu.be/YpCFjtAM8-k?si=sMjsmUym8krSsW1p" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <strong>🎨 Canva – kompletan vodič za početnike</strong>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://youtu.be/HoKD1qIcchQ?si=d7nlHSgkrR-ptOur" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <strong>🧩 Figma – osnove interfejsa i dizajna</strong>
+                                        </a>
+                                    </li>
+                                </ul>
+
                             </div>
-                        <% } else { %>
-                            <div class="empty-state">
-                                <div class="empty-state-icon">📚</div>
-                                <p class="empty-state-title">Predmet još nije počeo</p>
+                        </section>
+
+                    </div>
+
+
+                    <!-- SIDEBAR -->
+                    <aside class="subject-sidebar">
+
+                        <!-- TRENUTNA LEKCIJA -->
+                        <section class="info-card info-card--highlighted">
+                            <div class="card-header">
+                                <h2>Trenutna lekcija</h2>
                             </div>
-                        <% } %>
-                    </div>
-                </section>
 
+                            <div class="card-body">
+                                <% if (currentLection) { %>
+                                    <div class="current-lection">
+                                        <h3 class="current-lection-title">
+                                            <%= currentLection.title %>
+                                        </h3>
 
-                <!-- NAČIN OCENJIVANJA (IDENTIČAN STIL KAO OSRAC) -->
-                <section class="info-card">
-                    <div class="card-header">
-                        <h2>Način ocenjivanja</h2>
-                    </div>
+                                        <span class="lection-badge">
+                                            📅 <%= currentLection.formattedDate %>
+                                        </span>
 
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table--compact">
-                                <tbody>
+                                        <p class="lection-description">
+                                            <%= currentLection.description %>
+                                        </p>
 
-                                    <tr>
-                                        <td>
-                                            <div class="grading-item">
-                                                <span class="grading-icon">📋</span>
-                                                Prisustvo
-                                            </div>
-                                        </td>
-                                        <td class="points-cell">20</td>
-                                    </tr>
+                                        <hr class="card-divider">
 
-                                    <tr>
-                                        <td>
-                                            <div class="grading-item">
-                                                <span class="grading-icon">📝</span>
-                                                Kolokvijum (teorija)
-                                            </div>
-                                        </td>
-                                        <td class="points-cell">40</td>
-                                    </tr>
+                                        <a href="/multimedijalne-aplikacije/lekcija/<%= currentLection.slug %>"
+                                            class="btn btn--primary btn--block btn--large">
+                                            Otvori lekciju →
+                                        </a>
+                                    </div>
+                                    <% } else { %>
+                                        <div class="empty-state">
+                                            <div class="empty-state-icon">📚</div>
+                                            <p class="empty-state-title">Predmet još nije počeo</p>
+                                        </div>
+                                        <% } %>
+                            </div>
+                        </section>
 
-                                    <tr class="table-row-total">
-                                        <td>
-                                            <div class="grading-item">
-                                                <span class="grading-icon">🎯</span>
+                        <!-- NAČIN OCENJIVANJA -->
+                        <section class="info-card">
+
+                            <div class="card-header">
+                                <h2>Način ocenjivanja</h2>
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="grading-list">
+
+                                    <div class="grading-row">
+                                        <div class="grading-left">
+                                            <span class="grading-icon">📋</span>
+                                            <span>Prisustvo</span>
+                                        </div>
+                                        <span class="grading-points">20</span>
+                                    </div>
+
+                                    <div class="grading-row">
+                                        <div class="grading-left">
+                                            <span class="grading-icon">📝</span>
+                                            <span>Kolokvijum (teorija)</span>
+                                        </div>
+                                        <span class="grading-points">40</span>
+                                    </div>
+
+                                    <div class="grading-row">
+                                        <div class="grading-left">
+                                            <span class="grading-icon">🎯</span>
+                                            <span>
                                                 <strong>Praktični projekat</strong>
                                                 <small class="text-muted">(integrisani rad)</small>
-                                            </div>
-                                        </td>
-                                        <td class="points-cell"><strong>40</strong></td>
-                                    </tr>
+                                            </span>
+                                        </div>
+                                        <span class="grading-points"><strong>40</strong></span>
+                                    </div>
 
-                                    <tr class="table-row-sum">
-                                        <td><strong>UKUPNO</strong></td>
-                                        <td class="points-cell"><strong>100</strong></td>
-                                    </tr>
+                                    <div class="grading-row grading-row--total">
+                                        <span><strong>UKUPNO</strong></span>
+                                        <span class="grading-points"><strong>100</strong></span>
+                                    </div>
 
-                                </tbody>
-                            </table>
-                        </div>
+                                </div>
 
-                        <div class="info-note">
-                            <span class="info-icon">ℹ️</span>
-                            Minimum za prolaz: <strong>51 poen</strong>
-                        </div>
-                    </div>
-                </section>
+                                <div class="passing-progress">
 
+                                    <div class="passing-label">
+                                        <span>Prag za prolaz</span>
+                                        <span>51 / 100</span>
+                                    </div>
 
-                <!-- RESURSI -->
-                <section class="info-card">
-                    <div class="card-header">
-                        <h2>Korisni resursi</h2>
-                    </div>
+                                    <div class="passing-bar">
 
-                    <div class="card-body">
-                        <div class="resources-grid">
-                            <a href="https://drive.google.com/file/d/1YYoCteM-5xoD98rYYHA2tH4GMd73ex9n/view" target="_blank" rel="noopener noreferrer" class="resource-card">
-                                <span>📄</span> Plan
-                            </a>
-                            <a href="/multimedijalne-aplikacije/materijali" class="resource-card">
-                                <span>📚</span> Materijali
-                            </a>
-                            <a href="#" class="resource-card">
-                                <span>📊</span> Rezultati
-                            </a>
-                            <a href="#" class="resource-card">
-                                <span>❓</span> Pitanja
-                            </a>
-                        </div>
-                    </div>
-                </section>
+                                        <div class="passing-fill p-51"></div>
 
-            </aside>
+                                        <div class="passing-marker p-51">
+                                            <span class="marker-label">51%</span>
+                                        </div>
 
-        </div>
-    </div>
+                                    </div>
 
-</main>
+                                </div>
 
-<%- include('../../includes/end') %>
+                            </div>
+
+                        </section>
+
+                        <!-- RESURSI -->
+                        <section class="info-card">
+                            <div class="card-header">
+                                <h2>Korisni resursi</h2>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="resources-grid">
+                                    <a href="https://drive.google.com/file/d/1YYoCteM-5xoD98rYYHA2tH4GMd73ex9n/view"
+                                        target="_blank" rel="noopener noreferrer" class="resource-card">
+                                        <span>📄</span> Plan
+                                    </a>
+                                    <a href="/multimedijalne-aplikacije/materijali" class="resource-card">
+                                        <span>📚</span> Materijali
+                                    </a>
+                                    <a href="#" class="resource-card">
+                                        <span>📊</span> Rezultati
+                                    </a>
+                                    <a href="#" class="resource-card">
+                                        <span>❓</span> Pitanja
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+
+                    </aside>
+
+                </div>
+            </div>
+
+        </main>
+
+        <%- include('../../includes/end') %>

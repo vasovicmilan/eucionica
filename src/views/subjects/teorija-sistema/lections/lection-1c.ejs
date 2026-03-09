@@ -1,0 +1,415 @@
+<%- include('../../../includes/head', { title: lection.title, pageDescription: lection.description, pageStyles:
+    pageStyles || null }) %>
+
+    <%- include('../../../includes/navigation', { active: 'teorija-sistema' }) %>
+
+        <div class="lection-container">
+
+            <!-- SIDEBAR -->
+            <aside class="lection-sidebar">
+                <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
+            </aside>
+
+            <!-- CONTENT -->
+            <main class="lection-content">
+
+                <% if (!lection.available) { %>
+
+                    <!-- LEKCIJA NIJE DOSTUPNA -->
+
+                    <div class="lection-locked">
+
+                        <div class="lection-locked__icon">🔒</div>
+
+                        <h1 class="lection-locked__title">
+                            Lekcija još nije dostupna
+                        </h1>
+
+                        <p class="lection-locked__text">
+                            Ova lekcija postaje dostupna
+                            <strong>
+                                <%= lection.formattedDate %>
+                            </strong>.
+                        </p>
+
+                        <p class="lection-locked__text">
+                            Jedna lekcija se otključava svake nedelje.
+                        </p>
+
+                        <a href="/teorija-sistema" class="btn btn--primary btn--large">
+                            Nazad na predmet
+                        </a>
+
+                    </div>
+
+                    <% } else { %>
+
+                        <!-- LEKCIJA -->
+
+                        <article class="lection">
+
+                            <!-- HEADER -->
+
+                            <header class="lection__header">
+
+                                <div class="lection__meta">
+
+                                    <span class="lection__badge lection__badge--week">
+                                        📅 Nedelja <%= lection.week %>
+                                    </span>
+
+                                    <span class="lection__badge lection__badge--date">
+                                        📌 <%= lection.formattedDate %>
+                                    </span>
+
+                                </div>
+
+                                <h1 class="lection__title">
+                                    <%= lection.title %>
+                                </h1>
+
+                                <% if (lection.description) { %>
+
+                                    <p class="lection__description">
+                                        <%= lection.description %>
+                                    </p>
+
+                                    <% } %>
+                                        <div class="project-note">
+
+                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
+
+                                        </div>
+
+                            </header>
+
+                            <!-- CONTENT -->
+
+                            <div class="lection__content">
+
+                                <% if (lection.slug==="uvod-u-teoriju-sistema" ) { %>
+
+                                    <!-- ŠTA JE TEORIJA SISTEMA -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Šta je teorija sistema?
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Teorija sistema predstavlja interdisciplinarnu naučnu oblast
+                                                koja proučava zajedničke osobine, strukture i zakonitosti
+                                                sistema nezavisno od njihove prirode.
+                                            </p>
+
+                                            <p>
+                                                Sistem se može definisati kao skup međusobno povezanih
+                                                elemenata koji kroz svoje relacije formiraju organizovanu
+                                                celinu i zajedno ostvaruju određenu funkciju ili cilj.
+                                            </p>
+
+                                            <p class="highlight">
+                                                Osnovna ideja teorije sistema je da se kompleksne pojave
+                                                mogu razumeti analizom njihovih elemenata, relacija,
+                                                strukture i interakcije sa okruženjem.
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+
+                                    <!-- ZAŠTO JE NASTALA -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Zašto je nastala teorija sistema?
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Razvojem nauke i tehnologije količina informacija
+                                                i znanja postala je izuzetno velika. Kompleksnost
+                                                realnih problema često prevazilazi mogućnosti
+                                                pojedinačnih naučnih disciplina.
+                                            </p>
+
+                                            <p>
+                                                Zbog toga su naučne oblasti počele da se sve više
+                                                dele na specijalizovane discipline koje proučavaju
+                                                samo pojedine segmente stvarnosti.
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+
+                                    <!-- DIFERENCIJACIJA I INTEGRACIJA -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Diferencijacija i integracija nauke
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <div class="comparison-grid">
+
+                                                <div class="comparison-item">
+
+                                                    <div class="comparison-icon">🔬</div>
+
+                                                    <h3>Diferencijacija</h3>
+
+                                                    <p>
+                                                        Proces u kojem se nauka deli na sve uža
+                                                        specijalizovana područja kao što su
+                                                        biologija, hemija, fizika i druge discipline.
+                                                    </p>
+
+                                                </div>
+
+                                                <div class="comparison-item">
+
+                                                    <div class="comparison-icon">🧩</div>
+
+                                                    <h3>Integracija</h3>
+
+                                                    <p>
+                                                        Proces povezivanja različitih naučnih disciplina
+                                                        radi rešavanja kompleksnih problema koji ne mogu
+                                                        biti objašnjeni samo iz jedne oblasti.
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+
+                                            <p class="note">
+                                                Teorija sistema nastaje upravo kao rezultat potrebe
+                                                za integracijom znanja iz različitih naučnih oblasti.
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+
+                                    <!-- SISTEMSKI PRISTUP -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Sistemski pristup
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Sistemski pristup predstavlja način razmišljanja u kojem
+                                                se pojave posmatraju kao organizovana celina, a ne kao
+                                                izolovani skup pojedinačnih delova.
+                                            </p>
+
+                                            <ul class="list list--icons">
+
+                                                <li class="list__item">
+                                                    🔗 Fokus na relacijama između elemenata
+                                                </li>
+
+                                                <li class="list__item">
+                                                    🧩 Posmatranje sistema kao organizovane celine
+                                                </li>
+
+                                                <li class="list__item">
+                                                    📊 Analiza ponašanja sistema kroz modele
+                                                </li>
+
+                                                <li class="list__item">
+                                                    🎯 Razumevanje funkcija i ciljeva sistema
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </section>
+
+
+                                    <!-- ČELIČNI ZAKON PERSPEKTIVE -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Čelični zakon perspektive
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Posmatranje sistema zavisi od perspektive posmatrača.
+                                                Svaki istraživač svet posmatra kroz sopstveni sistem
+                                                vrednosti, znanja i iskustva.
+                                            </p>
+
+                                            <p class="highlight">
+                                                Ovaj fenomen u teoriji sistema naziva se
+                                                „čelični zakon perspektive“, koji naglašava
+                                                da različiti posmatrači mogu imati različita
+                                                tumačenja istog sistema.
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+
+                                    <!-- ULOGA TEORIJE SISTEMA -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Uloga teorije sistema u nauci
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Jedna od glavnih funkcija teorije sistema jeste da
+                                                obezbedi zajednički skup pojmova, metoda i instrumenata
+                                                za proučavanje kompleksnih pojava u različitim naukama.
+                                            </p>
+
+                                            <div class="tech-grid">
+
+                                                <div class="tech-item">🌱 Ekologija</div>
+                                                <div class="tech-item">🧬 Biologija</div>
+                                                <div class="tech-item">⚙️ Inženjerstvo</div>
+                                                <div class="tech-item">💻 Informatika</div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </section>
+
+
+                                    <!-- BOULDINGOVA KLASIFIKACIJA -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Nivoi kompleksnosti sistema
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Jedna od poznatih klasifikacija sistema je
+                                                Bouldingova klasifikacija koja sisteme deli
+                                                prema stepenu njihove kompleksnosti.
+                                            </p>
+
+                                            <ul class="list">
+
+                                                <li>Statičke strukture</li>
+                                                <li>Satni mehanizmi</li>
+                                                <li>Termostati (sistemi sa povratnom spregom)</li>
+                                                <li>Ćelije</li>
+                                                <li>Biljni organizmi</li>
+                                                <li>Životinje</li>
+                                                <li>Čovek kao pojedinac</li>
+                                                <li>Društveni sistemi</li>
+                                                <li>Transcendentalni sistemi</li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </section>
+
+
+                                    <!-- ZAKLJUČAK -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Zaključak
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Teorija sistema omogućava jedinstveni pristup
+                                                proučavanju kompleksnih pojava u različitim
+                                                naučnim disciplinama.
+                                            </p>
+
+                                            <p class="highlight">
+                                                Umesto izolovanog proučavanja pojedinačnih delova,
+                                                sistemski pristup naglašava važnost strukture,
+                                                relacija i interakcije sistema sa okruženjem.
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+                                    <% } %>
+
+                            </div>
+
+
+                            <!-- NAVIGACIJA -->
+
+                            <nav class="lection-nav">
+
+                                <% if (navigation.prev) { %>
+
+                                    <a href="/teorija-sistema/lekcija/<%= navigation.prev.slug %>"
+                                        class="lection-nav__link lection-nav__link--prev">
+
+                                        ← <%= navigation.prev.title %>
+
+                                    </a>
+
+                                    <% } else { %>
+
+                                        <a href="/teorija-sistema" class="lection-nav__link lection-nav__link--prev">
+
+                                            ← Nazad na predmet
+
+                                        </a>
+
+                                        <% } %>
+
+
+                                            <% if (navigation.next) { %>
+
+                                                <a href="/teorija-sistema/lekcija/<%= navigation.next.slug %>"
+                                                    class="lection-nav__link lection-nav__link--next">
+
+                                                    <%= navigation.next.title %> →
+
+                                                </a>
+
+                                                <% } %>
+
+                            </nav>
+
+                        </article>
+
+                        <% } %>
+
+            </main>
+
+        </div>
+
+        <%- include('../../../includes/end') %>

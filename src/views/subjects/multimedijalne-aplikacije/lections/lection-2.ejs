@@ -1,341 +1,350 @@
-<%- include('../../../includes/head', { 
-    title: lection.title,
-    pageDescription: lection.description,
-    pageStyles: pageStyles
-}) %>
+<%- include('../../../includes/head', { title: lection.title, pageDescription: lection.description, pageStyles:
+    pageStyles }) %>
 
-<%- include('../../../includes/navigation', {
-    active: 'multimedijalne-aplikacije'
-}) %>
+    <%- include('../../../includes/navigation', { active: 'multimedijalne-aplikacije' }) %>
 
-<div class="lection-container">
-    <aside class="lection-sidebar">
-        <%- include('../includes/navigation', {
-            lections: lections,
-            currentSlug: lection.slug
-        }) %>
-    </aside>
+        <div class="lection-container">
+            <aside class="lection-sidebar">
+                <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
+            </aside>
 
-    <main class="lection-content">
+            <main class="lection-content">
 
-        <% if (!lection.available) { %>
+                <% if (!lection.available) { %>
 
-            <div class="lection-locked">
-                <div class="lection-locked__icon">🔒</div>
-                <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
-                <p class="lection-locked__text">
-                    Ova lekcija postaje dostupna
-                    <strong><%= lection.formattedDate %></strong>.
-                </p>
-                <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
-                <a href="/multimedijalne-aplikacije" class="btn btn--primary btn--large">
-                    Nazad na predmet
-                </a>
-            </div>
-
-        <% } else { %>
-
-            <article class="lection">
-
-                <header class="lection__header">
-                    <div class="lection__meta">
-                        <span class="lection__badge lection__badge--week">
-                            <span class="badge-icon">📅</span>
-                            Nedelja <%= lection.week %>
-                        </span>
-                        <span class="lection__badge lection__badge--date">
-                            <span class="badge-icon">📌</span>
-                            <%= lection.formattedDate %>
-                        </span>
+                    <div class="lection-locked">
+                        <div class="lection-locked__icon">🔒</div>
+                        <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
+                        <p class="lection-locked__text">
+                            Ova lekcija postaje dostupna
+                            <strong>
+                                <%= lection.formattedDate %>
+                            </strong>.
+                        </p>
+                        <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
+                        <a href="/multimedijalne-aplikacije" class="btn btn--primary btn--large">
+                            Nazad na predmet
+                        </a>
                     </div>
 
-                    <h1 class="lection__title"><%= lection.title %></h1>
-                    
-                    <% if (lection.description) { %>
-                        <p class="lection__description"><%= lection.description %></p>
-                    <% } %>
-                </header>
+                    <% } else { %>
 
-                <div class="lection__content">                   
+                        <article class="lection">
 
-                    <!-- 1 -->
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">1. Vizuelna komunikacija kao informacioni sistem</h2>
-                        <div class="lection-section__content">
+                            <header class="lection__header">
+                                <div class="lection__meta">
+                                    <span class="lection__badge lection__badge--week">
+                                        <span class="badge-icon">📅</span>
+                                        Nedelja <%= lection.week %>
+                                    </span>
+                                    <span class="lection__badge lection__badge--date">
+                                        <span class="badge-icon">📌</span>
+                                        <%= lection.formattedDate %>
+                                    </span>
+                                </div>
 
-                            <p>
-                                Vizuelna komunikacija predstavlja prenos informacije putem organizovanih
-                                vizuelnih signala: boje, forme, veličine, kontrasta i rasporeda.
-                            </p>
+                                <h1 class="lection__title">
+                                    <%= lection.title %>
+                                </h1>
 
-                            <div class="highlight-box">
-                                Vizuelni dizajn je strukturirani sistem informacija — ne samo estetika.
-                            </div>
+                                <% if (lection.description) { %>
+                                    <p class="lection__description">
+                                        <%= lection.description %>
+                                    </p>
+                                    <% } %>
+                                        <div class="project-note">
 
-                            <p>
-                                U multimedijalnim aplikacijama dizajn utiče na:
-                            </p>
+                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
 
-                            <ul class="styled-list">
-                                <li>Percepciju</li>
-                                <li>Brzinu obrade informacije</li>
-                                <li>Emocionalnu reakciju</li>
-                                <li>Korisničko ponašanje</li>
-                            </ul>
+                                        </div>
+                            </header>
 
-                        </div>
-                    </section>
+                            <div class="lection__content">
 
-                    <!-- 2 -->
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">2. Principi kompozicije i matematička ravnoteža</h2>
-                        <div class="lection-section__content">
+                                <!-- 1 -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">1. Vizuelna komunikacija kao informacioni sistem
+                                    </h2>
+                                    <div class="lection-section__content">
 
-                            <h3>Balans kao raspodela vizuelne mase</h3>
+                                        <p>
+                                            Vizuelna komunikacija predstavlja prenos informacije putem organizovanih
+                                            vizuelnih signala: boje, forme, veličine, kontrasta i rasporeda.
+                                        </p>
 
-                            <p>
-                                Vizuelna masa zavisi od:
-                            </p>
+                                        <div class="highlight-box">
+                                            Vizuelni dizajn je strukturirani sistem informacija — ne samo estetika.
+                                        </div>
 
-                            <ul class="styled-list">
-                                <li>Veličine elementa</li>
-                                <li>Kontrasta</li>
-                                <li>Boje</li>
-                                <li>Pozicije</li>
-                            </ul>
+                                        <p>
+                                            U multimedijalnim aplikacijama dizajn utiče na:
+                                        </p>
 
-                            <p>
-                                Tamniji i veći objekti imaju veću perceptivnu težinu.
-                            </p>
+                                        <ul class="styled-list">
+                                            <li>Percepciju</li>
+                                            <li>Brzinu obrade informacije</li>
+                                            <li>Emocionalnu reakciju</li>
+                                            <li>Korisničko ponašanje</li>
+                                        </ul>
 
-                            <h3>Kontrast i luminansa</h3>
+                                    </div>
+                                </section>
 
-                            <p>
-                                Kontrast se može izraziti kao odnos luminansi:
-                            </p>
+                                <!-- 2 -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">2. Principi kompozicije i matematička ravnoteža
+                                    </h2>
+                                    <div class="lection-section__content">
 
-                            <pre><code>
+                                        <h3>Balans kao raspodela vizuelne mase</h3>
+
+                                        <p>
+                                            Vizuelna masa zavisi od:
+                                        </p>
+
+                                        <ul class="styled-list">
+                                            <li>Veličine elementa</li>
+                                            <li>Kontrasta</li>
+                                            <li>Boje</li>
+                                            <li>Pozicije</li>
+                                        </ul>
+
+                                        <p>
+                                            Tamniji i veći objekti imaju veću perceptivnu težinu.
+                                        </p>
+
+                                        <h3>Kontrast i luminansa</h3>
+
+                                        <p>
+                                            Kontrast se može izraziti kao odnos luminansi:
+                                        </p>
+
+                                        <pre><code>
                 Kontrast = (L1 + 0.05) / (L2 + 0.05)
                             </code></pre>
 
-                            <p>
-                                Gde je L luminansa definisana RGB formulom:
-                            </p>
+                                        <p>
+                                            Gde je L luminansa definisana RGB formulom:
+                                        </p>
 
-                            <pre><code>
+                                        <pre><code>
                 Y = 0.59G + 0.30R + 0.11B
                             </code></pre>
 
-                            <p>
-                                Veći kontrast povećava čitljivost i vizuelnu hijerarhiju.
-                            </p>
+                                        <p>
+                                            Veći kontrast povećava čitljivost i vizuelnu hijerarhiju.
+                                        </p>
 
-                        </div>
-                    </section>
+                                    </div>
+                                </section>
 
-                    <!-- 3 -->
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">3. Grid sistemi i pravilo trećina</h2>
-                        <div class="lection-section__content">
+                                <!-- 3 -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">3. Grid sistemi i pravilo trećina</h2>
+                                    <div class="lection-section__content">
 
-                            <p>
-                                Grid sistem predstavlja matematičku organizaciju prostora.
-                            </p>
+                                        <p>
+                                            Grid sistem predstavlja matematičku organizaciju prostora.
+                                        </p>
 
-                            <h3>3×3 pravilo (Rule of Thirds)</h3>
+                                        <h3>3×3 pravilo (Rule of Thirds)</h3>
 
-                            <pre><code>
+                                        <pre><code>
                 |----|----|----|
                 |----|----|----|
                 |----|----|----|
                             </code></pre>
 
-                            <p>
-                                Elementi postavljeni na preseke linija imaju veću perceptivnu važnost.
-                            </p>
+                                        <p>
+                                            Elementi postavljeni na preseke linija imaju veću perceptivnu važnost.
+                                        </p>
 
-                            <h3>Modularni grid</h3>
+                                        <h3>Modularni grid</h3>
 
-                            <p>
-                                U web dizajnu koristi se 12-kolonski sistem radi fleksibilnosti
-                                i responzivnog dizajna.
-                            </p>
+                                        <p>
+                                            U web dizajnu koristi se 12-kolonski sistem radi fleksibilnosti
+                                            i responzivnog dizajna.
+                                        </p>
 
-                        </div>
-                    </section>
+                                    </div>
+                                </section>
 
-                    <!-- 4 -->
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">4. Tipografija i digitalni prikaz teksta</h2>
-                        <div class="lection-section__content">
+                                <!-- 4 -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">4. Tipografija i digitalni prikaz teksta</h2>
+                                    <div class="lection-section__content">
 
-                            <h3>Serif vs Sans-serif</h3>
+                                        <h3>Serif vs Sans-serif</h3>
 
-                            <p>
-                                Na ekranima sa manjom rezolucijom sans-serif fontovi daju bolju
-                                čitljivost zbog jednostavnijih ivica.
-                            </p>
+                                        <p>
+                                            Na ekranima sa manjom rezolucijom sans-serif fontovi daju bolju
+                                            čitljivost zbog jednostavnijih ivica.
+                                        </p>
 
-                            <h3>Veličina fonta u pikselima</h3>
+                                        <h3>Veličina fonta u pikselima</h3>
 
-                            <pre><code>
+                                        <pre><code>
                 Font size (px) × DPI / 72 = fizička veličina
                             </code></pre>
 
-                            <p>
-                                Digitalni tekst se renderuje pomoću:
-                            </p>
+                                        <p>
+                                            Digitalni tekst se renderuje pomoću:
+                                        </p>
 
-                            <ul class="styled-list">
-                                <li>Hinting algoritama</li>
-                                <li>Subpixel renderinga</li>
-                                <li>Anti-aliasing tehnika</li>
-                            </ul>
+                                        <ul class="styled-list">
+                                            <li>Hinting algoritama</li>
+                                            <li>Subpixel renderinga</li>
+                                            <li>Anti-aliasing tehnika</li>
+                                        </ul>
 
-                            <div class="highlight-box">
-                                Anti-aliasing smanjuje nazubljene ivice interpolacijom boja.
-                            </div>
+                                        <div class="highlight-box">
+                                            Anti-aliasing smanjuje nazubljene ivice interpolacijom boja.
+                                        </div>
 
-                        </div>
-                    </section>
+                                    </div>
+                                </section>
 
-                    <!-- 5 -->
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">5. Teorija boja i modeli</h2>
-                        <div class="lection-section__content">
+                                <!-- 5 -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">5. Teorija boja i modeli</h2>
+                                    <div class="lection-section__content">
 
-                            <h3>RGB model (aditivni)</h3>
+                                        <h3>RGB model (aditivni)</h3>
 
-                            <p>
-                                Svaki piksel sadrži tri komponente (0–255):
-                            </p>
+                                        <p>
+                                            Svaki piksel sadrži tri komponente (0–255):
+                                        </p>
 
-                            <pre><code>
+                                        <pre><code>
                 R, G, B ∈ [0,255]
                 Ukupno boja = 256³ = 16.777.216
                             </code></pre>
 
-                            <h3>HSL model</h3>
+                                        <h3>HSL model</h3>
 
-                            <ul class="styled-list">
-                                <li>Hue – ugao na spektru (0–360°)</li>
-                                <li>Saturation – zasićenost</li>
-                                <li>Lightness – svetlina</li>
-                            </ul>
+                                        <ul class="styled-list">
+                                            <li>Hue – ugao na spektru (0–360°)</li>
+                                            <li>Saturation – zasićenost</li>
+                                            <li>Lightness – svetlina</li>
+                                        </ul>
 
-                            <p>
-                                HSL je intuitivniji za dizajn jer odražava ljudsku percepciju.
-                            </p>
+                                        <p>
+                                            HSL je intuitivniji za dizajn jer odražava ljudsku percepciju.
+                                        </p>
 
-                            <h3>Psihološki efekti boja</h3>
+                                        <h3>Psihološki efekti boja</h3>
 
-                            <ul class="styled-list">
-                                <li>Crvena – energija, hitnost</li>
-                                <li>Plava – poverenje, stabilnost</li>
-                                <li>Zelena – priroda, ravnoteža</li>
-                            </ul>
+                                        <ul class="styled-list">
+                                            <li>Crvena – energija, hitnost</li>
+                                            <li>Plava – poverenje, stabilnost</li>
+                                            <li>Zelena – priroda, ravnoteža</li>
+                                        </ul>
 
-                        </div>
-                    </section>
+                                    </div>
+                                </section>
 
-                    <!-- 6 -->
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">6. Negativan prostor i odnos površina</h2>
-                        <div class="lection-section__content">
+                                <!-- 6 -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">6. Negativan prostor i odnos površina</h2>
+                                    <div class="lection-section__content">
 
-                            <p>
-                                Negativan prostor omogućava:
-                            </p>
+                                        <p>
+                                            Negativan prostor omogućava:
+                                        </p>
 
-                            <ul class="styled-list">
-                                <li>Povećanu čitljivost</li>
-                                <li>Jasnu hijerarhiju</li>
-                                <li>Smanjenje vizuelnog šuma</li>
-                            </ul>
+                                        <ul class="styled-list">
+                                            <li>Povećanu čitljivost</li>
+                                            <li>Jasnu hijerarhiju</li>
+                                            <li>Smanjenje vizuelnog šuma</li>
+                                        </ul>
 
-                            <p>
-                                Perceptivni kvalitet raste kada odnos popunjenog i praznog prostora
-                                ostaje u ravnoteži (~60% sadržaj / 40% praznina kao često korišćen princip).
-                            </p>
+                                        <p>
+                                            Perceptivni kvalitet raste kada odnos popunjenog i praznog prostora
+                                            ostaje u ravnoteži (~60% sadržaj / 40% praznina kao često korišćen princip).
+                                        </p>
 
-                        </div>
-                    </section>
+                                    </div>
+                                </section>
 
-                    <!-- 7 -->
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">7. Primena u digitalnim sistemima</h2>
-                        <div class="lection-section__content">
+                                <!-- 7 -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">7. Primena u digitalnim sistemima</h2>
+                                    <div class="lection-section__content">
 
-                            <ul class="styled-list">
-                                <li>UI/UX dizajn</li>
-                                <li>Interfejsi mobilnih aplikacija</li>
-                                <li>Web sistemi</li>
-                                <li>Video grafika</li>
-                                <li>Digitalni marketing</li>
-                            </ul>
+                                        <ul class="styled-list">
+                                            <li>UI/UX dizajn</li>
+                                            <li>Interfejsi mobilnih aplikacija</li>
+                                            <li>Web sistemi</li>
+                                            <li>Video grafika</li>
+                                            <li>Digitalni marketing</li>
+                                        </ul>
 
-                            <p>
-                                Vizuelna komunikacija mora biti usklađena sa tehničkim ograničenjima:
-                            </p>
+                                        <p>
+                                            Vizuelna komunikacija mora biti usklađena sa tehničkim ograničenjima:
+                                        </p>
 
-                            <ul class="styled-list">
-                                <li>Rezolucijom</li>
-                                <li>Kontrastom ekrana</li>
-                                <li>Bit depth ograničenjima</li>
-                                <li>Bandwidth-om sistema</li>
-                            </ul>
+                                        <ul class="styled-list">
+                                            <li>Rezolucijom</li>
+                                            <li>Kontrastom ekrana</li>
+                                            <li>Bit depth ograničenjima</li>
+                                            <li>Bandwidth-om sistema</li>
+                                        </ul>
 
-                        </div>
-                    </section>
+                                    </div>
+                                </section>
 
-                    <!-- ZAKLJUČAK -->
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">Zaključak</h2>
-                        <div class="lection-section__content">
+                                <!-- ZAKLJUČAK -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Zaključak</h2>
+                                    <div class="lection-section__content">
 
-                            <p>
-                                Vizuelni dizajn u multimediji je spoj umetnosti i tehničkih ograničenja.
-                                Efikasan dizajn mora biti estetski, funkcionalan i tehnički izvodljiv.
-                            </p>
+                                        <p>
+                                            Vizuelni dizajn u multimediji je spoj umetnosti i tehničkih ograničenja.
+                                            Efikasan dizajn mora biti estetski, funkcionalan i tehnički izvodljiv.
+                                        </p>
 
-                            <div class="highlight-box">
-                                Dobar dizajn je optimizovana struktura informacija.
+                                        <div class="highlight-box">
+                                            Dobar dizajn je optimizovana struktura informacija.
+                                        </div>
+
+                                    </div>
+                                </section>
+
                             </div>
 
-                        </div>
-                    </section>
+                            <nav class="lection-nav">
+                                <% if (navigation.prev) { %>
+                                    <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.prev.slug %>"
+                                        class="lection-nav__link lection-nav__link--prev">
+                                        <span class="nav-arrow">←</span>
+                                        <span class="nav-text">
+                                            <span class="nav-label">Prethodna lekcija</span>
+                                            <span class="nav-title">
+                                                <%= navigation.prev.title %>
+                                            </span>
+                                        </span>
+                                    </a>
+                                    <% } %>
 
-                </div>
+                                        <% if (navigation.next) { %>
+                                            <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.next.slug %>"
+                                                class="lection-nav__link lection-nav__link--next">
+                                                <span class="nav-text">
+                                                    <span class="nav-label">Sledeća lekcija</span>
+                                                    <span class="nav-title">
+                                                        <%= navigation.next.title %>
+                                                    </span>
+                                                </span>
+                                                <span class="nav-arrow">→</span>
+                                            </a>
+                                            <% } %>
+                            </nav>
 
-                <nav class="lection-nav">
-                    <% if (navigation.prev) { %>
-                        <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.prev.slug %>"
-                           class="lection-nav__link lection-nav__link--prev">
-                            <span class="nav-arrow">←</span>
-                            <span class="nav-text">
-                                <span class="nav-label">Prethodna lekcija</span>
-                                <span class="nav-title"><%= navigation.prev.title %></span>
-                            </span>
-                        </a>
-                    <% } %>
+                        </article>
 
-                    <% if (navigation.next) { %>
-                        <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.next.slug %>"
-                           class="lection-nav__link lection-nav__link--next">
-                            <span class="nav-text">
-                                <span class="nav-label">Sledeća lekcija</span>
-                                <span class="nav-title"><%= navigation.next.title %></span>
-                            </span>
-                            <span class="nav-arrow">→</span>
-                        </a>
-                    <% } %>
-                </nav>
+                        <% } %>
 
-            </article>
+            </main>
+        </div>
 
-        <% } %>
-
-    </main>
-</div>
-
-<%- include('../../../includes/end') %>
+        <%- include('../../../includes/end') %>

@@ -1,468 +1,485 @@
-<%- include('../../../includes/head', { 
-    title: lection.title,
-    pageDescription: lection.description,
-    pageStyles: pageStyles
-}) %>
+<%- include('../../../includes/head', { title: lection.title, pageDescription: lection.description, pageStyles:
+    pageStyles }) %>
 
-<%- include('../../../includes/navigation', {
-    active: 'otvoreno-racunarstvo'
-}) %>
+    <%- include('../../../includes/navigation', { active: 'otvoreno-racunarstvo' }) %>
 
-<div class="lection-container">
-    <!-- SIDEBAR -->
-    <aside class="lection-sidebar">
-        <%- include('../includes/navigation', {
-            lections: lections,
-            currentSlug: lection.slug
-        }) %>
-    </aside>
+        <div class="lection-container">
+            <!-- SIDEBAR -->
+            <aside class="lection-sidebar">
+                <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
+            </aside>
 
-    <!-- CONTENT -->
-    <main class="lection-content">
+            <!-- CONTENT -->
+            <main class="lection-content">
 
-        <% if (!lection.available) { %>
+                <% if (!lection.available) { %>
 
-            <div class="lection-locked">
-                <div class="lection-locked__icon">🔒</div>
-                <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
-                <p class="lection-locked__text">
-                    Ova lekcija postaje dostupna
-                    <strong><%= lection.formattedDate %></strong>.
-                </p>
-                <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
-                <a href="/otvoreno-racunarstvo" class="btn btn--primary btn--large">
-                    Nazad na predmet
-                </a>
-            </div>
-
-        <% } else { %>
-
-            <article class="lection">
-
-                <header class="lection__header">
-                    <div class="lection__meta">
-                        <span class="lection__badge lection__badge--week">
-                            <span class="badge-icon">📅</span>
-                            Nedelja <%= lection.week %>
-                        </span>
-                        <span class="lection__badge lection__badge--date">
-                            <span class="badge-icon">📌</span>
-                            <%= lection.formattedDate %>
-                        </span>
+                    <div class="lection-locked">
+                        <div class="lection-locked__icon">🔒</div>
+                        <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
+                        <p class="lection-locked__text">
+                            Ova lekcija postaje dostupna
+                            <strong>
+                                <%= lection.formattedDate %>
+                            </strong>.
+                        </p>
+                        <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
+                        <a href="/otvoreno-racunarstvo" class="btn btn--primary btn--large">
+                            Nazad na predmet
+                        </a>
                     </div>
 
-                    <h1 class="lection__title"><%= lection.title %></h1>
-                    
-                    <% if (lection.description) { %>
-                        <p class="lection__description"><%= lection.description %></p>
-                    <% } %>
-                </header>
+                    <% } else { %>
 
-                <div class="lection__content">
-                    
-                    <% if (lection.slug === "linux-i-otvoreni-operativni-sistemi") { %>
+                        <article class="lection">
 
-                    <!-- ========================================================= -->
-                    <!-- ŠTA JE LINUX                                              -->
-                    <!-- ========================================================= -->
+                            <header class="lection__header">
+                                <div class="lection__meta">
+                                    <span class="lection__badge lection__badge--week">
+                                        <span class="badge-icon">📅</span>
+                                        Nedelja <%= lection.week %>
+                                    </span>
+                                    <span class="lection__badge lection__badge--date">
+                                        <span class="badge-icon">📌</span>
+                                        <%= lection.formattedDate %>
+                                    </span>
+                                </div>
 
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">Šta je Linux?</h2>
-                        <div class="lection-section__content">
-                            <p>
-                                Linux je open source operativni sistem zasnovan na Unix filozofiji.
-                                Njegov razvoj započeo je 1991. godine i danas predstavlja
-                                osnovu većine serverskih sistema, cloud infrastrukture,
-                                mrežnih uređaja i superračunara.
-                            </p>
-                            <p>
-                                Linux se zasniva na modularnosti, bezbednosti i efikasnom
-                                upravljanju resursima. Njegova otvorena priroda omogućava
-                                zajednički razvoj i transparentnost.
-                            </p>
-                        </div>
-                    </section>
+                                <h1 class="lection__title">
+                                    <%= lection.title %>
+                                </h1>
 
-                    <!-- ========================================================= -->
-                    <!-- NAJPOZNATIJE DISTRIBUCIJE                                 -->
-                    <!-- ========================================================= -->
+                                <% if (lection.description) { %>
+                                    <p class="lection__description">
+                                        <%= lection.description %>
+                                    </p>
+                                    <% } %>
+                                        <div class="project-note">
 
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">Najpoznatije Linux distribucije</h2>
-                        <div class="lection-section__content">
+                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
 
-                            <h3>1. Ubuntu</h3>
-                            <p>
-                                Jedna od najpopularnijih distribucija. Pogodna za početnike,
-                                obrazovne institucije i serverska okruženja.
-                                Poznata po stabilnosti i velikoj zajednici.
-                            </p>
-                            <p>
-                                Preuzimanje:
-                                <a href="https://ubuntu.com/download" target="_blank" rel="noopener noreferrer">
-                                    https://ubuntu.com/download
-                                </a>
-                            </p>
+                                        </div>
+                            </header>
 
-                            <h3>2. Debian</h3>
-                            <p>
-                                Distribucija poznata po izuzetnoj stabilnosti i dugoročnom održavanju.
-                                Često se koristi kao osnova za druge distribucije.
-                            </p>
-                            <p>
-                                Preuzimanje:
-                                <a href="https://www.debian.org/distrib/" target="_blank" rel="noopener noreferrer">
-                                    https://www.debian.org/distrib/
-                                </a>
-                            </p>
+                            <div class="lection__content">
 
-                            <h3>3. Fedora</h3>
-                            <p>
-                                Moderna distribucija koja uvodi najnovije tehnologije.
-                                Popularna među developerima i u profesionalnim okruženjima.
-                            </p>
-                            <p>
-                                Preuzimanje:
-                                <a href="https://getfedora.org" target="_blank" rel="noopener noreferrer">
-                                    https://getfedora.org
-                                </a>
-                            </p>
+                                <% if (lection.slug==="linux-i-otvoreni-operativni-sistemi" ) { %>
 
-                            <h3>4. Arch Linux</h3>
-                            <p>
-                                Minimalistička distribucija namenjena naprednim korisnicima.
-                                Koristi rolling release model i omogućava potpunu kontrolu sistema.
-                            </p>
-                            <p>
-                                Preuzimanje:
-                                <a href="https://archlinux.org/download/" target="_blank" rel="noopener noreferrer">
-                                    https://archlinux.org/download/
-                                </a>
-                            </p>
+                                    <!-- ========================================================= -->
+                                    <!-- ŠTA JE LINUX                                              -->
+                                    <!-- ========================================================= -->
 
-                            <h3>5. Linux Mint</h3>
-                            <p>
-                                User-friendly distribucija sa fokusom na desktop korisnike.
-                                Često preporučena korisnicima koji prelaze sa Windows sistema.
-                            </p>
-                            <p>
-                                Preuzimanje:
-                                <a href="https://linuxmint.com/download.php" target="_blank" rel="noopener noreferrer">
-                                    https://linuxmint.com/download.php
-                                </a>
-                            </p>
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Šta je Linux?</h2>
+                                        <div class="lection-section__content">
+                                            <p>
+                                                Linux je open source operativni sistem zasnovan na Unix filozofiji.
+                                                Njegov razvoj započeo je 1991. godine i danas predstavlja
+                                                osnovu većine serverskih sistema, cloud infrastrukture,
+                                                mrežnih uređaja i superračunara.
+                                            </p>
+                                            <p>
+                                                Linux se zasniva na modularnosti, bezbednosti i efikasnom
+                                                upravljanju resursima. Njegova otvorena priroda omogućava
+                                                zajednički razvoj i transparentnost.
+                                            </p>
+                                        </div>
+                                    </section>
 
-                            <h3>6. Red Hat Enterprise Linux (RHEL)</h3>
-                            <p>
-                                Enterprise distribucija namenjena velikim kompanijama.
-                                Fokus na dugoročnu podršku, bezbednost i profesionalnu infrastrukturu.
-                            </p>
-                            <p>
-                                Informacije:
-                                <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux" target="_blank" rel="noopener noreferrer">
-                                    https://www.redhat.com
-                                </a>
-                            </p>
+                                    <!-- ========================================================= -->
+                                    <!-- NAJPOZNATIJE DISTRIBUCIJE                                 -->
+                                    <!-- ========================================================= -->
 
-                        </div>
-                    </section>
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Najpoznatije Linux distribucije</h2>
+                                        <div class="lection-section__content">
 
-                    <!-- ========================================================= -->
-                    <!-- PRAKTIČNI DEO                                             -->
-                    <!-- ========================================================= -->
+                                            <h3>1. Ubuntu</h3>
+                                            <p>
+                                                Jedna od najpopularnijih distribucija. Pogodna za početnike,
+                                                obrazovne institucije i serverska okruženja.
+                                                Poznata po stabilnosti i velikoj zajednici.
+                                            </p>
+                                            <p>
+                                                Preuzimanje:
+                                                <a href="https://ubuntu.com/download" target="_blank"
+                                                    rel="noopener noreferrer">
+                                                    https://ubuntu.com/download
+                                                </a>
+                                            </p>
 
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">Praktični rad: Linux na USB uređaju</h2>
-                        <div class="lection-section__content">
+                                            <h3>2. Debian</h3>
+                                            <p>
+                                                Distribucija poznata po izuzetnoj stabilnosti i dugoročnom održavanju.
+                                                Često se koristi kao osnova za druge distribucije.
+                                            </p>
+                                            <p>
+                                                Preuzimanje:
+                                                <a href="https://www.debian.org/distrib/" target="_blank"
+                                                    rel="noopener noreferrer">
+                                                    https://www.debian.org/distrib/
+                                                </a>
+                                            </p>
 
-                            <p>
-                                Studenti će doneti sopstvene USB uređaje na koje ćemo instalirati
-                                multiboot sistem sa više Linux distribucija.
-                                Time će dobiti prenosivo okruženje za učenje i eksperimentisanje.
-                            </p>
+                                            <h3>3. Fedora</h3>
+                                            <p>
+                                                Moderna distribucija koja uvodi najnovije tehnologije.
+                                                Popularna među developerima i u profesionalnim okruženjima.
+                                            </p>
+                                            <p>
+                                                Preuzimanje:
+                                                <a href="https://getfedora.org" target="_blank"
+                                                    rel="noopener noreferrer">
+                                                    https://getfedora.org
+                                                </a>
+                                            </p>
 
-                            <h3>Minimalni zahtevi</h3>
-                            <ul>
-                                <li>16GB USB</li>
-                                <li>USB 2.0 (funkcionalno)</li>
-                            </ul>
+                                            <h3>4. Arch Linux</h3>
+                                            <p>
+                                                Minimalistička distribucija namenjena naprednim korisnicima.
+                                                Koristi rolling release model i omogućava potpunu kontrolu sistema.
+                                            </p>
+                                            <p>
+                                                Preuzimanje:
+                                                <a href="https://archlinux.org/download/" target="_blank"
+                                                    rel="noopener noreferrer">
+                                                    https://archlinux.org/download/
+                                                </a>
+                                            </p>
 
-                            <h3>Preporučeni zahtevi</h3>
-                            <ul>
-                                <li>32GB USB ili više</li>
-                                <li>USB 3.0 / 3.1 radi bržeg rada</li>
-                            </ul>
+                                            <h3>5. Linux Mint</h3>
+                                            <p>
+                                                User-friendly distribucija sa fokusom na desktop korisnike.
+                                                Često preporučena korisnicima koji prelaze sa Windows sistema.
+                                            </p>
+                                            <p>
+                                                Preuzimanje:
+                                                <a href="https://linuxmint.com/download.php" target="_blank"
+                                                    rel="noopener noreferrer">
+                                                    https://linuxmint.com/download.php
+                                                </a>
+                                            </p>
 
-                            <p>
-                                Studenti će učiti kako da pokrenu računar sa USB uređaja,
-                                koriste BIOS/UEFI boot meni i rade u live okruženju
-                                bez izmene postojećeg sistema.
-                            </p>
+                                            <h3>6. Red Hat Enterprise Linux (RHEL)</h3>
+                                            <p>
+                                                Enterprise distribucija namenjena velikim kompanijama.
+                                                Fokus na dugoročnu podršku, bezbednost i profesionalnu infrastrukturu.
+                                            </p>
+                                            <p>
+                                                Informacije:
+                                                <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux"
+                                                    target="_blank" rel="noopener noreferrer">
+                                                    https://www.redhat.com
+                                                </a>
+                                            </p>
 
-                        </div>
-                    </section>
+                                        </div>
+                                    </section>
 
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">Alternativa: Virtualna mašina</h2>
-                        <div class="lection-section__content">
+                                    <!-- ========================================================= -->
+                                    <!-- PRAKTIČNI DEO                                             -->
+                                    <!-- ========================================================= -->
 
-                            <p>
-                                Studenti sa jačim računarima (8GB RAM ili više)
-                                mogu koristiti virtualne mašine.
-                            </p>
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Praktični rad: Linux na USB uređaju</h2>
+                                        <div class="lection-section__content">
 
-                            <h3>Video tutorijali</h3>
-                            <ul>
-                                <li>
-                                    <a href="https://youtu.be/nvdnQX9UkMY?si=wF-CFtEIs60RMPSu" target="_blank" rel="noopener noreferrer">
-                                        How to use VirtualBox – Tutorial for Beginners
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://youtu.be/SXqFPW87WFU?si=pJhB3rLglHKEvw8w" target="_blank" rel="noopener noreferrer">
-                                        How to use VirtualBox (Complete Beginner Guide)
-                                    </a>
-                                </li>
-                            </ul>
+                                            <p>
+                                                Studenti će doneti sopstvene USB uređaje na koje ćemo instalirati
+                                                multiboot sistem sa više Linux distribucija.
+                                                Time će dobiti prenosivo okruženje za učenje i eksperimentisanje.
+                                            </p>
 
-                            <p>
-                                Ovi tutorijali objašnjavaju instalaciju VirtualBox-a,
-                                kreiranje virtualne mašine i pokretanje Linux sistema
-                                bez potrebe za restartovanjem računara.
-                            </p>
+                                            <h3>Minimalni zahtevi</h3>
+                                            <ul>
+                                                <li>16GB USB</li>
+                                                <li>USB 2.0 (funkcionalno)</li>
+                                            </ul>
 
-                        </div>
-                    </section>
+                                            <h3>Preporučeni zahtevi</h3>
+                                            <ul>
+                                                <li>32GB USB ili više</li>
+                                                <li>USB 3.0 / 3.1 radi bržeg rada</li>
+                                            </ul>
 
-                    <!-- ========================================================= -->
-                    <!-- LINUX TERMINAL CHEAT SHEET                               -->
-                    <!-- ========================================================= -->
+                                            <p>
+                                                Studenti će učiti kako da pokrenu računar sa USB uređaja,
+                                                koriste BIOS/UEFI boot meni i rade u live okruženju
+                                                bez izmene postojećeg sistema.
+                                            </p>
 
-                    <section class="lection-section">
-                        <h2 class="lection-section__title">Linux Terminal – Kompletan Cheat Sheet</h2>
-                        <div class="lection-section__content">
+                                        </div>
+                                    </section>
 
-                            <p>
-                                Terminal predstavlja tekstualni interfejs za komunikaciju sa operativnim sistemom.
-                                Omogućava preciznu kontrolu nad sistemom, automatizaciju i profesionalni rad
-                                u serverskim i cloud okruženjima.
-                            </p>
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Alternativa: Virtualna mašina</h2>
+                                        <div class="lection-section__content">
 
-                            <h3>1. Navigacija kroz fajl sistem</h3>
+                                            <p>
+                                                Studenti sa jačim računarima (8GB RAM ili više)
+                                                mogu koristiti virtualne mašine.
+                                            </p>
 
-                            <p><strong>pwd</strong> – prikazuje trenutni direktorijum</p>
-                            <pre><code>pwd</code></pre>
+                                            <h3>Video tutorijali</h3>
+                                            <ul>
+                                                <li>
+                                                    <a href="https://youtu.be/nvdnQX9UkMY?si=wF-CFtEIs60RMPSu"
+                                                        target="_blank" rel="noopener noreferrer">
+                                                        How to use VirtualBox – Tutorial for Beginners
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="https://youtu.be/SXqFPW87WFU?si=pJhB3rLglHKEvw8w"
+                                                        target="_blank" rel="noopener noreferrer">
+                                                        How to use VirtualBox (Complete Beginner Guide)
+                                                    </a>
+                                                </li>
+                                            </ul>
 
-                            <p><strong>ls</strong> – prikazuje sadržaj direktorijuma</p>
-                            <pre><code>ls
+                                            <p>
+                                                Ovi tutorijali objašnjavaju instalaciju VirtualBox-a,
+                                                kreiranje virtualne mašine i pokretanje Linux sistema
+                                                bez potrebe za restartovanjem računara.
+                                            </p>
+
+                                        </div>
+                                    </section>
+
+                                    <!-- ========================================================= -->
+                                    <!-- LINUX TERMINAL CHEAT SHEET                               -->
+                                    <!-- ========================================================= -->
+
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Linux Terminal – Kompletan Cheat Sheet</h2>
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Terminal predstavlja tekstualni interfejs za komunikaciju sa operativnim
+                                                sistemom.
+                                                Omogućava preciznu kontrolu nad sistemom, automatizaciju i profesionalni
+                                                rad
+                                                u serverskim i cloud okruženjima.
+                                            </p>
+
+                                            <h3>1. Navigacija kroz fajl sistem</h3>
+
+                                            <p><strong>pwd</strong> – prikazuje trenutni direktorijum</p>
+                                            <pre><code>pwd</code></pre>
+
+                                            <p><strong>ls</strong> – prikazuje sadržaj direktorijuma</p>
+                                            <pre><code>ls
                     ls -l
                     ls -a
                     ls -lh</code></pre>
 
-                            <p><strong>cd</strong> – promena direktorijuma</p>
-                            <pre><code>cd folder
+                                            <p><strong>cd</strong> – promena direktorijuma</p>
+                                            <pre><code>cd folder
                     cd ..
                     cd ~
                     cd /</code></pre>
 
-                            <hr>
+                                            <hr>
 
-                            <h3>2. Rad sa fajlovima i direktorijumima</h3>
+                                            <h3>2. Rad sa fajlovima i direktorijumima</h3>
 
-                            <p><strong>mkdir</strong> – kreiranje direktorijuma</p>
-                            <pre><code>mkdir projekat</code></pre>
+                                            <p><strong>mkdir</strong> – kreiranje direktorijuma</p>
+                                            <pre><code>mkdir projekat</code></pre>
 
-                            <p><strong>touch</strong> – kreiranje praznog fajla</p>
-                            <pre><code>touch fajl.txt</code></pre>
+                                            <p><strong>touch</strong> – kreiranje praznog fajla</p>
+                                            <pre><code>touch fajl.txt</code></pre>
 
-                            <p><strong>cp</strong> – kopiranje fajlova</p>
-                            <pre><code>cp fajl.txt backup.txt
+                                            <p><strong>cp</strong> – kopiranje fajlova</p>
+                                            <pre><code>cp fajl.txt backup.txt
                     cp -r folder novi_folder</code></pre>
 
-                            <p><strong>mv</strong> – premestanje ili preimenovanje</p>
-                            <pre><code>mv fajl.txt novi.txt
+                                            <p><strong>mv</strong> – premestanje ili preimenovanje</p>
+                                            <pre><code>mv fajl.txt novi.txt
                     mv fajl.txt /home/user/</code></pre>
 
-                            <p><strong>rm</strong> – brisanje fajlova</p>
-                            <pre><code>rm fajl.txt
+                                            <p><strong>rm</strong> – brisanje fajlova</p>
+                                            <pre><code>rm fajl.txt
                     rm -r folder
                     rm -rf folder</code></pre>
 
-                            <hr>
+                                            <hr>
 
-                            <h3>3. Pregled sadržaja fajlova</h3>
+                                            <h3>3. Pregled sadržaja fajlova</h3>
 
-                            <p><strong>cat</strong> – prikaz sadržaja</p>
-                            <pre><code>cat fajl.txt</code></pre>
+                                            <p><strong>cat</strong> – prikaz sadržaja</p>
+                                            <pre><code>cat fajl.txt</code></pre>
 
-                            <p><strong>less</strong> – pregled velikih fajlova</p>
-                            <pre><code>less fajl.txt</code></pre>
+                                            <p><strong>less</strong> – pregled velikih fajlova</p>
+                                            <pre><code>less fajl.txt</code></pre>
 
-                            <p><strong>head / tail</strong> – prikaz početka ili kraja fajla</p>
-                            <pre><code>head fajl.txt
+                                            <p><strong>head / tail</strong> – prikaz početka ili kraja fajla</p>
+                                            <pre><code>head fajl.txt
                     tail fajl.txt
                     tail -f log.txt</code></pre>
 
-                            <hr>
+                                            <hr>
 
-                            <h3>4. Dozvole i vlasništvo</h3>
+                                            <h3>4. Dozvole i vlasništvo</h3>
 
-                            <p><strong>chmod</strong> – promena dozvola</p>
-                            <pre><code>chmod 755 skripta.sh
+                                            <p><strong>chmod</strong> – promena dozvola</p>
+                                            <pre><code>chmod 755 skripta.sh
                     chmod +x skripta.sh</code></pre>
 
-                            <p><strong>chown</strong> – promena vlasnika fajla</p>
-                            <pre><code>sudo chown user fajl.txt</code></pre>
+                                            <p><strong>chown</strong> – promena vlasnika fajla</p>
+                                            <pre><code>sudo chown user fajl.txt</code></pre>
 
-                            <hr>
+                                            <hr>
 
-                            <h3>5. Upravljanje procesima</h3>
+                                            <h3>5. Upravljanje procesima</h3>
 
-                            <p><strong>top</strong> – pregled aktivnih procesa</p>
-                            <pre><code>top</code></pre>
+                                            <p><strong>top</strong> – pregled aktivnih procesa</p>
+                                            <pre><code>top</code></pre>
 
-                            <p><strong>ps</strong> – lista procesa</p>
-                            <pre><code>ps aux</code></pre>
+                                            <p><strong>ps</strong> – lista procesa</p>
+                                            <pre><code>ps aux</code></pre>
 
-                            <p><strong>kill</strong> – zaustavljanje procesa</p>
-                            <pre><code>kill PID
+                                            <p><strong>kill</strong> – zaustavljanje procesa</p>
+                                            <pre><code>kill PID
                     kill -9 PID</code></pre>
 
-                            <hr>
+                                            <hr>
 
-                            <h3>6. Instalacija paketa (Debian/Ubuntu)</h3>
+                                            <h3>6. Instalacija paketa (Debian/Ubuntu)</h3>
 
-                            <pre><code>sudo apt update
+                                            <pre><code>sudo apt update
                     sudo apt upgrade
                     sudo apt install paket
                     sudo apt remove paket</code></pre>
 
-                            <hr>
+                                            <hr>
 
-                            <h3>7. Mrežne komande</h3>
+                                            <h3>7. Mrežne komande</h3>
 
-                            <p><strong>ping</strong></p>
-                            <pre><code>ping google.com</code></pre>
+                                            <p><strong>ping</strong></p>
+                                            <pre><code>ping google.com</code></pre>
 
-                            <p><strong>curl</strong></p>
-                            <pre><code>curl https://example.com</code></pre>
+                                            <p><strong>curl</strong></p>
+                                            <pre><code>curl https://example.com</code></pre>
 
-                            <p><strong>ip</strong></p>
-                            <pre><code>ip a</code></pre>
+                                            <p><strong>ip</strong></p>
+                                            <pre><code>ip a</code></pre>
 
-                            <hr>
+                                            <hr>
 
-                            <h3>8. Pretraga</h3>
+                                            <h3>8. Pretraga</h3>
 
-                            <p><strong>grep</strong> – pretraga teksta</p>
-                            <pre><code>grep "tekst" fajl.txt</code></pre>
+                                            <p><strong>grep</strong> – pretraga teksta</p>
+                                            <pre><code>grep "tekst" fajl.txt</code></pre>
 
-                            <p><strong>find</strong> – pretraga fajlova</p>
-                            <pre><code>find . -name "fajl.txt"</code></pre>
+                                            <p><strong>find</strong> – pretraga fajlova</p>
+                                            <pre><code>find . -name "fajl.txt"</code></pre>
 
-                            <hr>
+                                            <hr>
 
-                            <h3>9. Disk i prostor</h3>
+                                            <h3>9. Disk i prostor</h3>
 
-                            <pre><code>df -h
+                                            <pre><code>df -h
                     du -sh folder</code></pre>
 
-                            <hr>
+                                            <hr>
 
-                            <h3>10. Redirekcija i pipe</h3>
+                                            <h3>10. Redirekcija i pipe</h3>
 
-                            <pre><code>ls &gt; lista.txt
+                                            <pre><code>ls &gt; lista.txt
                     ls | grep txt</code></pre>
 
-                            <hr>
+                                            <hr>
 
-                            <h3>11. Sistem informacije</h3>
+                                            <h3>11. Sistem informacije</h3>
 
-                            <pre><code>uname -a
+                                            <pre><code>uname -a
                     whoami
                     history
                     clear</code></pre>
 
-                            <hr>
+                                            <hr>
 
-                            <h3>12. Bash prečice</h3>
+                                            <h3>12. Bash prečice</h3>
 
-                            <ul>
-                                <li><strong>TAB</strong> – automatsko dovršavanje komande</li>
-                                <li><strong>↑ / ↓</strong> – prethodne komande</li>
-                                <li><strong>CTRL + C</strong> – prekid procesa</li>
-                                <li><strong>CTRL + L</strong> – brisanje ekrana</li>
-                                <li><strong>CTRL + R</strong> – pretraga istorije komandi</li>
-                            </ul>
+                                            <ul>
+                                                <li><strong>TAB</strong> – automatsko dovršavanje komande</li>
+                                                <li><strong>↑ / ↓</strong> – prethodne komande</li>
+                                                <li><strong>CTRL + C</strong> – prekid procesa</li>
+                                                <li><strong>CTRL + L</strong> – brisanje ekrana</li>
+                                                <li><strong>CTRL + R</strong> – pretraga istorije komandi</li>
+                                            </ul>
 
-                            <hr>
+                                            <hr>
 
-                            <h3>Najvažnije komande za početak</h3>
+                                            <h3>Najvažnije komande za početak</h3>
 
-                            <ul>
-                                <li>pwd</li>
-                                <li>ls</li>
-                                <li>cd</li>
-                                <li>mkdir</li>
-                                <li>rm</li>
-                                <li>cp</li>
-                                <li>mv</li>
-                                <li>cat</li>
-                                <li>grep</li>
-                                <li>chmod</li>
-                                <li>sudo</li>
-                            </ul>
+                                            <ul>
+                                                <li>pwd</li>
+                                                <li>ls</li>
+                                                <li>cd</li>
+                                                <li>mkdir</li>
+                                                <li>rm</li>
+                                                <li>cp</li>
+                                                <li>mv</li>
+                                                <li>cat</li>
+                                                <li>grep</li>
+                                                <li>chmod</li>
+                                                <li>sudo</li>
+                                            </ul>
 
-                            <p>
-                                Razumevanje ovih komandi predstavlja osnovu za dalji rad
-                                u serverskim sistemima, DevOps okruženju i cloud infrastrukturi.
-                            </p>
+                                            <p>
+                                                Razumevanje ovih komandi predstavlja osnovu za dalji rad
+                                                u serverskim sistemima, DevOps okruženju i cloud infrastrukturi.
+                                            </p>
 
-                        </div>
-                    </section>
+                                        </div>
+                                    </section>
 
-                    <% } %>
+                                    <% } %>
 
-                </div>
+                            </div>
 
-                <nav class="lection-nav">
-                    <% if (navigation.prev) { %>
-                        <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>"
-                           class="lection-nav__link lection-nav__link--prev">
-                            <span class="nav-arrow">←</span>
-                            <span class="nav-text">
-                                <span class="nav-label">Prethodna lekcija</span>
-                                <span class="nav-title"><%= navigation.prev.title %></span>
-                            </span>
-                        </a>
-                    <% } else { %>
-                        <a href="/otvoreno-racunarstvo" 
-                           class="lection-nav__link lection-nav__link--prev">
-                            <span class="nav-arrow">←</span>
-                            <span class="nav-text">
-                                <span class="nav-label">Nazad na</span>
-                                <span class="nav-title">početnu predmeta</span>
-                            </span>
-                        </a>
-                    <% } %>
+                            <nav class="lection-nav">
+                                <% if (navigation.prev) { %>
+                                    <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>"
+                                        class="lection-nav__link lection-nav__link--prev">
+                                        <span class="nav-arrow">←</span>
+                                        <span class="nav-text">
+                                            <span class="nav-label">Prethodna lekcija</span>
+                                            <span class="nav-title">
+                                                <%= navigation.prev.title %>
+                                            </span>
+                                        </span>
+                                    </a>
+                                    <% } else { %>
+                                        <a href="/otvoreno-racunarstvo"
+                                            class="lection-nav__link lection-nav__link--prev">
+                                            <span class="nav-arrow">←</span>
+                                            <span class="nav-text">
+                                                <span class="nav-label">Nazad na</span>
+                                                <span class="nav-title">početnu predmeta</span>
+                                            </span>
+                                        </a>
+                                        <% } %>
 
-                    <% if (navigation.next) { %>
-                        <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.next.slug %>"
-                           class="lection-nav__link lection-nav__link--next">
-                            <span class="nav-text">
-                                <span class="nav-label">Sledeća lekcija</span>
-                                <span class="nav-title"><%= navigation.next.title %></span>
-                            </span>
-                            <span class="nav-arrow">→</span>
-                        </a>
-                    <% } %>
-                </nav>
+                                            <% if (navigation.next) { %>
+                                                <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.next.slug %>"
+                                                    class="lection-nav__link lection-nav__link--next">
+                                                    <span class="nav-text">
+                                                        <span class="nav-label">Sledeća lekcija</span>
+                                                        <span class="nav-title">
+                                                            <%= navigation.next.title %>
+                                                        </span>
+                                                    </span>
+                                                    <span class="nav-arrow">→</span>
+                                                </a>
+                                                <% } %>
+                            </nav>
 
-            </article>
+                        </article>
 
-        <% } %>
+                        <% } %>
 
-    </main>
-</div>
+            </main>
+        </div>
 
-<%- include('../../../includes/end') %>
+        <%- include('../../../includes/end') %>

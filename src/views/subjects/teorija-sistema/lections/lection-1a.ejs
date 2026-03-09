@@ -1,0 +1,374 @@
+<%- include('../../../includes/head', { title: lection.title, pageDescription: lection.description, pageStyles:
+    pageStyles }) %>
+
+    <%- include('../../../includes/navigation', { active: 'teorija-sistema' }) %>
+
+        <div class="lection-container">
+
+            <!-- SIDEBAR -->
+            <aside class="lection-sidebar">
+                <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
+            </aside>
+
+            <!-- CONTENT -->
+            <main class="lection-content">
+
+                <!-- ===============================
+             LEKCIJA NIJE DOSTUPNA
+        =============================== -->
+                <% if (!lection.available) { %>
+
+                    <div class="lection-locked">
+                        <div class="lection-locked__icon">🔒</div>
+
+                        <h1 class="lection-locked__title">
+                            Lekcija još nije dostupna
+                        </h1>
+
+                        <p class="lection-locked__text">
+                            Ova lekcija postaje dostupna
+                            <strong>
+                                <%= lection.formattedDate %>
+                            </strong>.
+                        </p>
+
+                        <p class="lection-locked__text">
+                            Jedna lekcija se otključava svake nedelje.
+                        </p>
+
+                        <a href="/teorija-sistema" class="btn btn--primary btn--large">
+                            Nazad na predmet
+                        </a>
+                    </div>
+
+                    <% } else { %>
+
+                        <article class="lection">
+
+                            <!-- HEADER -->
+                            <header class="lection__header">
+
+                                <div class="lection__meta">
+
+                                    <span class="lection__badge lection__badge--week">
+                                        <span class="badge-icon">📅</span>
+                                        Nedelja <%= lection.week %>
+                                    </span>
+
+                                    <span class="lection__badge lection__badge--date">
+                                        <span class="badge-icon">📌</span>
+                                        <%= lection.formattedDate %>
+                                    </span>
+
+                                </div>
+
+                                <h1 class="lection__title">
+                                    <%= lection.title %>
+                                </h1>
+
+                                <% if (lection.description) { %>
+                                    <p class="lection__description">
+                                        <%= lection.description %>
+                                    </p>
+                                    <% } %>
+
+                                        <div class="project-note">
+
+                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
+
+                                        </div>
+                            </header>
+
+                            <!-- ===============================
+                 SADRŽAJ LEKCIJE
+            =============================== -->
+
+                            <div class="lection__content">
+
+                                <% if (lection.slug==="uvod-u-sistemsko-razmisljanje" ) { %>
+                                    <!-- UVOD -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Zašto proučavamo sisteme?
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Savremeni informacioni sistemi postaju sve složeniji.
+                                                Da bi se takvi sistemi mogli razumeti, projektovati i razvijati,
+                                                potrebno je koristiti sistemski način razmišljanja.
+                                            </p>
+
+                                            <p>
+                                                Sistemsko razmišljanje podrazumeva posmatranje problema kao
+                                                celine sastavljene od više međusobno povezanih delova.
+                                                Umesto analize izolovanih elemenata, fokus je na njihovim
+                                                odnosima i načinu na koji zajedno funkcionišu.
+                                            </p>
+
+                                            <p class="highlight">
+                                                Cilj sistemskog pristupa je bolje razumevanje kompleksnih
+                                                problema i izgradnja kvalitetnih informacionih sistema.
+                                            </p>
+
+                                        </div>
+                                    </section>
+
+
+                                    <!-- MODELOVANJE SISTEMA -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Modelovanje sistema
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                U praksi se kompleksni sistemi retko posmatraju direktno.
+                                                Umesto toga koristi se model – pojednostavljena predstava
+                                                stvarnog sistema.
+                                            </p>
+
+                                            <p>
+                                                Model omogućava da se struktura sistema, njegovi elementi
+                                                i njihove međusobne veze prikažu na jasan i razumljiv način.
+                                            </p>
+
+                                            <ul class="list list--icons">
+
+                                                <li class="list__item">
+                                                    🧩 pojednostavljuje složene sisteme
+                                                </li>
+
+                                                <li class="list__item">
+                                                    📊 omogućava analizu sistema
+                                                </li>
+
+                                                <li class="list__item">
+                                                    👥 olakšava komunikaciju između korisnika i programera
+                                                </li>
+
+                                                <li class="list__item">
+                                                    ⚙️ predstavlja osnovu za projektovanje informacionog sistema
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                    </section>
+
+
+                                    <!-- DIJAGRAMI -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Dijagrami kao način prikaza sistema
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                U modelovanju sistema često se koriste grafički dijagrami.
+                                                Dijagrami predstavljaju vizuelni prikaz elemenata sistema
+                                                i relacija između njih.
+                                            </p>
+
+                                            <p>
+                                                Vizuelni prikaz olakšava razumevanje strukture sistema
+                                                i komunikaciju između članova tima koji rade na razvoju
+                                                softvera.
+                                            </p>
+
+                                        </div>
+                                    </section>
+
+
+                                    <!-- ER DIJAGRAM -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            ER dijagrami
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                ER dijagram (Entity–Relationship dijagram) predstavlja
+                                                grafički prikaz strukture podataka u informacionom sistemu.
+                                            </p>
+
+                                            <p>
+                                                Na ER dijagramu se prikazuju osnovni elementi modela:
+                                            </p>
+
+                                            <div class="tech-grid">
+
+                                                <div class="tech-item">Entitet</div>
+                                                <div class="tech-item">Atribut</div>
+                                                <div class="tech-item">Veza</div>
+                                                <div class="tech-item">Ključ</div>
+
+                                            </div>
+
+                                            <p>
+                                                Entitet predstavlja objekat ili pojam o kome se čuvaju podaci
+                                                u informacionom sistemu, dok atributi opisuju njegove osobine.
+                                                Veze prikazuju odnose između različitih entiteta.
+                                            </p>
+
+                                        </div>
+                                    </section>
+
+
+                                    <!-- UML -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            UML – jezik za modelovanje sistema
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                UML (Unified Modeling Language) predstavlja standardni
+                                                jezik za modelovanje softverskih sistema.
+                                            </p>
+
+                                            <p>
+                                                On omogućava vizuelno predstavljanje strukture i ponašanja
+                                                softverskog sistema pomoću različitih tipova dijagrama.
+                                            </p>
+
+                                            <div class="comparison-grid">
+
+                                                <div class="comparison-item">
+
+                                                    <h3>Statički dijagrami</h3>
+
+                                                    <p>
+                                                        Prikazuju strukturu sistema, kao što su klase,
+                                                        objekti i njihove veze.
+                                                    </p>
+
+                                                </div>
+
+                                                <div class="comparison-item">
+
+                                                    <h3>Dinamički dijagrami</h3>
+
+                                                    <p>
+                                                        Prikazuju ponašanje sistema tokom izvršavanja,
+                                                        odnosno interakciju između objekata.
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </section>
+
+
+                                    <!-- ZAKLJUČAK -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Zaključak
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Sistemsko razmišljanje omogućava bolje razumevanje
+                                                kompleksnih problema i razvoj kvalitetnih informacionih sistema.
+                                            </p>
+
+                                            <p>
+                                                U modelovanju sistema koriste se različite metode
+                                                i dijagrami, među kojima su najčešći ER dijagrami
+                                                za modelovanje podataka i UML dijagrami
+                                                za modelovanje softverskih sistema.
+                                            </p>
+
+                                        </div>
+                                    </section>
+                                    <% } %>
+
+                            </div>
+
+
+                            <!-- ===============================
+                 NAVIGACIJA IZMEĐU LEKCIJA
+            =============================== -->
+
+                            <nav class="lection-nav">
+
+                                <% if (navigation.prev) { %>
+
+                                    <a href="/teorija-sistema/lekcija/<%= navigation.prev.slug %>"
+                                        class="lection-nav__link lection-nav__link--prev">
+
+                                        <span class="nav-arrow">←</span>
+
+                                        <span class="nav-text">
+                                            <span class="nav-label">Prethodna lekcija</span>
+                                            <span class="nav-title">
+                                                <%= navigation.prev.title %>
+                                            </span>
+                                        </span>
+
+                                    </a>
+
+                                    <% } else { %>
+
+                                        <a href="/teorija-sistema" class="lection-nav__link lection-nav__link--prev">
+
+                                            <span class="nav-arrow">←</span>
+
+                                            <span class="nav-text">
+                                                <span class="nav-label">Nazad na</span>
+                                                <span class="nav-title">početnu predmeta</span>
+                                            </span>
+
+                                        </a>
+
+                                        <% } %>
+
+                                            <% if (navigation.next) { %>
+
+                                                <a href="/teorija-sistema/lekcija/<%= navigation.next.slug %>"
+                                                    class="lection-nav__link lection-nav__link--next">
+
+                                                    <span class="nav-text">
+                                                        <span class="nav-label">Sledeća lekcija</span>
+                                                        <span class="nav-title">
+                                                            <%= navigation.next.title %>
+                                                        </span>
+                                                    </span>
+
+                                                    <span class="nav-arrow">→</span>
+
+                                                </a>
+
+                                                <% } %>
+
+                            </nav>
+
+                        </article>
+
+                        <% } %>
+
+            </main>
+
+        </div>
+
+        <%- include('../../../includes/end') %>

@@ -1,0 +1,209 @@
+{
+    "lections": [
+        {
+            "slug": "uvod-u-sistemsko-razmisljanje",
+            "title": "Uvod u sistemsko razmišljanje",
+            "description": "Upoznavanje sa predmetom, značajem sistemskog pristupa i razlozima za proučavanje sistema u savremenim naukama.",
+            "template": "lection-1a",
+            "styles": "lection-1a",
+            "date": "2026-02-23",
+            "week": 1
+        },
+        {
+            "slug": "uvod-u-uml-i-modelovanje",
+            "title": "Uvod u UML i modelovanje sistema",
+            "description": "Osnovni pojmovi objektno orijentisanog modelovanja i uvod u UML dijagrame koji se koriste za opis strukture i ponašanja sistema.",
+            "template": "lection-1b",
+            "styles": "lection-1b",
+            "date": "2026-02-23",
+            "week": 1
+        },
+        {
+            "slug": "uvod-u-teoriju-sistema",
+            "title": "Uvod u teoriju sistema",
+            "description": "Osnovni pojmovi teorije sistema, nastanak discipline, diferencijacija i integracija nauka i značaj sistemskog pristupa u proučavanju složenih pojava.",
+            "template": "lection-1c",
+            "styles": "lection-1c",
+            "date": "2026-02-23",
+            "week": 1
+        },
+        {
+            "slug": "definicija-i-struktura-sistema",
+            "title": "Definicija i struktura sistema",
+            "description": "Pojam sistema, elementi sistema i relacije među njima. Razmatranje sistema kao celine, odnos sistema i okruženja, hijerarhijska struktura i podsistemi.",
+            "template": "lection-2",
+            "styles": "lection-2",
+            "date": "2026-03-02",
+            "week": 2
+        },
+        {
+            "slug": "modelovanje-i-klasifikacija-sistema",
+            "title": "Modelovanje i klasifikacija sistema",
+            "description": "Metode modelovanja sistema, preslikavanje originala u model (izomorfno i homomorfno) i klasifikacija sistema prema različitim kriterijumima kao što su nastanak, složenost i odnos sa okruženjem.",
+            "template": "lection-3",
+            "styles": "lection-3",
+            "date": "2026-03-09",
+            "week": 3
+        },
+        {
+            "slug": "analiza-i-sinteza-sistema",
+            "title": "Analiza i sinteza sistema",
+            "description": "Strategije analize sistema, vrste analize i sinteza kao proces ponovnog sastavljanja elemenata sistema.",
+            "template": "lection-4",
+            "styles": "lection-4",
+            "date": "2026-03-16",
+            "week": 4
+        },
+        {
+            "slug": "struktura-i-elementi-sistema",
+            "title": "Struktura i elementi sistema",
+            "description": "Elementi sistema, relacije između elemenata, struktura sistema i kompleksnost sistema.",
+            "template": "lection-5",
+            "styles": "lection-5",
+            "date": "2026-03-23",
+            "week": 5
+        },
+        {
+            "slug": "dinamika-i-transformacije-sistema",
+            "title": "Dinamika i transformacije sistema",
+            "description": "Promene stanja sistema kroz vreme, transformacije i odnosi između elemenata u dinamičkim sistemima.",
+            "template": "lection-6",
+            "styles": "lection-6",
+            "date": "2026-03-30",
+            "week": 6
+        },
+        {
+            "slug": "funkcije-i-procesi-sistema",
+            "title": "Funkcije i procesi sistema",
+            "description": "Globalne funkcije sistema, osnovni i upravljački procesi i aktivnosti koje čine ponašanje sistema.",
+            "template": "lection-7",
+            "styles": "lection-7",
+            "date": "2026-04-06",
+            "week": 7
+        },
+        {
+            "slug": "stabilnost-i-ponasanje-sistema",
+            "title": "Stabilnost i ponašanje sistema",
+            "description": "Stabilnost sistema, ravnotežna stanja, cikličnost sistema i uticaj smetnji na ponašanje sistema.",
+            "template": "lection-8",
+            "styles": "lection-8",
+            "date": "2026-04-13",
+            "week": 8
+        }
+    ],
+    "materials": [
+        {
+            "week": 1,
+            "title": "Uvod u predmet",
+            "file": "Uvod.pptx",
+            "date": "2026-02-23",
+            "formattedDate": "23.02.2026.",
+            "available": true
+        },
+        {
+            "week": 1,
+            "title": "UML – osnovni pojmovi i dijagrami",
+            "file": "1. čas.pptx",
+            "date": "2026-02-23",
+            "formattedDate": "23.02.2026.",
+            "available": true
+        },
+        {
+            "week": 1,
+            "title": "UML and OO Design Foundations",
+            "file": "UML-and-OO-Design-Foundations-v1_2.pdf",
+            "date": "2026-02-23",
+            "formattedDate": "23.02.2026.",
+            "available": true
+        },
+        {
+            "week": 1,
+            "title": "Klasni dijagram – uvod",
+            "file": "Klasni dijagram uvod.pptx",
+            "date": "2026-02-23",
+            "formattedDate": "23.02.2026.",
+            "available": true
+        },
+        {
+            "week": 1,
+            "title": "ER dijagrami – vežbe",
+            "file": "ER DIJAGRAMI 2. vezbe.pptx",
+            "date": "2026-02-23",
+            "formattedDate": "23.02.2026.",
+            "available": true
+        },
+        {
+            "week": 1,
+            "title": "Teorija sistema i informacija 1",
+            "file": "Teorija sistema i informacija 1.pptx",
+            "date": "2026-02-23",
+            "formattedDate": "23.02.2026.",
+            "available": true
+        },
+        {
+            "week": 2,
+            "title": "Teorija sistema i informacija 2",
+            "file": "Teorija sistema i informacija 2.pptx",
+            "date": "2026-03-02",
+            "formattedDate": "02.03.2026.",
+            "available": true
+        },
+        {
+            "week": 3,
+            "title": "Teorija sistema i informacija 3",
+            "file": "Teorija sistema i informacija 3.pptx",
+            "date": "2026-03-09",
+            "formattedDate": "09.03.2026.",
+            "available": true
+        },
+        {
+            "week": 4,
+            "title": "Teorija sistema i informacija 4",
+            "file": "Teorija sistema i informacija 4.pptx",
+            "date": "2026-03-16",
+            "formattedDate": "16.03.2026.",
+            "available": true
+        },
+        {
+            "week": 5,
+            "title": "Teorija sistema i informacija 5",
+            "file": "Teorija sistema i informacija 5.pptx",
+            "date": "2026-03-23",
+            "formattedDate": "23.03.2026.",
+            "available": true
+        },
+        {
+            "week": 6,
+            "title": "Teorija sistema i informacija 6",
+            "file": "Teorija sistema i informacija 6.pptx",
+            "date": "2026-03-30",
+            "formattedDate": "30.03.2026.",
+            "available": true
+        },
+        {
+            "week": 7,
+            "title": "Teorija sistema i informacija 7",
+            "file": "Teorija sistema i informacija 7.pptx",
+            "date": "2026-04-06",
+            "formattedDate": "06.04.2026.",
+            "available": true
+        },
+        {
+            "week": 8,
+            "title": "Teorija sistema i informacija 8",
+            "file": "Teorija sistema i informacija 8.pptx",
+            "date": "2026-04-13",
+            "formattedDate": "13.04.2026.",
+            "available": true
+        }
+    ],
+    "subject": {
+        "name": "Teorija sistema i informacija",
+        "code": "TSI",
+        "espb": 8,
+        "lectures": "3 časa nedeljno",
+        "exercises": "2 časa nedeljno",
+        "startDate": "2026-02-23",
+        "endDate": "2026-04-13"
+    }
+}

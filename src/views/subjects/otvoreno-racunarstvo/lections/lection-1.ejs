@@ -1,253 +1,260 @@
-<%- include('../../../includes/head', { 
-    title: lection.title,
-    pageDescription: lection.description,
-    pageStyles: pageStyles
-}) %>
+<%- include('../../../includes/head', { title: lection.title, pageDescription: lection.description, pageStyles:
+    pageStyles }) %>
 
-<%- include('../../../includes/navigation', {
-    active: 'otvoreno-racunarstvo'
-}) %>
+    <%- include('../../../includes/navigation', { active: 'otvoreno-racunarstvo' }) %>
 
-<div class="lection-container">
-    <!-- SIDEBAR -->
-    <aside class="lection-sidebar">
-        <%- include('../includes/navigation', {
-            lections: lections,
-            currentSlug: lection.slug
-        }) %>
-    </aside>
+        <div class="lection-container">
+            <!-- SIDEBAR -->
+            <aside class="lection-sidebar">
+                <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
+            </aside>
 
-    <!-- CONTENT -->
-    <main class="lection-content">
+            <!-- CONTENT -->
+            <main class="lection-content">
 
-        <!-- ===============================
+                <!-- ===============================
              LEKCIJA NIJE DOSTUPNA
         =============================== -->
-        <% if (!lection.available) { %>
+                <% if (!lection.available) { %>
 
-            <div class="lection-locked">
-                <div class="lection-locked__icon">🔒</div>
-                <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
-                <p class="lection-locked__text">
-                    Ova lekcija postaje dostupna
-                    <strong><%= lection.formattedDate %></strong>.
-                </p>
-                <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
-                <a href="/otvoreno-racunarstvo" class="btn btn--primary btn--large">
-                    Nazad na predmet
-                </a>
-            </div>
-
-        <!-- ===============================
-             LEKCIJA JE DOSTUPNA
-        =============================== -->
-        <% } else { %>
-
-            <article class="lection">
-
-                <!-- HEADER -->
-                <header class="lection__header">
-                    <div class="lection__meta">
-                        <span class="lection__badge lection__badge--week">
-                            <span class="badge-icon">📅</span>
-                            Nedelja <%= lection.week %>
-                        </span>
-                        <span class="lection__badge lection__badge--date">
-                            <span class="badge-icon">📌</span>
-                            <%= lection.formattedDate %>
-                        </span>
+                    <div class="lection-locked">
+                        <div class="lection-locked__icon">🔒</div>
+                        <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
+                        <p class="lection-locked__text">
+                            Ova lekcija postaje dostupna
+                            <strong>
+                                <%= lection.formattedDate %>
+                            </strong>.
+                        </p>
+                        <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
+                        <a href="/otvoreno-racunarstvo" class="btn btn--primary btn--large">
+                            Nazad na predmet
+                        </a>
                     </div>
 
-                    <h1 class="lection__title"><%= lection.title %></h1>
-                    
-                    <% if (lection.description) { %>
-                        <p class="lection__description"><%= lection.description %></p>
-                    <% } %>
-                </header>
+                    <!-- ===============================
+             LEKCIJA JE DOSTUPNA
+        =============================== -->
+                    <% } else { %>
 
-                <!-- ===============================
+                        <article class="lection">
+
+                            <!-- HEADER -->
+                            <header class="lection__header">
+                                <div class="lection__meta">
+                                    <span class="lection__badge lection__badge--week">
+                                        <span class="badge-icon">📅</span>
+                                        Nedelja <%= lection.week %>
+                                    </span>
+                                    <span class="lection__badge lection__badge--date">
+                                        <span class="badge-icon">📌</span>
+                                        <%= lection.formattedDate %>
+                                    </span>
+                                </div>
+
+                                <h1 class="lection__title">
+                                    <%= lection.title %>
+                                </h1>
+
+                                <% if (lection.description) { %>
+                                    <p class="lection__description">
+                                        <%= lection.description %>
+                                    </p>
+                                    <% } %>
+                                        <div class="project-note">
+
+                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
+
+                                        </div>
+                            </header>
+
+                            <!-- ===============================
                      SADRŽAJ LEKCIJE
                 =============================== -->
-                <div class="lection__content">
-                    
-                    <% if (lection.slug === "open-source-softver-ideja-istorija-zajednica") { %>
+                            <div class="lection__content">
 
-                        <!-- UVODNI DEO -->
-                        <section class="lection-section">
-                            <h2 class="lection-section__title">Šta je open source softver?</h2>
-                            <div class="lection-section__content">
-                                <p>
-                                    Open source softver je softver čiji je izvorni kod javno dostupan
-                                    i može se slobodno koristiti, proučavati, menjati i distribuirati
-                                    u skladu sa uslovima licence.
-                                </p>
-                                <p class="highlight">
-                                    Open source ne predstavlja samo tehničku karakteristiku, već i
-                                    filozofiju razvoja softvera zasnovanu na saradnji i razmeni znanja.
-                                </p>
+                                <% if (lection.slug==="open-source-softver-ideja-istorija-zajednica" ) { %>
+
+                                    <!-- UVODNI DEO -->
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Šta je open source softver?</h2>
+                                        <div class="lection-section__content">
+                                            <p>
+                                                Open source softver je softver čiji je izvorni kod javno dostupan
+                                                i može se slobodno koristiti, proučavati, menjati i distribuirati
+                                                u skladu sa uslovima licence.
+                                            </p>
+                                            <p class="highlight">
+                                                Open source ne predstavlja samo tehničku karakteristiku, već i
+                                                filozofiju razvoja softvera zasnovanu na saradnji i razmeni znanja.
+                                            </p>
+                                        </div>
+                                    </section>
+
+                                    <!-- KLJUČNA RAZLIKA -->
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Open source nije isto što i besplatno</h2>
+                                        <div class="lection-section__content">
+                                            <div class="comparison-grid">
+                                                <div class="comparison-item">
+                                                    <div class="comparison-icon">💰</div>
+                                                    <h3>Besplatan softver</h3>
+                                                    <p>Softver koji se ne plaća</p>
+                                                </div>
+                                                <div class="comparison-item">
+                                                    <div class="comparison-icon">🔓</div>
+                                                    <h3>Open source softver</h3>
+                                                    <p>Softver sa otvorenim izvornim kodom</p>
+                                                </div>
+                                            </div>
+                                            <p class="note">
+                                                Open source softver može biti besplatan ili komercijalan.
+                                                Suština open source-a nije cena, već sloboda korišćenja
+                                                i razumevanja softvera.
+                                            </p>
+                                        </div>
+                                    </section>
+
+                                    <!-- ISTORIJA -->
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Zašto je open source nastao?</h2>
+                                        <div class="lection-section__content">
+                                            <p>
+                                                Open source pokret nastao je kao odgovor na zatvorene softverske
+                                                sisteme u kojima korisnici nisu imali uvid u način rada softvera.
+                                            </p>
+                                            <p>
+                                                Cilj je bio omogućavanje slobodnog protoka znanja, zajedničko
+                                                rešavanje problema i brži tehnološki napredak.
+                                            </p>
+                                        </div>
+                                    </section>
+
+                                    <!-- FILOZOFIJA -->
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Osnovne ideje open source filozofije</h2>
+                                        <div class="lection-section__content">
+                                            <ul class="list list--icons">
+                                                <li class="list__item">
+                                                    <span class="list__icon">🧠</span>
+                                                    Znanje treba da bude dostupno svima
+                                                </li>
+                                                <li class="list__item">
+                                                    <span class="list__icon">👁️</span>
+                                                    Softver treba da bude transparentan
+                                                </li>
+                                                <li class="list__item">
+                                                    <span class="list__icon">🤝</span>
+                                                    Saradnja daje bolje rezultate od izolovanog rada
+                                                </li>
+                                                <li class="list__item">
+                                                    <span class="list__icon">🎮</span>
+                                                    Korisnik treba da ima kontrolu nad tehnologijom
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </section>
+
+                                    <!-- ZAJEDNICA -->
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Uloga open source zajednice</h2>
+                                        <div class="lection-section__content">
+                                            <p>
+                                                Open source zajednicu ne čine samo programeri, već i testeri,
+                                                dizajneri, edukatori i krajnji korisnici.
+                                            </p>
+                                            <div class="community-roles">
+                                                <span class="role-tag">👨‍💻 Programeri</span>
+                                                <span class="role-tag">🧪 Testeri</span>
+                                                <span class="role-tag">🎨 Dizajneri</span>
+                                                <span class="role-tag">📚 Edukatori</span>
+                                                <span class="role-tag">👥 Korisnici</span>
+                                            </div>
+                                            <p>
+                                                Zajednica omogućava kontinuirani razvoj, podršku i unapređenje
+                                                softvera.
+                                            </p>
+                                        </div>
+                                    </section>
+
+                                    <!-- INDUSTRIJA -->
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Open source u savremenoj IT industriji</h2>
+                                        <div class="lection-section__content">
+                                            <p>
+                                                Danas se open source softver koristi u gotovo svim oblastima
+                                                informacionih tehnologija:
+                                            </p>
+                                            <div class="tech-grid">
+                                                <div class="tech-item">
+                                                    <span class="tech-icon">🐧</span>
+                                                    <span>Operativni sistemi</span>
+                                                </div>
+                                                <div class="tech-item">
+                                                    <span class="tech-icon">🌐</span>
+                                                    <span>Web serveri</span>
+                                                </div>
+                                                <div class="tech-item">
+                                                    <span class="tech-icon">☁️</span>
+                                                    <span>Cloud infrastruktura</span>
+                                                </div>
+                                                <div class="tech-item">
+                                                    <span class="tech-icon">🛠️</span>
+                                                    <span>Razvojni alati</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    <% } %>
+
                             </div>
-                        </section>
 
-                        <!-- KLJUČNA RAZLIKA -->
-                        <section class="lection-section">
-                            <h2 class="lection-section__title">Open source nije isto što i besplatno</h2>
-                            <div class="lection-section__content">
-                                <div class="comparison-grid">
-                                    <div class="comparison-item">
-                                        <div class="comparison-icon">💰</div>
-                                        <h3>Besplatan softver</h3>
-                                        <p>Softver koji se ne plaća</p>
-                                    </div>
-                                    <div class="comparison-item">
-                                        <div class="comparison-icon">🔓</div>
-                                        <h3>Open source softver</h3>
-                                        <p>Softver sa otvorenim izvornim kodom</p>
-                                    </div>
-                                </div>
-                                <p class="note">
-                                    Open source softver može biti besplatan ili komercijalan.
-                                    Suština open source-a nije cena, već sloboda korišćenja
-                                    i razumevanja softvera.
-                                </p>
-                            </div>
-                        </section>
-
-                        <!-- ISTORIJA -->
-                        <section class="lection-section">
-                            <h2 class="lection-section__title">Zašto je open source nastao?</h2>
-                            <div class="lection-section__content">
-                                <p>
-                                    Open source pokret nastao je kao odgovor na zatvorene softverske
-                                    sisteme u kojima korisnici nisu imali uvid u način rada softvera.
-                                </p>
-                                <p>
-                                    Cilj je bio omogućavanje slobodnog protoka znanja, zajedničko
-                                    rešavanje problema i brži tehnološki napredak.
-                                </p>
-                            </div>
-                        </section>
-
-                        <!-- FILOZOFIJA -->
-                        <section class="lection-section">
-                            <h2 class="lection-section__title">Osnovne ideje open source filozofije</h2>
-                            <div class="lection-section__content">
-                                <ul class="list list--icons">
-                                    <li class="list__item">
-                                        <span class="list__icon">🧠</span>
-                                        Znanje treba da bude dostupno svima
-                                    </li>
-                                    <li class="list__item">
-                                        <span class="list__icon">👁️</span>
-                                        Softver treba da bude transparentan
-                                    </li>
-                                    <li class="list__item">
-                                        <span class="list__icon">🤝</span>
-                                        Saradnja daje bolje rezultate od izolovanog rada
-                                    </li>
-                                    <li class="list__item">
-                                        <span class="list__icon">🎮</span>
-                                        Korisnik treba da ima kontrolu nad tehnologijom
-                                    </li>
-                                </ul>
-                            </div>
-                        </section>
-
-                        <!-- ZAJEDNICA -->
-                        <section class="lection-section">
-                            <h2 class="lection-section__title">Uloga open source zajednice</h2>
-                            <div class="lection-section__content">
-                                <p>
-                                    Open source zajednicu ne čine samo programeri, već i testeri,
-                                    dizajneri, edukatori i krajnji korisnici.
-                                </p>
-                                <div class="community-roles">
-                                    <span class="role-tag">👨‍💻 Programeri</span>
-                                    <span class="role-tag">🧪 Testeri</span>
-                                    <span class="role-tag">🎨 Dizajneri</span>
-                                    <span class="role-tag">📚 Edukatori</span>
-                                    <span class="role-tag">👥 Korisnici</span>
-                                </div>
-                                <p>
-                                    Zajednica omogućava kontinuirani razvoj, podršku i unapređenje
-                                    softvera.
-                                </p>
-                            </div>
-                        </section>
-
-                        <!-- INDUSTRIJA -->
-                        <section class="lection-section">
-                            <h2 class="lection-section__title">Open source u savremenoj IT industriji</h2>
-                            <div class="lection-section__content">
-                                <p>
-                                    Danas se open source softver koristi u gotovo svim oblastima
-                                    informacionih tehnologija:
-                                </p>
-                                <div class="tech-grid">
-                                    <div class="tech-item">
-                                        <span class="tech-icon">🐧</span>
-                                        <span>Operativni sistemi</span>
-                                    </div>
-                                    <div class="tech-item">
-                                        <span class="tech-icon">🌐</span>
-                                        <span>Web serveri</span>
-                                    </div>
-                                    <div class="tech-item">
-                                        <span class="tech-icon">☁️</span>
-                                        <span>Cloud infrastruktura</span>
-                                    </div>
-                                    <div class="tech-item">
-                                        <span class="tech-icon">🛠️</span>
-                                        <span>Razvojni alati</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                    <% } %>
-
-                </div>
-
-                <!-- ===============================
+                            <!-- ===============================
                      NAVIGACIJA IZMEĐU LEKCIJA
                 =============================== -->
-                <nav class="lection-nav">
-                    <% if (navigation.prev) { %>
-                        <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>"
-                           class="lection-nav__link lection-nav__link--prev">
-                            <span class="nav-arrow">←</span>
-                            <span class="nav-text">
-                                <span class="nav-label">Prethodna lekcija</span>
-                                <span class="nav-title"><%= navigation.prev.title %></span>
-                            </span>
-                        </a>
-                    <% } else { %>
-                        <a href="/otvoreno-racunarstvo" 
-                           class="lection-nav__link lection-nav__link--prev">
-                            <span class="nav-arrow">←</span>
-                            <span class="nav-text">
-                                <span class="nav-label">Nazad na</span>
-                                <span class="nav-title">početnu predmeta</span>
-                            </span>
-                        </a>
-                    <% } %>
+                            <nav class="lection-nav">
+                                <% if (navigation.prev) { %>
+                                    <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>"
+                                        class="lection-nav__link lection-nav__link--prev">
+                                        <span class="nav-arrow">←</span>
+                                        <span class="nav-text">
+                                            <span class="nav-label">Prethodna lekcija</span>
+                                            <span class="nav-title">
+                                                <%= navigation.prev.title %>
+                                            </span>
+                                        </span>
+                                    </a>
+                                    <% } else { %>
+                                        <a href="/otvoreno-racunarstvo"
+                                            class="lection-nav__link lection-nav__link--prev">
+                                            <span class="nav-arrow">←</span>
+                                            <span class="nav-text">
+                                                <span class="nav-label">Nazad na</span>
+                                                <span class="nav-title">početnu predmeta</span>
+                                            </span>
+                                        </a>
+                                        <% } %>
 
-                    <% if (navigation.next) { %>
-                        <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.next.slug %>"
-                           class="lection-nav__link lection-nav__link--next">
-                            <span class="nav-text">
-                                <span class="nav-label">Sledeća lekcija</span>
-                                <span class="nav-title"><%= navigation.next.title %></span>
-                            </span>
-                            <span class="nav-arrow">→</span>
-                        </a>
-                    <% } %>
-                </nav>
+                                            <% if (navigation.next) { %>
+                                                <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.next.slug %>"
+                                                    class="lection-nav__link lection-nav__link--next">
+                                                    <span class="nav-text">
+                                                        <span class="nav-label">Sledeća lekcija</span>
+                                                        <span class="nav-title">
+                                                            <%= navigation.next.title %>
+                                                        </span>
+                                                    </span>
+                                                    <span class="nav-arrow">→</span>
+                                                </a>
+                                                <% } %>
+                            </nav>
 
-            </article>
+                        </article>
 
-        <% } %>
+                        <% } %>
 
-    </main>
-</div>
+            </main>
+        </div>
 
-<%- include('../../../includes/end') %>
+        <%- include('../../../includes/end') %>

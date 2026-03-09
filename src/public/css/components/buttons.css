@@ -1,42 +1,72 @@
-/* public/css/components/buttons.css */
+/* =========================
+   BASE BUTTON
+========================= */
+
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     padding: var(--space-sm) var(--space-lg);
+
     font-size: var(--text-base);
-    font-weight: 500;
-    line-height: 1.5;
-    text-align: center;
+    font-weight: 600;
+    line-height: 1.4;
+
     border-radius: var(--border-radius-md);
-    transition: var(--transition);
-    cursor: pointer;
     border: 1px solid transparent;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    transition: 
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
 }
 
-/* Primarni button */
+/* hover efekat */
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* =========================
+   PRIMARY BUTTON
+========================= */
+
 .btn--primary {
-    background-color: var(--color-primary);
+    background: var(--color-primary);
     color: var(--color-white);
 }
 
 .btn--primary:hover {
-    background-color: var(--color-primary-light);
+    background: var(--color-primary-dark);
+    color: var(--color-white);
 }
 
-/* Sekundarni button */
+/* =========================
+   SECONDARY BUTTON
+========================= */
+
 .btn--secondary {
-    background-color: var(--color-secondary);
+    background: var(--color-secondary);
     color: var(--color-white);
 }
 
 .btn--secondary:hover {
-    background-color: var(--color-secondary-dark);
+    background: var(--color-secondary-dark);
+    color: var(--color-white);
 }
 
-/* Outline varijante */
+/* =========================
+   OUTLINE BUTTON
+========================= */
+
 .btn--outline {
-    background-color: transparent;
+    background: transparent;
     border-color: var(--color-gray-300);
     color: var(--color-gray-700);
 }
@@ -44,9 +74,13 @@
 .btn--outline:hover {
     border-color: var(--color-secondary);
     color: var(--color-secondary);
+    background: rgba(0,0,0,0.02);
 }
 
-/* Veličine */
+/* =========================
+   SIZES
+========================= */
+
 .btn--sm {
     padding: var(--space-xs) var(--space-md);
     font-size: var(--text-sm);
@@ -57,7 +91,10 @@
     font-size: var(--text-lg);
 }
 
-/* Na mobilnom full-width po potrebi */
+/* =========================
+   BLOCK BUTTON
+========================= */
+
 .btn--block {
     width: 100%;
 }

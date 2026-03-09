@@ -1,0 +1,502 @@
+<%- include('../../../includes/head', { title: lection.title, pageDescription: lection.description, pageStyles:
+    pageStyles }) %>
+
+    <%- include('../../../includes/navigation', { active: 'teorija-sistema' }) %>
+
+        <div class="lection-container">
+
+            <aside class="lection-sidebar">
+                <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
+            </aside>
+
+            <main class="lection-content">
+
+                <% if (!lection.available) { %>
+
+                    <div class="lection-locked">
+
+                        <div class="lection-locked__icon">🔒</div>
+
+                        <h1 class="lection-locked__title">
+                            Lekcija još nije dostupna
+                        </h1>
+
+                        <p class="lection-locked__text">
+                            Ova lekcija postaje dostupna
+                            <strong>
+                                <%= lection.formattedDate %>
+                            </strong>.
+                        </p>
+
+                        <p class="lection-locked__text">
+                            Jedna lekcija se otključava svake nedelje.
+                        </p>
+
+                        <a href="/teorija-sistema" class="btn btn--primary btn--large">
+                            Nazad na predmet
+                        </a>
+
+                    </div>
+
+                    <% } else { %>
+
+                        <article class="lection">
+
+                            <header class="lection__header">
+
+                                <div class="lection__meta">
+
+                                    <span class="lection__badge lection__badge--week">
+                                        📅 Nedelja <%= lection.week %>
+                                    </span>
+
+                                    <span class="lection__badge lection__badge--date">
+                                        📌 <%= lection.formattedDate %>
+                                    </span>
+
+                                </div>
+
+                                <h1 class="lection__title">
+                                    <%= lection.title %>
+                                </h1>
+
+                                <% if (lection.description) { %>
+                                    <p class="lection__description">
+                                        <%= lection.description %>
+                                    </p>
+                                    <% } %>
+                                        <div class="project-note">
+
+                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
+
+                                        </div>
+                            </header>
+
+
+
+                            <div class="lection__content">
+
+                                <% if (lection.slug==="struktura-i-elementi-sistema" ) { %>
+
+
+                                    <!-- DEFINISANJE OBJEKTA -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Definisanje objekta istraživanja
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Prvi korak u istraživanju sistema jeste definisanje objekta
+                                                istraživanja.
+                                            </p>
+
+                                            <p>
+                                                U ovom procesu koriste se osnovne logičke kategorije koje
+                                                omogućavaju precizno razumevanje sistema.
+                                            </p>
+
+                                            <ul class="list list--icons">
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">🧠</span>
+                                                    Pojam
+                                                </li>
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">📜</span>
+                                                    Sud
+                                                </li>
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">🔎</span>
+                                                    Zaključak
+                                                </li>
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">📘</span>
+                                                    Definicija
+                                                </li>
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">📊</span>
+                                                    Divizija
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- POJAM -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Pojam
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Pojam predstavlja idejni odraz, odnosno misao o bitnim osobinama
+                                                nekog objekta.
+                                            </p>
+
+                                            <p>
+                                                Drugim rečima, pojam predstavlja razumevanje suštine
+                                                onoga što posmatramo.
+                                            </p>
+
+                                            <p class="note">
+                                                U istraživanju sistema uvek se polazi od postojećih znanja
+                                                i ranijih istraživanja.
+                                            </p>
+
+
+                                            <h3>Vrste izvora</h3>
+
+                                            <ul class="list">
+
+                                                <li>
+                                                    <strong>Primarni izvori</strong> — direktna prethodna istraživanja
+                                                </li>
+
+                                                <li>
+                                                    <strong>Sekundarni izvori</strong> — radovi drugih autora
+                                                </li>
+
+                                                <li>
+                                                    <strong>Tercijalni izvori</strong> — opšti materijali o sistemu
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- OSOBINE POJMA -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Osobine pojma
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Svaki pojam ima dve osnovne karakteristike:
+                                            </p>
+
+                                            <ul class="list">
+
+                                                <li>
+                                                    <strong>Obuhvatnost</strong> — skup objekata na koje se pojam odnosi
+                                                </li>
+
+                                                <li>
+                                                    <strong>Sadržaj</strong> — skup osobina koje određuju pojam
+                                                </li>
+
+                                            </ul>
+
+                                            <p class="highlight">
+                                                Ove dve karakteristike su u obrnutom proporcionalnom odnosu.
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- OKRUZENJE -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Okruženje sistema
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Definisanjem granica sistema univerzum se deli na dva dela:
+                                            </p>
+
+                                            <div class="tech-grid">
+
+                                                <div class="tech-item">
+                                                    🧩 Sistem S
+                                                </div>
+
+                                                <div class="tech-item">
+                                                    🌍 Okruženje S₀
+                                                </div>
+
+                                            </div>
+
+                                            <h3>Vrste odnosa</h3>
+
+                                            <ul class="list list--icons">
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">⚡</span>
+                                                    Aktivni odnos
+                                                </li>
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">⬇️</span>
+                                                    Pasivni odnos
+                                                </li>
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">🔄</span>
+                                                    Interaktivni odnos
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- ULAZI IZLAZI -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Ulazi i izlazi sistema
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <ul class="list">
+
+                                                <li>materijalni uticaji</li>
+                                                <li>energetski uticaji</li>
+                                                <li>informacioni uticaji</li>
+
+                                            </ul>
+
+                                            <p class="formula">
+                                                X → ulaz sistema
+                                                <br>
+                                                Y → izlaz sistema
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- DINAMIKA -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Dinamičnost sistema
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Sistemi se menjaju tokom vremena.
+                                            </p>
+
+                                            <p class="note">
+                                                Vremenska dimenzija je ključna u analizi sistema.
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- TIPOVI SISTEMA -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Tipovi sistema
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <ul class="list list--icons">
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">🎯</span>
+                                                    Deterministički sistemi
+                                                </li>
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">🎲</span>
+                                                    Stohastički sistemi
+                                                </li>
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">❓</span>
+                                                    Neizvesni sistemi
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- SVOJSTVA -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Svojstva sistema
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <div class="tech-grid">
+
+                                                <div class="tech-item">📏 Kvantitativna</div>
+                                                <div class="tech-item">🧠 Kvalitativna</div>
+                                                <div class="tech-item">📍 Poziciona</div>
+                                                <div class="tech-item">🏗 Strukturalna</div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- PARAMETRI -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Parametri i atributi
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <div class="comparison-grid">
+
+                                                <div class="comparison-item">
+
+                                                    <div class="comparison-icon">⚙️</div>
+
+                                                    <h3>Parametri</h3>
+
+                                                    <p>
+                                                        osobine sistema koje se sporo menjaju
+                                                    </p>
+
+                                                </div>
+
+                                                <div class="comparison-item">
+
+                                                    <div class="comparison-icon">📈</div>
+
+                                                    <h3>Atributi</h3>
+
+                                                    <p>
+                                                        osobine koje opisuju promenu stanja
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <% } %>
+
+                            </div>
+
+
+
+                            <nav class="lection-nav">
+
+                                <% if (navigation.prev) { %>
+
+                                    <a href="/teorija-sistema/lekcija/<%= navigation.prev.slug %>"
+                                        class="lection-nav__link lection-nav__link--prev">
+
+                                        <span class="nav-arrow">←</span>
+
+                                        <span class="nav-text">
+                                            <span class="nav-label">
+                                                Prethodna lekcija
+                                            </span>
+
+                                            <span class="nav-title">
+                                                <%= navigation.prev.title %>
+                                            </span>
+                                        </span>
+
+                                    </a>
+
+                                    <% } else { %>
+
+                                        <a href="/teorija-sistema" class="lection-nav__link lection-nav__link--prev">
+
+                                            <span class="nav-arrow">←</span>
+
+                                            <span class="nav-text">
+                                                <span class="nav-label">Nazad na</span>
+                                                <span class="nav-title">početnu predmeta</span>
+                                            </span>
+
+                                        </a>
+
+                                        <% } %>
+
+
+
+                                            <% if (navigation.next) { %>
+
+                                                <a href="/teorija-sistema/lekcija/<%= navigation.next.slug %>"
+                                                    class="lection-nav__link lection-nav__link--next">
+
+                                                    <span class="nav-text">
+
+                                                        <span class="nav-label">
+                                                            Sledeća lekcija
+                                                        </span>
+
+                                                        <span class="nav-title">
+                                                            <%= navigation.next.title %>
+                                                        </span>
+
+                                                    </span>
+
+                                                    <span class="nav-arrow">→</span>
+
+                                                </a>
+
+                                                <% } %>
+
+                            </nav>
+
+                        </article>
+
+                        <% } %>
+
+            </main>
+
+        </div>
+
+        <%- include('../../../includes/end') %>

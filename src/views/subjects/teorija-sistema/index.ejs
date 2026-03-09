@@ -1,0 +1,386 @@
+<%- include('../../includes/head', { title: 'Teorija sistema i informacija' }) %>
+    <%- include('../../includes/navigation', { active: 'teorija-sistema' }) %>
+
+        <main class="subject-page">
+
+            <!-- HERO -->
+            <section class="subject-hero">
+                <div class="container">
+                    <h1 class="subject-title">Teorija sistema i informacija</h1>
+
+                    <div class="subject-meta">
+                        <span class="badge badge--primary">ESPB: 8</span>
+                        <span class="badge badge--secondary">Šifra: TSI</span>
+                        <span class="badge badge--outline">Predavanja: 3č</span>
+                        <span class="badge badge--outline">Vežbe: 2č</span>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- STATS -->
+            <div class="container">
+                <div class="stats-row">
+
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-content">
+                            <span class="stat-label">Napredak</span>
+                            <span class="stat-value">
+                                <%= stats.available %>/<%= stats.total %>
+                            </span>
+                            <span class="stat-percent">
+                                <%= stats.percent %>%
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-content">
+                            <span class="stat-label">Početak</span>
+                            <span class="stat-value">23.02.2026.</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">🏁</div>
+                        <div class="stat-content">
+                            <span class="stat-label">Kraj</span>
+                            <span class="stat-value">13.04.2026.</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">🎓</div>
+                        <div class="stat-content">
+                            <span class="stat-label">ESPB</span>
+                            <span class="stat-value">8</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="container">
+                <hr class="section-divider">
+
+                <div class="subject-grid">
+
+                    <!-- MAIN -->
+                    <div class="subject-main">
+
+                        <!-- O PREDMETU -->
+                        <section class="info-card">
+                            <div class="card-header">
+                                <h2>O predmetu</h2>
+                            </div>
+
+                            <div class="card-body">
+
+                                <p class="lead">
+                                    Teorija sistema i informacija je predmet koji studentima pruža
+                                    osnovna znanja o sistemskom pristupu, metodologiji sistemske
+                                    analize i modelovanju složenih sistema.
+                                </p>
+
+                                <p>
+                                    Cilj predmeta je razvijanje sposobnosti sistemskog razmišljanja
+                                    i razumevanje načina na koji se složeni sistemi analiziraju,
+                                    modeluju i projektuju.
+                                </p>
+
+                                <p>
+                                    Poseban akcenat stavlja se na primenu sistemske metodologije
+                                    u analizi i projektovanju složenih informacionih sistema,
+                                    kao i u upravljanju projektima u savremenom IT okruženju.
+                                </p>
+
+                                <p>
+                                    Tokom praktične nastave studenti će primenjivati UML i ER
+                                    modelovanje kroz projekat.
+                                </p>
+
+                            </div>
+                        </section>
+
+
+
+                        <!-- PLAN RADA -->
+                        <section class="info-card">
+
+                            <div class="card-header">
+                                <h2>Plan rada po nedeljama</h2>
+                            </div>
+
+                            <div class="card-body">
+
+                                <p class="section-intro">
+                                    Predmet se realizuje kroz 8 nastavnih nedelja:
+                                </p>
+
+                                <div class="table-responsive">
+                                    <table class="table table--striped">
+
+                                        <thead>
+                                            <tr>
+                                                <th>Nedelja</th>
+                                                <th>Tema</th>
+                                                <th>Datum</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <% workPlan.forEach(item=> {
+                                                const itemDate = new Date(item.date.split('.').reverse().join('-'));
+                                                itemDate.setHours(0,0,0,0);
+
+                                                const isPast = itemDate < today; const
+                                                    isCurrent=itemDate.getTime()===today.getTime() || (currentLection &&
+                                                    item.topic===currentLection.title); %>
+
+                                                    <tr class="<%= isCurrent ? 'table-row-current' : '' %>">
+
+                                                        <td><strong>Nedelja <%= item.week %></strong></td>
+                                                        <td>
+                                                            <%= item.topic %>
+                                                        </td>
+                                                        <td>
+                                                            <%= item.date %>
+                                                        </td>
+
+                                                        <td>
+
+                                                            <% if (isCurrent) { %>
+                                                                <span class="status-badge status-badge--primary">🔵
+                                                                    Trenutno</span>
+
+                                                                <% } else if (isPast) { %>
+                                                                    <span class="status-badge status-badge--success">✅
+                                                                        Završeno</span>
+
+                                                                    <% } else { %>
+                                                                        <span
+                                                                            class="status-badge status-badge--warning">⏳
+                                                                            Predstoji</span>
+                                                                        <% } %>
+
+                                                        </td>
+
+                                                    </tr>
+
+                                                    <% }); %>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+                                <div class="table-legend">
+                                    <span class="legend-item">
+                                        <span class="legend-color legend-color--primary"></span> Trenutno
+                                    </span>
+
+                                    <span class="legend-item">
+                                        <span class="legend-color legend-color--success"></span> Završeno
+                                    </span>
+
+                                    <span class="legend-item">
+                                        <span class="legend-color legend-color--warning"></span> Predstoji
+                                    </span>
+                                </div>
+
+                            </div>
+                        </section>
+
+                    </div>
+
+
+
+                    <!-- SIDEBAR -->
+                    <aside class="subject-sidebar">
+
+
+                        <!-- TRENUTNA LEKCIJA -->
+                        <section class="info-card info-card--highlighted">
+
+                            <div class="card-header">
+                                <h2>Trenutna lekcija</h2>
+                            </div>
+
+                            <div class="card-body">
+
+                                <% if (currentLection) { %>
+
+                                    <div class="current-lection">
+
+                                        <h3 class="current-lection-title">
+                                            <%= currentLection.title %>
+                                        </h3>
+
+                                        <span class="lection-badge">
+                                            <span class="badge-icon">📅</span>
+                                            <%= currentLection.formattedDate %>
+                                        </span>
+
+                                        <p class="lection-description">
+                                            <%= currentLection.description %>
+                                        </p>
+
+                                        <hr class="card-divider">
+
+                                        <a href="/teorija-sistema/lekcija/<%= currentLection.slug %>"
+                                            class="btn btn--primary btn--block btn--large">
+
+                                            Otvori lekciju →
+
+                                        </a>
+
+                                    </div>
+
+                                    <% } else { %>
+
+                                        <div class="empty-state">
+
+                                            <div class="empty-state-icon">📚</div>
+
+                                            <p class="empty-state-title">
+                                                Predmet još nije počeo
+                                            </p>
+
+                                            <p class="empty-state-small">
+                                                Prva lekcija: <strong>23.02.2026.</strong>
+                                            </p>
+
+                                        </div>
+
+                                        <% } %>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- OCENJIVANJE -->
+                        <section class="info-card">
+
+                            <div class="card-header">
+                                <h2>Način ocenjivanja</h2>
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="grading-list">
+
+                                    <div class="grading-row">
+                                        <div class="grading-left">
+                                            <span class="grading-icon">📚</span>
+                                            <span>Prisustvo na predavanjima</span>
+                                        </div>
+                                        <span class="grading-points">10</span>
+                                    </div>
+
+                                    <div class="grading-row">
+                                        <div class="grading-left">
+                                            <span class="grading-icon">💻</span>
+                                            <span>Prisustvo na vežbama</span>
+                                        </div>
+                                        <span class="grading-points">10</span>
+                                    </div>
+
+                                    <div class="grading-row">
+                                        <div class="grading-left">
+                                            <span class="grading-icon">📝</span>
+                                            <span>Kolokvijum 1</span>
+                                        </div>
+                                        <span class="grading-points">30</span>
+                                    </div>
+
+                                    <div class="grading-row">
+                                        <div class="grading-left">
+                                            <span class="grading-icon">📝</span>
+                                            <span>Kolokvijum 2</span>
+                                        </div>
+                                        <span class="grading-points">30</span>
+                                    </div>
+
+                                    <div class="grading-row">
+                                        <div class="grading-left">
+                                            <span class="grading-icon">📊</span>
+                                            <span>UML projekat</span>
+                                        </div>
+                                        <span class="grading-points">20</span>
+                                    </div>
+
+                                    <div class="grading-row grading-row--total">
+                                        <span>UKUPNO</span>
+                                        <span class="grading-points">100</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="passing-progress">
+
+                                    <div class="passing-label">
+                                        <span>Prag za prolaz</span>
+                                        <span>51 / 100</span>
+                                    </div>
+
+                                    <div class="passing-bar">
+
+                                        <div class="passing-fill p-51"></div>
+
+                                        <div class="passing-marker p-51">
+                                            <span class="marker-label">51%</span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </section>
+
+                        <!-- RESURSI -->
+                        <section class="info-card">
+
+                            <div class="card-header">
+                                <h2>Korisni resursi</h2>
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="resources-grid">
+
+                                    <a href="https://drive.google.com/file/d/1M2y1lAvvGMxuc2z1Kh2xf802JnbDjQwk/view"
+                                        class="resource-card">
+                                        <span>📄</span> Plan predmeta
+                                    </a>
+
+                                    <a href="/teorija-sistema/materijali" class="resource-card">
+                                        <span>📚</span> Materijali
+                                    </a>
+
+                                    <a href="#" class="resource-card">
+                                        <span>📊</span> Rezultati
+                                    </a>
+
+                                    <a href="#" class="resource-card">
+                                        <span>❓</span> Pitanja
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </aside>
+
+                </div>
+            </div>
+
+        </main>
+
+        <%- include('../../includes/end') %>

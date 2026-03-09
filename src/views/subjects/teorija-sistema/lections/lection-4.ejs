@@ -1,0 +1,581 @@
+<%- include('../../../includes/head', { title: lection.title, pageDescription: lection.description, pageStyles:
+    pageStyles }) %>
+
+    <%- include('../../../includes/navigation', { active: 'teorija-sistema' }) %>
+
+        <div class="lection-container">
+
+            <aside class="lection-sidebar">
+                <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
+            </aside>
+
+            <main class="lection-content">
+
+                <% if (!lection.available) { %>
+
+                    <div class="lection-locked">
+                        <div class="lection-locked__icon">🔒</div>
+
+                        <h1 class="lection-locked__title">
+                            Lekcija još nije dostupna
+                        </h1>
+
+                        <p class="lection-locked__text">
+                            Ova lekcija postaje dostupna
+                            <strong>
+                                <%= lection.formattedDate %>
+                            </strong>.
+                        </p>
+
+                        <p class="lection-locked__text">
+                            Jedna lekcija se otključava svake nedelje.
+                        </p>
+
+                        <a href="/teorija-sistema" class="btn btn--primary btn--large">
+                            Nazad na predmet
+                        </a>
+
+                    </div>
+
+                    <% } else { %>
+
+                        <article class="lection">
+
+                            <header class="lection__header">
+
+                                <div class="lection__meta">
+
+                                    <span class="lection__badge lection__badge--week">
+                                        📅 Nedelja <%= lection.week %>
+                                    </span>
+
+                                    <span class="lection__badge lection__badge--date">
+                                        📌 <%= lection.formattedDate %>
+                                    </span>
+
+                                </div>
+
+                                <h1 class="lection__title">
+                                    <%= lection.title %>
+                                </h1>
+
+                                <% if (lection.description) { %>
+                                    <p class="lection__description">
+                                        <%= lection.description %>
+                                    </p>
+                                    <% } %>
+                                        <div class="project-note">
+
+                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
+
+                                        </div>
+                            </header>
+
+
+
+                            <div class="lection__content">
+
+                                <% if (lection.slug==="analiza-i-sinteza-sistema" ) { %>
+
+
+                                    <!-- UVOD -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Istraživanje sistema
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Na osnovu znanja i raspoloživih instrumenata,
+                                                istraživači sistema pokušavaju da otkriju
+                                                prirodu, elemente i relacije sistema.
+                                            </p>
+
+                                            <p>
+                                                Instrumenti istraživanja mogu biti:
+                                            </p>
+
+                                            <ul class="list list--icons">
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">🧠</span>
+                                                    Idejni instrumenti – metode, teorije i metodologije
+                                                </li>
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">🛠️</span>
+                                                    Materijalni instrumenti – alati koji proširuju
+                                                    ljudske sposobnosti
+                                                </li>
+
+                                            </ul>
+
+                                            <p class="note">
+                                                I pored toga, istraživač ne može obuhvatiti
+                                                celokupan fenomen koji proučava.
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- STRATEGIJE -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Strategije analize sistema
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                U literaturi postoji veliki broj strategija
+                                                za analizu sistema.
+                                            </p>
+
+                                            <p>
+                                                Najčešće se koriste dve osnovne strategije:
+                                            </p>
+
+                                            <div class="comparison-grid">
+
+                                                <div class="comparison-item">
+
+                                                    <div class="comparison-icon">🔍</div>
+
+                                                    <h3>Smanjivanje prostora istraživanja</h3>
+
+                                                    <p>
+                                                        Fokusiranje na manji segment sistema
+                                                        koji se može detaljnije proučavati.
+                                                    </p>
+
+                                                </div>
+
+                                                <div class="comparison-item">
+
+                                                    <div class="comparison-icon">🧩</div>
+
+                                                    <h3>Deljenje prostora istraživanja</h3>
+
+                                                    <p>
+                                                        Sistem se deli na manje delove
+                                                        koji se pojedinačno analiziraju.
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- ANALIZA -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Analiza
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Analiza je metoda upoznavanja složenih
+                                                pojava putem misaonog ili praktičnog
+                                                rastavljanja na elemente.
+                                            </p>
+
+                                            <p class="highlight">
+                                                Cilj analize je ispitivanje delova,
+                                                njihovih osobina i odnosa među njima.
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- UGLA POSMATRANJA -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Uglovi posmatranja analize
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <ul class="list">
+
+                                                <li>teorija znanja</li>
+                                                <li>složenost sistema</li>
+                                                <li>stepen konkretnosti</li>
+                                                <li>predmet i cilj analize</li>
+                                                <li>oblast primene</li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- TEORIJA ZNANJA -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Analiza prema teoriji znanja
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <div class="tech-grid">
+
+                                                <div class="tech-item">
+                                                    Deskriptivna analiza
+                                                </div>
+
+                                                <div class="tech-item">
+                                                    Eksplikativna analiza
+                                                </div>
+
+                                            </div>
+
+                                            <p class="note">
+                                                Deskriptivna analiza opisuje elemente,
+                                                dok eksplikativna analizira i njihove relacije.
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- SLOZENOST -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Analiza prema složenosti
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <ul class="list">
+
+                                                <li>Elementarna analiza</li>
+                                                <li>Uzročno-posledična analiza</li>
+                                                <li>Funkcionalna analiza</li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- KONKRETNOST -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Stepen konkretnosti
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <ul class="list">
+
+                                                <li>Materijalna analiza (empirijska)</li>
+                                                <li>Idejna analiza</li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- PREDMET I CILJ -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Analiza prema predmetu i cilju
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <ul class="list">
+
+                                                <li>Generička analiza</li>
+                                                <li>Komparativna analiza</li>
+                                                <li>Funkcionalna analiza</li>
+                                                <li>Strukturalna analiza</li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- PROBLEM ANALIZE -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Ograničenja analize
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                U praksi je gotovo nemoguće analizom
+                                                u potpunosti istražiti složene sisteme.
+                                            </p>
+
+                                            <p class="note">
+                                                Sveobuhvatnost i preciznost često
+                                                isključuju jedna drugu.
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- SINTEZA -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Sinteza
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Sinteza je metoda povezivanja
+                                                jednostavnih pojmova u složenije
+                                                strukture.
+                                            </p>
+
+                                            <p>
+                                                Analiza i sinteza su međusobno
+                                                povezani procesi.
+                                            </p>
+
+                                            <ul class="list list--icons">
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">⬇️</span>
+                                                    Analiza: od opšteg ka posebnom
+                                                </li>
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">⬆️</span>
+                                                    Sinteza: od posebnog ka opštem
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- VRSTE SINTEZE -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Vrste sinteze
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <div class="comparison-grid">
+
+                                                <div class="comparison-item">
+
+                                                    <h3>Reproduktivna sinteza</h3>
+
+                                                    <p>
+                                                        Kreiranje sistema sličnog
+                                                        ili identičnog originalu.
+                                                    </p>
+
+                                                </div>
+
+                                                <div class="comparison-item">
+
+                                                    <h3>Produktivna sinteza</h3>
+
+                                                    <p>
+                                                        Kreiranje potpuno novog
+                                                        sistema ili proizvoda.
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- ANALIZA SISTEMA -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Analiza sistema
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Zbog ograničenja klasične analize
+                                                nastaje sistemska analiza.
+                                            </p>
+
+                                            <p>
+                                                Osnovna ideja je posmatranje objekta
+                                                istraživanja kao sistema.
+                                            </p>
+
+                                            <p class="highlight">
+                                                Sistem se posmatra kroz:
+                                                elemente, relacije i okruženje.
+                                            </p>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <!-- FAZE ANALIZE -->
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">
+                                            Faze analize sistema
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <ul class="list">
+
+                                                <li>izbor objekta istraživanja</li>
+                                                <li>definisanje aspekta posmatranja</li>
+                                                <li>definisanje sistema</li>
+                                                <li>razlaganje sistema</li>
+                                                <li>istraživanje strukture</li>
+                                                <li>generisanje modela sistema</li>
+                                                <li>eksperimentisanje sa modelom</li>
+                                                <li>verifikacija rezultata</li>
+                                                <li>primena modela</li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </section>
+
+
+
+                                    <% } %>
+
+                            </div>
+
+
+
+                            <nav class="lection-nav">
+
+                                <% if (navigation.prev) { %>
+
+                                    <a href="/teorija-sistema/lekcija/<%= navigation.prev.slug %>"
+                                        class="lection-nav__link lection-nav__link--prev">
+
+                                        <span class="nav-arrow">←</span>
+
+                                        <span class="nav-text">
+
+                                            <span class="nav-label">
+                                                Prethodna lekcija
+                                            </span>
+
+                                            <span class="nav-title">
+                                                <%= navigation.prev.title %>
+                                            </span>
+
+                                        </span>
+
+                                    </a>
+
+                                    <% } else { %>
+
+                                        <a href="/teorija-sistema" class="lection-nav__link lection-nav__link--prev">
+
+                                            <span class="nav-arrow">←</span>
+
+                                            <span class="nav-text">
+
+                                                <span class="nav-label">Nazad na</span>
+
+                                                <span class="nav-title">
+                                                    početnu predmeta
+                                                </span>
+
+                                            </span>
+
+                                        </a>
+
+                                        <% } %>
+
+
+
+                                            <% if (navigation.next) { %>
+
+                                                <a href="/teorija-sistema/lekcija/<%= navigation.next.slug %>"
+                                                    class="lection-nav__link lection-nav__link--next">
+
+                                                    <span class="nav-text">
+
+                                                        <span class="nav-label">
+                                                            Sledeća lekcija
+                                                        </span>
+
+                                                        <span class="nav-title">
+                                                            <%= navigation.next.title %>
+                                                        </span>
+
+                                                    </span>
+
+                                                    <span class="nav-arrow">→</span>
+
+                                                </a>
+
+                                                <% } %>
+
+                            </nav>
+
+                        </article>
+
+                        <% } %>
+
+            </main>
+
+        </div>
+
+        <%- include('../../../includes/end') %>

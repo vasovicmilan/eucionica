@@ -1,111 +1,305 @@
-<%- include('./includes/head', { 
-    title: pageTitle,
-    pageDescription: pageDescription,
-    pageStyles: pageStyles
-}) %>
+<%- include('./includes/head', { title: pageTitle, pageDescription: pageDescription, pageStyles: pageStyles }) %>
 
-<main class="home-page">
-    <%- include('./includes/navigation', { active: "" }) %>
+    <main class="home-page">
 
-    <!-- HERO -->
-    <section class="home-hero">
-        <div class="container">
-            <div class="home-hero__content">
-                <span class="hero-badge">E-učionica</span>
+        <%- include('./includes/navigation', { active: "" }) %>
 
-                <h1 class="home-hero__title">
-                    Dobrodošli u digitalnu učionicu
-                </h1>
+            <!-- HERO -->
+            <section class="home-hero">
+                <div class="container">
 
-                <p class="home-hero__subtitle">
-                    Centralno mesto za nastavne materijale, predavanja i resurse
-                    u okviru studijskih predmeta.
-                </p>
+                    <div class="home-hero__content">
 
-                <a href="#predmeti" class="btn btn--primary">
-                    Pogledaj predmete →
-                </a>
+                        <span class="hero-badge">
+                            E-učionica
+                        </span>
 
-                <div class="hero-quick-links">
-                    <% subjects.forEach(subject => { %>
-                        <a href="/<%= subject.slug %>" class="quick-link">
-                            <span><%= subject.icon %></span>
-                            <%= subject.name %>
+                        <h1 class="home-hero__title">
+                            Dobrodošli u digitalnu učionicu
+                        </h1>
+
+                        <p class="home-hero__subtitle">
+                            Centralno mesto za nastavne materijale, predavanja i resurse
+                            u okviru studijskih predmeta.
+                        </p>
+
+                        <a href="#predmeti" class="btn btn--primary">
+                            Pogledaj predmete →
                         </a>
-                    <% }) %>
+
+                        <div class="hero-quick-links">
+
+                            <% subjects.forEach(subject=> { %>
+
+                                <a href="/<%= subject.slug %>" class="quick-link">
+
+                                    <span>
+                                        <%= subject.icon || "📘" %>
+                                    </span>
+
+                                    <%= subject.name %>
+
+                                </a>
+
+                                <% }) %>
+
+                        </div>
+
+                    </div>
+
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- O APLIKACIJI -->
-    <section class="home-about">
-        <div class="container">
-            <h2 class="section-title">
-                Digitalno okruženje za savremeno učenje
-            </h2>
 
-            <p class="section-description">
-                Aplikacija je zasnovana na principima otvorenog obrazovanja,
-                transparentnosti i jednostavne dostupnosti sadržaja.
-            </p>
+            <!-- O PLATFORMI -->
 
-            <div class="about-grid">
-                <div>
-                    <% features.forEach(feature => { %>
-                        <div class="feature-card">
-                            <div class="feature-icon"><%= feature.icon %></div>
-                            <div>
-                                <h3><%= feature.title %></h3>
-                                <p><%= feature.description %></p>
+            <section class="home-about">
+
+                <div class="container">
+
+                    <h2 class="section-title">
+                        Digitalno okruženje za savremeno učenje
+                    </h2>
+
+                    <p class="section-description">
+                        Aplikacija je zasnovana na principima otvorenog obrazovanja,
+                        transparentnosti i jednostavne dostupnosti sadržaja.
+                    </p>
+
+                    <div class="about-grid">
+
+                        <div>
+
+                            <% features.forEach(feature=> { %>
+
+                                <div class="feature-card">
+
+                                    <div class="feature-icon">
+                                        <%= feature.icon %>
+                                    </div>
+
+                                    <div>
+
+                                        <h3>
+                                            <%= feature.title %>
+                                        </h3>
+
+                                        <p>
+                                            <%= feature.description %>
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                                <% }) %>
+
+                        </div>
+
+                        <div class="stats-box">
+
+                            <div class="stat">
+                                <span class="stat-number">
+                                    <%= stats.activeSubjects %>
+                                </span>
+                                <span>Aktivna predmeta</span>
                             </div>
-                        </div>
-                    <% }) %>
-                </div>
 
-                <div class="stats-box">
-                    <div class="stat">
-                        <span class="stat-number"><%= stats.activeSubjects %></span>
-                        <span>Aktivna predmeta</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number"><%= stats.totalLessons %>+</span>
-                        <span>Lekcija</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number"><%= stats.openAccess %>%</span>
-                        <span>Otvoren pristup</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                            <div class="stat">
+                                <span class="stat-number">
+                                    <%= stats.totalLessons %>+
+                                </span>
+                                <span>Lekcija</span>
+                            </div>
 
-    <!-- PREDMETI -->
-    <section id="predmeti" class="home-subjects">
-        <div class="container">
-            <h2 class="section-title">Naši predmeti</h2>
+                            <div class="stat">
+                                <span class="stat-number">
+                                    <%= stats.openAccess %>%
+                                </span>
+                                <span>Otvoren pristup</span>
+                            </div>
 
-            <div class="subjects-grid">
-                <% subjects.forEach(subject => { %>
-                    <article class="subject-card">
-                        <div class="subject-icon"><%= subject.icon %></div>
-                        <h3><%= subject.name %></h3>
-                        <p><%= subject.description %></p>
-
-                        <div class="subject-meta">
-                            <span><%= subject.weeks %> nedelja</span>
-                            <span><%= subject.espb %> ESPB</span>
                         </div>
 
-                        <a href="/<%= subject.slug %>" class="subject-link">
-                            Istraži predmet →
-                        </a>
-                    </article>
-                <% }) %>
-            </div>
-        </div>
-    </section>
-</main>
+                    </div>
 
-<%- include('./includes/end') %>
+                </div>
+
+            </section>
+
+
+            <!-- PROJEKAT -->
+
+            <section class="home-project">
+
+                <div class="container">
+
+                    <h2 class="section-title">
+                        <%= projectInfo.title %>
+                    </h2>
+
+                    <div class="project-block">
+
+                        <h3>
+                            <%= projectInfo.about.title %>
+                        </h3>
+
+                        <p>
+                            <%= projectInfo.about.text %>
+                        </p>
+
+                        <ul>
+
+                            <% projectInfo.about.goals.forEach(goal=> { %>
+
+                                <li>
+                                    <%= goal %>
+                                </li>
+
+                                <% }) %>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="project-block">
+
+                        <h3>
+                            <%= projectInfo.pedagogy.title %>
+                        </h3>
+
+                        <ul>
+
+                            <% projectInfo.pedagogy.points.forEach(point=> { %>
+
+                                <li>
+                                    <%= point %>
+                                </li>
+
+                                <% }) %>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="project-block">
+
+                        <h3>
+                            <%= projectInfo.functionality.title %>
+                        </h3>
+
+                        <ul>
+
+                            <% projectInfo.functionality.items.forEach(item=> { %>
+
+                                <li>
+                                    <%= item %>
+                                </li>
+
+                                <% }) %>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="project-block">
+
+                        <h3>
+                            <%= projectInfo.tech.title %>
+                        </h3>
+
+                        <ul>
+
+                            <% projectInfo.tech.items.forEach(item=> { %>
+
+                                <li>
+                                    <%= item %>
+                                </li>
+
+                                <% }) %>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="project-goal">
+
+                        <p>
+                            <%= projectInfo.goal %>
+                        </p>
+
+                    </div>
+
+
+                    <div class="project-note">
+
+                        ⚠️ <%= projectInfo.note %>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PREDMETI -->
+
+            <section id="predmeti" class="home-subjects">
+
+                <div class="container">
+
+                    <h2 class="section-title">
+                        Naši predmeti
+                    </h2>
+
+                    <div class="subjects-grid">
+
+                        <% subjects.forEach(subject=> { %>
+
+                            <article class="subject-card">
+
+                                <div class="subject-icon">
+                                    <%= subject.icon || "📘" %>
+                                </div>
+
+                                <h3>
+                                    <%= subject.name %>
+                                </h3>
+
+                                <p>
+                                    <%= subject.description || "Opis predmeta uskoro." %>
+                                </p>
+
+                                <div class="subject-meta">
+
+                                    <span>
+                                        <%= subject.weeks %> nedelja
+                                    </span>
+
+                                    <span>
+                                        <%= subject.espb %> ESPB
+                                    </span>
+
+                                </div>
+
+                                <a href="/<%= subject.slug %>" class="subject-link">
+                                    Istraži predmet →
+                                </a>
+
+                            </article>
+
+                            <% }) %>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+    </main>
+
+    <%- include('./includes/end') %>

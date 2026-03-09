@@ -1,341 +1,350 @@
-<%- include('../../../includes/head', { 
-    title: lection.title,
-    pageDescription: lection.description,
-    pageStyles: pageStyles
-}) %>
+<%- include('../../../includes/head', { title: lection.title, pageDescription: lection.description, pageStyles:
+    pageStyles }) %>
 
-<%- include('../../../includes/navigation', {
-    active: 'multimedijalne-aplikacije'
-}) %>
+    <%- include('../../../includes/navigation', { active: 'multimedijalne-aplikacije' }) %>
 
-<div class="lection-container">
-    <!-- SIDEBAR -->
-    <aside class="lection-sidebar">
-        <%- include('../includes/navigation', {
-            lections: lections,
-            currentSlug: lection.slug
-        }) %>
-    </aside>
+        <div class="lection-container">
+            <!-- SIDEBAR -->
+            <aside class="lection-sidebar">
+                <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
+            </aside>
 
-    <!-- CONTENT -->
-    <main class="lection-content">
-
-        <!-- ===============================
-             LEKCIJA NIJE DOSTUPNA
-        =============================== -->
-        <% if (!lection.available) { %>
-
-            <div class="lection-locked">
-                <div class="lection-locked__icon">🔒</div>
-                <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
-                <p class="lection-locked__text">
-                    Ova lekcija postaje dostupna
-                    <strong><%= lection.formattedDate %></strong>.
-                </p>
-                <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
-                <a href="/multimedijalne-aplikacije" class="btn btn--primary btn--large">
-                    Nazad na predmet
-                </a>
-            </div>
-
-        <!-- ===============================
-             LEKCIJA JE DOSTUPNA
-        =============================== -->
-        <% } else { %>
-
-            <article class="lection">
-
-                <!-- HEADER -->
-                <header class="lection__header">
-                    <div class="lection__meta">
-                        <span class="lection__badge lection__badge--week">
-                            <span class="badge-icon">📅</span>
-                            Nedelja <%= lection.week %>
-                        </span>
-                        <span class="lection__badge lection__badge--date">
-                            <span class="badge-icon">📌</span>
-                            <%= lection.formattedDate %>
-                        </span>
-                    </div>
-
-                    <h1 class="lection__title"><%= lection.title %></h1>
-                    
-                    <% if (lection.description) { %>
-                        <p class="lection__description"><%= lection.description %></p>
-                    <% } %>
-                </header>
+            <!-- CONTENT -->
+            <main class="lection-content">
 
                 <!-- ===============================
+             LEKCIJA NIJE DOSTUPNA
+        =============================== -->
+                <% if (!lection.available) { %>
+
+                    <div class="lection-locked">
+                        <div class="lection-locked__icon">🔒</div>
+                        <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
+                        <p class="lection-locked__text">
+                            Ova lekcija postaje dostupna
+                            <strong>
+                                <%= lection.formattedDate %>
+                            </strong>.
+                        </p>
+                        <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
+                        <a href="/multimedijalne-aplikacije" class="btn btn--primary btn--large">
+                            Nazad na predmet
+                        </a>
+                    </div>
+
+                    <!-- ===============================
+             LEKCIJA JE DOSTUPNA
+        =============================== -->
+                    <% } else { %>
+
+                        <article class="lection">
+
+                            <!-- HEADER -->
+                            <header class="lection__header">
+                                <div class="lection__meta">
+                                    <span class="lection__badge lection__badge--week">
+                                        <span class="badge-icon">📅</span>
+                                        Nedelja <%= lection.week %>
+                                    </span>
+                                    <span class="lection__badge lection__badge--date">
+                                        <span class="badge-icon">📌</span>
+                                        <%= lection.formattedDate %>
+                                    </span>
+                                </div>
+
+                                <h1 class="lection__title">
+                                    <%= lection.title %>
+                                </h1>
+
+                                <% if (lection.description) { %>
+                                    <p class="lection__description">
+                                        <%= lection.description %>
+                                    </p>
+                                    <% } %>
+                                        <div class="project-note">
+
+                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
+
+                                        </div>
+                            </header>
+
+                            <!-- ===============================
                      SADRŽAJ LEKCIJE
                 =============================== -->
-                <div class="lection__content">
+                            <div class="lection__content">
 
-                    <!-- UVOD -->
-                    <section class="content-section">
-                        <h2>1. Šta je multimedija?</h2>
+                                <!-- UVOD -->
+                                <section class="content-section">
+                                    <h2>1. Šta je multimedija?</h2>
 
-                        <p>
-                            Multimedija predstavlja integraciju više medijskih formi u jedinstvenu
-                            digitalnu strukturu zasnovanu na računarima.
-                        </p>
+                                    <p>
+                                        Multimedija predstavlja integraciju više medijskih formi u jedinstvenu
+                                        digitalnu strukturu zasnovanu na računarima.
+                                    </p>
 
-                        <ul class="styled-list">
-                            <li>Tekst</li>
-                            <li>Grafiku (rastersku i vektorsku)</li>
-                            <li>Audio signal</li>
-                            <li>Video signal</li>
-                            <li>Animaciju</li>
-                            <li>Interaktivne sisteme</li>
-                        </ul>
+                                    <ul class="styled-list">
+                                        <li>Tekst</li>
+                                        <li>Grafiku (rastersku i vektorsku)</li>
+                                        <li>Audio signal</li>
+                                        <li>Video signal</li>
+                                        <li>Animaciju</li>
+                                        <li>Interaktivne sisteme</li>
+                                    </ul>
 
-                        <p>
-                            Multimedijalni sistem nije samo skup medija, već tehnički sistem
-                            za obradu, skladištenje, prenos i sinhronizaciju digitalnih signala.
-                        </p>
-                    </section>
+                                    <p>
+                                        Multimedijalni sistem nije samo skup medija, već tehnički sistem
+                                        za obradu, skladištenje, prenos i sinhronizaciju digitalnih signala.
+                                    </p>
+                                </section>
 
-                    <hr class="section-divider">
+                                <hr class="section-divider">
 
-                    <!-- ANALOGNO VS DIGITALNO -->
-                    <section class="content-section">
-                        <h2>2. Analogni i digitalni signal</h2>
+                                <!-- ANALOGNO VS DIGITALNO -->
+                                <section class="content-section">
+                                    <h2>2. Analogni i digitalni signal</h2>
 
-                        <p>
-                            Analogni signal je kontinuiran po vremenu i amplitudi.
-                            Digitalni signal je diskretan po vremenu i amplitudi.
-                        </p>
+                                    <p>
+                                        Analogni signal je kontinuiran po vremenu i amplitudi.
+                                        Digitalni signal je diskretan po vremenu i amplitudi.
+                                    </p>
 
-                        <div class="info-box">
-                            <strong>Analogno:</strong> Beskonačno mnogo vrednosti u kontinualnom opsegu.
-                        </div>
+                                    <div class="info-box">
+                                        <strong>Analogno:</strong> Beskonačno mnogo vrednosti u kontinualnom opsegu.
+                                    </div>
 
-                        <div class="info-box">
-                            <strong>Digitalno:</strong> Konačan broj diskretnih vrednosti predstavljenih binarnim kodom (0 i 1).
-                        </div>
+                                    <div class="info-box">
+                                        <strong>Digitalno:</strong> Konačan broj diskretnih vrednosti predstavljenih
+                                        binarnim kodom (0 i 1).
+                                    </div>
 
-                        <p>
-                            Digitalizacija signala sastoji se iz tri koraka:
-                        </p>
+                                    <p>
+                                        Digitalizacija signala sastoji se iz tri koraka:
+                                    </p>
 
-                        <ul class="styled-list">
-                            <li>Uzorkovanje (Sampling)</li>
-                            <li>Kvantizacija (Quantization)</li>
-                            <li>Binarno kodiranje</li>
-                        </ul>
+                                    <ul class="styled-list">
+                                        <li>Uzorkovanje (Sampling)</li>
+                                        <li>Kvantizacija (Quantization)</li>
+                                        <li>Binarno kodiranje</li>
+                                    </ul>
 
-                        <div class="highlight-box">
-                            Nyquist teorema: frekvencija uzorkovanja mora biti ≥ 2 × maksimalna frekvencija signala.
-                        </div>
+                                    <div class="highlight-box">
+                                        Nyquist teorema: frekvencija uzorkovanja mora biti ≥ 2 × maksimalna frekvencija
+                                        signala.
+                                    </div>
 
-                        <p>
-                            Ovaj princip detaljno ćemo obrađivati u narednoj lekciji.
-                        </p>
-                    </section>
+                                    <p>
+                                        Ovaj princip detaljno ćemo obrađivati u narednoj lekciji.
+                                    </p>
+                                </section>
 
-                    <hr class="section-divider">
+                                <hr class="section-divider">
 
-                    <!-- VIDEO OSNOVE -->
-                    <section class="content-section">
-                        <h2>3. Frame, FPS i video struktura</h2>
+                                <!-- VIDEO OSNOVE -->
+                                <section class="content-section">
+                                    <h2>3. Frame, FPS i video struktura</h2>
 
-                        <p>
-                            Video je sekvenca statičkih slika (frejmova) prikazanih velikom brzinom.
-                        </p>
+                                    <p>
+                                        Video je sekvenca statičkih slika (frejmova) prikazanih velikom brzinom.
+                                    </p>
 
-                        <h3>Standardne vrednosti FPS:</h3>
-                        <ul class="styled-list">
-                            <li>24 fps – film</li>
-                            <li>25 fps – PAL sistem</li>
-                            <li>30 fps – NTSC sistem</li>
-                            <li>50 / 60 fps – sportski i savremeni video</li>
-                        </ul>
+                                    <h3>Standardne vrednosti FPS:</h3>
+                                    <ul class="styled-list">
+                                        <li>24 fps – film</li>
+                                        <li>25 fps – PAL sistem</li>
+                                        <li>30 fps – NTSC sistem</li>
+                                        <li>50 / 60 fps – sportski i savremeni video</li>
+                                    </ul>
 
-                        <h3>Interlace vs Progressive</h3>
+                                    <h3>Interlace vs Progressive</h3>
 
-                        <ul class="styled-list">
-                            <li><strong>1080i</strong> – isprepletani signal (parne i neparne linije)</li>
-                            <li><strong>1080p</strong> – progresivni prikaz (ceo frejm odjednom)</li>
-                        </ul>
+                                    <ul class="styled-list">
+                                        <li><strong>1080i</strong> – isprepletani signal (parne i neparne linije)</li>
+                                        <li><strong>1080p</strong> – progresivni prikaz (ceo frejm odjednom)</li>
+                                    </ul>
 
-                        <p>
-                            Progressive daje veću oštrinu i bolju reprodukciju pokreta.
-                        </p>
-                    </section>
+                                    <p>
+                                        Progressive daje veću oštrinu i bolju reprodukciju pokreta.
+                                    </p>
+                                </section>
 
-                    <hr class="section-divider">
+                                <hr class="section-divider">
 
-                    <!-- REZOLUCIJA -->
-                    <section class="content-section">
-                        <h2>4. Rezolucija i broj piksela</h2>
+                                <!-- REZOLUCIJA -->
+                                <section class="content-section">
+                                    <h2>4. Rezolucija i broj piksela</h2>
 
-                        <div class="highlight-box">
-                            Rezolucija = širina × visina
-                        </div>
+                                    <div class="highlight-box">
+                                        Rezolucija = širina × visina
+                                    </div>
 
-                        <p>
-                            Primer: 1920 × 1080 = 2.073.600 piksela po frejmu.
-                        </p>
+                                    <p>
+                                        Primer: 1920 × 1080 = 2.073.600 piksela po frejmu.
+                                    </p>
 
-                        <h3>Memorijski zahtev (24-bitna slika):</h3>
+                                    <h3>Memorijski zahtev (24-bitna slika):</h3>
 
-                        <pre><code>
+                                    <pre><code>
                 Broj piksela × 3 bajta (RGB)
 
                 1920 × 1080 × 3 = 6.220.800 bajtova ≈ 5.93 MB po frejmu
                         </code></pre>
 
-                        <p>
-                            Video od 30 fps zahteva:
-                        </p>
+                                    <p>
+                                        Video od 30 fps zahteva:
+                                    </p>
 
-                        <pre><code>
+                                    <pre><code>
                 5.93 MB × 30 ≈ 178 MB u sekundi (nekompresovano)
                         </code></pre>
 
-                        <div class="info-box">
-                            Zato je kompresija neophodna u savremenim sistemima.
-                        </div>
-                    </section>
+                                    <div class="info-box">
+                                        Zato je kompresija neophodna u savremenim sistemima.
+                                    </div>
+                                </section>
 
-                    <hr class="section-divider">
+                                <hr class="section-divider">
 
-                    <!-- DPI -->
-                    <section class="content-section">
-                        <h2>5. DPI i PPI</h2>
+                                <!-- DPI -->
+                                <section class="content-section">
+                                    <h2>5. DPI i PPI</h2>
 
-                        <ul class="styled-list">
-                            <li><strong>PPI</strong> – gustina piksela na ekranu</li>
-                            <li><strong>DPI</strong> – gustina tačaka pri štampi</li>
-                        </ul>
+                                    <ul class="styled-list">
+                                        <li><strong>PPI</strong> – gustina piksela na ekranu</li>
+                                        <li><strong>DPI</strong> – gustina tačaka pri štampi</li>
+                                    </ul>
 
-                        <p>
-                            Veći PPI znači veću oštrinu slike na istim fizičkim dimenzijama.
-                        </p>
-                    </section>
+                                    <p>
+                                        Veći PPI znači veću oštrinu slike na istim fizičkim dimenzijama.
+                                    </p>
+                                </section>
 
-                    <hr class="section-divider">
+                                <hr class="section-divider">
 
-                    <!-- DUBINA BOJA -->
-                    <section class="content-section">
-                        <h2>6. Dubina boja i kodiranje</h2>
+                                <!-- DUBINA BOJA -->
+                                <section class="content-section">
+                                    <h2>6. Dubina boja i kodiranje</h2>
 
-                        <p>
-                            Dubina boja određuje broj mogućih nijansi po pikselu.
-                        </p>
+                                    <p>
+                                        Dubina boja određuje broj mogućih nijansi po pikselu.
+                                    </p>
 
-                        <ul class="styled-list">
-                            <li>8-bit → 256 boja</li>
-                            <li>16-bit → 65.536 boja</li>
-                            <li>24-bit → 16.777.216 boja</li>
-                            <li>32-bit → 24-bit + Alpha kanal</li>
-                        </ul>
+                                    <ul class="styled-list">
+                                        <li>8-bit → 256 boja</li>
+                                        <li>16-bit → 65.536 boja</li>
+                                        <li>24-bit → 16.777.216 boja</li>
+                                        <li>32-bit → 24-bit + Alpha kanal</li>
+                                    </ul>
 
-                        <div class="highlight-box">
-                            Broj boja = 2^n (gde je n broj bitova)
-                        </div>
+                                    <div class="highlight-box">
+                                        Broj boja = 2^n (gde je n broj bitova)
+                                    </div>
 
-                        <h3>RGB model</h3>
+                                    <h3>RGB model</h3>
 
-                        <p>
-                            Svaki piksel sadrži tri komponente:
-                        </p>
+                                    <p>
+                                        Svaki piksel sadrži tri komponente:
+                                    </p>
 
-                        <ul class="styled-list">
-                            <li>R – crvena</li>
-                            <li>G – zelena</li>
-                            <li>B – plava</li>
-                        </ul>
+                                    <ul class="styled-list">
+                                        <li>R – crvena</li>
+                                        <li>G – zelena</li>
+                                        <li>B – plava</li>
+                                    </ul>
 
-                        <p>
-                            Luminansa se aproksimira formulom:
-                        </p>
+                                    <p>
+                                        Luminansa se aproksimira formulom:
+                                    </p>
 
-                        <pre><code>
+                                    <pre><code>
                 Y = 0.59G + 0.30R + 0.11B
                         </code></pre>
 
-                    </section>
+                                </section>
 
-                    <hr class="section-divider">
+                                <hr class="section-divider">
 
-                    <!-- BANDWIDTH -->
-                    <section class="content-section">
-                        <h2>7. Bandwidth i protok podataka</h2>
+                                <!-- BANDWIDTH -->
+                                <section class="content-section">
+                                    <h2>7. Bandwidth i protok podataka</h2>
 
-                        <p>
-                            Bandwidth predstavlja količinu podataka koja se prenosi u jedinici vremena.
-                        </p>
+                                    <p>
+                                        Bandwidth predstavlja količinu podataka koja se prenosi u jedinici vremena.
+                                    </p>
 
-                        <pre><code>
+                                    <pre><code>
                 Bitrate = rezolucija × dubina boja × FPS
                         </code></pre>
 
-                        <p>
-                            Povećanjem rezolucije ili FPS eksponencijalno raste potreban protok.
-                        </p>
-                    </section>
+                                    <p>
+                                        Povećanjem rezolucije ili FPS eksponencijalno raste potreban protok.
+                                    </p>
+                                </section>
 
-                    <hr class="section-divider">
+                                <hr class="section-divider">
 
-                    <!-- ZAKLJUČAK -->
-                    <section class="content-section">
-                        <h2>Zaključak</h2>
+                                <!-- ZAKLJUČAK -->
+                                <section class="content-section">
+                                    <h2>Zaključak</h2>
 
-                        <p>
-                            Razumevanje strukture digitalne slike, video signala,
-                            dubine boja i memorijskih zahteva predstavlja osnovu
-                            za dalju obradu, kompresiju i distribuciju multimedijalnog sadržaja.
-                        </p>
+                                    <p>
+                                        Razumevanje strukture digitalne slike, video signala,
+                                        dubine boja i memorijskih zahteva predstavlja osnovu
+                                        za dalju obradu, kompresiju i distribuciju multimedijalnog sadržaja.
+                                    </p>
 
-                        <div class="highlight-box">
-                            Multimedija je kombinacija matematičkih, signalnih i računarskih principa,
-                            a ne samo vizuelna prezentacija sadržaja.
-                        </div>
-                    </section>
+                                    <div class="highlight-box">
+                                        Multimedija je kombinacija matematičkih, signalnih i računarskih principa,
+                                        a ne samo vizuelna prezentacija sadržaja.
+                                    </div>
+                                </section>
 
-                </div>
+                            </div>
 
-                <!-- ===============================
+                            <!-- ===============================
                      NAVIGACIJA IZMEĐU LEKCIJA
                 =============================== -->
-                <nav class="lection-nav">
-                    <% if (navigation.prev) { %>
-                        <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.prev.slug %>"
-                           class="lection-nav__link lection-nav__link--prev">
-                            <span class="nav-arrow">←</span>
-                            <span class="nav-text">
-                                <span class="nav-label">Prethodna lekcija</span>
-                                <span class="nav-title"><%= navigation.prev.title %></span>
-                            </span>
-                        </a>
-                    <% } else { %>
-                        <a href="/multimedijalne-aplikacije" 
-                           class="lection-nav__link lection-nav__link--prev">
-                            <span class="nav-arrow">←</span>
-                            <span class="nav-text">
-                                <span class="nav-label">Nazad na</span>
-                                <span class="nav-title">početnu predmeta</span>
-                            </span>
-                        </a>
-                    <% } %>
+                            <nav class="lection-nav">
+                                <% if (navigation.prev) { %>
+                                    <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.prev.slug %>"
+                                        class="lection-nav__link lection-nav__link--prev">
+                                        <span class="nav-arrow">←</span>
+                                        <span class="nav-text">
+                                            <span class="nav-label">Prethodna lekcija</span>
+                                            <span class="nav-title">
+                                                <%= navigation.prev.title %>
+                                            </span>
+                                        </span>
+                                    </a>
+                                    <% } else { %>
+                                        <a href="/multimedijalne-aplikacije"
+                                            class="lection-nav__link lection-nav__link--prev">
+                                            <span class="nav-arrow">←</span>
+                                            <span class="nav-text">
+                                                <span class="nav-label">Nazad na</span>
+                                                <span class="nav-title">početnu predmeta</span>
+                                            </span>
+                                        </a>
+                                        <% } %>
 
-                    <% if (navigation.next) { %>
-                        <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.next.slug %>"
-                           class="lection-nav__link lection-nav__link--next">
-                            <span class="nav-text">
-                                <span class="nav-label">Sledeća lekcija</span>
-                                <span class="nav-title"><%= navigation.next.title %></span>
-                            </span>
-                            <span class="nav-arrow">→</span>
-                        </a>
-                    <% } %>
-                </nav>
+                                            <% if (navigation.next) { %>
+                                                <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.next.slug %>"
+                                                    class="lection-nav__link lection-nav__link--next">
+                                                    <span class="nav-text">
+                                                        <span class="nav-label">Sledeća lekcija</span>
+                                                        <span class="nav-title">
+                                                            <%= navigation.next.title %>
+                                                        </span>
+                                                    </span>
+                                                    <span class="nav-arrow">→</span>
+                                                </a>
+                                                <% } %>
+                            </nav>
 
-            </article>
+                        </article>
 
-        <% } %>
+                        <% } %>
 
-    </main>
-</div>
+            </main>
+        </div>
 
-<%- include('../../../includes/end') %>
+        <%- include('../../../includes/end') %>

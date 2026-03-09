@@ -1,19 +1,52 @@
 /* public/css/lection.css */
 .project-note {
     margin-top: var(--space-xl);
-
     padding: var(--space-md);
-
     background: #fff8e1;
-
     border-left: 4px solid var(--color-warning);
-
     border-radius: var(--border-radius-md);
-
     font-size: var(--text-sm);
-
     color: var(--color-gray-700);
 }
+
+/* ===============================
+   LINK STILOVI
+=============================== */
+
+.link-external {
+    color: var(--color-secondary);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--color-secondary);
+    transition: var(--transition);
+}
+
+.link-external:hover {
+    color: var(--color-primary);
+    border-bottom-style: solid;
+}
+
+.link-video {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    transition: var(--transition);
+}
+
+.link-video:hover {
+    color: var(--color-secondary);
+    transform: translateX(4px);
+}
+
+.link-video::after {
+    content: "▶";
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-left: var(--space-xs);
+}
+
 /* ===============================
    LEKCIJA - GLOBALNI STILOVI
 =============================== */
@@ -337,6 +370,18 @@
 
 .list--icons .list__item:last-child {
     border-bottom: none;
+}
+
+.list__item a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.list__item a:hover {
+    color: var(--color-secondary);
+    transform: translateX(4px);
 }
 
 .list__icon {

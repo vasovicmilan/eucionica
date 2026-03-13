@@ -4,6 +4,7 @@
     <%- include('../../../includes/navigation', { active: 'otvoreno-racunarstvo' }) %>
 
         <div class="lection-container">
+
             <!-- SIDEBAR -->
             <aside class="lection-sidebar">
                 <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
@@ -12,9 +13,6 @@
             <!-- CONTENT -->
             <main class="lection-content">
 
-                <!-- ===============================
-             LEKCIJA NIJE DOSTUPNA
-        =============================== -->
                 <% if (!lection.available) { %>
 
                     <div class="lection-locked">
@@ -27,25 +25,25 @@
                             </strong>.
                         </p>
                         <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
+
                         <a href="/otvoreno-racunarstvo" class="btn btn--primary btn--large">
                             Nazad na predmet
                         </a>
                     </div>
 
-                    <!-- ===============================
-             LEKCIJA JE DOSTUPNA
-        =============================== -->
                     <% } else { %>
 
                         <article class="lection">
 
                             <!-- HEADER -->
                             <header class="lection__header">
+
                                 <div class="lection__meta">
                                     <span class="lection__badge lection__badge--week">
                                         <span class="badge-icon">📅</span>
                                         Nedelja <%= lection.week %>
                                     </span>
+
                                     <span class="lection__badge lection__badge--date">
                                         <span class="badge-icon">📌</span>
                                         <%= lection.formattedDate %>
@@ -61,61 +59,717 @@
                                         <%= lection.description %>
                                     </p>
                                     <% } %>
+
                                         <div class="project-note">
-
                                             ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
-
                                         </div>
+
                             </header>
 
-                            <!-- ===============================
-                     SADRŽAJ LEKCIJE
-                =============================== -->
                             <div class="lection__content">
 
-                                <!-- OVDE DOLAZI SADRŽAJ LEKCIJE -->
-                                <!-- Sadržaj će biti dodat za svaku lekciju posebno -->
+                                <% if (lection.slug==="git-i-kolaborativni-razvoj" ) { %>
+
+                                    <!-- ========================================================= -->
+                                    <!-- ZAŠTO JE POTREBAN KOLABORATIVNI RAZVOJ                    -->
+                                    <!-- ========================================================= -->
+
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Zašto je potreban kolaborativni razvoj</h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Savremeni softverski sistemi retko nastaju radom jedne osobe.
+                                                Većina modernih aplikacija razvija se kroz saradnju više
+                                                programera koji rade paralelno na različitim delovima projekta.
+                                            </p>
+
+                                            <p>
+                                                Kolaborativni razvoj omogućava:
+                                            </p>
+
+                                            <ul>
+                                                <li>podelu posla između članova tima</li>
+                                                <li>brži razvoj softvera</li>
+                                                <li>veću pouzdanost i kvalitet koda</li>
+                                                <li>razmenu znanja između učesnika</li>
+                                            </ul>
+
+                                            <p>
+                                                U open source svetu kolaborativni razvoj predstavlja osnovu
+                                                rada velikih projekata kao što su operativni sistemi,
+                                                programski jezici i razvojni alati.
+                                            </p>
+
+                                        </div>
+                                    </section>
+
+                                    <!-- ========================================================= -->
+                                    <!-- PROBLEMI BEZ KONTROLE VERZIJA                             -->
+                                    <!-- ========================================================= -->
+
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Problemi bez sistema za kontrolu verzija</h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Bez sistema za kontrolu verzija razvoj softvera postaje
+                                                neefikasan i rizičan.
+                                            </p>
+
+                                            <p>Najčešći problemi uključuju:</p>
+
+                                            <ul>
+                                                <li>gubitak prethodnih verzija koda</li>
+                                                <li>prepisivanje tuđih izmena</li>
+                                                <li>nemogućnost praćenja istorije promena</li>
+                                                <li>konflikti kada više ljudi radi na istom fajlu</li>
+                                            </ul>
+
+                                            <p>
+                                                Ovi problemi postaju posebno izraženi u većim timovima
+                                                ili u open source projektima gde učestvuje veliki broj ljudi.
+                                            </p>
+
+                                        </div>
+                                    </section>
+
+                                    <!-- ========================================================= -->
+                                    <!-- ŠTA JE GIT                                                -->
+                                    <!-- ========================================================= -->
+
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Šta je Git</h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Git je <strong>open source sistem za kontrolu verzija</strong>
+                                                koji omogućava praćenje promena u projektu tokom vremena.
+                                            </p>
+
+                                            <p>
+                                                Git beleži svaku promenu u kodu i čuva kompletnu istoriju
+                                                razvoja projekta.
+                                            </p>
+
+                                            <p>
+                                                Git omogućava:
+                                            </p>
+
+                                            <ul>
+                                                <li>rad više ljudi na istom projektu</li>
+                                                <li>vraćanje na starije verzije koda</li>
+                                                <li>pregled promena između verzija</li>
+                                                <li>sigurno eksperimentisanje kroz grane (branches)</li>
+                                            </ul>
+
+                                            <p>
+                                                Zbog svoje pouzdanosti Git je danas postao
+                                                standardni alat za razvoj softvera.
+                                            </p>
+
+                                        </div>
+                                    </section>
+
+                                    <!-- ========================================================= -->
+                                    <!-- GIT VS GITHUB                                             -->
+                                    <!-- ========================================================= -->
+
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Razlika između Git i GitHub</h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Važno je razumeti razliku između pojmova <strong>Git</strong> i
+                                                <strong>GitHub</strong>.
+                                            </p>
+
+                                            <ul>
+                                                <li><strong>Git</strong> je alat koji se instalira na računaru i služi
+                                                    za kontrolu verzija.</li>
+                                                <li><strong>GitHub</strong> je online platforma za čuvanje Git
+                                                    repozitorijuma.</li>
+                                            </ul>
+
+                                            <p>
+                                                Drugim rečima:
+                                            </p>
+
+                                            <ul>
+                                                <li>Git upravlja istorijom promena</li>
+                                                <li>GitHub omogućava saradnju između developera</li>
+                                            </ul>
+
+                                            <p>
+                                                Git može da se koristi i bez GitHub-a, ali GitHub omogućava
+                                                jednostavno deljenje projekata i rad u timu.
+                                            </p>
+
+                                        </div>
+                                    </section>
+
+                                    <!-- ========================================================= -->
+                                    <!-- OSNOVNA IDEJA GIT-A                                       -->
+                                    <!-- ========================================================= -->
+
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Osnovna ideja rada sa Git-om</h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Git koristi <strong>distribuirani model</strong>.
+                                                To znači da svaki developer ima kompletnu kopiju
+                                                projekta i njegove istorije na svom računaru.
+                                            </p>
+
+                                            <p>
+                                                Promene se prvo prave lokalno, a zatim se
+                                                razmenjuju sa drugim članovima tima preko
+                                                zajedničkog repozitorijuma.
+                                            </p>
+
+                                            <ul>
+                                                <li>rad bez stalne internet konekcije</li>
+                                                <li>manji rizik od konflikata</li>
+                                                <li>veća fleksibilnost u razvoju</li>
+                                            </ul>
+
+                                        </div>
+                                    </section>
+
+                                    <!-- ========================================================= -->
+                                    <!-- GITHUB                                                    -->
+                                    <!-- ========================================================= -->
+
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">GitHub kao platforma za saradnju</h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                GitHub je platforma koja omogućava hostovanje Git
+                                                repozitorijuma i saradnju između developera.
+                                            </p>
+
+                                            <p>
+                                                GitHub omogućava:
+                                            </p>
+
+                                            <ul>
+                                                <li>javno deljenje koda</li>
+                                                <li>upravljanje problemima (issues)</li>
+                                                <li>pregled izmena kroz pull request</li>
+                                                <li>organizaciju open source projekata</li>
+                                            </ul>
+
+                                            <p>
+                                                GitHub je jedna od najvažnijih platformi za open source
+                                                razvoj i koristi se širom sveta.
+                                            </p>
+
+                                        </div>
+                                    </section>
+
+                                    <!-- ========================================================= -->
+                                    <!-- KREIRANJE GITHUB NALOGA                                   -->
+                                    <!-- ========================================================= -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">Kreiranje GitHub naloga</h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Da bi koristili GitHub potrebno je napraviti besplatan nalog
+                                                na platformi.
+                                            </p>
+
+                                            <h3>1. Otvaranje GitHub sajta</h3>
+
+                                            <p>Posetite sajt:</p>
+
+                                            <pre><code>https://github.com</code></pre>
+
+                                            <img src="/images/otvoreno-racunarstvo/github_1.png" alt="GitHub homepage">
+
+                                            <h3>2. Registracija naloga</h3>
+
+                                            <p>
+                                                Kliknite na dugme <strong>Sign up</strong> i unesite osnovne podatke.
+                                            </p>
+
+                                            <img src="/images/otvoreno-racunarstvo/github_2.png" alt="GitHub signup">
+
+                                            <h3>3. Prijava putem Google naloga</h3>
+
+                                            <img src="/images/otvoreno-racunarstvo/github_3.png"
+                                                alt="GitHub google login">
+
+                                            <h3>4. Kreiranje naloga</h3>
+
+                                            <img src="/images/otvoreno-racunarstvo/github_4.png"
+                                                alt="GitHub create account">
+
+                                        </div>
+
+                                    </section>
+
+                                    <!-- ========================================================= -->
+                                    <!-- PRIMER GITHUB REPOZITORIJUMA                              -->
+                                    <!-- ========================================================= -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">Primer GitHub repozitorijuma</h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                Nakon kreiranja naloga moguće je napraviti repozitorijum
+                                                koji sadrži projekat i njegovu istoriju izmena.
+                                            </p>
+
+                                            <img src="/images/otvoreno-racunarstvo/github_5.jpg"
+                                                alt="GitHub repository example">
+
+                                            <p>
+                                                Na stranici repozitorijuma mogu se videti:
+                                            </p>
+
+                                            <ul>
+                                                <li>lista fajlova projekta</li>
+                                                <li>istorija commit-a</li>
+                                                <li>grane projekta</li>
+                                                <li>pull request-ovi</li>
+                                            </ul>
+                                            <hr>
+
+                                            <h3>Primer repozitorijuma nakon commit i push operacija</h3>
+
+                                            <p>
+                                                Nakon što programer napravi izmene u projektu i izvrši komande
+                                                <strong>git commit</strong> i <strong>git push</strong>,
+                                                promene postaju vidljive na GitHub repozitorijumu.
+                                            </p>
+
+                                            <p>
+                                                GitHub tada prikazuje:
+                                            </p>
+
+                                            <ul>
+                                                <li>najnovije commit poruke</li>
+                                                <li>autora izmene</li>
+                                                <li>vreme kada je promena napravljena</li>
+                                                <li>istoriju svih prethodnih verzija projekta</li>
+                                            </ul>
+
+                                            <p>
+                                                Na ovaj način moguće je pratiti razvoj projekta kroz vreme
+                                                i jasno videti ko je napravio koju izmenu u kodu.
+                                            </p>
+
+                                            <img src="/images/otvoreno-racunarstvo/github_6.png"
+                                                alt="GitHub repository after commits">
+
+                                            <p>
+                                                Ovaj prikaz pokazuje stanje repozitorijuma nakon što su
+                                                napravljeni novi commit-ovi i poslati na GitHub platformu.
+                                            </p>
+                                        </div>
+
+                                    </section>
+
+                                    <!-- ========================================================= -->
+                                    <!-- GIT WORKFLOW                                              -->
+                                    <!-- ========================================================= -->
+
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Osnovni Git workflow</h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>Tipičan tok rada u Git-u izgleda ovako:</p>
+
+                                            <pre><code>rad na kodu
+↓
+git add
+↓
+git commit
+↓
+git push
+</code></pre>
+
+                                            <p>
+                                                Programer pravi izmene u kodu, dodaje ih u staging
+                                                zonu, kreira commit i zatim šalje promene
+                                                na udaljeni repozitorijum.
+                                            </p>
+
+                                        </div>
+                                    </section>
+
+                                    <!-- ========================================================= -->
+                                    <!-- OSNOVNE GIT KOMANDE                                       -->
+                                    <!-- ========================================================= -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">Osnovne Git komande (Cheat Sheet)</h2>
+
+                                        <div class="lection-section__content">
+
+                                            <h3>1. Kreiranje repozitorijuma</h3>
+
+                                            <pre><code>git init</code></pre>
+
+                                            <h3>2. Kloniranje postojećeg repozitorijuma</h3>
+
+                                            <pre><code>git clone https://github.com/user/project.git</code></pre>
+
+                                            <h3>3. Provera statusa</h3>
+
+                                            <pre><code>git status</code></pre>
+
+                                            <h3>4. Dodavanje fajlova u commit</h3>
+
+                                            <pre><code>git add fajl.txt
+git add .</code></pre>
+
+                                            <h3>5. Kreiranje commit-a</h3>
+
+                                            <pre><code>git commit -m "Opis promene"</code></pre>
+
+                                            <h3>6. Pregled istorije</h3>
+
+                                            <pre><code>git log</code></pre>
+
+                                            <h3>7. Slanje promena na GitHub</h3>
+
+                                            <pre><code>git push</code></pre>
+
+                                            <h3>8. Preuzimanje promena</h3>
+
+                                            <pre><code>git pull</code></pre>
+
+                                            <h3>9. Rad sa granama</h3>
+
+                                            <pre><code>git branch
+git branch nova-grana
+git checkout nova-grana
+git merge nova-grana</code></pre>
+
+                                            <h3>10. Promena udaljenog repozitorijuma</h3>
+
+                                            <pre><code>git remote -v</code></pre>
+
+                                        </div>
+                                    </section>
+
+                                    <!-- ========================================================= -->
+                                    <!-- RAD U OPEN SOURCE                                         -->
+                                    <!-- ========================================================= -->
+
+                                    <section class="lection-section">
+                                        <h2 class="lection-section__title">Kako funkcioniše rad u open source projektima
+                                        </h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                U open source projektima doprinosi se kroz sledeći proces:
+                                            </p>
+
+                                            <ol>
+                                                <li>Fork repozitorijuma</li>
+                                                <li>Kreiranje nove grane</li>
+                                                <li>Izmena koda</li>
+                                                <li>Commit promena</li>
+                                                <li>Pull Request</li>
+                                            </ol>
+
+                                            <p>
+                                                Ovaj proces omogućava održavanje kvaliteta koda
+                                                i kontrolu promena u projektu.
+                                            </p>
+
+                                        </div>
+                                    </section>
+
+                                    <!-- ========================================================= -->
+                                    <!-- VIDEO RESURSI                                             -->
+                                    <!-- ========================================================= -->
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">Video tutorijali</h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>Za bolje razumevanje rada sa Git-om pogledajte sledeće tutorijale:</p>
+
+                                            <ul class="list--icons">
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">📺</span>
+                                                    <a href="https://youtu.be/mAFoROnOfHs?si=wSTrnklvbDGM-hvk"
+                                                        target="_blank" rel="noopener" class="link-video">
+                                                        Git & GitHub Crash Course for Beginners [2026]
+                                                    </a>
+                                                </li>
+
+                                                <li class="list__item">
+                                                    <span class="list__icon">📺</span>
+                                                    <a href="https://youtu.be/6zFRoCBRPSc?si=AwVr92qzZMcuLS_d"
+                                                        target="_blank" rel="noopener" class="link-video">
+                                                        Git and GitHub Tutorial for Beginners [2023-2024] - Crash Course
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+
+                                            <div class="note">
+                                                💡 Preporuka: pokušaj da pratiš tutorijal i napraviš sopstveni Git
+                                                repozitorijum.
+                                            </div>
+
+                                        </div>
+
+                                    </section>
+
+                                    <section class="lection-section">
+
+                                        <h2 class="lection-section__title">Praktična vežba: Prvi Git projekat</h2>
+
+                                        <div class="lection-section__content">
+
+                                            <p>
+                                                U ovoj vežbi studenti će napraviti svoj prvi Git projekat,
+                                                sačuvati izmene kroz commit i postaviti projekat na GitHub.
+                                            </p>
+
+                                            <p>
+                                                Cilj vežbe je razumevanje osnovnog Git workflow-a koji se koristi
+                                                u realnim softverskim projektima.
+                                            </p>
+
+                                            <hr>
+
+                                            <h3>Korak 1 – Kreiranje projekta</h3>
+
+                                            <p>
+                                                Napravite novi direktorijum za projekat:
+                                            </p>
+
+                                            <pre><code>mkdir moj-prvi-git-projekat
+cd moj-prvi-git-projekat</code></pre>
+
+                                            <p>
+                                                Inicijalizujte Git repozitorijum:
+                                            </p>
+
+                                            <pre><code>git init</code></pre>
+
+                                            <hr>
+
+                                            <h3>Korak 2 – Kreiranje prvog fajla</h3>
+
+                                            <p>
+                                                Napravite jednostavan README fajl:
+                                            </p>
+
+                                            <pre><code>touch README.md</code></pre>
+
+                                            <p>
+                                                U fajl upišite kratak opis projekta, na primer:
+                                            </p>
+
+                                            <pre><code># Moj prvi Git projekat
+
+Ovo je moj prvi projekat koji koristim za učenje Git-a.</code></pre>
+
+                                            <hr>
+
+                                            <h3>Korak 3 – Dodavanje fajla u Git</h3>
+
+                                            <p>
+                                                Proverite status repozitorijuma:
+                                            </p>
+
+                                            <pre><code>git status</code></pre>
+
+                                            <p>
+                                                Dodajte fajl u staging zonu:
+                                            </p>
+
+                                            <pre><code>git add README.md</code></pre>
+
+                                            <hr>
+
+                                            <h3>Korak 4 – Prvi commit</h3>
+
+                                            <p>
+                                                Sačuvajte promenu kroz commit:
+                                            </p>
+
+                                            <pre><code>git commit -m "Initial commit"</code></pre>
+
+                                            <p>
+                                                Ovaj korak čuva trenutnu verziju projekta u Git istoriji.
+                                            </p>
+
+                                            <hr>
+
+                                            <h3>Korak 5 – Kreiranje GitHub repozitorijuma</h3>
+
+                                            <p>
+                                                Otvorite GitHub i napravite novi repozitorijum.
+                                            </p>
+
+                                            <p>
+                                                Primer URL-a repozitorijuma:
+                                            </p>
+
+                                            <pre><code>https://github.com/username/moj-prvi-git-projekat</code></pre>
+
+                                            <hr>
+
+                                            <h3>Korak 6 – Povezivanje sa GitHub repozitorijumom</h3>
+
+                                            <pre><code>git remote add origin https://github.com/username/moj-prvi-git-projekat.git</code></pre>
+
+                                            <p>
+                                                Proverite da li je repozitorijum povezan:
+                                            </p>
+
+                                            <pre><code>git remote -v</code></pre>
+
+                                            <hr>
+
+                                            <h3>Korak 7 – Slanje projekta na GitHub</h3>
+
+                                            <pre><code>git branch -M main
+git push -u origin main</code></pre>
+
+                                            <p>
+                                                Nakon ovog koraka projekat će biti vidljiv na GitHub-u.
+                                            </p>
+
+                                            <hr>
+
+                                            <h3>Dodatni zadatak</h3>
+
+                                            <p>
+                                                Nakon osnovne vežbe pokušajte sledeće:
+                                            </p>
+
+                                            <ul>
+
+                                                <li>napravite novi fajl <strong>notes.txt</strong></li>
+
+                                                <li>dodajte ga u Git repozitorijum</li>
+
+                                                <li>napravite novi commit</li>
+
+                                                <li>pošaljite promene na GitHub</li>
+
+                                            </ul>
+
+                                            <hr>
+
+                                            <h3>Napredni zadatak (rad sa granama)</h3>
+
+                                            <p>
+                                                Kreirajte novu granu i napravite izmenu u projektu.
+                                            </p>
+
+                                            <pre><code>git branch nova-grana
+git checkout nova-grana</code></pre>
+
+                                            <p>
+                                                Napravite izmenu u README.md fajlu i zatim uradite commit.
+                                            </p>
+
+                                            <p>
+                                                Na kraju spojite granu sa glavnom granom:
+                                            </p>
+
+                                            <pre><code>git checkout main
+git merge nova-grana</code></pre>
+
+                                            <div class="note">
+                                                💡 Razumevanje grananja (branches) predstavlja jedan od najvažnijih
+                                                koncepata u Git-u i omogućava paralelni razvoj različitih
+                                                funkcionalnosti.
+                                            </div>
+
+                                        </div>
+
+                                    </section>
+
+                                    <% } %>
 
                             </div>
 
-                            <!-- ===============================
-                     NAVIGACIJA IZMEĐU LEKCIJA
-                =============================== -->
+                            <!-- NAVIGACIJA -->
+
                             <nav class="lection-nav">
+
                                 <% if (navigation.prev) { %>
+
                                     <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>"
                                         class="lection-nav__link lection-nav__link--prev">
+
                                         <span class="nav-arrow">←</span>
+
                                         <span class="nav-text">
                                             <span class="nav-label">Prethodna lekcija</span>
                                             <span class="nav-title">
                                                 <%= navigation.prev.title %>
                                             </span>
                                         </span>
+
                                     </a>
+
                                     <% } else { %>
+
                                         <a href="/otvoreno-racunarstvo"
                                             class="lection-nav__link lection-nav__link--prev">
+
                                             <span class="nav-arrow">←</span>
+
                                             <span class="nav-text">
                                                 <span class="nav-label">Nazad na</span>
                                                 <span class="nav-title">početnu predmeta</span>
                                             </span>
+
                                         </a>
+
                                         <% } %>
 
                                             <% if (navigation.next) { %>
+
                                                 <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.next.slug %>"
                                                     class="lection-nav__link lection-nav__link--next">
+
                                                     <span class="nav-text">
                                                         <span class="nav-label">Sledeća lekcija</span>
                                                         <span class="nav-title">
                                                             <%= navigation.next.title %>
                                                         </span>
                                                     </span>
+
                                                     <span class="nav-arrow">→</span>
+
                                                 </a>
+
                                                 <% } %>
+
                             </nav>
 
                         </article>
@@ -123,6 +777,7 @@
                         <% } %>
 
             </main>
+
         </div>
 
         <%- include('../../../includes/end') %>

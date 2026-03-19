@@ -1,6 +1,8 @@
 import {
   getLections,
   getLectionBySlug,
+  exploreHttp,
+  getHandshakeData,
 } from "../../../services/lection.service.js";
 import { findAllAvailablePdfs } from "../../../services/materials.service.js";
 
@@ -147,5 +149,72 @@ export async function getMaterialsPage(req, res, next) {
     res.render("subjects/otvoreno-racunarstvo/materials", result);
   } catch (error) {
     next(error);
+  }
+}
+
+/**
+ * API endpoint za HTTP Explorer
+ * POST /otvoreno-racunarstvo/api/http-explorer
+ */
+export async function exploreHttpEndpoint(req, res, next) {
+  try {
+    const { url, protocol } = req.body;
+
+    // Validacija
+    if (!url) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          message: "URL je obavezan"
+        }
+      });
+    }
+
+    if (protocol && !['http', 'https', 'json'].includes(protocol)) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          message: "Protocol mora biti http, https ili json"
+        }
+      });
+    }
+
+    // Pozovi servis
+    const result = await exploreHttp(url, protocol || 'https');
+
+    // Dodaj handshake podatke za edukaciju
+    if (result.success) {
+      result.handshake = getHandshakeData(protocol || 'https');
+    }
+
+    // Vrati rezultat
+    return res.status(200).json(result);
+
+  } catch (error) {
+    console.error('Greška u exploreHttpEndpoint:', error);
+    return res.status(500).json({
+      success: false,
+      error: {
+        message: 'Interna greška servera',
+        code: 'INTERNAL_ERROR'
+      }
+    });
+  }
+}
+
+/**
+ * API endpoint za handshake podatke
+ * GET /otvoreno-racunarstvo/api/http-explorer/handshake
+ */
+export async function getHandshakeEndpoint(req, res, next) {
+  try {
+    const { protocol } = req.query;
+    const handshake = getHandshakeData(protocol || 'https');
+    return res.status(200).json(handshake);
+  } catch (error) {
+    console.error('Greška u getHandshakeEndpoint:', error);
+    return res.status(500).json({
+      error: 'Interna greška servera'
+    });
   }
 }

@@ -12,9 +12,6 @@
             <!-- CONTENT -->
             <main class="lection-content">
 
-                <!-- ===============================
-             LEKCIJA NIJE DOSTUPNA
-        =============================== -->
                 <% if (!lection.available) { %>
 
                     <div class="lection-locked">
@@ -32,9 +29,6 @@
                         </a>
                     </div>
 
-                    <!-- ===============================
-             LEKCIJA JE DOSTUPNA
-        =============================== -->
                     <% } else { %>
 
                         <article class="lection">
@@ -62,25 +56,608 @@
                                     </p>
                                     <% } %>
                                         <div class="project-note">
-
                                             ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
-
                                         </div>
                             </header>
 
-                            <!-- ===============================
-                     SADRŽAJ LEKCIJE
-                =============================== -->
+                            <!-- SADRŽAJ LEKCIJE -->
                             <div class="lection__content">
 
-                                <!-- OVDE DOLAZI SADRŽAJ LEKCIJE -->
-                                <!-- Sadržaj će biti dodat za svaku lekciju posebno -->
+                                <!-- ========================================================= -->
+                                <!-- UVOD: ŠTA SU PROTOKOLI I STANDARDI                       -->
+                                <!-- ========================================================= -->
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Šta su protokoli i standardi</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            Protokoli i standardi predstavljaju skup pravila koja definišu kako
+                                            različiti
+                                            sistemi međusobno komuniciraju. Oni određuju način slanja, primanja i
+                                            tumačenja
+                                            podataka između računarskih sistema.
+                                        </p>
+                                        <p>
+                                            Bez jasno definisanih protokola i standarda, savremeni informacioni sistemi
+                                            ne
+                                            bi mogli da funkcionišu zajedno. Kao što ljudi koriste zajednički jezik da
+                                            bi se
+                                            razumeli, računari koriste protokole.
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- ZNAČAJ OTVORENIH STANDARDA                                -->
+                                <!-- ========================================================= -->
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Značaj otvorenih standarda</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            <strong>Otvoreni standardi</strong> su javno dostupni i dokumentovani. To
+                                            znači
+                                            da ih svako može implementirati bez ograničenja ili zavisnosti od jednog
+                                            proizvođača.
+                                        </p>
+                                        <p>Otvoreni standardi omogućavaju:</p>
+                                        <ul>
+                                            <li><strong>Interoperabilnost sistema</strong> – različiti uređaji i softver
+                                                mogu da rade zajedno.</li>
+                                            <li><strong>Dugoročnu kompatibilnost</strong> – podaci ostaju čitljivi i
+                                                nakon
+                                                mnogo godina.</li>
+                                            <li><strong>Tehnološku nezavisnost</strong> – nismo vezani za jednog
+                                                proizvođača
+                                                (nema vendor lock-in-a).</li>
+                                            <li><strong>Ravnopravno učešće različitih tehnologija</strong> – svako može
+                                                da
+                                                se takmiči na tržištu.</li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- OTVORENI PROTOKOLI KAO OSNOVA INTERNETA                   -->
+                                <!-- ========================================================= -->
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Otvoreni protokoli kao osnova interneta</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            Internet je zasnovan na otvorenim protokolima koji omogućavaju komunikaciju
+                                            između miliona različitih uređaja i sistema širom sveta.
+                                        </p>
+                                        <p>Zahvaljujući otvorenosti ovih protokola:</p>
+                                        <ul>
+                                            <li>Internet je globalan i dostupan svima.</li>
+                                            <li>Sistemi mogu međusobno da komuniciraju bez obzira na proizvođača.</li>
+                                            <li>Razvoj novih tehnologija je omogućen bez centralne kontrole.</li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- KAKO FUNKCIONIŠE KOMUNIKACIJA (KLIJENT-SERVER)           -->
+                                <!-- ========================================================= -->
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Klijent–server model komunikacije</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            Većina savremenih sistema funkcioniše po <strong>klijent–server
+                                                modelu</strong>,
+                                            gde:
+                                        </p>
+                                        <ol>
+                                            <li><strong>Klijent</strong> šalje zahtev (npr. web browser traži stranicu).
+                                            </li>
+                                            <li><strong>Server</strong> obrađuje zahtev (npr. web server pronalazi
+                                                stranicu).</li>
+                                            <li><strong>Server</strong> vraća odgovor (npr. šalje HTML stranicu nazad).
+                                            </li>
+                                        </ol>
+                                        <p>
+                                            Ovaj model omogućava jasnu podelu uloga i odgovornosti u sistemima
+                                            zasnovanim na
+                                            otvorenim protokolima.
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- TCP/IP – TEMELJ INTERNETA                                 -->
+                                <!-- ========================================================= -->
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">TCP/IP – temelj interneta</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            TCP/IP je osnovni komunikacioni model interneta. Sastoji se iz dva ključna
+                                            protokola:
+                                        </p>
+                                        <ul>
+                                            <li>
+                                                <strong>TCP (Transmission Control Protocol):</strong> odgovoran za
+                                                pouzdan
+                                                prenos podataka. Proverava da li su svi paketi stigli i da li su u
+                                                ispravnom
+                                                redosledu.
+                                            </li>
+                                            <li>
+                                                <strong>IP (Internet Protocol):</strong> odgovoran za adresiranje
+                                                uređaja i
+                                                rutiranje paketa kroz mrežu (pronalaženje puta od pošiljaoca do
+                                                primaoca).
+                                            </li>
+                                        </ul>
+                                        <p>
+                                            Linux i open source mrežni alati su direktno izgrađeni oko TCP/IP modela.
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- HTTP – PROTOKOL WEB-A                                     -->
+                                <!-- ========================================================= -->
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">HTTP – protokol web-a</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            <strong>HTTP (Hypertext Transfer Protocol)</strong> je jedan od najvažnijih
+                                            otvorenih protokola i koristi se za razmenu podataka na web-u.
+                                        </p>
+                                        <p>HTTP omogućava:</p>
+                                        <ul>
+                                            <li>prenos web stranica,</li>
+                                            <li>komunikaciju između klijenta (browser) i servera,</li>
+                                            <li>rad web aplikacija.</li>
+                                        </ul>
+                                        <p>
+                                            HTTP je <strong>tekstualan, otvoren i lako implementabilan</strong>, što ga
+                                            čini
+                                            idealnim za open source.
+                                        </p>
+                                        <p>
+                                            <em>Primer:</em> Browser šalje HTTP request, a server vraća HTTP response sa
+                                            traženom stranicom.
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- HTTPS I SIGURNOST                                         -->
+                                <!-- ========================================================= -->
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">HTTPS i sigurnost</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            <strong>HTTPS = HTTP + kriptografija</strong>. To je sigurna verzija HTTP
+                                            protokola.
+                                        </p>
+                                        <p>HTTPS omogućava:</p>
+                                        <ul>
+                                            <li><strong>Šifrovanje podataka</strong> – niko ko presreće komunikaciju ne
+                                                može
+                                                da pročita sadržaj.</li>
+                                            <li><strong>Zaštitu privatnosti</strong> – podaci o korišćenju ostaju
+                                                privatni.</li>
+                                            <li><strong>Sigurnu autentifikaciju</strong> – potvrđujemo da smo povezani
+                                                sa
+                                                pravim sajtom.</li>
+                                        </ul>
+                                        <p>
+                                            Ovo je ključno za e-trgovinu, login sisteme i zaštitu privatnosti korisnika.
+                                        </p>
+                                        <p>
+                                            Open source alati poput <strong>OpenSSL</strong> i sam Linux čine osnovu
+                                            HTTPS-a.
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- DNS – IMENIK INTERNETA                                    -->
+                                <!-- ========================================================= -->
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">DNS – imenik interneta</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            <strong>DNS (Domain Name System)</strong> prevodi ljudima razumljiva imena u
+                                            IP
+                                            adrese koje računari razumeju.
+                                        </p>
+                                        <p>
+                                            <em>Primer:</em> google.com → 142.250.185.46
+                                        </p>
+                                        <p>
+                                            Bez DNS-a, morali bismo da pamtimo brojeve umesto imena. Zamislite da svaki
+                                            put
+                                            kada želite da posetite neki sajt kucate 142.250.185.46 umesto google.com.
+                                        </p>
+                                        <p>
+                                            DNS serveri često koriste open source softver kao što su
+                                            <strong>BIND</strong>
+                                            ili <strong>Unbound</strong>.
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- FILOZOFIJA OTVORENOSTI                                    -->
+                                <!-- ========================================================= -->
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Protokoli i filozofija otvorenosti</h2>
+                                    <div class="lection-section__content">
+                                        <p>Otvoreni protokoli su:</p>
+                                        <ul>
+                                            <li><strong>dokumentovani</strong> – svako može da pročita kako rade,</li>
+                                            <li><strong>besplatni</strong> – nema licencnih naknada za korišćenje,</li>
+                                            <li><strong>slobodni za implementaciju</strong> – svako može da napiše
+                                                softver
+                                                koji ih koristi.</li>
+                                        </ul>
+                                        <p>To znači:</p>
+                                        <ul>
+                                            <li><strong>Nema vendor lock-in-a</strong> – nismo zarobljeni u ekosistemu
+                                                jedne
+                                                kompanije.</li>
+                                            <li><strong>Zajednica ima kontrolu</strong> – standardi se razvijaju kroz
+                                                dogovor, a ne diktat.</li>
+                                        </ul>
+                                        <p>
+                                            Ovo je direktna filozofija open source pokreta.
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- ORGANIZACIJE KOJE DEFINISU STANDARDE                      -->
+                                <!-- ========================================================= -->
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Organizacije koje definišu standarde</h2>
+                                    <div class="lection-section__content">
+                                        <ul>
+                                            <li>
+                                                <strong>🌐 IETF (Internet Engineering Task Force):</strong> definiše
+                                                internet protokole. Poznata je po dokumentima zvanim <strong>RFC
+                                                    (Request
+                                                    for Comments)</strong>. Primer: HTTP, TCP/IP, DNS.
+                                            </li>
+                                            <li>
+                                                <strong>🌍 W3C (World Wide Web Consortium):</strong> postavlja standarde
+                                                za
+                                                web tehnologije. Primer: HTML, CSS, XML. Osigurava da web radi isto
+                                                svuda.
+                                            </li>
+                                        </ul>
+                                        <div class="note">
+                                            ⚠️ Važno: ove organizacije nisu kompanije, već zajednice eksperata koje rade
+                                            na
+                                            otvorenim standardima za dobrobit svih.
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- BEZBEDNOST I OTVORENI PROTOKOLI                           -->
+                                <!-- ========================================================= -->
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Bezbednost i otvoreni protokoli</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            Iako su otvoreni protokoli javno dokumentovani, to <strong>ne znači da su
+                                                nebezbedni</strong>. Naprotiv, otvorenost omogućava:
+                                        </p>
+                                        <ul>
+                                            <li><strong>Javnu proveru</strong> – hiljade stručnjaka može da pregleda
+                                                protokol i pronađe slabosti.</li>
+                                            <li><strong>Brzo uočavanje problema</strong> – kada se otkrije rupa, brzo se
+                                                reaguje.</li>
+                                            <li><strong>Kontinuirano unapređenje bezbednosti</strong> – protokoli se
+                                                stalno
+                                                popravljaju.</li>
+                                        </ul>
+                                        <p>
+                                            Bezbednost se zasniva na <strong>pravilnoj implementaciji</strong> i
+                                            kriptografiji, a ne na skrivanju pravila (security through obscurity je loša
+                                            praksa).
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- ZAŠTO SU OTVORENI STANDARDI KLJUČNI ZA OPEN SOURCE       -->
+                                <!-- ========================================================= -->
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Zašto su otvoreni standardi ključni za open
+                                        source?</h2>
+                                    <div class="lection-section__content">
+                                        <p>Otvoreni standardi omogućavaju:</p>
+                                        <ul>
+                                            <li>razvoj open source softvera <strong>bez pravnih barijera</strong>,</li>
+                                            <li><strong>kompatibilnost</strong> između različitih sistema (npr. Linux
+                                                server
+                                                može da komunicira sa Windows klijentom),</li>
+                                            <li><strong>slobodu izbora</strong> alata i platformi.</li>
+                                        </ul>
+                                        <p>
+                                            <em>Primer:</em> Firefox (open source) može da otvori sajt pisan u HTML-u
+                                            (otvoreni standard) bez obzira ko ga je pravio.
+                                        </p>
+                                        <div class="note">
+                                            💡 Open source = slobodan softver | Otvoreni standardi = slobodna
+                                            komunikacija
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- JSONPLACEHOLDER - BESPLATNI TESTNI API                   -->
+                                <!-- ========================================================= -->
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">📦 JSONPlaceholder - naš testni partner</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            <strong>JSONPlaceholder</strong> je besplatni, javni REST API koji koristimo
+                                            za testiranje HTTP zahteva u ovoj lekciji. Služi kao "lažni backend" za
+                                            učenje i eksperimentisanje.
+                                        </p>
+
+                                        <div class="note">
+                                            <h4>🌍 Osnovne informacije:</h4>
+                                            <ul>
+                                                <li><strong>URL:</strong>
+                                                    <code>https://jsonplaceholder.typicode.com</code>
+                                                </li>
+                                                <li><strong>Autorizacija:</strong> Nije potrebna (potpuno javno)</li>
+                                                <li><strong>CORS:</strong> Omogućen (radi direktno iz browsera)</li>
+                                                <li><strong>Podrška:</strong> HTTP i HTTPS</li>
+                                            </ul>
+                                        </div>
+
+                                        <h4>📋 Šta sve nudi?</h4>
+                                        <div class="tech-grid">
+                                            <div class="tech-item">
+                                                <span class="tech-icon">📝</span>
+                                                <span>/posts</span>
+                                            </div>
+                                            <div class="tech-item">
+                                                <span class="tech-icon">💬</span>
+                                                <span>/comments</span>
+                                            </div>
+                                            <div class="tech-item">
+                                                <span class="tech-icon">📸</span>
+                                                <span>/photos</span>
+                                            </div>
+                                            <div class="tech-item">
+                                                <span class="tech-icon">👥</span>
+                                                <span>/users</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="note">
+                                            💡 U interaktivnoj vežbi ispod, svi zahtevi idu upravo na JSONPlaceholder.
+                                            Probaj sam da pošalješ zahtev i vidi kako izgleda pravi API odgovor!
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- INTERAKTIVNA VEŽBA: HTTP EXPLORER                         -->
+                                <!-- ========================================================= -->
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">🔬 Interaktivna vežba: HTTP Explorer</h2>
+                                    <div class="lection-section__content">
+
+                                        <p>
+                                            U ovoj vežbi ćemo direktno komunicirati sa JSONPlaceholder serverom
+                                            koristeći HTTP protokol.
+                                            Videćemo kako izgledaju zahtevi i odgovori, i šta se dešava "iza scene".
+                                        </p>
+
+                                        <!-- HTTP VS HTTPS DEMO -->
+                                        <div class="note">
+                                            <h3>🌐 HTTP vs HTTPS</h3>
+
+                                            <form id="httpForm" class="form">
+                                                <div class="form__group">
+                                                    <span class="form__label">Izaberi endpoint:</span>
+
+                                                    <div class="form__radio-group">
+                                                        <input type="radio" id="httpRadio" name="endpoint" value="http"
+                                                            class="form__radio" checked>
+                                                        <label for="httpRadio">
+                                                            <span class="badge badge--danger">HTTP (nebezbedno)</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="form__radio-group">
+                                                        <input type="radio" id="httpsRadio" name="endpoint"
+                                                            value="https" class="form__radio">
+                                                        <label for="httpsRadio">
+                                                            <span class="badge badge--success">HTTPS (bezbedno)</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="form__radio-group">
+                                                        <input type="radio" id="jsonRadio" name="endpoint" value="json"
+                                                            class="form__radio">
+                                                        <label for="jsonRadio">
+                                                            <span class="badge badge--info">JSON API</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form__group">
+                                                    <label for="customUrl" class="form__label">URL:</label>
+                                                    <div class="lection__url-group">
+                                                        <span class="lection__url-prefix">https://</span>
+                                                        <input type="text" id="customUrl"
+                                                            class="form__input lection__url-input"
+                                                            value="jsonplaceholder.typicode.com/posts/1">
+                                                    </div>
+                                                </div>
+
+                                                <button type="submit" class="btn btn--primary">
+                                                    Pošalji zahtev ➡️
+                                                </button>
+                                            </form>
+
+                                            <!-- Prikaz statusa -->
+                                            <div id="requestStatus" class="lection__status"></div>
+
+                                            <!-- Prikaz odgovora -->
+                                            <pre id="responseContainer"
+                                                class="lection__response">Čekam tvoj zahtev...</pre>
+
+                                            <!-- SSL/TLS Handshake info -->
+                                            <div id="handshakeInfo" class="lection__handshake d-none">
+                                                <strong id="handshakeTitle" class="lection__handshake-title">🔒 SSL/TLS
+                                                    Handshake</strong>
+                                                <pre id="handshakeDetails"
+                                                    class="lection__handshake-details">Učitavanje...</pre>
+                                            </div>
+                                        </div>
+
+                                        <!-- Terminal simulacija sa slikama -->
+                                        <h3>🖥️ Kako to izgleda u terminalu?</h3>
+
+                                        <div class="lection__flex-grid">
+                                            <!-- HTTP Primer - Slika -->
+                                            <div class="lection__flex-item">
+                                                <div class="lection__terminal">
+                                                    <div class="lection__terminal-header">
+                                                        📡 HTTP Request - curl output
+                                                    </div>
+                                                    <img src="/images/otvoreno-racunarstvo/http-curl.png"
+                                                        alt="HTTP curl output" class="w-full">
+                                                </div>
+                                            </div>
+
+                                            <!-- HTTPS Primer - Slika -->
+                                            <div class="lection__flex-item">
+                                                <div class="lection__terminal">
+                                                    <div class="lection__terminal-header">
+                                                        🔒 HTTPS Request - curl output
+                                                    </div>
+                                                    <img src="/images/otvoreno-racunarstvo/https-curl.png"
+                                                        alt="HTTPS curl output" class="w-full">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Objašnjenje slika -->
+                                        <div class="note">
+                                            <h4>🔍 Šta vidimo na slikama?</h4>
+                                            <ul>
+                                                <li><strong class="text-danger">HTTP (levo):</strong> Port 80, nema TLS
+                                                    handshake-a, podaci u čistom tekstu, HTTP/1.1</li>
+                                                <li><strong class="text-success">HTTPS (desno):</strong> Port 443,
+                                                    TLSv1.3 handshake, verifikacija sertifikata, HTTP/2</li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Tekstualna verzija za čitače (opciono) -->
+                                        <details class="note">
+                                            <summary>📄 Prikaži tekstualnu verziju curl komandi
+                                            </summary>
+                                            <div class="lection__flex-grid">
+                                                <!-- HTTP Primer - tekst -->
+                                                <div class="lection__flex-item">
+                                                    <div class="lection__terminal">
+                                                        <div class="lection__terminal-header">
+                                                            📡 HTTP Request (curl)
+                                                        </div>
+                                                        <pre class="lection__terminal-content"><code>curl -v http://jsonplaceholder.typicode.com/posts/1
+
+# U zaglavlju odgovora videćeš:
+&lt; HTTP/1.1 200 OK
+&lt; Content-Type: application/json
+&lt; Content-Length: 292</code></pre>
+                                                    </div>
+                                                </div>
+
+                                                <!-- HTTPS Primer - tekst -->
+                                                <div class="lection__flex-item">
+                                                    <div class="lection__terminal">
+                                                        <div class="lection__terminal-header">
+                                                            🔒 HTTPS Request (curl)
+                                                        </div>
+                                                        <pre class="lection__terminal-content"><code>curl -v https://jsonplaceholder.typicode.com/posts/1
+
+# SSL/TLS handshake detalji:
+* SSL connection using TLSv1.3
+* ALPN: server accepted http/1.1
+* Server certificate:
+*   subject: CN=typicode.com
+*   SSL certificate verify ok</code></pre>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </details>
+
+                                        <!-- Detaljno objašnjenje handshake-a -->
+                                        <div class="note">
+                                            <h4>🔐 SSL/TLS Handshake - Šta se zapravo dešava?</h4>
+                                            <ol>
+                                                <li><strong>Client Hello</strong> - Browser šalje listu podržanih
+                                                    enkripcija</li>
+                                                <li><strong>Server Hello</strong> - Server bira enkripciju i šalje
+                                                    sertifikat</li>
+                                                <li><strong>Verifikacija</strong> - Browser proverava sertifikat</li>
+                                                <li><strong>Key Exchange</strong> - Razmena ključeva za sigurnu
+                                                    komunikaciju</li>
+                                                <li><strong>Change Cipher Spec</strong> - Sva dalja komunikacija je
+                                                    šifrovana</li>
+                                            </ol>
+                                        </div>
+
+                                        <div class="note">
+                                            💡 Probaj: Pošalji zahtev na
+                                            <strong>http://jsonplaceholder.typicode.com/posts/1</strong> (nebezbedno)
+                                            i <strong>https://jsonplaceholder.typicode.com/posts/1</strong> (bezbedno).
+                                            Obrati pažnju na to što moderni browseri često blokiraju mešani sadržaj!
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- ZAKLJUČAK                                                 -->
+                                <!-- ========================================================= -->
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Šta smo naučili?</h2>
+                                    <div class="lection-section__content">
+                                        <ul>
+                                            <li>Protokoli i standardi su pravila komunikacije – bez njih bi nastao haos.
+                                            </li>
+                                            <li>Otvoreni standardi su javni i omogućavaju interoperabilnost i slobodu
+                                                izbora.</li>
+                                            <li>Internet počiva na otvorenim protokolima kao što su TCP/IP, HTTP i DNS.
+                                            </li>
+                                            <li><strong>JSONPlaceholder</strong> je besplatni testni API koji koristimo
+                                                za praktično učenje.</li>
+                                            <li>Otvorenost ne znači nesigurnost – naprotiv, omogućava bolju proveru i
+                                                bezbednost.</li>
+                                            <li>Otvoreni standardi i open source su neraskidivo povezani i čine osnovu
+                                                modernih informacionih sistema.</li>
+                                        </ul>
+                                    </div>
+                                </section>
 
                             </div>
 
-                            <!-- ===============================
-                     NAVIGACIJA IZMEĐU LEKCIJA
-                =============================== -->
+                            <!-- NAVIGACIJA -->
                             <nav class="lection-nav">
                                 <% if (navigation.prev) { %>
                                     <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>"
@@ -125,4 +702,8 @@
             </main>
         </div>
 
+        <!-- JavaScript za interaktivnu vežbu -->
+        <script src="/public/js/otvoreno-racunarstvo/http-explorer.js"></script>
+        <!-- JavaScript za lightbox prikaz slika -->
+        <script src="/public/js/lightbox.js"></script>
         <%- include('../../../includes/end') %>

@@ -672,3 +672,373 @@
 .lection__content pre::-webkit-scrollbar-thumb:hover {
     background: rgba(255,255,255,0.4);
 }
+
+/* ===============================
+   INTERAKTIVNA VEŽBA - HTTP EXPLORER
+=============================== */
+
+/* Status blokovi */
+.lection__status {
+    margin: var(--space-md) 0;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--border-radius-md);
+    font-family: monospace;
+    font-size: var(--text-sm);
+    background: var(--color-gray-100);
+    border-left: 4px solid var(--color-gray-400);
+}
+
+.lection__status--info {
+    background: var(--color-info-light, #e1f5fe);
+    border-left-color: var(--color-info, #0288d1);
+    color: var(--color-info-dark, #01579b);
+}
+
+.lection__status--success {
+    background: var(--color-success-light, #e8f5e9);
+    border-left-color: var(--color-success, #2e7d32);
+    color: var(--color-success-dark, #1b5e20);
+}
+
+.lection__status--warning {
+    background: var(--color-warning-light, #fff8e1);
+    border-left-color: var(--color-warning, #f57c00);
+    color: var(--color-warning-dark, #bf360c);
+}
+
+.lection__status--error {
+    background: var(--color-danger-light, #ffebee);
+    border-left-color: var(--color-danger, #c62828);
+    color: var(--color-danger-dark, #8b0000);
+}
+
+/* Odgovor kontejner */
+.lection__response {
+    background: var(--color-gray-900, #0f172a);
+    color: var(--color-gray-100, #e2e8f0);
+    padding: var(--space-md);
+    border-radius: var(--border-radius-md);
+    overflow-x: auto;
+    min-height: 100px;
+    margin: var(--space-md) 0;
+    font-family: "Fira Code", "Courier New", monospace;
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    white-space: pre-wrap;
+    border: 1px solid var(--color-gray-700);
+    position: relative;
+}
+
+.lection__response::before {
+    content: "response";
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.4);
+}
+
+/* Handshake blok */
+.lection__handshake {
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+    font-size: var(--text-sm);
+    background: var(--color-gray-100);
+    border-left: 4px solid var(--color-gray-400);
+}
+
+.lection__handshake--http {
+    background: var(--color-danger-light, #ffebee);
+    border-left-color: var(--color-danger, #c62828);
+}
+
+.lection__handshake--https {
+    background: var(--color-success-light, #e8f5e9);
+    border-left-color: var(--color-success, #2e7d32);
+}
+
+.lection__handshake--json {
+    background: var(--color-info-light, #e1f5fe);
+    border-left-color: var(--color-info, #0288d1);
+}
+
+.lection__handshake-title {
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+    display: block;
+}
+
+.lection__handshake-title--http {
+    color: var(--color-danger-dark, #8b0000);
+}
+
+.lection__handshake-title--https {
+    color: var(--color-success-dark, #1b5e20);
+}
+
+.lection__handshake-title--json {
+    color: var(--color-info-dark, #01579b);
+}
+
+.lection__handshake-details {
+    margin: var(--space-xs) 0 0 0;
+    background-color: transparent;
+    padding: 0;
+    font-size: var(--text-xs);
+    color: var(--color-gray-800);
+    font-family: "Fira Code", monospace;
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
+/* URL grupa */
+.lection__url-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-md);
+}
+
+.lection__url-prefix {
+    background-color: var(--color-gray-200);
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-gray-300);
+    border-right: none;
+    border-radius: var(--border-radius-md) 0 0 var(--border-radius-md);
+    font-family: monospace;
+    font-size: var(--text-sm);
+    color: var(--color-gray-700);
+    height: 42px;
+    display: flex;
+    align-items: center;
+}
+
+.lection__url-input {
+    border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0 !important;
+    height: 42px;
+}
+
+/* Flex grid */
+.lection__flex-grid {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin: var(--space-lg) 0;
+}
+
+.lection__flex-item {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Terminal za kod */
+.lection__terminal {
+    background-color: var(--color-gray-900);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    margin: var(--space-md) 0;
+    border: 1px solid var(--color-gray-700);
+}
+
+.lection__terminal-header {
+    background-color: var(--color-gray-800);
+    color: var(--color-gray-300);
+    padding: var(--space-xs) var(--space-md);
+    font-size: var(--text-xs);
+    border-bottom: 1px solid var(--color-gray-700);
+    font-family: monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.lection__terminal-content {
+    margin: 0;
+    padding: var(--space-md);
+    font-family: "Fira Code", monospace;
+    font-size: var(--text-xs);
+    color: var(--color-success);
+    overflow-x: auto;
+    background-color: var(--color-gray-900);
+    line-height: 1.6;
+    white-space: pre;
+}
+
+@media (min-width: 768px) {
+    .lection__terminal-content {
+        font-size: var(--text-sm);
+        padding: var(--space-lg);
+    }
+}
+
+/* Badge varijante - nadogradnja postojećih */
+.badge--danger {
+    background-color: var(--color-danger, #dc3545);
+    color: white;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge--success {
+    background-color: var(--color-success, #28a745);
+    color: white;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge--info {
+    background-color: var(--color-info, #17a2b8);
+    color: white;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* ===============================
+   LIGHTBOX ZA PRIKAZ SLIKA
+=============================== */
+
+/* Overlay */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    animation: lightboxFadeIn 0.3s ease;
+}
+
+/* Prikaz lightbox-a kada nije sakriven */
+.lightbox-overlay:not(.d-none) {
+    display: flex;
+}
+
+@keyframes lightboxFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Lightbox kontejner */
+.lightbox-container {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    margin: auto;
+    animation: lightboxZoomIn 0.3s ease;
+}
+
+@keyframes lightboxZoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Lightbox slika */
+.lightbox-image {
+    display: block;
+    max-width: 100%;
+    max-height: 90vh;
+    margin: 0 auto;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-xl);
+    border: 2px solid var(--color-white);
+}
+
+/* Lightbox slika kada je sakrivena */
+.lightbox-image.d-none {
+    display: none;
+}
+
+/* Dugme za zatvaranje */
+.lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-gray-900);
+    cursor: pointer;
+    border: none;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+    z-index: 10000;
+}
+
+.lightbox-close:hover {
+    transform: scale(1.1);
+    background-color: var(--color-danger);
+    color: var(--color-white);
+}
+
+/* Dugme za zatvaranje na mobilnom */
+@media (max-width: 768px) {
+    .lightbox-close {
+        top: 10px;
+        right: 10px;
+    }
+}
+
+/* Indikator učitavanja */
+.lightbox-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-white);
+    font-size: 2rem;
+    animation: spin 1s linear infinite;
+}
+
+.lightbox-loading.d-none {
+    display: none;
+}
+
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Kursor za slike koje se mogu kliknuti */
+.lection__terminal img {
+    cursor: pointer;
+    transition: var(--transition);
+    display: block;
+    width: 100%;
+}
+
+.lection__terminal img:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Utility za overflow */
+.overflow-hidden {
+    overflow: hidden;
+}
+
+/* Dodatni utility za prikaz */
+.d-flex {
+    display: flex;
+}

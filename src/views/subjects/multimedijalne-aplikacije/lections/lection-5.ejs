@@ -43,12 +43,10 @@
                             <header class="lection__header">
                                 <div class="lection__meta">
                                     <span class="lection__badge lection__badge--week">
-                                        <span class="badge-icon">📅</span>
-                                        Nedelja <%= lection.week %>
+                                        📅 Nedelja <%= lection.week %>
                                     </span>
                                     <span class="lection__badge lection__badge--date">
-                                        <span class="badge-icon">📌</span>
-                                        <%= lection.formattedDate %>
+                                        📌 <%= lection.formattedDate %>
                                     </span>
                                 </div>
 
@@ -69,10 +67,169 @@
                             </header>
 
                             <!-- ===============================
-                     SADRŽAJ LEKCIJE
+                     SADRŽAJ LEKCIJE (na osnovu prezentacije)
                 =============================== -->
                             <div class="lection__content">
 
+                                <!-- UVOD -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Uvod u video produkciju</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            U okviru ove lekcije bavimo se osnovama video produkcije – od opreme u studiju do načina
+                                            realizacije TV programa. Fokus je na komponentama video sistema, njihovom povezivanju i ulozi u
+                                            stvaranju televizijskog sadržaja.
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- VIDEO REŽIJA -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Video režija i radna okruženja</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            Režija predstavlja centralno mesto odakle se upravlja celim produkcijskim procesom.
+                                            Sastoji se od:
+                                        </p>
+                                        <ul class="list">
+                                            <li>monitorskog zida (multiview) – prikaz svih ulaznih signala</li>
+                                            <li>video miksera – uređaja za selekciju i obradu slike</li>
+                                            <li>audio režije – kontrola zvuka</li>
+                                            <li>komunikacionog sistema (talkback) – veza sa kamerama i terenom</li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                                <!-- VIDEO MIKSERI -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Video mikseri – osnovni elementi</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            Video mikser (switcher) omogućava biranje i kombinovanje više ulaznih signala u jedan izlazni program.
+                                            Najčešće korišćeni model u studijskim uslovima je <strong>Blackmagic ATEM 2 M/E</strong>.
+                                        </p>
+                                        <h3>Karakteristike miksera</h3>
+                                        <ul class="list">
+                                            <li>16 SD/HD-SDI ulaza + HDMI ulaz</li>
+                                            <li>2 M/E (miks-efekta) za nezavisnu obradu signala</li>
+                                            <li>više programskih i multiview izlaza</li>
+                                            <li>mogućnost rada bez eksterne reference (genlock)</li>
+                                        </ul>
+                                        <h3>Načini upravljanja</h3>
+                                        <ul class="list">
+                                            <li>broadcast panel (fizička konzola)</li>
+                                            <li>softver (ATEM Software Control) – omogućava rad sa više računara, unos grafike, key efekte</li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                                <!-- EFEKTI -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Vrste prelaza i efekata</h2>
+                                    <div class="lection-section__content">
+                                        <ul class="list">
+                                            <li><strong>Cut (rez)</strong> – trenutna promena izvora</li>
+                                            <li><strong>Mix (pretapanje)</strong> – postepeno ukidanje jednog i uvođenje drugog signala</li>
+                                            <li><strong>Wipe</strong> – prelaz pomoću geometrijskih oblika (krug, kvadrat, zvezda…)</li>
+                                            <li><strong>Key (ključ)</strong> – selektivno uklapanje slike preko druge (luminance key, chroma key)</li>
+                                            <li><strong>DVE</strong> – digitalni video efekti (pomeranje, rotacija, skaliranje)</li>
+                                        </ul>
+                                        <p class="note">
+                                            Mikser poseduje i ugrađenu memoriju za grafiku (logotipe, potpise), koja se poziva direktno sa panela ili kroz softver.
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- KAMERE -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Tipovi kamera u produkciji</h2>
+                                    <div class="lection-section__content">
+                                        <ul class="list">
+                                            <li><strong>Studijske kamere</strong> – montirane na stativ, bez medijuma, povezane preko CCU (kontrolne jedinice)</li>
+                                            <li><strong>EFP kamere</strong> – za terenske prenose, slične studijskim ali prilagođene mobilnoj upotrebi</li>
+                                            <li><strong>ENG kamere (kamkorderi)</strong> – samostalni uređaji sa ugrađenim snimačem (P2, SDHC kartice)</li>
+                                            <li><strong>PTZ kamere</strong> – daljinski upravljive kamere za specifične kadrove (total, detalji, ptičja perspektiva)</li>
+                                            <li><strong>GoPro kamere</strong> – kompaktne, otporne, koriste se za ekstremne kadrove ili 360° snimanje</li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                                <!-- STUDIJSKI KAMERNSKI LANAC -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Studijski kamerni lanac (CCU i RCP)</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            Studijska kamera nije samostalan uređaj – čini je više komponenti:
+                                        </p>
+                                        <ul class="list">
+                                            <li>glava kamere + objektiv + viewfinder</li>
+                                            <li>CCU (Camera Control Unit) – bazna stanica koja povezuje kameru sa sistemom</li>
+                                            <li>RCP/OCP (Remote/Operation Control Panel) – daljinska kontrola parametara kamere</li>
+                                        </ul>
+                                        <p>
+                                            Preko RCP panela podešavaju se: balans belog i crnog, otvor blende, gama korekcija, balans boja.
+                                            Master Setup Panel (MSP) omogućava istovremeno podešavanje više kamera.
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- OBJEKTIVI -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Objektivi – žižna daljina i vrste</h2>
+                                    <div class="lection-section__content">
+                                        <ul class="list">
+                                            <li><strong>Širokougaoni</strong> – kratka žižna daljina, širok ugao snimanja</li>
+                                            <li><strong>Normalni</strong> – približno odgovara vidnom polju ljudskog oka</li>
+                                            <li><strong>Teleobjektivi</strong> – velika žižna daljina, ugao je uži, približava udaljene objekte</li>
+                                            <li><strong>Zoom objektivi</strong> – promenljiva žižna daljina (odnos max/min daje zoom faktor)</li>
+                                            <li><strong>Makro</strong> – za snimanje iz male udaljenosti</li>
+                                            <li><strong>Riblje oko</strong> – ekstremno širok ugao (do 180°)</li>
+                                        </ul>
+                                        <p class="note">
+                                            Žižna daljina (mm) direktno utiče na ugao vidnog polja – veća žižna daljina = uži ugao, veće uvećanje.
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- OPREMA ZA SNIMANJE I EMITOVANJE -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Snimači i playout sistemi</h2>
+                                    <div class="lection-section__content">
+                                        <h3>HyperDeck Studio</h3>
+                                        <p>
+                                            Profesionalni snimač koji zapisuje na SSD diskove. Podržava Ultra HD 4K, automatski prelazak na drugi disk,
+                                            mogućnost kontrole preko miksera.
+                                        </p>
+                                        <h3>PlayOut (video server)</h3>
+                                        <p>
+                                            Računar zadužen za emitovanje programa 24/7 prema unapred definisanoj šemi. Softveri poput Elements Playout,
+                                            VMix, MagicSoft Playout omogućavaju reprodukciju, grafiku i ingest.
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- PRENOS SA TERENA -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">4G prenos – RANAC link</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            Za direktna uključenja sa udaljenih lokacija koristi se 4G prenos. Predajna stanica ima više SIM kartica
+                                            različitih operatera, čime se obezbeđuje stabilnost veze. Prijemna stanica u mašinskoj sobi uvezuje signal
+                                            u sistem.
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- ZAKLJUČAK -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Zaključak</h2>
+                                    <div class="lection-section__content">
+                                        <p>
+                                            Savremena video produkcija podrazumeva integraciju različitih uređaja – od kamera preko miksera do playout sistema.
+                                            Razumevanje njihovih karakteristika i načina povezivanja ključno je za uspešnu realizaciju TV programa.
+                                        </p>
+                                    </div>
+                                </section>
 
                             </div>
 

@@ -10,6 +10,14 @@ import { errors } from "../../../helpers/error.helper.js";
 
 import { safeString } from "../../../helpers/utils.helper.js";
 
+import path from 'path';
+import { fileURLToPath } from 'url';
+import sharp from 'sharp';
+
+// __dirname za ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 export async function getIndexPage(req, res, next) {
   try {
     const result = await getLections("otvoreno-racunarstvo");
@@ -217,4 +225,72 @@ export async function getHandshakeEndpoint(req, res, next) {
       error: 'Interna greška servera'
     });
   }
+}
+
+/**
+ * JSON example endpoint
+ * GET /api-example/json
+ */
+export async function getJsonExample(req, res) {
+  res.json({
+    id: 1,
+    title: 'example JSON odgovor',
+    body: 'Ovo je JSON koji vraća naš server za potrebe iframe demonstracije.',
+    userId: 1,
+    timestamp: new Date().toISOString()
+  });
+}
+
+/**
+ * HTML example endpoint
+ * GET /api-example/html
+ */
+export async function getHtmlExample(req, res) {
+    res.render('subjects/otvoreno-racunarstvo/api-example.ejs', {
+        // Možeš proslediti i dodatne podatke ako želiš
+    });
+}
+
+/**
+ * Slika example endpoint
+ * GET /api-example/image
+ * Vraća postojeću sliku iz public/images/example-image.png
+ */
+export async function getImageExample(req, res) {
+  const imagePath = path.join(process.cwd(), 'src', 'data', 'images', 'otvoreno-racunarstvo', 'api-example.png');
+  
+  try {
+    // Pokušaj da učitaš i skaliraš sliku
+    const buffer = await sharp(imagePath)
+      .resize(800, 600, { fit: 'inside' })
+      .png()
+      .toBuffer();
+    
+    res.setHeader('Content-Type', 'image/png');
+    res.send(buffer);
+  } catch (err) {
+    console.log(err);
+    // Ako slika ne postoji ili je oštećena, vrati običan tekst
+    res.status(404).type('text/plain').send('Slika nije pronađena');
+  }
+}
+
+/**
+ * PDF example endpoint
+ * GET /api-example/pdf
+ * Vraća postojeći PDF fajl iz public/files/example.pdf
+ */
+export async function getPdfExample(req, res) {
+  console.log(__dirname);
+  const pdfPath = path.join(__dirname, '../../../../src/public/pdfs/api-example.pdf');
+  console.log(pdfPath);
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', 'inline; filename="api-example.pdf"');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.sendFile(pdfPath, (err) => {
+    if (err) {
+      console.error('Greška pri slanju PDF-a:', err);
+      res.status(404).send('PDF dokument nije pronađen');
+    }
+  });
 }

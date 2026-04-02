@@ -51,7 +51,7 @@
       "description": "Primena otvorenih principa na Internet of Things uređaje, protokole (MQTT, CoAP), hardver i softver u IoT ekosistemu.",
       "template": "lection-6",
       "styles": "lection-6",
-      "date": "2026-04-03",
+      "date": "2026-04-10",
       "week": 6
     },
     {
@@ -60,7 +60,7 @@
       "description": "Pravni okvir otvorenog softvera: MIT, GPL, Apache, Creative Commons licence i pravila korišćenja, deljenja i izmena.",
       "template": "lection-7",
       "styles": "lection-7",
-      "date": "2026-04-10",
+      "date": "2026-04-17",
       "week": 7
     },
     {
@@ -69,7 +69,7 @@
       "description": "Pregled open source alata u različitim oblastima – razvoj, multimedija, internet aplikacije, veštačka inteligencija.",
       "template": "lection-8",
       "styles": "lection-8",
-      "date": "2026-04-17",
+      "date": "2026-04-24",
       "week": 8
     }
   ],

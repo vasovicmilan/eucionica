@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.example-card {
+    max-width: 800px;
+    width: 100%;
+    background: white;
+    border-radius: 28px;
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.example-card:hover {
+    transform: scale(1.01);
+}
+
+.example-header {
+    background: #3b82f6;
+    padding: 1.8rem;
+    color: white;
+}
+
+.example-header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.example-header p {
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+.example-header code {
+    background: rgba(255,255,255,0.2);
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+}
+
+.example-body {
+    padding: 2rem;
+    color: #1e293b;
+    line-height: 1.5;
+}
+
+.example-body p {
+    margin-bottom: 1rem;
+}
+
+.example-body hr {
+    margin: 1.5rem 0;
+    border: none;
+    height: 1px;
+    background: #e2e8f0;
+}
+
+.example-body h3 {
+    margin: 1rem 0 0.5rem;
+}
+
+.example-body ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.example-body li {
+    margin-bottom: 0.5rem;
+}
+
+.example-info {
+    background: #eef2ff;
+    padding: 1rem;
+    border-radius: 16px;
+    margin-top: 1.5rem;
+    border-left: 5px solid #3b82f6;
+    font-size: 0.9rem;
+}
+
+.example-footer {
+    background: #f1f5f9;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #475569;
+}

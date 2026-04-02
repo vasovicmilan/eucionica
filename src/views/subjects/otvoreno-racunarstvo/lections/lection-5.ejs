@@ -1,128 +1,516 @@
-<%- include('../../../includes/head', { title: lection.title, pageDescription: lection.description, pageStyles:
-    pageStyles }) %>
+<%- include('../../../includes/head', { title: lection.title, pageDescription: lection.description, pageStyles: pageStyles }) %>
 
-    <%- include('../../../includes/navigation', { active: 'otvoreno-racunarstvo' }) %>
+<%- include('../../../includes/navigation', { active: 'otvoreno-racunarstvo' }) %>
 
-        <div class="lection-container">
-            <!-- SIDEBAR -->
-            <aside class="lection-sidebar">
-                <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
-            </aside>
+<div class="lection-container">
+    <!-- SIDEBAR -->
+    <aside class="lection-sidebar">
+        <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
+    </aside>
 
-            <!-- CONTENT -->
-            <main class="lection-content">
+    <!-- CONTENT -->
+    <main class="lection-content">
 
-                <!-- ===============================
-             LEKCIJA NIJE DOSTUPNA
-        =============================== -->
-                <% if (!lection.available) { %>
+        <% if (!lection.available) { %>
 
-                    <div class="lection-locked">
-                        <div class="lection-locked__icon">🔒</div>
-                        <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
-                        <p class="lection-locked__text">
-                            Ova lekcija postaje dostupna
-                            <strong>
-                                <%= lection.formattedDate %>
-                            </strong>.
-                        </p>
-                        <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
-                        <a href="/otvoreno-racunarstvo" class="btn btn--primary btn--large">
-                            Nazad na predmet
-                        </a>
+            <div class="lection-locked">
+                <div class="lection-locked__icon">🔒</div>
+                <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
+                <p class="lection-locked__text">
+                    Ova lekcija postaje dostupna
+                    <strong>
+                        <%= lection.formattedDate %>
+                    </strong>.
+                </p>
+                <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
+                <a href="/otvoreno-racunarstvo" class="btn btn--primary btn--large">
+                    Nazad na predmet
+                </a>
+            </div>
+
+        <% } else { %>
+
+            <article class="lection">
+
+                <!-- HEADER -->
+                <header class="lection__header">
+                    <div class="lection__meta">
+                        <span class="lection__badge lection__badge--week">
+                            <span class="badge-icon">📅</span>
+                            Nedelja <%= lection.week %>
+                        </span>
+                        <span class="lection__badge lection__badge--date">
+                            <span class="badge-icon">📌</span>
+                            <%= lection.formattedDate %>
+                        </span>
                     </div>
 
-                    <!-- ===============================
-             LEKCIJA JE DOSTUPNA
-        =============================== -->
-                    <% } else { %>
+                    <h1 class="lection__title">
+                        <%= lection.title %>
+                    </h1>
 
-                        <article class="lection">
+                    <% if (lection.description) { %>
+                        <p class="lection__description">
+                            <%= lection.description %>
+                        </p>
+                    <% } %>
+                    <div class="project-note">
+                        ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
+                    </div>
+                </header>
 
-                            <!-- HEADER -->
-                            <header class="lection__header">
-                                <div class="lection__meta">
-                                    <span class="lection__badge lection__badge--week">
-                                        <span class="badge-icon">📅</span>
-                                        Nedelja <%= lection.week %>
-                                    </span>
-                                    <span class="lection__badge lection__badge--date">
-                                        <span class="badge-icon">📌</span>
-                                        <%= lection.formattedDate %>
-                                    </span>
+                <!-- SADRŽAJ LEKCIJE -->
+                <div class="lection__content">
+
+                    <!-- ========================================================= -->
+                    <!-- ŠTA JE API?                                               -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Šta je API?</h2>
+                        <div class="lection-section__content">
+                            <p>
+                                <strong>API (Application Programming Interface)</strong> je posrednik između dva softverska sistema koji omogućava njihovu komunikaciju.
+                                Najbolja analogija za razumevanje API-ja jeste <strong>konobar u restoranu</strong>. Konobar prima porudžbinu (zahtev) od gosta,
+                                prenosi je kuhinji (sistemu) i vraća gotovo jelo (odgovor) gostu. Gost ne mora da zna kako kuhinja funkcioniše –
+                                dovoljno je da komunicira preko konobara.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- ZAŠTO SU API-JI VAŽNI?                                    -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Zašto su API-ji važni?</h2>
+                        <div class="lection-section__content">
+                            <p>API-ji predstavljaju <strong>"lepak"</strong> savremenog softverskog sveta. Oni omogućavaju:</p>
+                            <ul>
+                                <li>Povezivanje različitih aplikacija i servisa</li>
+                                <li>Ponovnu upotrebu postojećih funkcionalnosti</li>
+                                <li>Razdvajanje frontend-a i backend-a</li>
+                                <li>Brži razvoj softvera</li>
+                                <li>Skalabilnost sistema</li>
+                            </ul>
+                            <div class="note">
+                                💡 Svakodnevni primer upotrebe API-ja jeste aplikacija za vremensku prognozu na telefonu –
+                                ona ne meri temperaturu sama, već "pita" API meteorološkog servisa i prikazuje dobijene podatke.
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- KAKO API FUNKCIONIŠE?                                     -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Kako API funkcioniše?</h2>
+                        <div class="lection-section__content">
+                            <p>Osnovni model komunikacije funkcioniše po principu <strong>zahtev-odgovor</strong>:</p>
+                            <ol>
+                                <li><strong>Klijent</strong> (aplikacija) šalje ZAHTEV (request) ka API-ju</li>
+                                <li><strong>API</strong> prosleđuje zahtev serveru (backendu)</li>
+                                <li><strong>Server</strong> obrađuje podatke i vraća ODGOVOR (response) putem API-ja nazad klijentu</li>
+                            </ol>
+                            <p>Ključni elementi: klijent (aplikacija koja traži podatke), API (definisana "recepcija") i server (backend koji obrađuje zahtev).</p>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- VRSTE API-JA PREMA DOSTUPNOSTI                             -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Vrste API-ja prema dostupnosti</h2>
+                        <div class="lection-section__content">
+                            <div class="tech-grid">
+                                <div class="tech-item">
+                                    <span class="tech-icon">🌍</span>
+                                    <strong>Javni / Otvoreni API</strong>
+                                    <span class="tech-desc">Dostupni svim programerima, često besplatni uz ograničenje broja poziva.</span>
+                                </div>
+                                <div class="tech-item">
+                                    <span class="tech-icon">🏢</span>
+                                    <strong>Interni / Privatni API</strong>
+                                    <span class="tech-desc">Koriste se samo unutar jedne organizacije za povezivanje internih sistema.</span>
+                                </div>
+                                <div class="tech-item">
+                                    <span class="tech-icon">🤝</span>
+                                    <strong>Partnerski API</strong>
+                                    <span class="tech-desc">Dele se samo sa specifičnim poslovnim partnerima.</span>
+                                </div>
+                                <div class="tech-item">
+                                    <span class="tech-icon">🔗</span>
+                                    <strong>Kompozitni API</strong>
+                                    <span class="tech-desc">Kombinuju podatke iz više API-ja u jednom pozivu.</span>
+                                </div>
+                            </div>
+                            <p><strong>Primeri javnih API-ja:</strong> Google Maps API, Twitter API, OpenWeather API.</p>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- OTVORENI API I OTVORENO RAČUNARSTVO                        -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Otvoreni API i otvoreno računarstvo</h2>
+                        <div class="lection-section__content">
+                            <p>Otvoreni API-ji prate istu filozofiju kao i open source softver:</p>
+                            <ul>
+                                <li><strong>Transparentnost</strong> – javno dostupna dokumentacija</li>
+                                <li><strong>Sloboda korišćenja</strong> – svako može da integriše API u svoje aplikacije</li>
+                                <li><strong>Interoperabilnost</strong> – povezivanje različitih sistema</li>
+                                <li><strong>Zajednica</strong> – programeri koji grade dodatne alate i biblioteke oko API-ja</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- ŠTA JE REST?                                              -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Šta je REST?</h2>
+                        <div class="lection-section__content">
+                            <p>
+                                <strong>REST (Representational State Transfer)</strong> nije protokol, već <strong>arhitekturni stil</strong> za dizajn mrežnih aplikacija.
+                                Definisao ga je Roy Fielding 2000. godine u svojoj doktorskoj disertaciji.
+                            </p>
+                            <p>REST je danas dominantan jer:</p>
+                            <ul>
+                                <li>Koristi HTTP – standardni protokol</li>
+                                <li>Jednostavan – za razumevanje i implementaciju</li>
+                                <li>Nezavisan – od platforme i programskog jezika</li>
+                                <li>Skalabilan i pouzdan</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- KLJUČNI PRINCIPI REST-A                                   -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Ključni principi REST-a</h2>
+                        <div class="lection-section__content">
+                            <div class="tech-grid">
+                                <div class="tech-item">
+                                    <span class="tech-icon">🖥️</span>
+                                    <strong>Klijent-server arhitektura</strong>
+                                    <span class="tech-desc">Razdvaja frontend od backend-a.</span>
+                                </div>
+                                <div class="tech-item">
+                                    <span class="tech-icon">📄</span>
+                                    <strong>Bezstanje (Stateless)</strong>
+                                    <span class="tech-desc">Server ne pamti stanje klijenta između zahteva. Svaki zahtev sadrži sve potrebne informacije.</span>
+                                </div>
+                                <div class="tech-item">
+                                    <span class="tech-icon">💾</span>
+                                    <strong>Keširanje (Cacheability)</strong>
+                                    <span class="tech-desc">Odgovori definišu da li mogu da se keširaju, čime se smanjuje opterećenje servera.</span>
+                                </div>
+                                <div class="tech-item">
+                                    <span class="tech-icon">🔌</span>
+                                    <strong>Jedinstveni interfejs (Uniform Interface)</strong>
+                                    <span class="tech-desc">Srž REST-a – standardizovan način komunikacije.</span>
+                                </div>
+                            </div>
+                            <h4>Resursi (Resources)</h4>
+                            <p>Sve je resurs: korisnik, proizvod, porudžbina. Svaki resurs ima svoj <strong>URI (Uniform Resource Identifier)</strong>.</p>
+                            <p><strong>Primeri URI-ja:</strong></p>
+                            <ul>
+                                <li><code>/korisnici</code> – lista svih korisnika</li>
+                                <li><code>/korisnici/123</code> – konkretan korisnik</li>
+                            </ul>
+                            <p>Resursi se razmenjuju u standardnim formatima, najčešće <strong>JSON</strong>, a ponekad XML.</p>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- HTTP METODE                                               -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">HTTP metode – "glagoli" REST API-ja</h2>
+                        <div class="lection-section__content">
+                            <table class="lection-table">
+                                <thead>
+                                    <tr><th>Metoda</th><th>Operacija</th><th>Opis</th><th>Primer</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>GET</td><td>Dohvata resurs</td><td>Ne menja stanje sistema</td><td><code>GET /proizvodi</code></td></tr>
+                                    <tr><td>POST</td><td>Kreira novi resurs</td><td>Dodaje novi zapis</td><td><code>POST /korisnici</code></td></tr>
+                                    <tr><td>PUT</td><td>Zamenjuje ceo resurs</td><td>Potpuna zamena postojećeg</td><td><code>PUT /korisnici/123</code></td></tr>
+                                    <tr><td>PATCH</td><td>Delimično ažurira</td><td>Menja samo deo resursa</td><td><code>PATCH /korisnici/123</code></td></tr>
+                                    <tr><td>DELETE</td><td>Briše resurs</td><td>Uklanja zapis</td><td><code>DELETE /korisnici/123</code></td></tr>
+                                </tbody>
+                            </table>
+                            <div class="note">
+                                ⚠️ Važno: HTTP metode su standardizovane i nezavisne od toga šta resurs predstavlja.
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- HTTP STATUSNI KODOVI                                      -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">HTTP statusni kodovi</h2>
+                        <div class="lection-section__content">
+                            <div class="tech-grid">
+                                <div class="tech-item">
+                                    <span class="tech-icon">✅</span>
+                                    <strong>2xx – Uspeh</strong>
+                                    <span class="tech-desc">200 OK, 201 Created</span>
+                                </div>
+                                <div class="tech-item">
+                                    <span class="tech-icon">❌</span>
+                                    <strong>4xx – Greška klijenta</strong>
+                                    <span class="tech-desc">400 Bad Request, 401 Unauthorized, 404 Not Found</span>
+                                </div>
+                                <div class="tech-item">
+                                    <span class="tech-icon">🔥</span>
+                                    <strong>5xx – Greška servera</strong>
+                                    <span class="tech-desc">500 Internal Server Error</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- JSON – JEZIK RAZMENE PODATAKA                             -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">JSON – jezik razmene podataka</h2>
+                        <div class="lection-section__content">
+                            <p><strong>JSON (JavaScript Object Notation)</strong> je najčešći format za razmenu podataka u REST API-jima.</p>
+                            <pre class="code-block"><code>{
+  "id": 123,
+  "ime": "Marko Marković",
+  "email": "marko@example.com",
+  "aktivan": true,
+  "godine": 25
+}</code></pre>
+                            <p>JSON je omiljen jer je čitljiv ljudima i mašinama, nezavisan od programskog jezika, lagan i podržan u svim modernim programskim jezicima.</p>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- API DESIGN & BEST PRACTICES                                -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Dobre i loše prakse u dizajnu API-ja</h2>
+                        <div class="lection-section__content">
+                            <div class="two-columns">
+                                <div>
+                                    <h4>✅ Dobar API (RESTful)</h4>
+                                    <ul>
+                                        <li><code>GET /proizvodi</code></li>
+                                        <li><code>GET /proizvodi/123</code></li>
+                                        <li><code>POST /porudzbine</code></li>
+                                        <li><code>GET /korisnici/456/porudzbine</code></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4>❌ Loš API (nije RESTful)</h4>
+                                    <ul>
+                                        <li>Glagoli u URI-ju: <code>GET /getProduct</code></li>
+                                        <li>Nestandardne forme: <code>GET /productinfo?id=123</code></li>
+                                        <li>Pogrešne HTTP metode: <code>POST /updateProduct/123</code></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="note">
+                                💡 Osnovno pravilo: <strong>URI treba da imenuje resurse (imenice)</strong>, a HTTP metoda definiše akciju (glagol).
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- DOKUMENTACIJA I OPENAPI                                   -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Dokumentacija API-ja i OpenAPI</h2>
+                        <div class="lection-section__content">
+                            <p>Dobra dokumentacija sadrži: spisak endpoint-a, HTTP metode, parametre, primere zahteva i odgovora, statusne kodove i način autentifikacije.</p>
+                            <p><strong>OpenAPI Specification (bivši Swagger)</strong> je jezik za opisivanje API-ja koji je razumljiv i ljudima i mašinama. Omogućava automatsko generisanje dokumentacije, klijentskog koda i testiranje.</p>
+                            <p><em>Primeri alata: Swagger UI, Swagger Editor.</em></p>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- ALATI ZA RAD SA API-JIMA                                 -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Alati za rad sa API-jima</h2>
+                        <div class="lection-section__content">
+                            <table class="lection-table">
+                                <thead><tr><th>Alat</th><th>Tip</th><th>Opis</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Curl</td><td>Komandna linija</td><td>Slanje HTTP zahteva, npr. <code>curl https://api.example.com/korisnici/123</code></td></tr>
+                                    <tr><td>Postman</td><td>Grafički (freemium)</td><td>Grafički alat za testiranje API-ja</td></tr>
+                                    <tr><td>Insomnia</td><td>Open source</td><td>Alternativa Postman-u</td></tr>
+                                    <tr><td>Swagger UI</td><td>Dokumentacija</td><td>Automatski generisana interaktivna dokumentacija</td></tr>
+                                    <tr><td>Hoppscotch</td><td>Open source / Web</td><td>Testiranje API-ja direktno u pregledaču</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- ZAŠTITA API-JA                                           -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Zaštita API-ja</h2>
+                        <div class="lection-section__content">
+                            <div class="tech-grid">
+                                <div class="tech-item"><strong>🔑 API ključ</strong><span>Jednostavan token za identifikaciju aplikacije.</span></div>
+                                <div class="tech-item"><strong>🔐 OAuth 2.0</strong><span>Standard za delegiranje pristupa ("Prijavi se preko Google-a").</span></div>
+                                <div class="tech-item"><strong>📜 JWT</strong><span>Token koji sadrži informacije o korisniku.</span></div>
+                                <div class="tech-item"><strong>⏱️ Rate Limiting</strong><span>Ograničava broj zahteva po vremenskom intervalu.</span></div>
+                                <div class="tech-item"><strong>🚪 API Gateway</strong><span>Sloj ispred API-ja koji upravlja saobraćajem.</span></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- VERZIONISANJE API-JA                                     -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Verzionisanje API-ja</h2>
+                        <div class="lection-section__content">
+                            <p>Osnovni princip: <strong>nikada se ne menja API na način koji ruši postojeće klijente</strong>. Rešenje je verzionisanje.</p>
+                            <pre><code>https://api.example.com/v1/korisnici
+https://api.example.com/v2/korisnici</code></pre>
+                            <p>Načini implementacije:</p>
+                            <ul>
+                                <li>U URI-ju: <code>/v1/</code>, <code>/v2/</code></li>
+                                <li>U HTTP header-u: <code>Accept: application/vnd.example.v1+json</code></li>
+                                <li>Query parametar: <code>?version=1</code></li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- PRAKTIČNI PRIMER – API ZA BLOG                            -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Praktični primer – API za blog</h2>
+                        <div class="lection-section__content">
+                            <h4>Resurs "članci"</h4>
+                            <table class="lection-table">
+                                <thead><tr><th>Metoda</th><th>Ruta</th><th>Opis</th></tr></thead>
+                                <tbody>
+                                    <tr><td>GET</td><td>/clanci</td><td>Lista svih članaka</td></tr>
+                                    <tr><td>POST</td><td>/clanci</td><td>Kreiranje novog članka</td></tr>
+                                    <tr><td>GET</td><td>/clanci/42</td><td>Pojedinačni članak</td></tr>
+                                    <tr><td>PUT</td><td>/clanci/42</td><td>Zamena celog članka</td></tr>
+                                    <tr><td>PATCH</td><td>/clanci/42</td><td>Delimično ažuriranje</td></tr>
+                                    <tr><td>DELETE</td><td>/clanci/42</td><td>Brisanje članka</td></tr>
+                                </tbody>
+                            </table>
+                            <h4>Resurs "komentari"</h4>
+                            <table class="lection-table">
+                                <thead><tr><th>Metoda</th><th>Ruta</th><th>Opis</th></tr></thead>
+                                <tbody>
+                                    <tr><td>GET</td><td>/clanci/42/komentari</td><td>Prikaz komentara članka</td></tr>
+                                    <tr><td>POST</td><td>/clanci/42/komentari</td><td>Dodavanje novog komentara</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- ========================================================= -->
+                    <!-- INTERAKTIVNA VEŽBA: PRIKAZ RAZLIČITIH TIPOVA ODGOVORA      -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">🌐 Interaktivna vežba: Prikaz različitih tipova odgovora</h2>
+                        <div class="lection-section__content">
+                            <p>U ovoj vežbi koristimo <code>&lt;iframe&gt;</code> da bismo prikazali kako različite vrste HTTP odgovora izgledaju u pregledaču. Svi primeri su posluženi sa našeg servera (isti origin), tako da nema CSP ograničenja.</p>
+
+                            <div class="api-tester">
+                                <div class="form__group">
+                                    <label class="form__label">Izaberi tip odgovora:</label>
+                                    <select id="exampleSelect" class="form__input">
+                                        <option value="/otvoreno-racunarstvo/api-example/json">📄 JSON</option>
+                                        <option value="/otvoreno-racunarstvo/api-example/html">🌐 HTML stranica</option>
+                                        <option value="/otvoreno-racunarstvo/api-example/image">🖼️ Slika (PNG)</option>
+                                        <option value="/otvoreno-racunarstvo/api-example/pdf">📑 PDF dokument</option>
+                                    </select>
                                 </div>
 
-                                <h1 class="lection__title">
-                                    <%= lection.title %>
-                                </h1>
+                                <button id="loadLocalButton" class="btn btn--primary">Prikaži u iframe-u 🚀</button>
 
-                                <% if (lection.description) { %>
-                                    <p class="lection__description">
-                                        <%= lection.description %>
-                                    </p>
-                                    <% } %>
-                                        <div class="project-note">
-
-                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
-
-                                        </div>
-                            </header>
-
-                            <!-- ===============================
-                     SADRŽAJ LEKCIJE
-                =============================== -->
-                            <div class="lection__content">
-
-                                <!-- OVDE DOLAZI SADRŽAJ LEKCIJE -->
-                                <!-- Sadržaj će biti dodat za svaku lekciju posebno -->
-
+                                <div class="form__group">
+                                    <label class="form__label">Prikaz (iframe):</label>
+                                    <iframe id="localIframe" class="lection-iframe" 
+                                        title="Prikaz odgovora" 
+                                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-downloads allow-popups-to-escape-sandbox allow-modals">
+                                    </iframe>
+                                </div>
                             </div>
 
-                            <!-- ===============================
-                     NAVIGACIJA IZMEĐU LEKCIJA
-                =============================== -->
-                            <nav class="lection-nav">
-                                <% if (navigation.prev) { %>
-                                    <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>"
-                                        class="lection-nav__link lection-nav__link--prev">
-                                        <span class="nav-arrow">←</span>
-                                        <span class="nav-text">
-                                            <span class="nav-label">Prethodna lekcija</span>
-                                            <span class="nav-title">
-                                                <%= navigation.prev.title %>
-                                            </span>
-                                        </span>
-                                    </a>
-                                    <% } else { %>
-                                        <a href="/otvoreno-racunarstvo"
-                                            class="lection-nav__link lection-nav__link--prev">
-                                            <span class="nav-arrow">←</span>
-                                            <span class="nav-text">
-                                                <span class="nav-label">Nazad na</span>
-                                                <span class="nav-title">početnu predmeta</span>
-                                            </span>
-                                        </a>
-                                        <% } %>
+                            <div class="note">
+                                💡 <strong>Objašnjenje:</strong> Svaki od ovih endpoint-a vraća drugačiji <code>Content-Type</code>. 
+                                Zato iframe može prikazati i JSON (kao tekst), i HTML, i sliku, i PDF. 
+                                Sve je unutar naše domene – nema vanjskih poziva, pa nema ni CSP problema.
+                            </div>
+                        </div>
+                    </section>
 
-                                            <% if (navigation.next) { %>
-                                                <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.next.slug %>"
-                                                    class="lection-nav__link lection-nav__link--next">
-                                                    <span class="nav-text">
-                                                        <span class="nav-label">Sledeća lekcija</span>
-                                                        <span class="nav-title">
-                                                            <%= navigation.next.title %>
-                                                        </span>
-                                                    </span>
-                                                    <span class="nav-arrow">→</span>
-                                                </a>
-                                                <% } %>
-                            </nav>
+                    <!-- ========================================================= -->
+                    <!-- ZAKLJUČAK                                                 -->
+                    <!-- ========================================================= -->
+                    <section class="lection-section">
+                        <h2 class="lection-section__title">Šta smo naučili?</h2>
+                        <div class="lection-section__content">
+                            <ul>
+                                <li>API je posrednik koji omogućava komunikaciju između softverskih sistema.</li>
+                                <li>REST je arhitekturni stil koji koristi HTTP i principe poput stateless i uniform interface.</li>
+                                <li>HTTP metode (GET, POST, PUT, PATCH, DELETE) i statusni kodovi su standardizovani.</li>
+                                <li>JSON je najčešći format za razmenu podataka.</li>
+                                <li>Dobar REST API koristi imenice u URI-ju i pravilne HTTP metode.</li>
+                                <li>Postoje alati za testiranje (curl, Postman) i specifikacije (OpenAPI) za dokumentaciju.</li>
+                                <li>API-ji se štite autentifikacijom, autorizacijom i rate limiting-om.</li>
+                                <li>HTTP odgovori mogu imati različite tipove sadržaja: JSON, HTML, slike, PDF i dr.</li>
+                            </ul>
+                        </div>
+                    </section>
 
-                        </article>
+                </div>
 
-                        <% } %>
+                <!-- NAVIGACIJA -->
+                <nav class="lection-nav">
+                    <% if (navigation.prev) { %>
+                        <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>" class="lection-nav__link lection-nav__link--prev">
+                            <span class="nav-arrow">←</span>
+                            <span class="nav-text">
+                                <span class="nav-label">Prethodna lekcija</span>
+                                <span class="nav-title"><%= navigation.prev.title %></span>
+                            </span>
+                        </a>
+                    <% } else { %>
+                        <a href="/otvoreno-racunarstvo" class="lection-nav__link lection-nav__link--prev">
+                            <span class="nav-arrow">←</span>
+                            <span class="nav-text">
+                                <span class="nav-label">Nazad na</span>
+                                <span class="nav-title">početnu predmeta</span>
+                            </span>
+                        </a>
+                    <% } %>
 
-            </main>
-        </div>
+                    <% if (navigation.next) { %>
+                        <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.next.slug %>" class="lection-nav__link lection-nav__link--next">
+                            <span class="nav-text">
+                                <span class="nav-label">Sledeća lekcija</span>
+                                <span class="nav-title"><%= navigation.next.title %></span>
+                            </span>
+                            <span class="nav-arrow">→</span>
+                        </a>
+                    <% } %>
+                </nav>
 
-        <%- include('../../../includes/end') %>
+            </article>
+
+        <% } %>
+
+    </main>
+</div>
+
+<script src="/public/js/otvoreno-racunarstvo/api-example.js"></script>
+
+<%- include('../../../includes/end') %>

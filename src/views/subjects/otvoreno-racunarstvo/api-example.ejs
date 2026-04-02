@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example HTML stranica - API odgovor</title>
+    <link rel="stylesheet" href="/public/css/pages/api-example.css">
+</head>
+<body>
+    <div class="example-card">
+        <div class="example-header">
+            <h1>🌐 Primer HTML odgovora</h1>
+            <p>Ova stranica je generisana na serveru i vraćena kao <code>text/html</code></p>
+        </div>
+        <div class="example-body">
+            <p>Ovo je primer kako HTTP može da vrati kompletnu HTML stranicu kao odgovor na zahtev.</p>
+            <p>Stranica je stilizovana pomoću <strong>posebnog CSS fajla</strong> (<code>api-example.css</code>) i renderovana kroz <strong>EJS template</strong>.</p>
+            <hr>
+            <h3>📌 Zašto je ovo važno?</h3>
+            <ul>
+                <li>API ne mora uvek da vraća JSON – može da vrati i HTML, slike, PDF, itd.</li>
+                <li>Ovo je korisno kada se backend i frontend razvijaju zajedno (server-side rendering).</li>
+                <li>Iframe prikazuje ovu stranicu bez ikakvih CSP problema jer je isti origin.</li>
+            </ul>
+            <div class="example-info">
+                🕒 Vreme na serveru: <%= new Date().toLocaleString('sr-RS') %>
+            </div>
+        </div>
+        <div class="example-footer">
+            Ovo je samo demonstracija – svi zahtevi su unutar naše domene.
+        </div>
+    </div>
+</body>
+</html>

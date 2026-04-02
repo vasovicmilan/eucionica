@@ -17,10 +17,10 @@ export function setupHelmet(app) {
 
       hsts: isProd
         ? {
-            maxAge: 15552000, // 180 dana
-            includeSubDomains: true,
-            preload: false,
-          }
+          maxAge: 15552000, // 180 dana
+          includeSubDomains: true,
+          preload: false,
+        }
         : false,
 
       referrerPolicy: {
@@ -52,6 +52,7 @@ export function setupHelmet(app) {
         "'self'",
         "data:",
         "blob:",
+        "https://picsum.photos",
       ],
 
       "media-src": [
@@ -59,11 +60,21 @@ export function setupHelmet(app) {
         "blob:",
       ],
 
-      "frame-src": ["'self'"],
+      "frame-src": [
+        "'self'",
+        "blob:", // 👈 DODATO
+        "https://jsonplaceholder.typicode.com",
+        "https://picsum.photos",
+        "data:",
+      ],
 
       "frame-ancestors": ["'self'"],
 
-      "object-src": ["'self'"],
+      "object-src": [
+        "'self'",
+        "blob:", // 👈 DODATO
+      ],
+
       "form-action": ["'self'"],
     };
 

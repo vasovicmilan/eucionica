@@ -178,6 +178,15 @@
     border-radius: var(--border-radius-sm);
 }
 
+.lection-iframe {
+    width: 100%;
+    height: 70vh;   /* ili 600px, šta ti više odgovara */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-primary);
+    overflow: hidden;
+}
+
 @media (min-width: 768px) {
     .iframe__embed {
         border-radius: var(--border-radius-md);

@@ -4,125 +4,675 @@
     <%- include('../../../includes/navigation', { active: 'otvoreno-racunarstvo' }) %>
 
         <div class="lection-container">
-            <!-- SIDEBAR -->
             <aside class="lection-sidebar">
                 <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
             </aside>
 
-            <!-- CONTENT -->
             <main class="lection-content">
-
-                <!-- ===============================
-             LEKCIJA NIJE DOSTUPNA
-        =============================== -->
                 <% if (!lection.available) { %>
-
                     <div class="lection-locked">
                         <div class="lection-locked__icon">🔒</div>
                         <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
-                        <p class="lection-locked__text">
-                            Ova lekcija postaje dostupna
-                            <strong>
+                        <p class="lection-locked__text">Ova lekcija postaje dostupna <strong>
                                 <%= lection.formattedDate %>
-                            </strong>.
-                        </p>
-                        <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
-                        <a href="/otvoreno-racunarstvo" class="btn btn--primary btn--large">
-                            Nazad na predmet
-                        </a>
+                            </strong>.</p>
+                        <a href="/otvoreno-racunarstvo" class="btn btn--primary btn--large">Nazad na predmet</a>
                     </div>
-
-                    <!-- ===============================
-             LEKCIJA JE DOSTUPNA
-        =============================== -->
                     <% } else { %>
-
                         <article class="lection">
-
-                            <!-- HEADER -->
                             <header class="lection__header">
                                 <div class="lection__meta">
-                                    <span class="lection__badge lection__badge--week">
-                                        <span class="badge-icon">📅</span>
-                                        Nedelja <%= lection.week %>
-                                    </span>
-                                    <span class="lection__badge lection__badge--date">
-                                        <span class="badge-icon">📌</span>
-                                        <%= lection.formattedDate %>
-                                    </span>
+                                    <span class="lection__badge lection__badge--week">📅 Nedelja <%= lection.week %>
+                                            </span>
+                                    <span class="lection__badge lection__badge--date">📌 <%= lection.formattedDate %>
+                                            </span>
                                 </div>
-
                                 <h1 class="lection__title">
                                     <%= lection.title %>
                                 </h1>
-
                                 <% if (lection.description) { %>
                                     <p class="lection__description">
                                         <%= lection.description %>
                                     </p>
                                     <% } %>
-                                        <div class="project-note">
-
-                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
-
-                                        </div>
+                                        <div class="project-note">⚠️ Ovo je kratak pregled lekcije, nije zamena za
+                                            prezentacije!</div>
                             </header>
 
-                            <!-- ===============================
-                     SADRŽAJ LEKCIJE
-                =============================== -->
                             <div class="lection__content">
 
-                                <!-- OVDE DOLAZI SADRŽAJ LEKCIJE -->
-                                <!-- Sadržaj će biti dodat za svaku lekciju posebno -->
+                                <!-- ========================================================= -->
+                                <!-- 1. UVOD U IoT                                              -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Šta je Internet of Things (IoT)?</h2>
+                                    <div class="lection-section__content">
+                                        <p><strong>Internet of Things (IoT)</strong> predstavlja mrežu fizičkih uređaja
+                                            (senzora, aktuatora, pametnih aparata) koji su povezani na internet i
+                                            međusobno komuniciraju. Ovi uređaji prikupljaju podatke iz okruženja,
+                                            razmenjuju ih i na osnovu njih donose odluke – često bez ljudske
+                                            intervencije.</p>
+                                        <p>Primeri IoT uređaja: pametni termostati, pametne sijalice, sistemi za nadzor,
+                                            nosivi uređaji (fitnes tracker-i), industrijski senzori, pa čak i gradski
+                                            sistemi za parking ili osvetljenje.</p>
+                                        <div class="note">
+                                            💡 Procenjuje se da će do 2030. godine biti povezano preko 25 milijardi IoT
+                                            uređaja širom sveta.
+                                        </div>
+                                    </div>
+                                </section>
 
+                                <!-- ========================================================= -->
+                                <!-- 2. OTVORENO RAČUNARSTVO U IoT-U                              -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Otvoreno računarstvo kao pokretač IoT-a</h2>
+                                    <div class="lection-section__content">
+                                        <p>Otvoreno računarstvo (open source hardver i softver) igra ključnu ulogu u
+                                            razvoju IoT-a. Za razliku od zatvorenih, proprietarnih sistema, otvoreni
+                                            pristup donosi:</p>
+                                        <ul>
+                                            <li><strong>Transparentnost</strong> – svako može pregledati, analizirati i
+                                                unaprediti kod firmvera ili hardverske šeme.</li>
+                                            <li><strong>Interoperabilnost</strong> – otvoreni protokoli (MQTT, CoAP,
+                                                HTTP) omogućavaju povezivanje uređaja različitih proizvođača.</li>
+                                            <li><strong>Sigurnost</strong> – zajednica brže otkriva i popravlja
+                                                ranjivosti (nema "sigurnosti kroz skrivanje").</li>
+                                            <li><strong>Ekosistem</strong> – open source hardver (ESP32, Arduino,
+                                                Raspberry Pi) i softver (FreeRTOS, Zephyr, Linux) ubrzavaju razvoj i
+                                                smanjuju troškove.</li>
+                                        </ul>
+                                        <p><strong>ESP32</strong> je jedan od najpopularnijih open source
+                                            mikrokontrolera – jeftin, moćan, sa ugrađenim Wi-Fi i Bluetooth-om, idealan
+                                            za IoT projekte.</p>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 3. PROTOKOLI U IoT OKRUŽENJU                              -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Komunikacioni protokoli za IoT</h2>
+                                    <div class="lection-section__content">
+                                        <p>Za razliku od klasičnog web-a gde dominira HTTP/HTTPS, u IoT svetu se koriste
+                                            specijalizovani protokoli prilagođeni ograničenim resursima (mala
+                                            procesorska snaga, mala memorija, mala snaga baterije).</p>
+                                        <div class="tech-grid">
+                                            <div class="tech-item">
+                                                <span class="tech-icon">🌐</span>
+                                                <strong>HTTP/HTTPS</strong>
+                                                <span class="tech-desc">Zahtev-odgovor, jednostavan, veliki overhead.
+                                                    Pogodan za slanje podataka na server (REST API).</span>
+                                            </div>
+                                            <div class="tech-item">
+                                                <span class="tech-icon">📡</span>
+                                                <strong>MQTT</strong>
+                                                <span class="tech-desc">Pub/Sub model, izuzetno lagan (minimalni header
+                                                    2 bajta), idealan za senzorske mreže i embedded uređaje. Koristi
+                                                    TCP.</span>
+                                            </div>
+                                            <div class="tech-item">
+                                                <span class="tech-icon">🔄</span>
+                                                <strong>CoAP</strong>
+                                                <span class="tech-desc">UDP-based, dizajniran za RESTful arhitekturu sa
+                                                    malim resursima. Sličan HTTP-u, ali efikasniji.</span>
+                                            </div>
+                                            <div class="tech-item">
+                                                <span class="tech-icon">⚡</span>
+                                                <strong>WebSocket</strong>
+                                                <span class="tech-desc">Bidirekciona komunikacija u realnom vremenu,
+                                                    mali latency. Često se koristi za dashboard-e i kontrolu
+                                                    uređaja.</span>
+                                            </div>
+                                        </div>
+                                        <p>U ovoj lekciji demonstriraćemo <strong>HTTP POST</strong> sa ESP32 na naš
+                                            server, jer je to najjednostavniji način da se razume koncept slanja
+                                            podataka sa uređaja.</p>
+                                        <div class="note">
+                                            📌 <strong>MQTT je često bolji izbor</strong> za IoT jer štedi energiju i
+                                            bandwith, ali zahteva MQTT broker (npr. Mosquitto). HTTP je univerzalan i
+                                            radi svuda.
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 4. PRINCIPI KOMUNIKACIJE U IoT-U                          -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Kako IoT uređaji komuniciraju? Osnovni principi
+                                    </h2>
+                                    <div class="lection-section__content">
+                                        <p>Bez obzira koji protokol koristili (HTTP, MQTT, CoAP), svi IoT sistemi se
+                                            oslanjaju na nekoliko osnovnih obrazaca komunikacije. Razumevanje ovih
+                                            obrazaca ključno je za dizajniranje skalabilnih i efikasnih rešenja.</p>
+
+                                        <h3>📡 1. Model klijent-server (zahtev-odgovor)</h3>
+                                        <p>Ovo je najjednostavniji i najrasprostranjeniji obrazac. Klijent (npr. ESP32)
+                                            šalje zahtev serveru i čeka odgovor. Server obrađuje zahtev i vraća odgovor
+                                            (uspeh, greška, ili traženi podatak). <strong>HTTP</strong> i
+                                            <strong>CoAP</strong> rade na ovom principu.</p>
+                                        <ul>
+                                            <li><strong>Prednost:</strong> Jednostavan za razumevanje i implementaciju.
+                                            </li>
+                                            <li><strong>Nedostatak:</strong> Server mora biti stalno dostupan; klijent
+                                                mora da "pita" da bi dobio podatke (polling). Nije efikasan za veliki
+                                                broj uređaja.</li>
+                                        </ul>
+                                        <p><em>Primer u našem projektu:</em> ESP32 šalje POST zahtev sa senzorskim
+                                            podacima; server odgovara sa <code>{ status: "ok" }</code>.</p>
+
+                                        <h3>📡 2. Model publish-subscribe (objavi-pretplati se)</h3>
+                                        <p>Ovo je napredniji obrazac koji koriste MQTT, AMQP i neki drugi IoT protokoli.
+                                            Umesto direktnog slanja serveru, uređaji komuniciraju preko posrednika –
+                                            <strong>brokera</strong>. Uređaji <strong>objavljuju</strong> poruke na
+                                            određene <strong>teme</strong>, a drugi uređaji koji su
+                                            <strong>pretplaćeni</strong> na te teme primaju poruke. Objavljivač i
+                                            pretplatnik ne znaju jedan za drugog – sistem je labavo povezan.</p>
+                                        <ul>
+                                            <li><strong>Prednost:</strong> Izuzetno skalabilan; odličan za distribuirane
+                                                sisteme; uređaji mogu da primaju podatke u realnom vremenu bez
+                                                konstantnog proveravanja.</li>
+                                            <li><strong>Nedostatak:</strong> Zahteva dodatnu komponentu (broker),
+                                                složeniji za postavljanje.</li>
+                                        </ul>
+                                        <p><em>Primer:</em> Pametna sijalica se pretplati na temu
+                                            <code>komande/soba1/svetlo</code>. Kada mobilna aplikacija objavi
+                                            <code>{"status": "ON"}</code> na toj temi, broker prosleđuje poruku sijalici
+                                            koja pali svetlo.</p>
+
+                                        <h3>📡 3. Poređenje HTTP i MQTT (najčešći izbori)</h3>
+                                        <div class="tech-grid">
+                                            <div class="tech-item">
+                                                <strong>🌐 HTTP</strong>
+                                                <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                                                    <li>Tekstualni protokol (zaglavlja u ASCII)</li>
+                                                    <li>Veliki overhead (često > 500 bajta po zahtevu)</li>
+                                                    <li>Radi preko TCP (port 80/443)</li>
+                                                    <li>Zahtev-odgovor, sinhrono</li>
+                                                    <li>Lako prolazi kroz firewall-e</li>
+                                                </ul>
+                                            </div>
+                                            <div class="tech-item">
+                                                <strong>📡 MQTT</strong>
+                                                <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                                                    <li>Binarni protokol, minimalna zaglavlja (2 bajta!)</li>
+                                                    <li>Izuzetno mali overhead – idealan za baterijske uređaje</li>
+                                                    <li>Radi preko TCP (port 1883/8883 za TLS)</li>
+                                                    <li>Pub/Sub, asinhrono</li>
+                                                    <li>Kvalitet usluge (QoS) nivoi: 0,1,2</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p>U našem projektu koristimo HTTP jer je jednostavan za demonstraciju i ne
+                                            zahteva dodatni broker. U realnim IoT sistemima, MQTT je često bolji izbor.
+                                        </p>
+
+                                        <h3>📡 4. Kako funkcioniše slanje JSON podataka preko HTTP?</h3>
+                                        <p>Kada ESP32 šalje podatke, on formira HTTP poruku:</p>
+                                        <pre class="code-block"><code>POST /otvoreno-racunarstvo/api/iot/sensor-data HTTP/1.1
+Host: eucionica.onrender.com
+Content-Type: application/json
+Content-Length: 78
+
+{"device":"esp32_meteo","temperature":23.5,"humidity":60,"tempStatus":"IDEALNO","humStatus":"DOBRO"}</code></pre>
+                                        <p>Server (Express) parsira zaglavlja, prepoznaje JSON telo i prosleđuje ga
+                                            kontroleru. Odgovor koji server vraća izgleda ovako:</p>
+                                        <pre class="code-block"><code>HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"status":"ok"}</code></pre>
+                                        <p>Ovaj razgovor između klijenta i servera je <strong>stateless</strong> – svaki
+                                            zahtev je nezavisan (REST princip).</p>
+
+                                        <h3>📡 5. Zašto su otvoreni standardi ključni?</h3>
+                                        <p>Otvoreni standardi (HTTP, MQTT, CoAP, JSON, TLS) omogućavaju da uređaji
+                                            različitih proizvođača komuniciraju bez ikakvih barijera. Na primer, ESP32
+                                            sa MQTT može da šalje podatke na cloud platformu koja koristi MQTT broker
+                                            (npr. Mosquitto, EMQX), bez obzira da li je broker open source ili
+                                            komercijalan. Takođe, otvoreni standardi garantuju da će podaci biti
+                                            čitljivi i za 10 godina – nema "zaključavanja" u ekosistem jednog
+                                            proizvođača.</p>
+                                        <div class="note">
+                                            💡 <strong>Ključna razlika:</strong> HTTP je <strong>sinhroni,
+                                                zahtev-odgovor</strong> – klijent mora inicirati komunikaciju. MQTT je
+                                            <strong>asinhroni, pub/sub</strong> – broker prosleđuje poruke čim stignu.
+                                            Za senzore koji šalju podatke svakih nekoliko minuta, HTTP je sasvim
+                                            dovoljan. Za sisteme koji zahtevaju trenutnu reakciju (npr. pametne brave,
+                                            alarmi), MQTT je neophodan.
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 5. NAŠ PROJEKAT: METEO STANICA SA ESP32                    -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Primer: WiFi meteo stanica sa ESP32</h2>
+                                    <div class="lection-section__content">
+                                        <p>Napravićemo uređaj koji meri temperaturu i vlažnost, prikazuje podatke na
+                                            OLED displeju, upravlja LED diodama (vizuelna indikacija) i šalje očitanja
+                                            na naš server.</p>
+                                        <p><strong>Komponente:</strong></p>
+                                        <ul>
+                                            <li>ESP32 razvojna ploča</li>
+                                            <li>DHT11 senzor temperature i vlažnosti (pin 4)</li>
+                                            <li>OLED displej SSD1306 (I2C, SDA=16, SCL=17)</li>
+                                            <li>RGB LED (katodni) – pinovi 25,26,27</li>
+                                            <li>Tri obične LED diode (zelena, žuta, crvena) – pinovi 18,19,21</li>
+                                        </ul>
+                                        <p><strong>Funkcionalnost:</strong></p>
+                                        <ul>
+                                            <li><strong>Lokalno:</strong> OLED prikazuje temperaturu, vlažnost i
+                                                tekstualni status (HLADNO/IDEALNO/VRUĆE i SUVO/DOBRO/VLAGA). RGB LED
+                                                bojom označava temperaturnu zonu (plava=hladno, zelena=idealno,
+                                                crvena=vruće). Obične LED diode označavaju vlažnost (zelena=normalno,
+                                                žuta=visoka vlaga, crvena=suvo).</li>
+                                            <li><strong>Na server:</strong> ESP32 šalje JSON sa podacima svakih 60
+                                                sekundi na naš API endpoint.</li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 6. ESP32 KOD (sakriven u details)                          -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">📟 Arduino kod za ESP32</h2>
+                                    <div class="lection-section__content">
+                                        <p>Kod je organizovan u funkcije i koristi <code>millis()</code> umesto
+                                            <code>delay()</code> – dobra praksa jer ne blokira izvršavanje. Podaci se
+                                            šalju na server nezavisno od osvežavanja displeja.</p>
+                                        <details class="code-details">
+                                            <summary>🔽 Prikaži kompletan Arduino kod</summary>
+                                            <pre class="code-block"><code>#include &lt;WiFi.h&gt;
+#include &lt;HTTPClient.h&gt;
+#include "DHT.h"
+#include &lt;Wire.h&gt;
+#include &lt;Adafruit_GFX.h&gt;
+#include &lt;Adafruit_SSD1306.h&gt;
+
+// ===== Konfiguracija =====
+const char* ssid = "Naziv WIFI";
+const char* password = "Lozinka WIFI";
+const char* serverUrl = "URL na koji saljemo";
+
+const unsigned long SENSOR_INTERVAL = 2000;   // čitanje senzora i osvežavanje (2s)
+const unsigned long SEND_INTERVAL = 60000;    // slanje na server (60s)
+
+#define DHTPIN 4
+#define DHTTYPE DHT11
+#define RGB_R 25
+#define RGB_G 26
+#define RGB_B 27
+#define LED_GREEN 18
+#define LED_YELLOW 19
+#define LED_RED 21
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+
+DHT dht(DHTPIN, DHTTYPE);
+float temperature = 0.0;
+float humidity = 0.0;
+String tempStatus = "";
+String humStatus = "";
+
+unsigned long lastSensorTime = 0;
+unsigned long lastSendTime = 0;
+
+void connectWiFi();
+void updateSensorData();
+void updateLEDs();
+void updateDisplay();
+void sendToServer();
+
+void setup() {
+  Serial.begin(115200);
+  dht.begin();
+
+  Wire.begin(16, 17);
+  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+    Serial.println("OLED nije pronadjen!");
+    while(true);
+  }
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(0, 0);
+  display.println("Inicijalizacija...");
+  display.display();
+  delay(1000);
+
+  pinMode(RGB_R, OUTPUT);
+  pinMode(RGB_G, OUTPUT);
+  pinMode(RGB_B, OUTPUT);
+  pinMode(LED_GREEN, OUTPUT);
+  pinMode(LED_YELLOW, OUTPUT);
+  pinMode(LED_RED, OUTPUT);
+  digitalWrite(RGB_R, LOW);
+  digitalWrite(RGB_G, LOW);
+  digitalWrite(RGB_B, LOW);
+  digitalWrite(LED_GREEN, LOW);
+  digitalWrite(LED_YELLOW, LOW);
+  digitalWrite(LED_RED, LOW);
+
+  connectWiFi();
+
+  display.clearDisplay();
+  display.setCursor(0,0);
+  display.println("WiFi OK");
+  display.println(WiFi.localIP());
+  display.display();
+  delay(2000);
+
+  updateSensorData();
+  updateLEDs();
+  updateDisplay();
+
+  lastSensorTime = millis();
+  lastSendTime = millis();
+}
+
+void loop() {
+  unsigned long now = millis();
+  if (now - lastSensorTime >= SENSOR_INTERVAL) {
+    lastSensorTime = now;
+    updateSensorData();
+    updateLEDs();
+    updateDisplay();
+  }
+  if (now - lastSendTime >= SEND_INTERVAL) {
+    lastSendTime = now;
+    sendToServer();
+  }
+}
+
+void connectWiFi() {
+  display.clearDisplay();
+  display.setCursor(0,0);
+  display.println("Povezivanje...");
+  display.display();
+
+  WiFi.begin(ssid, password);
+  Serial.print("Povezivanje na WiFi");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\nPovezan!");
+  Serial.print("IP adresa: ");
+  Serial.println(WiFi.localIP());
+}
+
+void updateSensorData() {
+  float t = dht.readTemperature();
+  float h = dht.readHumidity();
+
+  if (isnan(t) || isnan(h)) {
+    Serial.println("Greška pri čitanju DHT senzora!");
+    return;
+  }
+
+  temperature = t;
+  humidity = h;
+
+  if (temperature < 20) {
+    tempStatus = "HLADNO";
+  } else if (temperature <= 30) {
+    tempStatus = "IDEALNO";
+  } else {
+    tempStatus = "VRUCE";
+  }
+
+  if (humidity < 40) {
+    humStatus = "SUVO";
+  } else if (humidity <= 70) {
+    humStatus = "DOBRO";
+  } else {
+    humStatus = "VLAGA";
+  }
+
+  Serial.printf("Temperatura: %.1f °C, Vlažnost: %.1f %%\n", temperature, humidity);
+}
+
+void updateLEDs() {
+  digitalWrite(RGB_R, LOW);
+  digitalWrite(RGB_G, LOW);
+  digitalWrite(RGB_B, LOW);
+  if (temperature < 20) {
+    digitalWrite(RGB_B, HIGH);
+  } else if (temperature <= 30) {
+    digitalWrite(RGB_G, HIGH);
+  } else {
+    digitalWrite(RGB_R, HIGH);
+  }
+
+  digitalWrite(LED_GREEN, LOW);
+  digitalWrite(LED_YELLOW, LOW);
+  digitalWrite(LED_RED, LOW);
+  if (humidity < 40) {
+    digitalWrite(LED_RED, HIGH);
+  } else if (humidity <= 70) {
+    digitalWrite(LED_GREEN, HIGH);
+  } else {
+    digitalWrite(LED_YELLOW, HIGH);
+  }
+}
+
+void updateDisplay() {
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+
+  display.setCursor(0, 0);
+  display.print("METEO STANICA");
+  display.setCursor(0, 16);
+  display.print("Temp: ");
+  display.print(temperature, 1);
+  display.print(" C");
+  display.setCursor(0, 32);
+  display.print(tempStatus);
+  display.setCursor(0, 48);
+  display.print("Hum: ");
+  display.print(humidity, 1);
+  display.print(" %");
+  display.setCursor(0, 56);
+  display.print(humStatus);
+  display.display();
+}
+
+void sendToServer() {
+  if (WiFi.status() != WL_CONNECTED) {
+    Serial.println("WiFi nije povezan, pokušavam ponovno povezivanje...");
+    connectWiFi();
+    if (WiFi.status() != WL_CONNECTED) return;
+  }
+
+  HTTPClient http;
+  http.begin(serverUrl);
+  http.addHeader("Content-Type", "application/json");
+
+  String jsonPayload = "{";
+  jsonPayload += "\"device\":\"esp32_meteo\",";
+  jsonPayload += "\"temperature\":" + String(temperature) + ",";
+  jsonPayload += "\"humidity\":" + String(humidity) + ",";
+  jsonPayload += "\"tempStatus\":\"" + tempStatus + "\",";
+  jsonPayload += "\"humStatus\":\"" + humStatus + "\"";
+  jsonPayload += "}";
+
+  int httpCode = http.POST(jsonPayload);
+  if (httpCode > 0) {
+    String response = http.getString();
+    Serial.printf("Server odgovor: %d - %s\n", httpCode, response.c_str());
+  } else {
+    Serial.printf("Greška pri slanju: %s\n", http.errorToString(httpCode).c_str());
+  }
+  http.end();
+}</code></pre>
+                                        </details>
+                                        <div class="note">
+                                            ⚠️ <strong>Pre nego što učitaš kod:</strong>
+                                            <ul>
+                                                <li>Zameni <code>ssid</code> i <code>password</code> sa svojim Wi-Fi
+                                                    podacima.</li>
+                                                <li>Zameni <code>serverUrl</code> sa stvarnom adresom (npr.
+                                                    <code>https://eucionica.onrender.com/otvoreno-racunarstvo/api/iot/sensor-data</code>).
+                                                </li>
+                                                <li>Instaliraj biblioteke: <strong>DHT sensor library</strong>,
+                                                    <strong>Adafruit GFX Library</strong>, <strong>Adafruit
+                                                        SSD1306</strong> (Library Manager).</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 7. BACKEND – PRIJEM PODATAKA                              -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Server (Express) – rute i kontroler</h2>
+                                    <div class="lection-section__content">
+                                        <p>Na Express serveru dodajemo dva endpoint-a:</p>
+                                        <ul>
+                                            <li><code>POST /otvoreno-racunarstvo/api/iot/sensor-data</code> – prima JSON
+                                                podatke i čuva ih u memoriji.</li>
+                                            <li><code>GET /otvoreno-racunarstvo/api/iot/latest-readings</code> – vraća
+                                                poslednjih 20 očitanja (za prikaz na dashboardu).</li>
+                                        </ul>
+                                        <details class="code-details">
+                                            <summary>🔽 Prikaži kontroler (<code>iot.controller.js</code>)</summary>
+                                            <pre class="code-block"><code>let sensorReadings = [];
+
+export function receiveSensorData(req, res) {
+  const { device, temperature, humidity, tempStatus, humStatus } = req.body;
+  if (!device || temperature === undefined || humidity === undefined) {
+    return res.status(400).json({ error: "Nedostaju obavezni podaci" });
+  }
+  const reading = {
+    device,
+    temperature: parseFloat(temperature),
+    humidity: parseFloat(humidity),
+    tempStatus: tempStatus || "",
+    humStatus: humStatus || "",
+    timestamp: new Date().toISOString()
+  };
+  sensorReadings.unshift(reading);
+  if (sensorReadings.length > 50) sensorReadings.pop();
+  console.log(`[IoT] ${device}: ${temperature}°C, ${humidity}% (${tempStatus}, ${humStatus})`);
+  res.status(200).json({ status: "ok" });
+}
+
+export function getLatestReadings(req, res) {
+  res.json(sensorReadings.slice(0, 20));
+}</code></pre>
+                                        </details>
+                                        <p>Rute dodati u <code>routes/web/otvoreno-racunarstvo/index.js</code>:</p>
+                                        <pre class="code-block"><code>import { receiveSensorData, getLatestReadings } from "../../../controllers/web/otvoreno-racunarstvo/iot.controller.js";
+
+router.post("/api/iot/sensor-data", receiveSensorData);
+router.get("/api/iot/latest-readings", getLatestReadings);</code></pre>
+                                        <p>Ne zaboravi <code>express.json()</code> middleware u <code>app.js</code>.</p>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 8. DASHBOARD – PRIKAZ PODATAKA                            -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">📊 Praćenje podataka u realnom vremenu</h2>
+                                    <div class="lection-section__content">
+                                        <p>Ispod se prikazuju poslednja očitanja koja je ESP32 poslao na server. Tabela
+                                            se automatski osvežava svakih 60 sekundi.</p>
+                                        <div class="api-tester">
+                                            <div id="iotReadingsContainer" style="max-height: 400px; overflow-y: auto;">
+                                                <table class="lection-table" id="iotTable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Vreme</th>
+                                                            <th>Uređaj</th>
+                                                            <th>Temperatura (°C)</th>
+                                                            <th>Status temp</th>
+                                                            <th>Vlažnost (%)</th>
+                                                            <th>Status vlage</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="iotTableBody">
+                                                        <tr>
+                                                            <td colspan="6">Učitavanje...</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="note">
+                                            💡 Ako nema podataka, proveri da li ESP32 uspešno šalje POST zahteve (prati
+                                            Serial monitor) i da li je server dostupan.
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 9. ZAKLJUČAK                                               -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Šta smo naučili?</h2>
+                                    <div class="lection-section__content">
+                                        <ul>
+                                            <li>IoT povezuje fizičke uređaje sa internetom, a otvoreno računarstvo je
+                                                ključno za brz razvoj i interoperabilnost.</li>
+                                            <li>Postoje specijalizovani protokoli za IoT (MQTT, CoAP) pored standardnog
+                                                HTTP-a.</li>
+                                            <li>Kako napisati Arduino kod za ESP32 koji čita senzore, prikazuje podatke
+                                                na OLED-u i šalje JSON na server koristeći HTTP POST.</li>
+                                            <li>Kako na serverskoj strani primiti, validirati i čuvati podatke, te ih
+                                                prikazati na dashboard-u uz pomoć JavaScript polling-a.</li>
+                                            <li>Korišćenje <code>millis()</code> umesto <code>delay()</code> omogućava
+                                                neblokirajuće izvršavanje.</li>
+                                        </ul>
+                                        <div class="note">
+                                            🚀 <strong>Dalji koraci:</strong> Implementiraj MQTT umesto HTTP, dodaj bazu
+                                            podataka (InfluxDB) ili napravi mobilnu aplikaciju.
+                                        </div>
+                                    </div>
+                                </section>
                             </div>
 
-                            <!-- ===============================
-                     NAVIGACIJA IZMEĐU LEKCIJA
-                =============================== -->
                             <nav class="lection-nav">
                                 <% if (navigation.prev) { %>
                                     <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>"
                                         class="lection-nav__link lection-nav__link--prev">
                                         <span class="nav-arrow">←</span>
-                                        <span class="nav-text">
-                                            <span class="nav-label">Prethodna lekcija</span>
-                                            <span class="nav-title">
+                                        <span class="nav-text"><span class="nav-label">Prethodna lekcija</span><span
+                                                class="nav-title">
                                                 <%= navigation.prev.title %>
-                                            </span>
-                                        </span>
+                                            </span></span>
                                     </a>
                                     <% } else { %>
                                         <a href="/otvoreno-racunarstvo"
                                             class="lection-nav__link lection-nav__link--prev">
                                             <span class="nav-arrow">←</span>
-                                            <span class="nav-text">
-                                                <span class="nav-label">Nazad na</span>
-                                                <span class="nav-title">početnu predmeta</span>
-                                            </span>
+                                            <span class="nav-text"><span class="nav-label">Nazad na</span><span
+                                                    class="nav-title">početnu predmeta</span></span>
                                         </a>
                                         <% } %>
-
                                             <% if (navigation.next) { %>
                                                 <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.next.slug %>"
                                                     class="lection-nav__link lection-nav__link--next">
-                                                    <span class="nav-text">
-                                                        <span class="nav-label">Sledeća lekcija</span>
-                                                        <span class="nav-title">
+                                                    <span class="nav-text"><span class="nav-label">Sledeća
+                                                            lekcija</span><span class="nav-title">
                                                             <%= navigation.next.title %>
-                                                        </span>
-                                                    </span>
+                                                        </span></span>
                                                     <span class="nav-arrow">→</span>
                                                 </a>
                                                 <% } %>
                             </nav>
-
                         </article>
-
                         <% } %>
-
             </main>
         </div>
+
+        <script src="/public/js/otvoreno-racunarstvo/iot-example.js"></script>
 
         <%- include('../../../includes/end') %>

@@ -294,3 +294,28 @@ export async function getPdfExample(req, res) {
     }
   });
 }
+
+let sensorReadings = [];
+
+export function receiveSensorData(req, res) {
+  const { device, temperature, humidity, tempStatus, humStatus } = req.body;
+  if (!device || temperature === undefined || humidity === undefined) {
+    return res.status(400).json({ error: "Nedostaju obavezni podaci (device, temperature, humidity)" });
+  }
+  const reading = {
+    device,
+    temperature: parseFloat(temperature),
+    humidity: parseFloat(humidity),
+    tempStatus: tempStatus || "",
+    humStatus: humStatus || "",
+    timestamp: new Date().toISOString()
+  };
+  sensorReadings.unshift(reading);
+  if (sensorReadings.length > 50) sensorReadings.pop();
+  console.log(`[IoT] ${device}: ${temperature}°C, ${humidity}% (${tempStatus}, ${humStatus})`);
+  res.status(200).json({ status: "ok" });
+}
+
+export function getLatestReadings(req, res) {
+  res.json(sensorReadings.slice(0, 20));
+}

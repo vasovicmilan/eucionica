@@ -14,7 +14,9 @@ import {
   getJsonExample,
   getHtmlExample,
   getImageExample,
-  getPdfExample
+  getPdfExample,
+  receiveSensorData,
+  getLatestReadings
 } from "../../../controllers/web/otvoreno-racunarstvo/index.controller.js";
 
 const router = Router();
@@ -27,6 +29,8 @@ router.get("/lekcija/:slug", getLectionDataPage);
 // API rute za HTTP Explorer
 router.post("/api/http-explorer", exploreHttpEndpoint);
 router.get("/api/http-explorer/handshake", getHandshakeEndpoint);
+router.post("/api/iot/sensor-data", receiveSensorData);
+router.get("/api/iot/latest-readings", getLatestReadings);
 
 // example rute za iframe prikaz
 router.get("/api-example/json", getJsonExample);

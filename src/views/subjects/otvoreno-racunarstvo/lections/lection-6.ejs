@@ -160,7 +160,8 @@
                                                 broj uređaja.</li>
                                         </ul>
                                         <p><em>Primer u našem projektu:</em> ESP32 šalje POST zahtev sa senzorskim
-                                            podacima; server odgovara sa <code>{ status: "ok" }</code>.</p>
+                                            podacima (temperatura, vlažnost, pritisak, vlaga zemlje, kiša, svetlost);
+                                            server odgovara sa <code>{ status: "ok" }</code>.</p>
 
                                         <h3>📡 2. Model publish-subscribe (objavi-pretplati se)</h3>
                                         <p>Ovo je napredniji obrazac koji koriste MQTT, AMQP i neki drugi IoT protokoli.
@@ -215,7 +216,7 @@ Host: eucionica.onrender.com
 Content-Type: application/json
 Content-Length: 78
 
-{"device":"esp32_meteo","temperature":23.5,"humidity":60,"tempStatus":"IDEALNO","humStatus":"DOBRO"}</code></pre>
+{"t":23.5,"h":60,"p":1013,"s":45,"r":10,"l":85}</code></pre>
                                         <p>Server (Express) parsira zaglavlja, prepoznaje JSON telo i prosleđuje ga
                                             kontroleru. Odgovor koji server vraća izgleda ovako:</p>
                                         <pre class="code-block"><code>HTTP/1.1 200 OK
@@ -245,31 +246,32 @@ Content-Type: application/json
                                 </section>
 
                                 <!-- ========================================================= -->
-                                <!-- 5. NAŠ PROJEKAT: METEO STANICA SA ESP32                    -->
+                                <!-- 5. NAŠ PROJEKAT: Višenamenska meteorološka stanica         -->
                                 <!-- ========================================================= -->
                                 <section class="lection-section">
-                                    <h2 class="lection-section__title">Primer: WiFi meteo stanica sa ESP32</h2>
+                                    <h2 class="lection-section__title">Primer: Višenamenska IoT stanica sa ESP32</h2>
                                     <div class="lection-section__content">
-                                        <p>Napravićemo uređaj koji meri temperaturu i vlažnost, prikazuje podatke na
-                                            OLED displeju, upravlja LED diodama (vizuelna indikacija) i šalje očitanja
-                                            na naš server.</p>
+                                        <p>Napravićemo uređaj koji meri više parametara okruženja, prikazuje podatke na
+                                            OLED displeju (sa mogućnošću prebacivanja ekrana preko tastera) i šalje
+                                            očitanja na naš server.</p>
                                         <p><strong>Komponente:</strong></p>
                                         <ul>
                                             <li>ESP32 razvojna ploča</li>
-                                            <li>DHT11 senzor temperature i vlažnosti (pin 4)</li>
-                                            <li>OLED displej SSD1306 (I2C, SDA=16, SCL=17)</li>
-                                            <li>RGB LED (katodni) – pinovi 25,26,27</li>
-                                            <li>Tri obične LED diode (zelena, žuta, crvena) – pinovi 18,19,21</li>
+                                            <li>DHT11 senzor temperature i vlažnosti vazduha (pin 5)</li>
+                                            <li>BMP280 senzor temperature i atmosferskog pritiska (I2C)</li>
+                                            <li>Senzor vlažnosti zemlje (analogni, pin 34)</li>
+                                            <li>Senzor kiše (analogni, pin 35)</li>
+                                            <li>Senzor svetlosti (fotootpornik, analogni, pin 32)</li>
+                                            <li>OLED displej SSD1306 (I2C, SDA=21, SCL=22)</li>
+                                            <li>Taster za promenu ekrana (pin 18, INPUT_PULLUP)</li>
                                         </ul>
                                         <p><strong>Funkcionalnost:</strong></p>
                                         <ul>
-                                            <li><strong>Lokalno:</strong> OLED prikazuje temperaturu, vlažnost i
-                                                tekstualni status (HLADNO/IDEALNO/VRUĆE i SUVO/DOBRO/VLAGA). RGB LED
-                                                bojom označava temperaturnu zonu (plava=hladno, zelena=idealno,
-                                                crvena=vruće). Obične LED diode označavaju vlažnost (zelena=normalno,
-                                                žuta=visoka vlaga, crvena=suvo).</li>
-                                            <li><strong>Na server:</strong> ESP32 šalje JSON sa podacima svakih 60
-                                                sekundi na naš API endpoint.</li>
+                                            <li><strong>Lokalno:</strong> OLED prikazuje 6 različitih ekrana koji se
+                                                menjaju pritiskom na taster: pregled svih parametara, DHT11 podaci,
+                                                BMP280 podaci, vlažnost zemlje, kiša, svetlost.</li>
+                                            <li><strong>Na server:</strong> ESP32 svakih 10 sekundi šalje JSON sa svih 6
+                                                vrednosti na naš API endpoint.</li>
                                         </ul>
                                     </div>
                                 </section>
@@ -280,249 +282,220 @@ Content-Type: application/json
                                 <section class="lection-section">
                                     <h2 class="lection-section__title">📟 Arduino kod za ESP32</h2>
                                     <div class="lection-section__content">
-                                        <p>Kod je organizovan u funkcije i koristi <code>millis()</code> umesto
-                                            <code>delay()</code> – dobra praksa jer ne blokira izvršavanje. Podaci se
-                                            šalju na server nezavisno od osvežavanja displeja.</p>
+                                        <p>Kod je organizovan u funkcije, koristi <code>millis()</code> za slanje podataka
+                                            i debounce za taster. Podaci se šalju na server nezavisno od osvežavanja displeja.</p>
                                         <details class="code-details">
                                             <summary>🔽 Prikaži kompletan Arduino kod</summary>
                                             <pre class="code-block"><code>#include &lt;WiFi.h&gt;
 #include &lt;HTTPClient.h&gt;
-#include "DHT.h"
 #include &lt;Wire.h&gt;
 #include &lt;Adafruit_GFX.h&gt;
 #include &lt;Adafruit_SSD1306.h&gt;
+#include &lt;Adafruit_BMP280.h&gt;
+#include &lt;DHT.h&gt;
 
-// ===== Konfiguracija =====
-const char* ssid = "Naziv WIFI";
-const char* password = "Lozinka WIFI";
-const char* serverUrl = "URL na koji saljemo";
+// WIFI - ZAMENI SA SVOJIM PODACIMA
+const char* ssid = "TVOJA_SSID";
+const char* password = "TVOJA_LOZINKA";
+const char* serverUrl = "https://eucionica.onrender.com/otvoreno-racunarstvo/api/iot/sensor-data";
 
-const unsigned long SENSOR_INTERVAL = 2000;   // čitanje senzora i osvežavanje (2s)
-const unsigned long SEND_INTERVAL = 60000;    // slanje na server (60s)
-
-#define DHTPIN 4
-#define DHTTYPE DHT11
-#define RGB_R 25
-#define RGB_G 26
-#define RGB_B 27
-#define LED_GREEN 18
-#define LED_YELLOW 19
-#define LED_RED 21
-
+// OLED
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
+// DHT
+#define DHTPIN 5
+#define DHTTYPE DHT11
 DHT dht(DHTPIN, DHTTYPE);
-float temperature = 0.0;
-float humidity = 0.0;
-String tempStatus = "";
-String humStatus = "";
 
-unsigned long lastSensorTime = 0;
-unsigned long lastSendTime = 0;
+// BMP280
+Adafruit_BMP280 bmp;
 
-void connectWiFi();
-void updateSensorData();
-void updateLEDs();
-void updateDisplay();
-void sendToServer();
+// Pinovi
+#define BUTTON_PIN 18
+#define SOIL_PIN 34
+#define RAIN_PIN 35
+#define LIGHT_PIN 32
+
+// Kontrola ekrana
+int screen = 0;
+
+// Debounce tastera
+bool buttonState = HIGH;
+bool lastReading = HIGH;
+unsigned long lastDebounceTime = 0;
+unsigned long debounceDelay = 200;
+
+// Slanje podataka na server
+unsigned long lastSend = 0;
+unsigned long sendInterval = 10000; // 10 sekundi
 
 void setup() {
   Serial.begin(115200);
-  dht.begin();
 
-  Wire.begin(16, 17);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+
+  // I2C (SDA=21, SCL=22)
+  Wire.begin(21, 22);
+
+  // OLED inicijalizacija
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
     Serial.println("OLED nije pronadjen!");
-    while(true);
+    while(1);
   }
-  display.clearDisplay();
-  display.setTextSize(1);
-  display.setTextColor(SSD1306_WHITE);
-  display.setCursor(0, 0);
-  display.println("Inicijalizacija...");
-  display.display();
-  delay(1000);
 
-  pinMode(RGB_R, OUTPUT);
-  pinMode(RGB_G, OUTPUT);
-  pinMode(RGB_B, OUTPUT);
-  pinMode(LED_GREEN, OUTPUT);
-  pinMode(LED_YELLOW, OUTPUT);
-  pinMode(LED_RED, OUTPUT);
-  digitalWrite(RGB_R, LOW);
-  digitalWrite(RGB_G, LOW);
-  digitalWrite(RGB_B, LOW);
-  digitalWrite(LED_GREEN, LOW);
-  digitalWrite(LED_YELLOW, LOW);
-  digitalWrite(LED_RED, LOW);
+  // DHT
+  dht.begin();
 
-  connectWiFi();
-
-  display.clearDisplay();
-  display.setCursor(0,0);
-  display.println("WiFi OK");
-  display.println(WiFi.localIP());
-  display.display();
-  delay(2000);
-
-  updateSensorData();
-  updateLEDs();
-  updateDisplay();
-
-  lastSensorTime = millis();
-  lastSendTime = millis();
-}
-
-void loop() {
-  unsigned long now = millis();
-  if (now - lastSensorTime >= SENSOR_INTERVAL) {
-    lastSensorTime = now;
-    updateSensorData();
-    updateLEDs();
-    updateDisplay();
+  // BMP280 (adresa 0x76 ili 0x77)
+  if (!bmp.begin(0x76)) {
+    if (!bmp.begin(0x77)) {
+      Serial.println("BMP280 nije pronadjen!");
+      while (1);
+    }
   }
-  if (now - lastSendTime >= SEND_INTERVAL) {
-    lastSendTime = now;
-    sendToServer();
-  }
-}
 
-void connectWiFi() {
-  display.clearDisplay();
-  display.setCursor(0,0);
-  display.println("Povezivanje...");
-  display.display();
-
+  // Povezivanje na WiFi
   WiFi.begin(ssid, password);
   Serial.print("Povezivanje na WiFi");
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
-  Serial.println("\nPovezan!");
-  Serial.print("IP adresa: ");
-  Serial.println(WiFi.localIP());
-}
+  Serial.println("\nWiFi povezan!");
 
-void updateSensorData() {
-  float t = dht.readTemperature();
-  float h = dht.readHumidity();
-
-  if (isnan(t) || isnan(h)) {
-    Serial.println("Greška pri čitanju DHT senzora!");
-    return;
-  }
-
-  temperature = t;
-  humidity = h;
-
-  if (temperature < 20) {
-    tempStatus = "HLADNO";
-  } else if (temperature <= 30) {
-    tempStatus = "IDEALNO";
-  } else {
-    tempStatus = "VRUCE";
-  }
-
-  if (humidity < 40) {
-    humStatus = "SUVO";
-  } else if (humidity <= 70) {
-    humStatus = "DOBRO";
-  } else {
-    humStatus = "VLAGA";
-  }
-
-  Serial.printf("Temperatura: %.1f °C, Vlažnost: %.1f %%\n", temperature, humidity);
-}
-
-void updateLEDs() {
-  digitalWrite(RGB_R, LOW);
-  digitalWrite(RGB_G, LOW);
-  digitalWrite(RGB_B, LOW);
-  if (temperature < 20) {
-    digitalWrite(RGB_B, HIGH);
-  } else if (temperature <= 30) {
-    digitalWrite(RGB_G, HIGH);
-  } else {
-    digitalWrite(RGB_R, HIGH);
-  }
-
-  digitalWrite(LED_GREEN, LOW);
-  digitalWrite(LED_YELLOW, LOW);
-  digitalWrite(LED_RED, LOW);
-  if (humidity < 40) {
-    digitalWrite(LED_RED, HIGH);
-  } else if (humidity <= 70) {
-    digitalWrite(LED_GREEN, HIGH);
-  } else {
-    digitalWrite(LED_YELLOW, HIGH);
-  }
-}
-
-void updateDisplay() {
   display.clearDisplay();
-  display.setTextSize(1);
-  display.setTextColor(SSD1306_WHITE);
-
-  display.setCursor(0, 0);
-  display.print("METEO STANICA");
-  display.setCursor(0, 16);
-  display.print("Temp: ");
-  display.print(temperature, 1);
-  display.print(" C");
-  display.setCursor(0, 32);
-  display.print(tempStatus);
-  display.setCursor(0, 48);
-  display.print("Hum: ");
-  display.print(humidity, 1);
-  display.print(" %");
-  display.setCursor(0, 56);
-  display.print(humStatus);
-  display.display();
 }
 
-void sendToServer() {
-  if (WiFi.status() != WL_CONNECTED) {
-    Serial.println("WiFi nije povezan, pokušavam ponovno povezivanje...");
-    connectWiFi();
-    if (WiFi.status() != WL_CONNECTED) return;
+// Funkcija za taster (promena ekrana)
+void handleButton() {
+  bool reading = digitalRead(BUTTON_PIN);
+
+  if (reading != lastReading) {
+    lastDebounceTime = millis();
   }
+
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+    if (reading != buttonState) {
+      buttonState = reading;
+      if (buttonState == LOW) {
+        screen++;
+        if (screen > 5) screen = 0;
+        Serial.println("Promena ekrana!");
+      }
+    }
+  }
+  lastReading = reading;
+}
+
+// Slanje podataka na server
+void sendData(float t, float h, float p, int soil, int rain, int light) {
+  if (WiFi.status() != WL_CONNECTED) return;
 
   HTTPClient http;
   http.begin(serverUrl);
   http.addHeader("Content-Type", "application/json");
 
-  String jsonPayload = "{";
-  jsonPayload += "\"device\":\"esp32_meteo\",";
-  jsonPayload += "\"temperature\":" + String(temperature) + ",";
-  jsonPayload += "\"humidity\":" + String(humidity) + ",";
-  jsonPayload += "\"tempStatus\":\"" + tempStatus + "\",";
-  jsonPayload += "\"humStatus\":\"" + humStatus + "\"";
-  jsonPayload += "}";
+  char payload[128];
+  snprintf(payload, sizeof(payload),
+    "{\"t\":%.1f,\"h\":%.0f,\"p\":%.0f,\"s\":%d,\"r\":%d,\"l\":%d}",
+    t, h, p, soil, rain, light
+  );
 
-  int httpCode = http.POST(jsonPayload);
-  if (httpCode > 0) {
-    String response = http.getString();
-    Serial.printf("Server odgovor: %d - %s\n", httpCode, response.c_str());
-  } else {
-    Serial.printf("Greška pri slanju: %s\n", http.errorToString(httpCode).c_str());
-  }
+  int code = http.POST(payload);
+  Serial.print("HTTP odgovor: ");
+  Serial.println(code);
   http.end();
+}
+
+void loop() {
+  handleButton();
+
+  // Čitanje senzora
+  float tempDHT = dht.readTemperature();
+  float hum = dht.readHumidity();
+  float tempBMP = bmp.readTemperature();
+  float pressure = bmp.readPressure() / 100.0F;
+
+  int soilRaw = analogRead(SOIL_PIN);
+  int rainRaw = analogRead(RAIN_PIN);
+  int lightRaw = analogRead(LIGHT_PIN);
+
+  // Konverzija u procente (kalibracija zavisi od senzora)
+  int soilPercent = map(soilRaw, 4000, 1000, 0, 100);
+  int rainPercent = map(rainRaw, 4000, 1000, 0, 100);
+  rainPercent = constrain(rainPercent, 0, 100);
+  int lightPercent = map(lightRaw, 4000, 0, 0, 100);
+
+  // Slanje na server svakih 10 sekundi
+  if (millis() - lastSend > sendInterval) {
+    lastSend = millis();
+    sendData(tempDHT, hum, pressure, soilPercent, rainPercent, lightPercent);
+  }
+
+  // Prikaz na OLED-u u zavisnosti od izabranog ekrana
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+
+  switch(screen) {
+    case 0:
+      // Pregled svih parametara
+      display.setCursor(0,0);
+      display.println("Overview");
+      display.print("T:"); display.print(tempDHT); display.print("C ");
+      display.print("H:"); display.print(hum); display.println("%");
+      display.print("P:"); display.print(pressure); display.println("hPa");
+      display.print("Soil:"); display.print(soilPercent); display.println("%");
+      display.print("Rain:"); display.print(rainPercent); display.println("%");
+      display.print("Light:"); display.print(lightPercent); display.println("%");
+      break;
+    case 1:
+      display.setCursor(0,0);
+      display.println("DHT11");
+      display.print("Temp: "); display.print(tempDHT); display.println(" C");
+      display.print("Humidity: "); display.print(hum); display.println(" %");
+      break;
+    case 2:
+      display.setCursor(0,0);
+      display.println("BMP280");
+      display.print("Temp: "); display.print(tempBMP); display.println(" C");
+      display.print("Pressure: "); display.print(pressure); display.println(" hPa");
+      break;
+    case 3:
+      display.setCursor(0,0);
+      display.println("Soil Moisture");
+      display.print("Value: "); display.print(soilPercent); display.println("%");
+      if (soilPercent < 30) display.println("DRY!");
+      else display.println("OK");
+      break;
+    case 4:
+      display.setCursor(0,0);
+      display.println("Rain Sensor");
+      display.print("Value: "); display.print(rainPercent); display.println("%");
+      if (rainPercent > 70) display.println("RAIN!");
+      else display.println("Dry");
+      break;
+    case 5:
+      display.setCursor(0,0);
+      display.println("Light Sensor");
+      display.print("Value: "); display.print(lightPercent); display.println("%");
+      if (lightPercent < 20) display.println("Dark");
+      else display.println("Bright");
+      break;
+  }
+  display.display();
+  delay(300);
 }</code></pre>
                                         </details>
                                         <div class="note">
                                             ⚠️ <strong>Pre nego što učitaš kod:</strong>
                                             <ul>
-                                                <li>Zameni <code>ssid</code> i <code>password</code> sa svojim Wi-Fi
-                                                    podacima.</li>
-                                                <li>Zameni <code>serverUrl</code> sa stvarnom adresom (npr.
-                                                    <code>https://eucionica.onrender.com/otvoreno-racunarstvo/api/iot/sensor-data</code>).
-                                                </li>
-                                                <li>Instaliraj biblioteke: <strong>DHT sensor library</strong>,
-                                                    <strong>Adafruit GFX Library</strong>, <strong>Adafruit
-                                                        SSD1306</strong> (Library Manager).</li>
+                                                <li>Zameni <code>ssid</code> i <code>password</code> sa svojim Wi-Fi podacima.</li>
+                                                <li>Zameni <code>serverUrl</code> sa stvarnom adresom (npr. <code>https://eucionica.onrender.com/otvoreno-racunarstvo/api/iot/sensor-data</code>).</li>
+                                                <li>Instaliraj biblioteke: <strong>DHT sensor library</strong>, <strong>Adafruit BMP280 Library</strong>, <strong>Adafruit GFX Library</strong>, <strong>Adafruit SSD1306</strong> (Library Manager).</li>
+                                                <li>Proveri I2C adresu BMP280 (0x76 ili 0x77) i pinove za I2C (SDA=21, SCL=22).</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -536,31 +509,36 @@ void sendToServer() {
                                     <div class="lection-section__content">
                                         <p>Na Express serveru dodajemo dva endpoint-a:</p>
                                         <ul>
-                                            <li><code>POST /otvoreno-racunarstvo/api/iot/sensor-data</code> – prima JSON
-                                                podatke i čuva ih u memoriji.</li>
-                                            <li><code>GET /otvoreno-racunarstvo/api/iot/latest-readings</code> – vraća
-                                                poslednjih 20 očitanja (za prikaz na dashboardu).</li>
+                                            <li><code>POST /otvoreno-racunarstvo/api/iot/sensor-data</code> – prima JSON podatke sa ključevima <code>t, h, p, s, r, l</code> i čuva ih u memoriji.</li>
+                                            <li><code>GET /otvoreno-racunarstvo/api/iot/latest-readings</code> – vraća poslednjih 20 očitanja (za prikaz na dashboardu).</li>
                                         </ul>
                                         <details class="code-details">
                                             <summary>🔽 Prikaži kontroler (<code>iot.controller.js</code>)</summary>
                                             <pre class="code-block"><code>let sensorReadings = [];
 
 export function receiveSensorData(req, res) {
-  const { device, temperature, humidity, tempStatus, humStatus } = req.body;
-  if (!device || temperature === undefined || humidity === undefined) {
-    return res.status(400).json({ error: "Nedostaju obavezni podaci" });
+  const { t, h, p, s, r, l } = req.body;
+
+  if (t === undefined || h === undefined || p === undefined || s === undefined || r === undefined || l === undefined) {
+    return res.status(400).json({ error: "Nedostaju podaci (t, h, p, s, r, l)" });
   }
+
   const reading = {
-    device,
-    temperature: parseFloat(temperature),
-    humidity: parseFloat(humidity),
-    tempStatus: tempStatus || "",
-    humStatus: humStatus || "",
+    device: req.body.device || "esp32",
+    temperature: parseFloat(t),
+    humidity: parseFloat(h),
+    pressure: parseFloat(p),
+    soil: parseInt(s),
+    rain: parseInt(r),
+    light: parseInt(l),
     timestamp: new Date().toISOString()
   };
+
   sensorReadings.unshift(reading);
   if (sensorReadings.length > 50) sensorReadings.pop();
-  console.log(`[IoT] ${device}: ${temperature}°C, ${humidity}% (${tempStatus}, ${humStatus})`);
+
+  console.log(`[IoT] ${reading.device} | T:${reading.temperature}°C H:${reading.humidity}% P:${reading.pressure}hPa S:${reading.soil}% R:${reading.rain}% L:${reading.light}%`);
+
   res.status(200).json({ status: "ok" });
 }
 
@@ -584,7 +562,7 @@ router.get("/api/iot/latest-readings", getLatestReadings);</code></pre>
                                     <h2 class="lection-section__title">📊 Praćenje podataka u realnom vremenu</h2>
                                     <div class="lection-section__content">
                                         <p>Ispod se prikazuju poslednja očitanja koja je ESP32 poslao na server. Tabela
-                                            se automatski osvežava svakih 60 sekundi.</p>
+                                            se automatski osvežava svakih 10 sekundi.</p>
                                         <div class="api-tester">
                                             <div id="iotReadingsContainer" style="max-height: 400px; overflow-y: auto;">
                                                 <table class="lection-table" id="iotTable">
@@ -593,22 +571,23 @@ router.get("/api/iot/latest-readings", getLatestReadings);</code></pre>
                                                             <th>Vreme</th>
                                                             <th>Uređaj</th>
                                                             <th>Temperatura (°C)</th>
-                                                            <th>Status temp</th>
                                                             <th>Vlažnost (%)</th>
-                                                            <th>Status vlage</th>
+                                                            <th>Pritisak (hPa)</th>
+                                                            <th>Vlaga zemlje (%)</th>
+                                                            <th>Kiša (%)</th>
+                                                            <th>Svetlost (%)</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="iotTableBody">
                                                         <tr>
-                                                            <td colspan="6">Učitavanje...</td>
+                                                            <td colspan="8">Učitavanje...</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                         <div class="note">
-                                            💡 Ako nema podataka, proveri da li ESP32 uspešno šalje POST zahteve (prati
-                                            Serial monitor) i da li je server dostupan.
+                                            💡 Ako nema podataka, proveri da li ESP32 uspešno šalje POST zahteve (prati Serial monitor) i da li je server dostupan.
                                         </div>
                                     </div>
                                 </section>
@@ -620,20 +599,14 @@ router.get("/api/iot/latest-readings", getLatestReadings);</code></pre>
                                     <h2 class="lection-section__title">Šta smo naučili?</h2>
                                     <div class="lection-section__content">
                                         <ul>
-                                            <li>IoT povezuje fizičke uređaje sa internetom, a otvoreno računarstvo je
-                                                ključno za brz razvoj i interoperabilnost.</li>
-                                            <li>Postoje specijalizovani protokoli za IoT (MQTT, CoAP) pored standardnog
-                                                HTTP-a.</li>
-                                            <li>Kako napisati Arduino kod za ESP32 koji čita senzore, prikazuje podatke
-                                                na OLED-u i šalje JSON na server koristeći HTTP POST.</li>
-                                            <li>Kako na serverskoj strani primiti, validirati i čuvati podatke, te ih
-                                                prikazati na dashboard-u uz pomoć JavaScript polling-a.</li>
-                                            <li>Korišćenje <code>millis()</code> umesto <code>delay()</code> omogućava
-                                                neblokirajuće izvršavanje.</li>
+                                            <li>IoT povezuje fizičke uređaje sa internetom, a otvoreno računarstvo je ključno za brz razvoj i interoperabilnost.</li>
+                                            <li>Postoje specijalizovani protokoli za IoT (MQTT, CoAP) pored standardnog HTTP-a.</li>
+                                            <li>Kako napisati Arduino kod za ESP32 koji čita više senzora (DHT11, BMP280, senzor vlage zemlje, kiše i svetlosti), prikazuje podatke na OLED-u i šalje JSON na server koristeći HTTP POST.</li>
+                                            <li>Kako na serverskoj strani primiti, validirati i čuvati podatke, te ih prikazati na dashboard-u uz pomoć JavaScript polling-a.</li>
+                                            <li>Korišćenje <code>millis()</code> umesto <code>delay()</code> i debounce tehnika za taster omogućavaju neblokirajuće izvršavanje.</li>
                                         </ul>
                                         <div class="note">
-                                            🚀 <strong>Dalji koraci:</strong> Implementiraj MQTT umesto HTTP, dodaj bazu
-                                            podataka (InfluxDB) ili napravi mobilnu aplikaciju.
+                                            🚀 <strong>Dalji koraci:</strong> Implementiraj MQTT umesto HTTP, dodaj bazu podataka (InfluxDB) ili napravi mobilnu aplikaciju.
                                         </div>
                                     </div>
                                 </section>
@@ -673,6 +646,6 @@ router.get("/api/iot/latest-readings", getLatestReadings);</code></pre>
             </main>
         </div>
 
-        <script src="/public/js/otvoreno-racunarstvo/iot-example.js"></script>
+        <script src="/public/js/otvoreno-racunarstvo/iot-dashboard.js"></script>
 
         <%- include('../../../includes/end') %>

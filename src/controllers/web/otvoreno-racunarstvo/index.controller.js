@@ -298,21 +298,40 @@ export async function getPdfExample(req, res) {
 let sensorReadings = [];
 
 export function receiveSensorData(req, res) {
-  const { device, temperature, humidity, tempStatus, humStatus } = req.body;
-  if (!device || temperature === undefined || humidity === undefined) {
-    return res.status(400).json({ error: "Nedostaju obavezni podaci (device, temperature, humidity)" });
+  const { device, t, h, p, s, r, l } = req.body;
+
+  // validacija
+  if (
+    t === undefined ||
+    h === undefined ||
+    p === undefined ||
+    s === undefined ||
+    r === undefined ||
+    l === undefined
+  ) {
+    return res.status(400).json({
+      error: "Nedostaju podaci (t, h, p, s, r, l)"
+    });
   }
+
   const reading = {
-    device,
-    temperature: parseFloat(temperature),
-    humidity: parseFloat(humidity),
-    tempStatus: tempStatus || "",
-    humStatus: humStatus || "",
+    device: device || "esp32",
+    temperature: parseFloat(t),
+    humidity: parseFloat(h),
+    pressure: parseFloat(p),
+    soil: parseInt(s),
+    rain: parseInt(r),
+    light: parseInt(l),
     timestamp: new Date().toISOString()
   };
+
   sensorReadings.unshift(reading);
   if (sensorReadings.length > 50) sensorReadings.pop();
-  console.log(`[IoT] ${device}: ${temperature}°C, ${humidity}% (${tempStatus}, ${humStatus})`);
+
+  console.log(
+    `[IoT] ${reading.device} | T:${reading.temperature}°C H:${reading.humidity}% P:${reading.pressure}hPa S:${reading.soil}% R:${reading.rain}% L:${reading.light}%`
+  );
+
   res.status(200).json({ status: "ok" });
 }
 

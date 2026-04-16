@@ -20,6 +20,11 @@
         }
     }
 
+    function format(val, unit = '') {
+        if (val === undefined || val === null || isNaN(val)) return '-';
+        return `${val}${unit}`;
+    }
+
     function fetchReadings() {
         fetch('/otvoreno-racunarstvo/api/iot/latest-readings')
             .then(res => res.json())
@@ -28,32 +33,33 @@
                 if (!tbody) return;
 
                 // Ako nema podataka
-                if (data.length === 0) {
-                    // Prikaži poruku samo ako već nije prikazana
+                if (!Array.isArray(data) || data.length === 0) {
                     if (tbody.innerHTML.includes('Još nema podataka')) return;
-                    tbody.innerHTML = '<tr><td colspan="6">Još nema podataka. Pošaljite prvi POST zahtev sa ESP32.</td></tr>';
-                    // Zaustavi dalje provere
+                    tbody.innerHTML = '<tr><td colspan="8">Još nema podataka. Pošaljite prvi POST zahtev sa ESP32.</td></tr>';
                     stopPolling();
                     return;
                 }
 
-                // Ima podataka – prikaži ih
+                // Ima podataka
                 tbody.innerHTML = data.map(r => `
                     <tr>
                         <td>${new Date(r.timestamp).toLocaleString()}</td>
                         <td>${escapeHtml(r.device)}</td>
-                        <td>${r.temperature}</td>
-                        <td>${escapeHtml(r.tempStatus || '')}</td>
-                        <td>${r.humidity}</td>
-                        <td>${escapeHtml(r.humStatus || '')}</td>
+                        <td>${format(r.temperature, '°C')}</td>
+                        <td>${format(r.humidity, '%')}</td>
+                        <td>${format(r.pressure, ' hPa')}</td>
+                        <td>${format(r.soil, '%')}</td>
+                        <td>${format(r.rain, '%')}</td>
+                        <td>${format(r.light, '%')}</td>
                     </tr>
                 `).join('');
             })
             .catch(err => console.error('Greška pri dohvatanju podataka:', err));
     }
 
-    // Prvo učitavanje
+    // inicijalno učitavanje
     fetchReadings();
-    // Pokreni periodično proveravanje (na 60 sekundi)
-    intervalId = setInterval(fetchReadings, 60000);
+
+    // polling na 10s (možeš menjati)
+    intervalId = setInterval(fetchReadings, 10000);
 })();

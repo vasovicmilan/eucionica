@@ -4,124 +4,334 @@
     <%- include('../../../includes/navigation', { active: 'otvoreno-racunarstvo' }) %>
 
         <div class="lection-container">
-            <!-- SIDEBAR -->
             <aside class="lection-sidebar">
                 <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
             </aside>
 
-            <!-- CONTENT -->
             <main class="lection-content">
-
-                <!-- ===============================
-             LEKCIJA NIJE DOSTUPNA
-        =============================== -->
                 <% if (!lection.available) { %>
-
                     <div class="lection-locked">
                         <div class="lection-locked__icon">🔒</div>
                         <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
-                        <p class="lection-locked__text">
-                            Ova lekcija postaje dostupna
-                            <strong>
+                        <p class="lection-locked__text">Ova lekcija postaje dostupna <strong>
                                 <%= lection.formattedDate %>
-                            </strong>.
-                        </p>
-                        <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
-                        <a href="/otvoreno-racunarstvo" class="btn btn--primary btn--large">
-                            Nazad na predmet
-                        </a>
+                            </strong>.</p>
+                        <a href="/otvoreno-racunarstvo" class="btn btn--primary btn--large">Nazad na predmet</a>
                     </div>
-
-                    <!-- ===============================
-             LEKCIJA JE DOSTUPNA
-        =============================== -->
                     <% } else { %>
-
                         <article class="lection">
-
-                            <!-- HEADER -->
                             <header class="lection__header">
                                 <div class="lection__meta">
-                                    <span class="lection__badge lection__badge--week">
-                                        <span class="badge-icon">📅</span>
-                                        Nedelja <%= lection.week %>
+                                    <span class="lection__badge lection__badge--week">📅 Nedelja <%= lection.week %>
                                     </span>
-                                    <span class="lection__badge lection__badge--date">
-                                        <span class="badge-icon">📌</span>
-                                        <%= lection.formattedDate %>
+                                    <span class="lection__badge lection__badge--date">📌 <%= lection.formattedDate %>
                                     </span>
                                 </div>
-
-                                <h1 class="lection__title">
-                                    <%= lection.title %>
-                                </h1>
-
+                                <h1 class="lection__title"><%= lection.title %></h1>
                                 <% if (lection.description) { %>
-                                    <p class="lection__description">
-                                        <%= lection.description %>
-                                    </p>
-                                    <% } %>
-                                        <div class="project-note">
-
-                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
-
-                                        </div>
+                                    <p class="lection__description"><%= lection.description %></p>
+                                <% } %>
+                                <div class="project-note">⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!</div>
                             </header>
 
-                            <!-- ===============================
-                     SADRŽAJ LEKCIJE
-                =============================== -->
                             <div class="lection__content">
+                                <!-- ========================================================= -->
+                                <!-- 1. ZAŠTO SU LICENCE VAŽNE -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Zašto su licence važne?</h2>
+                                    <div class="lection-section__content">
+                                        <p>Bez licence, čak i ako je kod javno dostupan, <strong>zakonski nemaš pravo da ga koristiš</strong>. Licence odgovaraju na ključna pitanja:</p>
+                                        <div class="tech-grid">
+                                            <div class="tech-item">
+                                                <span class="tech-icon">📋</span>
+                                                <strong>Šta smem da radim?</strong>
+                                                <span class="tech-desc">Da li smem da instaliram, koristim, menjam softver?</span>
+                                            </div>
+                                            <div class="tech-item">
+                                                <span class="tech-icon">✏️</span>
+                                                <strong>Da li smem da menjam?</strong>
+                                                <span class="tech-desc">Da li smem da prilagođavam kod svojim potrebama?</span>
+                                            </div>
+                                            <div class="tech-item">
+                                                <span class="tech-icon">💼</span>
+                                                <strong>Komercijalna upotreba?</strong>
+                                                <span class="tech-desc">Da li smem da uključim kod u svoj plaćeni proizvod?</span>
+                                            </div>
+                                            <div class="tech-item">
+                                                <span class="tech-icon">📤</span>
+                                                <strong>Dalje deljenje?</strong>
+                                                <span class="tech-desc">Da li smem da podelim izmenjenu verziju?</span>
+                                            </div>
+                                        </div>
+                                        <div class="note">
+                                            💡 Open source <strong>nije "radi šta hoćeš"</strong> – to je <strong>jasno definisan pravni sistem</strong> koji štiti i autora i korisnika.
+                                        </div>
+                                    </div>
+                                </section>
 
-                                <!-- OVDE DOLAZI SADRŽAJ LEKCIJE -->
-                                <!-- Sadržaj će biti dodat za svaku lekciju posebno -->
+                                <!-- ========================================================= -->
+                                <!-- 2. COPyleft vs PERMISSIVE -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Copyleft vs Permissive licence</h2>
+                                    <div class="lection-section__content">
+                                        <p>Ovo je <strong>najvažnija podela</strong> koju treba razumeti. Ona određuje šta se dešava sa <strong>tvojim izmenama</strong> koda.</p>
+                                        
+                                        <div class="comparison-grid">
+                                            <div class="comparison-card copyleft">
+                                                <h3>🔗 Copyleft licence</h3>
+                                                <p><strong>Zahtevaju</strong> da izmene ostanu otvorene.</p>
+                                                <ul>
+                                                    <li>Ako koristiš GPL kod → <strong>moraš otvoriti i svoj kod</strong></li>
+                                                    <li>Štiti slobodu softvera "zarazno"</li>
+                                                    <li>Primer: <strong>GPL</strong></li>
+                                                </ul>
+                                                <div class="example">Linux kernel, WordPress, Git</div>
+                                            </div>
+                                            <div class="comparison-card permissive">
+                                                <h3>🕊️ Permissive licence</h3>
+                                                <p><strong>Dozvoljavaju</strong> skoro sve, čak i zatvaranje koda.</p>
+                                                <ul>
+                                                    <li>Možeš da integrišeš kod u <strong>proprietary</strong> softver</li>
+                                                    <li>Samo zahtevaju navođenje autora</li>
+                                                    <li>Primeri: <strong>MIT, BSD, Apache 2.0</strong></li>
+                                                </ul>
+                                                <div class="example">React, Node.js, .NET Core</div>
+                                            </div>
+                                        </div>
+                                        <div class="note">
+                                            📌 <strong>Ključna razlika:</strong> Copyleft štiti slobodu budućih korisnika, permissive daje maksimalnu slobodu <em>tebi</em> kao developeru.
+                                        </div>
+                                    </div>
+                                </section>
 
+                                <!-- ========================================================= -->
+                                <!-- 3. MIT LICENCA -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">MIT licenca – najjednostavnija i najpopularnija</h2>
+                                    <div class="lection-section__content">
+                                        <p>MIT je <strong>permissive licenca</strong> koja se koristi u stotinama hiljada projekata. Kratka je, jasna i veoma liberlana.</p>
+                                        
+                                        <div class="license-card">
+                                            <div class="license-header">✅ MIT licenca <strong>dozvoljava</strong>:</div>
+                                            <ul>
+                                                <li><strong>Privatnu i komercijalnu upotrebu</strong> – možeš da koristiš kod u svom proizvodu koji prodaješ</li>
+                                                <li><strong>Menjanje koda</strong> – prilagođavanje sopstvenim potrebama</li>
+                                                <li><strong>Deljenje</strong> – originala i izmenjenih verzija</li>
+                                                <li><strong>Zatvaranje koda</strong> – ne moraš da objaviš svoj izvorni kod</li>
+                                            </ul>
+                                            <div class="license-header">⚠️ MIT licenca <strong>zahteva</strong>:</div>
+                                            <ul>
+                                                <li><strong>Zadržavanje originalnog obaveštenja</strong> – moraš navesti autora i MIT licencu (obično u LICENSE fajlu ili komentaru u kodu)</li>
+                                            </ul>
+                                        </div>
+
+                                        <h3>Primer iz prakse:</h3>
+                                        <p>Ako koristiš <strong>React</strong> (MIT licenca) u svom projektu:</p>
+                                        <ul>
+                                            <li>✅ Možeš da napraviš i prodaš aplikaciju</li>
+                                            <li>✅ Ne moraš da otvoriš svoj kod</li>
+                                            <li>✅ Ali u dokumentaciji moraš navesti da koristiš React i priložiti MIT licencu</li>
+                                        </ul>
+                                        <p><strong>Gde se MIT često koristi?</strong> JavaScript biblioteke, frontend alati, mali open source projekti, <strong>studentski projekti</strong>.</p>
+                                        <div class="note">
+                                            💡 MIT je <strong>idealna za učenje</strong> – nema zamki, jednostavno je razumeti, a štiti autora.
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 4. GPL LICENCA -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">GPL (General Public License) – "sloboda mora ostati sloboda"</h2>
+                                    <div class="lection-section__content">
+                                        <p>GPL je <strong>jaka copyleft licenca</strong> koju je kreirao <strong>Richard Stallman</strong> i Free Software Foundation. Njen cilj je da <strong>spreči zatvaranje otvorenog koda</strong>.</p>
+                                        
+                                        <div class="license-card">
+                                            <div class="license-header">✅ GPL <strong>dozvoljava</strong>:</div>
+                                            <ul>
+                                                <li>Korišćenje, menjanje, deljenje, komercijalnu upotrebu</li>
+                                            </ul>
+                                            <div class="license-header">⚠️ GPL <strong>zahteva (ključno!)</strong>:</div>
+                                            <ul>
+                                                <li>Ako <strong>distribuiraš</strong> softver (original ili izmenjen) → <strong>moraš objaviti ceo izvorni kod</strong></li>
+                                                <li>Izmene moraju biti pod <strong>istom (GPL) licencom</strong></li>
+                                                <li><strong>Ne smeš da "zatvoriš" GPL kod</strong> – čak ni deo!</li>
+                                            </ul>
+                                        </div>
+
+                                        <h3>Primer iz prakse:</h3>
+                                        <p>Ako uzmeš <strong>Linux kernel</strong> (GPL) i napraviš sopstveni operativni sistem:</p>
+                                        <ul>
+                                            <li>✅ Možeš da ga prodaješ</li>
+                                            <li>⚠️ Ali <strong>moraš da objaviš ceo izvorni kod</strong> (i svoje izmene) pod GPL</li>
+                                            <li>❌ Ne smeš da sakriješ kod – čak i ako si platio razvoj</li>
+                                        </ul>
+                                        <p><strong>Česta zabluda:</strong> "GPL znači da ne smem da naplatim softver" – <strong>netačno</strong>! GPL dozvoljava naplatu, ali zahteva otvorenost koda.</p>
+                                        <div class="note">
+                                            📌 GPL štiti <strong>zajednicu</strong> – ako koristiš, moraš i da doprineseš. Zato je čest u sistemskom softveru (Linux, Android kernel).
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 5. APACHE 2.0 LICENCA -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Apache 2.0 – permissive sa patentnom zaštitom</h2>
+                                    <div class="lection-section__content">
+                                        <p>Apache je <strong>permissive licenca</strong> slična MIT, ali sa <strong>dodatnom patentnom klauzulom</strong> koja štiti korisnike od tužbi.</p>
+                                        
+                                        <h3>Ključna razlika u odnosu na MIT:</h3>
+                                        <p>Apache 2.0 <strong>izričito daje prava na korišćenje patenata</strong> koji su vezani za softver. Ako neko poseduje patent koji pokriva deo koda, davanjem koda pod Apache licencom <strong>odriče se prava da te tuži</strong> zbog korišćenja tog patenta.</p>
+                                        
+                                        <h3>Primer iz prakse:</h3>
+                                        <p><strong>Android OS</strong> (Google) koristi Apache 2.0 licencu za veliki deo svog koda. Zato proizvođači telefona mogu da koriste Android bez straha od patentnih tužbi.</p>
+                                        
+                                        <div class="license-card">
+                                            <div class="license-header">✅ Apache 2.0 <strong>dozvoljava</strong>:</div>
+                                            <ul>
+                                                <li>Korišćenje, menjanje, distribuciju, komercijalnu upotrebu, zatvaranje koda</li>
+                                                <li><strong>Patentnu zaštitu</strong> – daje eksplicitnu dozvolu za korišćenje patenata</li>
+                                            </ul>
+                                            <div class="license-header">⚠️ Apache 2.0 <strong>zahteva</strong>:</div>
+                                            <ul>
+                                                <li>Čuvanje NOTICE fajla (ako postoji) i licence</li>
+                                                <li>Navođenje izmena (za svaki izmenjeni fajl moraš navesti da je izmenjen)</li>
+                                            </ul>
+                                        </div>
+                                        <p><strong>Gde se često koristi?</strong> Backend alati, cloud infrastruktura (Kubernetes, Hadoop), enterprise projekti.</p>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 6. CREATIVE COMMONS (ZA SADRŽAJ) -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Creative Commons licence – za sadržaj, ne za kod</h2>
+                                    <div class="lection-section__content">
+                                        <p>CC licence se koriste za <strong>tekstove, slike, muziku, video, edukativni materijal</strong> – sve što <strong>nije</strong> softverski kod.</p>
+                                        
+                                        <h3>Četiri osnovna elementa CC licenci:</h3>
+                                        <div class="tech-grid">
+                                            <div class="tech-item"><span class="tech-icon">👤</span><strong>BY</strong><span>Moraš navesti autora</span></div>
+                                            <div class="tech-item"><span class="tech-icon">🚫💰</span><strong>NC</strong><span>Nekomercijalno (Non-Commercial)</span></div>
+                                            <div class="tech-item"><span class="tech-icon">🔒</span><strong>ND</strong><span>Bez izmena (No Derivatives)</span></div>
+                                            <div class="tech-item"><span class="tech-icon">🔄</span><strong>SA</strong><span>Deli pod istim uslovima (ShareAlike)</span></div>
+                                        </div>
+                                        
+                                        <h3>Najčešće kombinacije:</h3>
+                                        <ul>
+                                            <li><strong>CC BY</strong> – najliberalnija: samo navedi autora, možeš menjati i koristiti komercijalno.</li>
+                                            <li><strong>CC BY-NC</strong> – možeš koristiti i menjadi, ali <strong>ne smeš komercijalno</strong>. Idealno za obrazovne materijale.</li>
+                                            <li><strong>CC BY-SA</strong> – kao MIT, ali za sadržaj: izmene moraju biti pod istom licencom (copyleft za sadržaj).</li>
+                                            <li><strong>CC BY-ND</strong> – dozvoljeno deljenje, ali <strong>bez ikakvih izmena</strong>.</li>
+                                        </ul>
+                                        
+                                        <h3>Primer iz prakse:</h3>
+                                        <p>Ako nađeš <strong>fotografiju pod CC BY-NC</strong> licencom na Flickr-u:</p>
+                                        <ul>
+                                            <li>✅ Možeš je koristiti u <strong>studentskom projektu</strong> (nekomercijalno)</li>
+                                            <li>⚠️ Moraš navesti autora (by)</li>
+                                            <li>❌ Ne smeš je koristiti u <strong>reklami za svoju firmu</strong> (to je komercijalna upotreba)</li>
+                                        </ul>
+                                        <div class="note">
+                                            💡 Za projekte iz predmeta, uvek biraj sadržaj sa <strong>CC0 (javno vlasništvo)</strong> ili <strong>CC BY</strong> ako je moguće. Izbegavaj NC ako planiraš da projekat ikada postane komercijalan!
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 7. KAKO STUDENT RAZMIŠLJA O LICENCAMA -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Kako student treba da razmišlja o licencama?</h2>
+                                    <div class="lection-section__content">
+                                        <p>Pre nego što iskoristiš bilo koji kod, sliku, tekst ili muziku, postavi sebi <strong>tri ključna pitanja</strong>:</p>
+                                        <div class="questions-grid">
+                                            <div class="question-card">1️⃣ <strong>Šta smem da koristim?</strong><br>Da li uopšte imam pravo da koristim ovaj materijal?</div>
+                                            <div class="question-card">2️⃣ <strong>Da li smem da menjam?</strong><br>Ako treba da prilagodim sadržaj, da li je to dozvoljeno?</div>
+                                            <div class="question-card">3️⃣ <strong>Da li smem da koristim komercijalno?</strong><br>Ako planiram da projekat postane proizvod, koje licence su kompatibilne?</div>
+                                        </div>
+                                        <p><strong>Zlatno pravilo:</strong> Ako ne znaš odgovor → <strong>ne koristi materijal</strong> dok ne proveriš!</p>
+                                        
+                                        <h3>Šta se dešava bez znanja o licencama?</h3>
+                                        <ul>
+                                            <li>❌ Možeš <strong>nesvesno prekršiti zakon</strong> (čak i ako nisi znao, odgovaraš!)</li>
+                                            <li>❌ Ne smeš da koristiš sadržaj u javnom projektu</li>
+                                            <li>❌ Ne možeš <strong>legalno objaviti svoj rad</strong> (nedostaje ti dozvola za korišćene komponente)</li>
+                                            <li>⚠️ Tvoj projekat može biti <strong>uklonjen sa GitHub-a</strong> zbog kršenja licence</li>
+                                        </ul>
+                                        
+                                        <div class="note">
+                                            🎓 <strong>Poruka ove oblasti:</strong> Open source nije haos, već <strong>uređen sistem</strong>. Licence štite <strong>autora, korisnika i zajednicu</strong>. Razumevanje licenci je <strong>deo digitalne pismenosti</strong> – bez njih nema pravog otvorenog računarstva.
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 8. PRAKTIČNI PRIMER -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Praktični primer: Koju licencu izabrati za svoj projekat?</h2>
+                                    <div class="lection-section__content">
+                                        <p>Zamisli da si napravio <strong>biblioteku za rad sa JSON podacima</strong> i želiš da je objaviš na GitHub-u. Koju licencu da izabereš?</p>
+                                        
+                                        <div class="example-scenario">
+                                            <h3>Scenario 1: Studentski projekat – nikakve veze sa firmom</h3>
+                                            <p><strong>Preporuka:</strong> MIT</p>
+                                            <p>MIT je jednostavan, popularan i omogućava drugima da ga koriste bez mnogo razmišljanja. Nema obaveza koje bi ih plašile.</p>
+                                        </div>
+                                        
+                                        <div class="example-scenario">
+                                            <h3>Scenario 2: Radiš u firmi i praviš alat koji će firma koristiti interno</h3>
+                                            <p><strong>Preporuka:</strong> Apache 2.0 ili MIT</p>
+                                            <p>Permissive licence omogućavaju firmi da zatvori svoje izmene (što firme često žele). Apache 2.0 daje dodatnu patentnu zaštitu.</p>
+                                        </div>
+                                        
+                                        <div class="example-scenario">
+                                            <h3>Scenario 3: Želiš da <strong>sprečiš</strong> da neko zatvori tvoj kod</h3>
+                                            <p><strong>Preporuka:</strong> GPL (ili AGPL za web servise)</p>
+                                            <p>Ako želiš da svaka izmena tvog koda <strong>ostane otvorena</strong>, GPL je pravi izbor. Koriste ga projekti koji veruju da softver treba uvek da bude slobodan.</p>
+                                        </div>
+                                        
+                                        <div class="example-scenario">
+                                            <h3>Scenario 4: Pravite edukativni materijal (prezentacije, radne listove)</h3>
+                                            <p><strong>Preporuka:</strong> CC BY-SA</p>
+                                            <p>Creative Commons ShareAlike omogućava drugima da koriste i menjaju materijal, ali pod istim uslovima – to podstiče deljenje i dalje.</p>
+                                        </div>
+                                        
+                                        <div class="note">
+                                            🚀 <strong>Praktični savet:</strong> Ako nisi siguran, MIT je najbezbedniji izbor za kod. Uvek dodaj <strong>LICENSE</strong> fajl u repozitorijum – bez njega, po defaultu niko nema pravo da koristi tvoj kod.
+                                        </div>
+                                    </div>
+                                </section>
                             </div>
 
-                            <!-- ===============================
-                     NAVIGACIJA IZMEĐU LEKCIJA
-                =============================== -->
                             <nav class="lection-nav">
                                 <% if (navigation.prev) { %>
-                                    <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>"
-                                        class="lection-nav__link lection-nav__link--prev">
+                                    <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>" class="lection-nav__link lection-nav__link--prev">
                                         <span class="nav-arrow">←</span>
-                                        <span class="nav-text">
-                                            <span class="nav-label">Prethodna lekcija</span>
-                                            <span class="nav-title">
-                                                <%= navigation.prev.title %>
-                                            </span>
-                                        </span>
+                                        <span class="nav-text"><span class="nav-label">Prethodna lekcija</span><span class="nav-title"><%= navigation.prev.title %></span></span>
                                     </a>
-                                    <% } else { %>
-                                        <a href="/otvoreno-racunarstvo"
-                                            class="lection-nav__link lection-nav__link--prev">
-                                            <span class="nav-arrow">←</span>
-                                            <span class="nav-text">
-                                                <span class="nav-label">Nazad na</span>
-                                                <span class="nav-title">početnu predmeta</span>
-                                            </span>
-                                        </a>
-                                        <% } %>
-
-                                            <% if (navigation.next) { %>
-                                                <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.next.slug %>"
-                                                    class="lection-nav__link lection-nav__link--next">
-                                                    <span class="nav-text">
-                                                        <span class="nav-label">Sledeća lekcija</span>
-                                                        <span class="nav-title">
-                                                            <%= navigation.next.title %>
-                                                        </span>
-                                                    </span>
-                                                    <span class="nav-arrow">→</span>
-                                                </a>
-                                                <% } %>
+                                <% } else { %>
+                                    <a href="/otvoreno-racunarstvo" class="lection-nav__link lection-nav__link--prev">
+                                        <span class="nav-arrow">←</span>
+                                        <span class="nav-text"><span class="nav-label">Nazad na</span><span class="nav-title">početnu predmeta</span></span>
+                                    </a>
+                                <% } %>
+                                <% if (navigation.next) { %>
+                                    <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.next.slug %>" class="lection-nav__link lection-nav__link--next">
+                                        <span class="nav-text"><span class="nav-label">Sledeća lekcija</span><span class="nav-title"><%= navigation.next.title %></span></span>
+                                        <span class="nav-arrow">→</span>
+                                    </a>
+                                <% } %>
                             </nav>
-
                         </article>
-
-                        <% } %>
-
+                    <% } %>
             </main>
         </div>
 

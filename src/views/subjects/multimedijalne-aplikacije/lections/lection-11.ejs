@@ -4,122 +4,138 @@
     <%- include('../../../includes/navigation', { active: 'multimedijalne-aplikacije' }) %>
 
         <div class="lection-container">
-            <!-- SIDEBAR -->
             <aside class="lection-sidebar">
                 <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
             </aside>
 
-            <!-- CONTENT -->
             <main class="lection-content">
-
-                <!-- ===============================
-             LEKCIJA NIJE DOSTUPNA
-        =============================== -->
                 <% if (!lection.available) { %>
-
                     <div class="lection-locked">
                         <div class="lection-locked__icon">🔒</div>
                         <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
-                        <p class="lection-locked__text">
-                            Ova lekcija postaje dostupna
-                            <strong>
+                        <p class="lection-locked__text">Ova lekcija postaje dostupna <strong>
                                 <%= lection.formattedDate %>
-                            </strong>.
-                        </p>
-                        <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
-                        <a href="/multimedijalne-aplikacije" class="btn btn--primary btn--large">
-                            Nazad na predmet
-                        </a>
+                            </strong>.</p>
+                        <a href="/multimedijalne-aplikacije" class="btn btn--primary btn--large">Nazad na predmet</a>
                     </div>
-
-                    <!-- ===============================
-             LEKCIJA JE DOSTUPNA
-        =============================== -->
                     <% } else { %>
-
                         <article class="lection">
-
-                            <!-- HEADER -->
                             <header class="lection__header">
                                 <div class="lection__meta">
-                                    <span class="lection__badge lection__badge--week">
-                                        <span class="badge-icon">📅</span>
-                                        Nedelja <%= lection.week %>
+                                    <span class="lection__badge lection__badge--week">📅 Nedelja <%= lection.week %>
                                     </span>
-                                    <span class="lection__badge lection__badge--date">
-                                        <span class="badge-icon">📌</span>
-                                        <%= lection.formattedDate %>
+                                    <span class="lection__badge lection__badge--date">📌 <%= lection.formattedDate %>
                                     </span>
                                 </div>
-
-                                <h1 class="lection__title">
-                                    <%= lection.title %>
-                                </h1>
-
+                                <h1 class="lection__title"><%= lection.title %></h1>
                                 <% if (lection.description) { %>
-                                    <p class="lection__description">
-                                        <%= lection.description %>
-                                    </p>
-                                    <% } %>
-                                        <div class="project-note">
-
-                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
-
-                                        </div>
+                                    <p class="lection__description"><%= lection.description %></p>
+                                <% } %>
+                                <div class="project-note">⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!</div>
                             </header>
 
-                            <!-- ===============================
-                     SADRŽAJ LEKCIJE
-                =============================== -->
                             <div class="lection__content">
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Šta je vizuelni identitet?</h2>
+                                    <div class="lection-section__content">
+                                        <p><strong>Vizuelni identitet (VI)</strong> je skup grafičkih elemenata koji na jedinstven i prepoznatljiv način predstavlja brend, TV stanicu, kompaniju ili proizvod. To nije samo logo – to je ceo sistem koji se sastoji iz:</p>
+                                        <ul>
+                                            <li><strong>Logotipa (grba)</strong> – centralni element, simbol koji predstavlja entitet (npr. RTS logo, Adobe logo).</li>
+                                            <li><strong>Palete boja</strong> – definisane primarne, sekundarne i neutralne boje. Ograničen broj boja (najčešće 3-5) osigurava doslednost.</li>
+                                            <li><strong>Tipografije (fontova)</strong> – koji se fontovi koriste za naslove, podnaslove, osnovni tekst.</li>
+                                            <li><strong>Obrasci i teksture</strong> – pozadine, šare, linije koje se ponavljaju.</li>
+                                            <li><strong>Ton i stil fotografija/ilustracija</strong> – da li su fotografije tople ili hladne, da li koriste visoki kontrast ili pastelne boje.</li>
+                                        </ul>
+                                    </div>
+                                </section>
 
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Primena VI u multimediji i TV produkciji</h2>
+                                    <div class="lection-section__content">
+                                        <p>U televizijskoj i multimedijalnoj produkciji, VI se mora dosledno primenjivati na više kanala i medija:</p>
+                                        <ul>
+                                            <li><strong>TV špic (intro program)</strong> – uvodna animacija koja koristi logo, boje i muzički džingl. To je "vizit karta" programa.</li>
+                                            <li><strong>Donje trećine (lower thirds)</strong> – grafički prikazi koji se pojavljuju u donjem delu ekrana (ime gosta, mesto dešavanja). Boja i font moraju pratiti vizuelni identitet.</li>
+                                            <li><strong>Zeleni studio (chroma key)</strong> – pozadina u virtuelnom studiju (npr. za vremensku prognozu) takođe mora da bude u skladu sa VI (boja pozadine, logo u uglu).</li>
+                                            <li><strong>Vebsajt i društvene mreže</strong> – iste boje, isti logo, isti fontovi kao i na TV ekranu.</li>
+                                        </ul>
+                                        <div class="note">
+                                            💡 U Photoshopu, celokupni vizuelni identitet se može pakovati u <strong>šablone (.PSD, .AI)</strong> koji sadrže sve potrebne elemente: logo, vođice za sigurnu zonu, color swatches, stilove slojeva (layer styles).
+                                        </div>
+                                    </div>
+                                </section>
 
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Praktična implementacija: od logoa do finalnog proizvoda</h2>
+                                    <div class="lection-section__content">
+                                        <p>Proces integracije vizuelnog identiteta u multimedijalni proizvod (npr. dashboard za IoT stanicu) obuhvata nekoliko koraka:</p>
+                                        <ul>
+                                            <li><strong>1. Kreiranje logotipa</strong> – u vektorskom programu (Adobe Illustrator, CorelDRAW). Potrebne su nam verzije u boji, crno-bela (monochrome) i bela na crnoj podlozi.</li>
+                                            <li><strong>2. Izrada palete boja</strong> – definisanje HEX, RGB i CMYK vrednosti. Na primer, primarne boje IoT dashboarda mogu biti tamnoplava (#1E3A8A) i cijan (#06B6D4).</li>
+                                            <li><strong>3. Definisanje tipografije</strong> – za web se koriste "web-safe" fontovi (Google Fonts) ili sistem fontova (npr. Inter, Roboto).</li>
+                                            <li><strong>4. Implementacija u CSS/HTML</strong> – definisanje CSS varijabli (custom properties) za boje, navođenje fontova, postavljanje logoa u header.</li>
+                                            <li><strong>5. Kreiranje UI komponenti</strong> – dugmad, kartice, forme moraju koristiti VI (npr. dugme za "send data" je cijan boje).</li>
+                                        </ul>
+                                        <p>Primer CSS koda za VI jedne IoT aplikacije:</p>
+                                        <pre class="code-block"><code>:root {
+  --color-primary: #1E3A8A;   /* tamnoplava */
+  --color-secondary: #06B6D4; /* cijan */
+  --color-accent: #F59E0B;    /* narandžasta (za upozorenja) */
+  --color-background: #F3F4F6; /* svetlo siva */
+  --color-text: #111827;       /* skoro crna */
+  --font-sans: 'Inter', sans-serif;
+}
+
+.btn--primary {
+  background-color: var(--color-secondary);
+  color: #fff;
+  border: none;
+  font-family: var(--font-sans);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-primary);
+}</code></pre>
+                                    </div>
+                                </section>
+
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Doslednost je ključ</h2>
+                                    <div class="lection-section__content">
+                                        <p>Najveća greška u integraciji vizuelnog identiteta je <strong>nekonzistentnost</strong>. Ako dugme na jednoj stranici izgleda ovako, a na drugoj drugačije – korisnik se zbunjuje i gubi poverenje.</p>
+                                        <p>Saveti za održavanje doslednosti:</p>
+                                        <ul>
+                                            <li>Napraviti <strong>style guide</strong> (dizajn sistem) – dokument koji sadrži sve komponente i pravila njihovog korišćenja.</li>
+                                            <li>Koristiti <strong>komponentni framework</strong> (React, Vue) tako da se UI elementi definišu na jednom mestu.</li>
+                                            <li>Automatizovati – koristiti <strong>CSS preprocesore (SASS, LESS)</strong> sa varijablama i mixin-ovima.</li>
+                                            <li>Testirati na svim medijima – ista boja može izgledati drugačije na OLED TV ekranu nego na laptop monitoru. Kalibracija je važna.</li>
+                                        </ul>
+                                        <p>U TV produkciji (npr. RTS reportažna kola), novinari dobijaju unapred pripremljene <strong>Photoshop šablone</strong> za donje trećine i uvodne špicove. Tako je osigurano da svi prilozi izgledaju isto, bez obzira ko ih priprema.</p>
+                                    </div>
+                                </section>
                             </div>
 
-                            <!-- ===============================
-                     NAVIGACIJA IZMEĐU LEKCIJA
-                =============================== -->
                             <nav class="lection-nav">
                                 <% if (navigation.prev) { %>
-                                    <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.prev.slug %>"
-                                        class="lection-nav__link lection-nav__link--prev">
+                                    <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.prev.slug %>" class="lection-nav__link lection-nav__link--prev">
                                         <span class="nav-arrow">←</span>
-                                        <span class="nav-text">
-                                            <span class="nav-label">Prethodna lekcija</span>
-                                            <span class="nav-title">
-                                                <%= navigation.prev.title %>
-                                            </span>
-                                        </span>
+                                        <span class="nav-text"><span class="nav-label">Prethodna lekcija</span><span class="nav-title"><%= navigation.prev.title %></span></span>
                                     </a>
-                                    <% } else { %>
-                                        <a href="/multimedijalne-aplikacije"
-                                            class="lection-nav__link lection-nav__link--prev">
-                                            <span class="nav-arrow">←</span>
-                                            <span class="nav-text">
-                                                <span class="nav-label">Nazad na</span>
-                                                <span class="nav-title">početnu predmeta</span>
-                                            </span>
-                                        </a>
-                                        <% } %>
-
-                                            <% if (navigation.next) { %>
-                                                <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.next.slug %>"
-                                                    class="lection-nav__link lection-nav__link--next">
-                                                    <span class="nav-text">
-                                                        <span class="nav-label">Sledeća lekcija</span>
-                                                        <span class="nav-title">
-                                                            <%= navigation.next.title %>
-                                                        </span>
-                                                    </span>
-                                                    <span class="nav-arrow">→</span>
-                                                </a>
-                                                <% } %>
+                                <% } else { %>
+                                    <a href="/multimedijalne-aplikacije" class="lection-nav__link lection-nav__link--prev">
+                                        <span class="nav-arrow">←</span>
+                                        <span class="nav-text"><span class="nav-label">Nazad na</span><span class="nav-title">početnu predmeta</span></span>
+                                    </a>
+                                <% } %>
+                                <% if (navigation.next) { %>
+                                    <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.next.slug %>" class="lection-nav__link lection-nav__link--next">
+                                        <span class="nav-text"><span class="nav-label">Sledeća lekcija</span><span class="nav-title"><%= navigation.next.title %></span></span>
+                                        <span class="nav-arrow">→</span>
+                                    </a>
+                                <% } %>
                             </nav>
-
                         </article>
-
-                        <% } %>
-
+                    <% } %>
             </main>
         </div>
 

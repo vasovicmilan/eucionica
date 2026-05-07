@@ -4,124 +4,364 @@
     <%- include('../../../includes/navigation', { active: 'otvoreno-racunarstvo' }) %>
 
         <div class="lection-container">
-            <!-- SIDEBAR -->
             <aside class="lection-sidebar">
                 <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
             </aside>
 
-            <!-- CONTENT -->
             <main class="lection-content">
-
-                <!-- ===============================
-             LEKCIJA NIJE DOSTUPNA
-        =============================== -->
                 <% if (!lection.available) { %>
-
                     <div class="lection-locked">
                         <div class="lection-locked__icon">🔒</div>
                         <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
-                        <p class="lection-locked__text">
-                            Ova lekcija postaje dostupna
-                            <strong>
+                        <p class="lection-locked__text">Ova lekcija postaje dostupna <strong>
                                 <%= lection.formattedDate %>
-                            </strong>.
-                        </p>
-                        <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
-                        <a href="/otvoreno-racunarstvo" class="btn btn--primary btn--large">
-                            Nazad na predmet
-                        </a>
+                            </strong>.</p>
+                        <a href="/otvoreno-racunarstvo" class="btn btn--primary btn--large">Nazad na predmet</a>
                     </div>
-
-                    <!-- ===============================
-             LEKCIJA JE DOSTUPNA
-        =============================== -->
                     <% } else { %>
-
                         <article class="lection">
-
-                            <!-- HEADER -->
                             <header class="lection__header">
                                 <div class="lection__meta">
-                                    <span class="lection__badge lection__badge--week">
-                                        <span class="badge-icon">📅</span>
-                                        Nedelja <%= lection.week %>
+                                    <span class="lection__badge lection__badge--week">📅 Nedelja <%= lection.week %>
                                     </span>
-                                    <span class="lection__badge lection__badge--date">
-                                        <span class="badge-icon">📌</span>
-                                        <%= lection.formattedDate %>
+                                    <span class="lection__badge lection__badge--date">📌 <%= lection.formattedDate %>
                                     </span>
                                 </div>
-
-                                <h1 class="lection__title">
-                                    <%= lection.title %>
-                                </h1>
-
+                                <h1 class="lection__title"><%= lection.title %></h1>
                                 <% if (lection.description) { %>
-                                    <p class="lection__description">
-                                        <%= lection.description %>
-                                    </p>
-                                    <% } %>
-                                        <div class="project-note">
-
-                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
-
-                                        </div>
+                                    <p class="lection__description"><%= lection.description %></p>
+                                <% } %>
+                                <div class="project-note">⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!</div>
                             </header>
 
-                            <!-- ===============================
-                     SADRŽAJ LEKCIJE
-                =============================== -->
                             <div class="lection__content">
+                                <!-- ========================================================= -->
+                                <!-- 1. ZAŠTO SU ALATI VAŽNI -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Zašto uopšte govorimo o alatima?</h2>
+                                    <div class="lection-section__content">
+                                        <p>Otvoreno računarstvo nije samo <strong>ideja ili filozofija</strong>. Da bi funkcionisalo u praksi, potrebni su <strong>alati</strong> koji tu ideju omogućavaju.</p>
+                                        
+                                        <div class="tech-grid">
+                                            <div class="tech-item">
+                                                <span class="tech-icon">🔓</span>
+                                                <strong>Omogućavaju primenu</strong>
+                                                <span class="tech-desc">Principi otvorenosti postaju stvarni, upotrebljivi softver</span>
+                                            </div>
+                                            <div class="tech-item">
+                                                <span class="tech-icon">🤝</span>
+                                                <strong>Povezuju zajednice</strong>
+                                                <span class="tech-desc">Zajednički alati = zajednički jezik i način rada</span>
+                                            </div>
+                                            <div class="tech-item">
+                                                <span class="tech-icon">📐</span>
+                                                <strong>Standardizuju rad</strong>
+                                                <span class="tech-desc">Git, npm, Docker – isti alati širom sveta</span>
+                                            </div>
+                                            <div class="tech-item">
+                                                <span class="tech-icon">📚</span>
+                                                <strong>Čine znanje dostupnim</strong>
+                                                <span class="tech-desc">Uz otvoreni kod dolazi i javna dokumentacija</span>
+                                            </div>
+                                        </div>
+                                        <div class="note">
+                                            💡 <strong>Alati nisu cilj sami po sebi</strong> – već sredstvo za ostvarenje otvorenosti. Učenje alata bez razumevanja zašto postoje nema smisla.
+                                        </div>
+                                    </div>
+                                </section>
 
-                                <!-- OVDE DOLAZI SADRŽAJ LEKCIJE -->
-                                <!-- Sadržaj će biti dodat za svaku lekciju posebno -->
+                                <!-- ========================================================= -->
+                                <!-- 2. ŠTA ZNAČI "OPEN SOURCE ALAT"? -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Šta znači da je alat "open source"?</h2>
+                                    <div class="lection-section__content">
+                                        <p>Kada kažemo da je alat open source, to znači da:</p>
+                                        <ul>
+                                            <li><strong>Izvorni kod može da se proučava</strong> – nema tajni, sve je javno dostupno</li>
+                                            <li><strong>Način rada nije skriven</strong> – možeš tačno da vidiš šta softver radi i kako</li>
+                                            <li><strong>Postoji mogućnost izmene</strong> – možeš da prilagodiš alat svojim potrebama</li>
+                                            <li><strong>Razvoj nije vezan za jednog proizvođača</strong> – nema vendor lock-in</li>
+                                        </ul>
+                                        
+                                        <h3>Time alat postaje:</h3>
+                                        <div class="benefits-grid">
+                                            <div class="benefit-card">🔍 <strong>Transparentan</strong><br>Znaš šta se dešava "ispod haube"</div>
+                                            <div class="benefit-card">✅ <strong>Proverljiv</strong><br>Zajednica može da nađe i popravi greške</div>
+                                            <div class="benefit-card">📅 <strong>Dugoročno održiv</strong><br>Ne zavisi od hira jedne kompanije</div>
+                                            <div class="benefit-card">🔧 <strong>Nezavisan</strong><br>Možeš da ga koristiš i ulažeš u njega bez straha</div>
+                                        </div>
+                                    </div>
+                                </section>
 
+                                <!-- ========================================================= -->
+                                <!-- 3. ALATI KAO NOSIOCI STANDARDA -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Alati kao nosioci standarda</h2>
+                                    <div class="lection-section__content">
+                                        <p>Open source alati često:</p>
+                                        <ul>
+                                            <li><strong>Implementiraju otvorene standarde</strong> – poštuju RFC, W3C, ISO specifikacije</li>
+                                            <li><strong>Služe kao referentna implementacija</strong> – "zvanična" open source verzija standarda</li>
+                                            <li><strong>Podstiču interoperabilnost</strong> – različiti alati mogu da rade zajedno</li>
+                                        </ul>
+                                        
+                                        <h3>Zašto je to važno?</h3>
+                                        <p>Kada je alat open source i poštuje standarde, tvoji podaci nisu zarobljeni u jednom ekosistemu. Možeš da pređeš sa jednog alata na drugi bez gubitka podataka.</p>
+                                        
+                                        <div class="example-scenario">
+                                            <h3>Primer: LibreOffice i OpenDocument format (ODF)</h3>
+                                            <p>LibreOffice koristi <strong>ODF</strong> – otvoreni standard za kancelarijske dokumente (ISO/IEC 26300). Zato:</p>
+                                            <ul>
+                                                <li>✅ Dokument napravljen u LibreOffice može da otvori i <strong>Microsoft Office</strong> (uz podršku za ODF)</li>
+                                                <li>✅ Tvoj rad nije zarobljen u .docx formatu</li>
+                                                <li>✅ I za 20 godina će postojati alat koji može da pročita ODF</li>
+                                            </ul>
+                                            <p>Suprotnost: <strong>Zatvoreni formati</strong> (stari .doc, .wps) – danas ih retko koji program može da otvori.</p>
+                                        </div>
+                                        <div class="note">
+                                            📌 <strong>Princip:</strong> Alati koji poštuju otvorene standarde <strong>čuvaju tvoje podatke</strong> na dugoročno.
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 4. ALATI I ZAJEDNICA -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Alati i zajednica – neraskidiva veza</h2>
+                                    <div class="lection-section__content">
+                                        <p>Kod open source alata, <strong>zajednica ima ključnu ulogu</strong>. To nije samo skup korisnika, već ljudi koji:</p>
+                                        <ul>
+                                            <li>Pišu dokumentaciju i tutorijale</li>
+                                            <li>Prijavljuju i popravljaju greške</li>
+                                            <li>Predlažu nove funkcije</li>
+                                            <li>Odgovaraju na pitanja početnika</li>
+                                        </ul>
+                                        
+                                        <div class="quote-card">
+                                            "Alat nije samo softver, već <strong>znanje oko njega</strong> – forumi, GitHub issues, Stack Overflow odgovori, YouTube tutorijali."
+                                        </div>
+                                        
+                                        <h3>Primer: Git i GitHub zajednica</h3>
+                                        <p>Git je open source alat za verzionisanje koda. Ali ono što ga čini moćnim jeste <strong>zajednica oko njega</strong>:</p>
+                                        <ul>
+                                            <li>📚 Hiljade tutorijala i članaka</li>
+                                            <li>💬 Aktivni forumi (Stack Overflow, Reddit)</li>
+                                            <li>🔧 Mnoštvo alata koji ga proširuju (GitHub, GitLab, Bitbucket)</li>
+                                            <li>👥 Milioni programera koji ga koriste i unapređuju</li>
+                                        </ul>
+                                        <div class="note">
+                                            💡 Zato se kaže: <strong>Izaberi alat sa aktivnom zajednicom</strong> – to je garant da ćeš dobiti pomoć i da alat neće biti napušten.
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 5. EKOSISTEMI KAO REZULTAT OTVORENOSTI -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Ekosistemi kao rezultat otvorenosti</h2>
+                                    <div class="lection-section__content">
+                                        <p>Kada su alati otvoreni, <strong>nastaju ekosistemi</strong> – mreže međusobno povezanih alata koji se oslanjaju jedni na druge.</p>
+                                        
+                                        <div class="eco-system">
+                                            <h3>Primer: JavaScript/Node.js ekosistem</h3>
+                                            <div class="eco-nodes">
+                                                <div class="eco-node">Node.js<br><small>(runtime)</small></div>
+                                                <div class="eco-arrow">→</div>
+                                                <div class="eco-node">npm<br><small>(package manager)</small></div>
+                                                <div class="eco-arrow">→</div>
+                                                <div class="eco-node">Express<br><small>(web framework)</small></div>
+                                                <div class="eco-arrow">→</div>
+                                                <div class="eco-node">React/Vue<br><small>(frontend)</small></div>
+                                            </div>
+                                            <p>Svi ovi alati su open source, nezavisno razvijeni, ali zajedno čine <strong>funkcionalnu celinu</strong>. Nijedna kompanija ne kontroliše ceo ekosistem – on se razvija <strong>organski</strong>, kroz saradnju hiljada developera širom sveta.</p>
+                                        </div>
+                                        
+                                        <h3>Karakteristike open source ekosistema:</h3>
+                                        <ul>
+                                            <li>✅ <strong>Nije centralno kontrolisan</strong> – nema jedne tačke odlučivanja</li>
+                                            <li>✅ <strong>Razvija se organski</strong> – u skladu sa stvarnim potrebama korisnika</li>
+                                            <li>✅ <strong>Zajednica gradi dodatne slojeve</strong> – svako može da doprinese</li>
+                                            <li>✅ <strong>Prilagođava se potrebama</strong> – ako nešto ne radi, fork-uješ i popraviš</li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 6. VRSTE OPEN SOURCE ALATA -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Vrste open source alata prema nameni</h2>
+                                    <div class="lection-section__content">
+                                        <p>Otvoreno računarstvo nije ograničeno samo na programiranje – open source alati pokrivaju <strong>gotovo sve aspekte digitalnog rada</strong>.</p>
+                                        
+                                        <div class="categories-grid">
+                                            <div class="category-card">
+                                                <h3>🛠️ Razvojni alati</h3>
+                                                <p><strong>Primeri:</strong> VSCodium, Git, GCC, Python</p>
+                                                <p>Omogućavaju transparentan nastanak softvera. Njihova vrednost je u <strong>uvidu u proces</strong>, ne samo u rezultatu.</p>
+                                            </div>
+                                            <div class="category-card">
+                                                <h3>📄 Korisničke aplikacije</h3>
+                                                <p><strong>Primeri:</strong> LibreOffice, Firefox, Thunderbird, GIMP</p>
+                                                <p>Svakodnevni rad bez vezivanja za zatvorene formate i licence.</p>
+                                            </div>
+                                            <div class="category-card">
+                                                <h3>🎨 Multimedijalni alati</h3>
+                                                <p><strong>Primeri:</strong> GIMP (slika), Audacity (zvuk), Blender (3D), OBS (striming)</p>
+                                                <p>Omogućavaju učenje principa digitalne slike i zvuka bez komercijalnih ograničenja.</p>
+                                            </div>
+                                            <div class="category-card">
+                                                <h3>🌐 Internet alati</h3>
+                                                <p><strong>Primeri:</strong> Firefox, Chromium, Apache, Nginx, curl</p>
+                                                <p>Promovišu otvorene web standarde i privatnost.</p>
+                                            </div>
+                                            <div class="category-card">
+                                                <h3>🤖 Alati za veštačku inteligenciju</h3>
+                                                <p><strong>Primeri:</strong> Ollama, TensorFlow, PyTorch, Hugging Face</p>
+                                                <p>Omogućavaju lokalno pokretanje modela i eksperimentisanje bez centralizovanih servisa.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 7. OGRANIČENJA I ODGOVORNOST -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Ograničenja i odgovornost</h2>
+                                    <div class="lection-section__content">
+                                        <p>Otvoreni alati <strong>ne garantuju jednostavnost</strong>. Često zahtevaju više truda i samostalnosti nego komercijalni alati.</p>
+                                        
+                                        <div class="comparison-grid">
+                                            <div class="comparison-card">
+                                                <h3>⚠️ Izazovi open source alata</h3>
+                                                <ul>
+                                                    <li>Dokumentacija je ponekad <strong>nepotpuna</strong> ili tehnička</li>
+                                                    <li>UI/UX često nije prioritet (npr. GIMP vs Photoshop)</li>
+                                                    <li>Podrška zavisi od <strong>volontera</strong>, ne od call centra</li>
+                                                    <li>Neki alati imaju <strong>strmu krivu učenja</strong></li>
+                                                </ul>
+                                            </div>
+                                            <div class="comparison-card">
+                                                <h3>✅ Ali zauzvrat nude:</h3>
+                                                <ul>
+                                                    <li><strong>Slobodu</strong> – radiš kako ti želiš, ne kako je neko zamislio</li>
+                                                    <li><strong>Razvijaju kritičko razmišljanje</strong> – učiš kako stvari <em>zaista</em> rade</li>
+                                                    <li><strong>Uče te kako da učiš</strong> – čitanje dokumentacije, traženje rešenja</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="quote-card">
+                                            "Otvoreno računarstvo podrazumeva i <strong>ličnu odgovornost</strong> – ti si taj koji bira, uči i rešava probleme."
+                                        </div>
+                                        
+                                        <div class="note">
+                                            🎓 <strong>Poruka za studente:</strong> Fokus nije na savladavanju konkretnog alata (jer oni se menjaju), već na <strong>razumevanju principa</strong> koji stoje iza njih. Nauči Git, razumećeš verzionisanje – bilo koji alat za to koristio.
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 8. PRAKTIČNI PRIMERI ZA SVAKU KATEGORIJU -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Praktični primeri open source alata</h2>
+                                    <div class="lection-section__content">
+                                        <p>Evo konkretnih primera za svaku kategoriju – ove alate <strong>zaista koriste</strong> milioni ljudi:</p>
+                                        
+                                        <h3>🛠️ Razvoj i verzionisanje</h3>
+                                        <ul>
+                                            <li><strong>Git</strong> – verzionisanje koda (<strong>standard</strong> u industriji, čak i Microsoft ga koristi za Windows)</li>
+                                            <li><strong>VS Codium</strong> – otvorena verzija VS Code-a (bez Microsoft telemetrije)</li>
+                                            <li><strong>Python</strong> – programski jezik kojim se služe milioni developera</li>
+                                        </ul>
+                                        
+                                        <h3>📄 Kancelarijski i internet alati</h3>
+                                        <ul>
+                                            <li><strong>LibreOffice</strong> – kompletna zamena za Microsoft Office (ODF standard)</li>
+                                            <li><strong>Mozilla Firefox</strong> – jedini <strong>nezavisni</strong> veliki pregledač (nije na Chromium engine-u)</li>
+                                            <li><strong>Nextcloud</strong> – sopstveni Google Drive / Dropbox (hostuješ sam)</li>
+                                        </ul>
+                                        
+                                        <h3>🎨 Multimedija i kreativa</h3>
+                                        <ul>
+                                            <li><strong>GIMP</strong> – alternativa Photoshopu (moćan, ali drugačiji UI)</li>
+                                            <li><strong>Blender</strong> – profesionalni 3D softver (koriste ga studiji za animaciju)</li>
+                                            <li><strong>Audacity</strong> – audio editor (snimanje, montaža, efekti)</li>
+                                            <li><strong>OBS Studio</strong> – striming i snimanje ekrana (standard za Twitch/YouTube)</li>
+                                            <li><strong>Kdenlive / Shotcut</strong> – video editori (zamena za Premiere)</li>
+                                        </ul>
+                                        
+                                        <h3>📡 Internet i serveri (nevidljivi heroji)</h3>
+                                        <ul>
+                                            <li><strong>Apache / Nginx</strong> – web serveri, služe <strong>2/3 svih vebsajtova</strong></li>
+                                            <li><strong>curl</strong> – alat za prenos podataka preko mreže (svaki developer ga koristi)</li>
+                                            <li><strong>WordPress</strong> – CMS koji pokreće <strong>40% svih vebsajtova</strong></li>
+                                        </ul>
+                                        
+                                        <h3>🔬 Nauka i AI</h3>
+                                        <ul>
+                                            <li><strong>Jupyter Notebook</strong> – interaktivno okruženje za nauku i analizu podataka</li>
+                                            <li><strong>TensorFlow / PyTorch</strong> – framework-ovi za mašinsko učenje (Google i Meta ih razvijaju open source)</li>
+                                            <li><strong>Ollama</strong> – lokalno pokretanje velikih jezičkih modela (LLaMA, Mistral)</li>
+                                        </ul>
+                                        
+                                        <div class="note">
+                                            💡 Obrati pažnju: Većinu ovih alata si <strong>već koristio</strong> – čak i ako nisi znao da su open source (curl, Python, Firefox, WordPress).
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- ========================================================= -->
+                                <!-- 9. ZAKLJUČAK -->
+                                <!-- ========================================================= -->
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Šta smo naučili?</h2>
+                                    <div class="lection-section__content">
+                                        <ul>
+                                            <li>Open source alati su <strong>sredstvo</strong> za ostvarenje principa otvorenog računarstva, ne cilj sami po sebi.</li>
+                                            <li>Alat je open source ako je njegov <strong>izvorni kod javan</strong>, može da se menja i deli.</li>
+                                            <li>Open source alati često <strong>nose standarde</strong> i omogućavaju interoperabilnost.</li>
+                                            <li>Zajednica oko alata je <strong>jednako važna</strong> kao i sam alat – bez nje alat umire.</li>
+                                            <li>Open source ekosistemi (JavaScript, Linux) su primer kako <strong>organska saradnja</strong> stvara ogromne sisteme.</li>
+                                            <li>Postoje open source alati za <strong>sve namene</strong> – od kancelarijskog rada do veštačke inteligencije.</li>
+                                            <li>Izbor open source alata nosi <strong>veću odgovornost</strong> (sam čitaš dokumentaciju), ali daje <strong>veću slobodu</strong> i razvija <strong>kritičko razmišljanje</strong>.</li>
+                                        </ul>
+                                        
+                                        <div class="final-message">
+                                            🚀 Otvoreno računarstvo <strong>ne bi postojalo bez alata</strong>, a alati <strong>ne bi postojali bez otvorenih principa i zajednice</strong>. Ovo dvoje je neraskidivo povezano.
+                                        </div>
+                                    </div>
+                                </section>
                             </div>
 
-                            <!-- ===============================
-                     NAVIGACIJA IZMEĐU LEKCIJA
-                =============================== -->
                             <nav class="lection-nav">
                                 <% if (navigation.prev) { %>
-                                    <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>"
-                                        class="lection-nav__link lection-nav__link--prev">
+                                    <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.prev.slug %>" class="lection-nav__link lection-nav__link--prev">
                                         <span class="nav-arrow">←</span>
-                                        <span class="nav-text">
-                                            <span class="nav-label">Prethodna lekcija</span>
-                                            <span class="nav-title">
-                                                <%= navigation.prev.title %>
-                                            </span>
-                                        </span>
+                                        <span class="nav-text"><span class="nav-label">Prethodna lekcija</span><span class="nav-title"><%= navigation.prev.title %></span></span>
                                     </a>
-                                    <% } else { %>
-                                        <a href="/otvoreno-racunarstvo"
-                                            class="lection-nav__link lection-nav__link--prev">
-                                            <span class="nav-arrow">←</span>
-                                            <span class="nav-text">
-                                                <span class="nav-label">Nazad na</span>
-                                                <span class="nav-title">početnu predmeta</span>
-                                            </span>
-                                        </a>
-                                        <% } %>
-
-                                            <% if (navigation.next) { %>
-                                                <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.next.slug %>"
-                                                    class="lection-nav__link lection-nav__link--next">
-                                                    <span class="nav-text">
-                                                        <span class="nav-label">Sledeća lekcija</span>
-                                                        <span class="nav-title">
-                                                            <%= navigation.next.title %>
-                                                        </span>
-                                                    </span>
-                                                    <span class="nav-arrow">→</span>
-                                                </a>
-                                                <% } %>
+                                <% } else { %>
+                                    <a href="/otvoreno-racunarstvo" class="lection-nav__link lection-nav__link--prev">
+                                        <span class="nav-arrow">←</span>
+                                        <span class="nav-text"><span class="nav-label">Nazad na</span><span class="nav-title">početnu predmeta</span></span>
+                                    </a>
+                                <% } %>
+                                <% if (navigation.next) { %>
+                                    <a href="/otvoreno-racunarstvo/lekcija/<%= navigation.next.slug %>" class="lection-nav__link lection-nav__link--next">
+                                        <span class="nav-text"><span class="nav-label">Sledeća lekcija</span><span class="nav-title"><%= navigation.next.title %></span></span>
+                                        <span class="nav-arrow">→</span>
+                                    </a>
+                                <% } %>
                             </nav>
-
                         </article>
-
-                        <% } %>
-
+                    <% } %>
             </main>
         </div>
 

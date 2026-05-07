@@ -1,0 +1,350 @@
+<%- include('./includes/head', { 
+    title: 'Dodatni materijali', 
+    pageDescription: 'Lični vodič kroz resurse za samoedukaciju - programiranje, web razvoj, baze podataka, algoritmi i više.',
+    pageStyles: 'pages/extra-materials.css'
+}) %>
+
+<%- include('./includes/navigation', { active: '' }) %>
+
+<main class="home-page">
+    <div class="container">
+        <!-- HERO -->
+        <div class="resources-hero">
+            <h1>📚 Dodatni materijali</h1>
+            <div class="disclaimer-box">
+                <p><strong>⚠️ Važna napomena</strong></p>
+                <p><%= disclaimer.message %> <strong><%= disclaimer.noAffiliate %></strong></p>
+                <p class="highlight-tip">💡 <strong><%= disclaimer.tip.split(':')[0] %>:</strong> <%= disclaimer.tip.split(':')[1] || disclaimer.tip %></p>
+            </div>
+        </div>
+
+        <!-- RAZLIČITI PRAVCI U IT -->
+        <section class="resources-section">
+            <h2>🧭 <%= careerPaths.title %></h2>
+            <p class="section-intro"><%= careerPaths.intro %></p>
+            
+            <div class="career-paths-grid">
+                <% careerPaths.paths.forEach(path => { %>
+                    <div class="career-card">
+                        <div class="career-icon"><%= path.icon %></div>
+                        <h3><%= path.title %></h3>
+                        <% path.content.forEach(line => { %>
+                            <p><%= line %></p>
+                        <% }) %>
+                        <div class="career-tip">💡 <%= path.tip %></div>
+                    </div>
+                <% }) %>
+            </div>
+            
+            <div class="career-summary">
+                <strong>📌 Kako da izabereš?</strong>
+                <ul>
+                    <% careerPaths.summary.forEach(item => { %>
+                        <li>🔹 <%= item %></li>
+                    <% }) %>
+                </ul>
+                <p class="career-conclusion">🎯 <strong><%= careerPaths.conclusion %></strong></p>
+            </div>
+        </section>
+
+        <!-- HRONOLOŠKI RASPORED -->
+        <section class="resources-section">
+            <h2>🗓️ Hronološki raspored učenja</h2>
+            <p class="section-intro">Ovo je redosled kojim bih ja išao – od apsolutne nule do profesionalne spreme. Aposlutno nije neophodno uzimati ove ili bilo koje kurseve, postoji gomila besplatno dostupnog sadrzaja!</p>
+            
+            <div class="timeline-roadmap">
+                <% timeline.forEach(phase => { %>
+                    <div class="timeline-phase">
+                        <div class="phase-badge phase-<%= phase.phase %>"><%= phase.phase %>️⃣</div>
+                        <div class="phase-content">
+                            <h3><%= phase.title %></h3>
+                            <ul>
+                                <% phase.items.forEach(item => { %>
+                                    <li>
+                                        <strong><%= item.name %></strong> – 
+                                        <% if (item.link) { %>
+                                            <a href="<%= item.link %>" target="_blank" rel="noopener"><%= item.description %></a>
+                                        <% } else { %>
+                                            <%= item.description %>
+                                        <% } %>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </section>
+
+        <!-- PARALELA: WEB vs DESKTOP vs MOBILE vs GAMING -->
+        <section class="resources-section">
+            <h2><%= platformParallel.title %></h2>
+            <p class="section-intro"><%= platformParallel.intro %></p>
+            
+            <div class="parallel-table">
+                <table>
+                    <thead>
+                        <tr><th>Koncept</th><th>🌐 Web</th><th>🖥️ Desktop</th><th>📱 Mobile</th><th>🎮 Gaming</th></tr>
+                    </thead>
+                    <tbody>
+                        <% platformParallel.concepts.forEach(concept => { %>
+                            <tr>
+                                <td><%= concept.concept %></td>
+                                <td><%= concept.web %></td>
+                                <td><%= concept.desktop %></td>
+                                <td><%= concept.mobile %></td>
+                                <td><%= concept.gaming %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="conclusion-box">
+                <%= platformParallel.conclusion %>
+            </div>
+        </section>
+
+        <!-- PROGRAMSKI JEZICI -->
+        <section class="resources-section">
+            <h2>💻 Programski jezici</h2>
+            <div class="lang-grid">
+                <% programmingLanguages.forEach(lang => { %>
+                    <div class="lang-card"><strong><%= lang.name %></strong> – <%= lang.description %></div>
+                <% }) %>
+            </div>
+        </section>
+
+        <!-- BAZE PODATAKA -->
+        <section class="resources-section">
+            <h2>🗄️ Baze podataka</h2>
+            <div class="two-columns">
+                <div class="db-card">
+                    <h3>SQL (relacione)</h3>
+                    <ul>
+                        <% databases.sql.forEach(db => { %>
+                            <li>
+                                <strong><%= db.name %></strong> – 
+                                <% if (db.link) { %>
+                                    <a href="<%= db.link %>" target="_blank"><%= db.description %></a>
+                                <% } else { %>
+                                    <%= db.description %>
+                                <% } %>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </div>
+                <div class="db-card">
+                    <h3>NoSQL</h3>
+                    <ul>
+                        <% databases.nosql.forEach(db => { %>
+                            <li><strong><%= db.name %></strong> – <%= db.description %></li>
+                        <% }) %>
+                        <li><strong>Savet:</strong> <%= databases.advice %></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FRAMEWORCI -->
+        <section class="resources-section">
+            <h2>⚛️ Frameworks & biblioteke</h2>
+            <div class="framework-grid">
+                <% frameworks.forEach(fw => { %>
+                    <div class="fw-card">
+                        <strong><%= fw.name %></strong> – 
+                        <% if (fw.link) { %>
+                            <a href="<%= fw.link %>" target="_blank"><%= fw.description %></a>
+                        <% } else { %>
+                            <%= fw.description %>
+                        <% } %>
+                    </div>
+                <% }) %>
+            </div>
+            <div class="note-box">📌 <strong>Savet:</strong> <%= frameworkAdvice %></div>
+        </section>
+
+        <!-- HOSTING -->
+        <section class="resources-section">
+            <h2>☁️ Hosting platforme (free / jeftino)</h2>
+            <div class="hosting-grid">
+                <% hostingPlatforms.forEach(host => { %>
+                    <a href="<%= host.url %>" target="_blank" rel="noopener" class="hosting-card">
+                        <strong><%= host.name %></strong><br><small><%= host.description %></small>
+                    </a>
+                <% }) %>
+            </div>
+            <div class="note-box highlight">💡 <strong>Savet:</strong> <%= hostingAdvice %></div>
+        </section>
+
+        <!-- GAME DEV ALATI -->
+        <section class="resources-section">
+            <h2>🎮 Game development alati</h2>
+            <div class="tools-grid">
+                <% gameDevTools.forEach(tool => { %>
+                    <a href="<%= tool.url %>" target="_blank" class="hosting-card">
+                        <strong><%= tool.name %></strong><br><small><%= tool.description %></small>
+                    </a>
+                <% }) %>
+            </div>
+        </section>
+
+        <!-- WEB ALATI -->
+        <section class="resources-section">
+            <h2>🛠️ Web development alati</h2>
+            <div class="tools-grid">
+                <% webTools.forEach(tool => { %>
+                    <a href="<%= tool.url %>" target="_blank" class="hosting-card">
+                        <strong><%= tool.name %></strong><br><small><%= tool.description %></small>
+                    </a>
+                <% }) %>
+            </div>
+        </section>
+
+        <!-- PLATFORME ZA UČENJE -->
+        <section class="resources-section">
+            <h2>🎓 Platforme za učenje</h2>
+            <div class="learning-grid">
+                <% learningPlatforms.forEach(platform => { %>
+                    <a href="<%= platform.url %>" target="_blank" class="hosting-card">
+                        <strong><%= platform.name %></strong><br><small><%= platform.description %></small>
+                    </a>
+                <% }) %>
+            </div>
+        </section>
+
+        <!-- UDEMY KURSEVI -->
+        <section class="resources-section">
+            <h2>📹 Udemy kursevi koje sam kupio i koristio</h2>
+            <div class="books-grid">
+                <% udemyCourses.forEach(course => { %>
+                    <div class="book-card">
+                        <strong>🔹 <a href="<%= course.url %>" target="_blank"><%= course.name %></a></strong>
+                    </div>
+                <% }) %>
+            </div>
+            <div class="note-box">
+                📌 <strong>Instructor:</strong> 
+                <a href="<%= udemyInstructor.url %>" target="_blank"><%= udemyInstructor.name %></a> – 
+                <%= udemyInstructor.note %>
+            </div>
+        </section>
+
+        <!-- KNJIGE -->
+        <section class="resources-section">
+            <h2>📖 Knjige koje menjaju perspektivu</h2>
+            <div class="books-grid">
+                <% books.forEach(book => { %>
+                    <div class="book-card">
+                        <strong>🔹 <%= book.title %></strong> – <%= book.author %><br>
+                        <small><%= book.description %></small>
+                    </div>
+                <% }) %>
+            </div>
+        </section>
+
+        <!-- YOUTUBE KANALI -->
+        <section class="resources-section">
+            <h2>🎬 YouTube kanali koje pratim</h2>
+            
+            <h3>🌐 Web razvoj / Programiranje (generalno)</h3>
+            <div class="yt-grid">
+                <% youtubeChannels.webDev.forEach(ch => { %>
+                    <a href="<%= ch.url %>" target="_blank" class="yt-link"><%= ch.name %></a>
+                <% }) %>
+            </div>
+
+            <h3>⚛️ Frontend specifično (Angular, React, CSS, dizajn)</h3>
+            <div class="yt-grid">
+                <% youtubeChannels.frontend.forEach(ch => { %>
+                    <a href="<%= ch.url %>" target="_blank" class="yt-link"><%= ch.name %></a>
+                <% }) %>
+            </div>
+
+            <h3>🛠️ Alati, builderi, WordPress</h3>
+            <div class="yt-grid">
+                <% youtubeChannels.tools.forEach(ch => { %>
+                    <a href="<%= ch.url %>" target="_blank" class="yt-link"><%= ch.name %></a>
+                <% }) %>
+            </div>
+
+            <h3>🔧 DevOps / Infrastruktura / Embedded</h3>
+            <div class="yt-grid">
+                <% youtubeChannels.devops.forEach(ch => { %>
+                    <a href="<%= ch.url %>" target="_blank" class="yt-link"><%= ch.name %></a>
+                <% }) %>
+            </div>
+        </section>
+
+        <!-- W3SCHOOLS -->
+        <section class="resources-section">
+            <h2>🔗 W3Schools</h2>
+            <div class="w3-card">
+                <p><a href="<%= w3schools.url %>" target="_blank">w3schools.com</a> – <%= w3schools.description %></p>
+            </div>
+        </section>
+
+        <!-- AI ALATI -->
+        <section class="resources-section">
+            <h2>🤖 AI alati</h2>
+            <div class="ai-grid">
+                <% aiTools.forEach(ai => { %>
+                    <div class="ai-card"><strong><%= ai.name %></strong> – <%= ai.description %></div>
+                <% }) %>
+            </div>
+            <div class="note-box">💡 <strong><%= aiAdvice %></strong></div>
+        </section>
+
+        <!-- DOKUMENTACIJA -->
+        <section class="resources-section">
+            <h2>📄 Oficijalna dokumentacija</h2>
+            <div class="docs-grid">
+                <% officialDocs.forEach(doc => { %>
+                    <a href="<%= doc.url %>" target="_blank" class="doc-link"><%= doc.name %></a>
+                <% }) %>
+            </div>
+            <div class="note-box highlight">⚡ <strong><%= docsAdvice %></strong></div>
+        </section>
+
+        <!-- BUILDERS -->
+        <section class="resources-section">
+            <h2>🧩 Drag-and-drop & CMS</h2>
+            <p><%= buildersNote %></p>
+            <div class="builders-grid">
+                <% builders.forEach(builder => { %>
+                    <div class="builder-card"><%= builder.name %></div>
+                <% }) %>
+            </div>
+        </section>
+
+        <!-- GOOGLE ALATI -->
+        <section class="resources-section">
+            <h2>📂 Google alati</h2>
+            <div class="tools-grid">
+                <% googleTools.forEach(tool => { %>
+                    <div class="tool-card"><strong><%= tool.name %></strong> – <%= tool.description %></div>
+                <% }) %>
+            </div>
+        </section>
+
+        <!-- ZAVRŠNI SAVETI -->
+        <section class="resources-section">
+            <h2>🎯 Završni saveti</h2>
+            <div class="final-tips">
+                <% finalTips.good.forEach(tip => { %>
+                    <div class="tip-card tip-good">✅ <%= tip %></div>
+                <% }) %>
+                <% finalTips.warnings.forEach(tip => { %>
+                    <div class="tip-card tip-warning">⚠️ <%= tip %></div>
+                <% }) %>
+            </div>
+        </section>
+
+        <!-- POVRATAK -->
+        <div class="back-to-course">
+            <a href="/" class="btn--primary">← Nazad na početnu</a>
+        </div>
+    </div>
+</main>
+
+<%- include('./includes/end') %>

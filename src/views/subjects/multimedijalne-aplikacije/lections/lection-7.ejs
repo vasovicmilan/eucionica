@@ -4,122 +4,96 @@
     <%- include('../../../includes/navigation', { active: 'multimedijalne-aplikacije' }) %>
 
         <div class="lection-container">
-            <!-- SIDEBAR -->
             <aside class="lection-sidebar">
                 <%- include('../includes/navigation', { lections: lections, currentSlug: lection.slug }) %>
             </aside>
 
-            <!-- CONTENT -->
             <main class="lection-content">
-
-                <!-- ===============================
-             LEKCIJA NIJE DOSTUPNA
-        =============================== -->
                 <% if (!lection.available) { %>
-
                     <div class="lection-locked">
                         <div class="lection-locked__icon">🔒</div>
                         <h1 class="lection-locked__title">Lekcija još nije dostupna</h1>
-                        <p class="lection-locked__text">
-                            Ova lekcija postaje dostupna
-                            <strong>
+                        <p class="lection-locked__text">Ova lekcija postaje dostupna <strong>
                                 <%= lection.formattedDate %>
-                            </strong>.
-                        </p>
-                        <p class="lection-locked__text">Jedna lekcija se otključava svake nedelje.</p>
-                        <a href="/multimedijalne-aplikacije" class="btn btn--primary btn--large">
-                            Nazad na predmet
-                        </a>
+                            </strong>.</p>
+                        <a href="/multimedijalne-aplikacije" class="btn btn--primary btn--large">Nazad na predmet</a>
                     </div>
-
-                    <!-- ===============================
-             LEKCIJA JE DOSTUPNA
-        =============================== -->
                     <% } else { %>
-
                         <article class="lection">
-
-                            <!-- HEADER -->
                             <header class="lection__header">
                                 <div class="lection__meta">
-                                    <span class="lection__badge lection__badge--week">
-                                        <span class="badge-icon">📅</span>
-                                        Nedelja <%= lection.week %>
+                                    <span class="lection__badge lection__badge--week">📅 Nedelja <%= lection.week %>
                                     </span>
-                                    <span class="lection__badge lection__badge--date">
-                                        <span class="badge-icon">📌</span>
-                                        <%= lection.formattedDate %>
+                                    <span class="lection__badge lection__badge--date">📌 <%= lection.formattedDate %>
                                     </span>
                                 </div>
-
-                                <h1 class="lection__title">
-                                    <%= lection.title %>
-                                </h1>
-
+                                <h1 class="lection__title"><%= lection.title %></h1>
                                 <% if (lection.description) { %>
-                                    <p class="lection__description">
-                                        <%= lection.description %>
-                                    </p>
-                                    <% } %>
-                                        <div class="project-note">
-
-                                            ⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!
-
-                                        </div>
+                                    <p class="lection__description"><%= lection.description %></p>
+                                <% } %>
+                                <div class="project-note">⚠️ Ovo je kratak pregled lekcije, nije zamena za prezentacije!</div>
                             </header>
 
-                            <!-- ===============================
-                     SADRŽAJ LEKCIJE
-                =============================== -->
                             <div class="lection__content">
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Šta je montaža?</h2>
+                                    <div class="lection-section__content">
+                                        <p>Montaža je postupak biranja, spajanja i oblikovanja snimljenog materijala u celinu. Ona nije samo tehnička operacija, već kreativni čin kojim se definiše ritam, tempo i značenje priče. U TV produkciji, montaža se često radi u realnom vremenu (npr. prenos fudbalske utakmice) – to se zove "<strong>režija slike</strong>".</p>
+                                        <p>Osnovna jedinica montaže je <strong>rez</strong> – trenutni prelaz sa jednog kadra na drugi. U videu se često koriste i <strong>pretapanja (mix)</strong>, <strong>brisovi (wipe)</strong> i <strong>zamrzavanje slike (freeze frame)</strong>.</p>
+                                    </div>
+                                </section>
 
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Vrste montažnih postupaka</h2>
+                                    <div class="lection-section__content">
+                                        <ul>
+                                            <li><strong>Kontinuitetna montaža</strong> – cilj joj je neprimetno spajanje kadrova tako da protok vremena i prostora deluju prirodno. Koristi se u filmovima i serijama.</li>
+                                            <li><strong>Paralelna montaža</strong> – naizmenično prikazivanje dve ili više radnji koje se odvijaju istovremeno na različitim mestima. Stvara napetost (npr. utakmica i reakcije u studiju).</li>
+                                            <li><strong>Ritmička montaža</strong> – dužina kadrova je usklađena sa muzikom ili ritmom akcije. Tipična za spotove i sportske najave.</li>
+                                            <li><strong>Asocijativna montaža</strong> – spaja kadrove na osnovu sličnosti oblika, boje ili značenja, a ne na osnovu hronologije (npr. prelazak sa loptice na mikseti na loptu na terenu).</li>
+                                        </ul>
+                                    </div>
+                                </section>
 
+                                <section class="lection-section">
+                                    <h2 class="lection-section__title">Video mikser i montaža uživo</h2>
+                                    <div class="lection-section__content">
+                                        <p>U televizijskom studiju, montaža uživo se obavlja pomoću <strong>video miksera</strong>. To je uređaj koji prima signale sa više kamera i servera, a <strong>reditelj (video mikser)</strong> bira koji signal ide u program. Ključni elementi miksera:</p>
+                                        <ul>
+                                            <li><strong>Programska šina</strong> – signal koji trenutno ide u eter.</li>
+                                            <li><strong>Prejug šina (Preview)</strong> – signal koji se priprema za sledeći kadar.</li>
+                                            <li><strong>T-Bar (palica)</strong> – ručica za izvođenje pretapanja (miksa) između dve šine.</li>
+                                            <li><strong>Multiviewer</strong> – ekran koji prikazuje sve ulazne signale (kamere, EVS, grafiku) kako bi reditelj imao pregled.</li>
+                                        </ul>
+                                        <p>Profesionalni video mikseri (npr. Sony MVS serija, Blackmagic ATEM) omogućavaju i dodavanje efekata, hroma-ki (zelena pozadina) i složene tranzicije.</p>
+                                        <div class="note">
+                                            💡 U današnje vreme, softverski mikseri (npr. OBS, vMix) omogućavaju profesionalnu montažu uživo i na običnim računarima, što je revolucija za striming i online produkciju.
+                                        </div>
+                                    </div>
+                                </section>
                             </div>
 
-                            <!-- ===============================
-                     NAVIGACIJA IZMEĐU LEKCIJA
-                =============================== -->
                             <nav class="lection-nav">
                                 <% if (navigation.prev) { %>
-                                    <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.prev.slug %>"
-                                        class="lection-nav__link lection-nav__link--prev">
+                                    <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.prev.slug %>" class="lection-nav__link lection-nav__link--prev">
                                         <span class="nav-arrow">←</span>
-                                        <span class="nav-text">
-                                            <span class="nav-label">Prethodna lekcija</span>
-                                            <span class="nav-title">
-                                                <%= navigation.prev.title %>
-                                            </span>
-                                        </span>
+                                        <span class="nav-text"><span class="nav-label">Prethodna lekcija</span><span class="nav-title"><%= navigation.prev.title %></span></span>
                                     </a>
-                                    <% } else { %>
-                                        <a href="/multimedijalne-aplikacije"
-                                            class="lection-nav__link lection-nav__link--prev">
-                                            <span class="nav-arrow">←</span>
-                                            <span class="nav-text">
-                                                <span class="nav-label">Nazad na</span>
-                                                <span class="nav-title">početnu predmeta</span>
-                                            </span>
-                                        </a>
-                                        <% } %>
-
-                                            <% if (navigation.next) { %>
-                                                <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.next.slug %>"
-                                                    class="lection-nav__link lection-nav__link--next">
-                                                    <span class="nav-text">
-                                                        <span class="nav-label">Sledeća lekcija</span>
-                                                        <span class="nav-title">
-                                                            <%= navigation.next.title %>
-                                                        </span>
-                                                    </span>
-                                                    <span class="nav-arrow">→</span>
-                                                </a>
-                                                <% } %>
+                                <% } else { %>
+                                    <a href="/multimedijalne-aplikacije" class="lection-nav__link lection-nav__link--prev">
+                                        <span class="nav-arrow">←</span>
+                                        <span class="nav-text"><span class="nav-label">Nazad na</span><span class="nav-title">početnu predmeta</span></span>
+                                    </a>
+                                <% } %>
+                                <% if (navigation.next) { %>
+                                    <a href="/multimedijalne-aplikacije/lekcija/<%= navigation.next.slug %>" class="lection-nav__link lection-nav__link--next">
+                                        <span class="nav-text"><span class="nav-label">Sledeća lekcija</span><span class="nav-title"><%= navigation.next.title %></span></span>
+                                        <span class="nav-arrow">→</span>
+                                    </a>
+                                <% } %>
                             </nav>
-
                         </article>
-
-                        <% } %>
-
+                    <% } %>
             </main>
         </div>
 
